@@ -1,0 +1,36 @@
+.justify-content-center{
+	justify-content:center;
+}
+.d-block{
+	display: block;
+}
+.d-flex{
+	display: flex;
+}
+.d-inline-flex{
+	display: inline-flex !important;
+}
+.flex-column{
+	flex-direction: column;
+}
+.flex-wrap{
+	flex-wrap: wrap;
+}
+.align-items-center{
+	align-items:center;
+}
+.d-inline-block{
+	display: inline-block;
+}
+[class *= "col-"],.col{
+	position: relative;
+	width: 100%;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+.row{
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -15px;
+	margin-right: -15px;
+}

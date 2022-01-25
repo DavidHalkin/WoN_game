@@ -1,0 +1,15 @@
+{
+  "name": "helper",
+  "version": "1.0.0",
+  "description": "markup",
+  "main": "index.js",
+  "authors": [
+    "DavidHalkin"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "dependencies": {
+
+  },
+  "devDependencies": {}
+}
