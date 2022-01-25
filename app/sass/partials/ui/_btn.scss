@@ -1,8 +1,15 @@
+.btn:not(:disabled):not(.disabled){
+	cursor: pointer;
+}
 .btn{
+	text-align:center;
+	vertical-align:middle;
+	user-select:none;
 	transition: all 0.15s ease;
 	display: inline-block;
-	background: red;
+	background: #858a4d;
 	padding: 20px;
+	border: 0;
 	color: #fff;
 	&:hover{
 		color: #fff;

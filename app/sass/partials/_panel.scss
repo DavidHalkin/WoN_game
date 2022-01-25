@@ -1,0 +1,129 @@
+.panel{
+	background-color: $primary;
+	background-position: 100% 100% !important;
+	background-repeat: no-repeat !important;
+	position: relative;
+	.panel_holder{
+		--size_border: calc(17px / 2);
+		background-image: 
+			url(../images/panel/v_border.png),
+			url(../images/panel/v_border.png),
+			url(../images/panel/h_border.png),
+			url(../images/panel/h_border.png);
+		background-repeat: 
+			repeat-y,
+			repeat-y,
+			repeat-x,
+			repeat-x;
+		background-position: 
+			0 0,
+			100% 0,
+			0 0,
+			0 100%;
+		background-size:
+			var(--size_border) auto,
+			var(--size_border) auto,
+			auto var(--size_border),
+			auto var(--size_border);
+
+		padding: calc(var(--size_border) * 2.7);
+	}
+	.corner{
+		--size: calc(71px / 2);
+		pointer-events: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: url(../images/panel/corner.png) no-repeat 0 0;
+		background-size: cover;
+		width: var(--size);
+		height: var(--size);
+		&.right_top{
+			left: auto;
+			right: 0;
+			transform:scale(-1,1);
+		}
+		&.right_bottom{
+			top: auto;
+			bottom: 0;
+			left: auto;
+			right: 0;
+			transform:scale(-1,-1);
+		}
+		&.left_bottom{
+			top: auto;
+			bottom: 0;
+			transform:scale(1,-1);
+		}
+	}
+	.decor{
+		--width:calc(82px / 2);
+		--height:calc(43px / 2);
+		&:before,&:after{
+			content: "";
+			width: var(--width);
+			height: var(--height);
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 50%;
+			transform:translateX(-50%);
+			background: url(../images/panel/centered_corner.png) no-repeat 0 0;
+			background-size: cover;
+		}
+		&:after{
+			top: auto;
+			bottom: 0;
+			transform:translateX(-50%) scale(-1,-1);
+		}
+	}
+	&.horizontal{
+		.decor{
+			&:before,&:after{
+				background: url(../images/panel/centered_corner_vertical.png) no-repeat 0 0;
+				background-size: cover;
+				width: var(--height);
+				height: var(--width);
+				top: 50%;
+				left: 2px;
+				position: absolute;
+				transform:translateY(-50%);
+			}
+			&:after{
+				top: 50%;
+				left: auto;
+				right: 2px;
+				transform:translateY(-50%) scale(-1,-1);
+			}
+		}
+	}
+	&.sm{
+		.panel_holder{
+			--size_border: 5px;
+		}
+		.corner{
+			--size: calc(71px / 3);
+		}
+		.decor{
+			--width:calc(82px / 3);
+			--height:calc(43px / 3);
+		}
+	}
+}
+.panel_holder{
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	overflow: hidden;
+}
+// .panel_header{
+// 	flex: 0 0 auto;
+// 	background: rgba(red,.2);
+// }
+// .panel_content{
+// 	flex: 1 0 auto;
+// 	padding: 10px 0;
+// 	overflow: auto;
+// 	height: 100%;
+// 	background: rgba(green,.2);
+// }
