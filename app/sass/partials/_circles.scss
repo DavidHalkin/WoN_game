@@ -10,13 +10,9 @@
 	background-size: cover;
 	position: relative;
 	img{
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform:translate(-50%,-50%);
-		object-fit:cover;
-		width: 80%;
-		height:80%;
+		@include centered_img(80,80);
+		// width: 80%;
+		// height:80%;
 	}
 	&.md{
 		--width_circle:calc(var(--width) / 2* 0.75);
@@ -25,5 +21,12 @@
 	&.sm{
 		--width_circle:calc(var(--width) / 2* 0.5);
 		--height_circle:calc(var(--height) / 2 * 0.5);
+	}
+}
+a.circle{
+	transition: all 0.15s ease;
+	&:hover{
+		transition: all 0.3s ease;
+		filter: saturate(2);
 	}
 }

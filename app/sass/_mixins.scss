@@ -29,3 +29,12 @@
 //     }
 //   }
 // }
+@mixin centered_img($width, $height) {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform:translate(-50%,-50%);
+	// object-fit:cover;
+	max-width:$width * 1%;
+	max-height:$height * 1%;
+}
