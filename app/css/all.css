@@ -72,13 +72,19 @@ textarea { overflow: auto; resize: vertical; }
 
 fieldset { min-width: 0; padding: 0; margin: 0; border: 0; }
 
+:root { --border_img_h: url(../images/panel/h_border.png); --border_img_v: url(../images/panel/v_border.png); --size_border: 17px; --size_corner: 71px; --width_decor:82px; --height_decor:43px; }
+
 body { font-family: "Vollkorn", sans-serif; font: 16px/1.5; line-height: 1.5; background: #180f0a; color: #b8afaa; }
 
-.panel { background-color: #180f0a; background-position: 100% 100% !important; background-repeat: no-repeat !important; position: relative; }
+.panel { background-color: #180f0a; background-position: 100% 100% !important; background-repeat: no-repeat !important; position: relative; -webkit-border-radius: 6px; border-radius: 6px; overflow: hidden; --size_border_local: calc(var(--size_border) / 2); --size_corner_local: calc(var(--size_corner) / 2); --width_decor_local: calc(var(--width_decor) / 2); --height_decor_local:calc(var(--height_decor) / 2); }
 
-.panel .panel_holder { --size_border: calc(17px / 2); background-image: url(../images/panel/v_border.png), url(../images/panel/v_border.png), url(../images/panel/h_border.png), url(../images/panel/h_border.png); background-repeat: repeat-y, repeat-y, repeat-x, repeat-x; background-position: 0 0, 100% 0, 0 0, 0 100%; -webkit-background-size: var(--size_border) auto, var(--size_border) auto, auto var(--size_border), auto var(--size_border); background-size: var(--size_border) auto, var(--size_border) auto, auto var(--size_border), auto var(--size_border); padding: calc(var(--size_border) * 2.7); }
+.panel.md { --size_border_local: calc(var(--size_border) / 2 * 0.75); --size_corner_local: calc(var(--size_corner) / 2 * 0.75); --width_decor_local: calc(var(--width_decor) / 2 * 0.75); --height_decor_local:calc(var(--height_decor) / 2 * 0.75); }
 
-.panel .corner { --size: calc(71px / 2); pointer-events: none; position: absolute; top: 0; left: 0; background: url(../images/panel/corner.png) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; width: var(--size); height: var(--size); }
+.panel.sm { --size_border_local: calc(var(--size_border) / 2 * 0.5); --size_corner_local: calc(var(--size_corner) / 2 * 0.5); --width_decor_local: calc(var(--width_decor) / 2 * 0.5); --height_decor_local:calc(var(--height_decor) / 2 * 0.5); }
+
+.panel .panel_holder { background-image: var(--border_img_v), var(--border_img_v), var(--border_img_h), var(--border_img_h); background-repeat: repeat-y, repeat-y, repeat-x, repeat-x; background-position: 0 0, 100% 0, 0 0, 0 100%; -webkit-background-size: var(--size_border_local) auto, var(--size_border_local) auto, auto var(--size_border_local), auto var(--size_border_local); background-size: var(--size_border_local) auto, var(--size_border_local) auto, auto var(--size_border_local), auto var(--size_border_local); padding: calc(var(--size_border_local) * 2.7); }
+
+.panel .corner { pointer-events: none; position: absolute; top: 0; left: 0; background: url(../images/panel/corner.png) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; width: var(--size_corner_local); height: var(--size_corner_local); }
 
 .panel .corner.right_top { left: auto; right: 0; -webkit-transform: scale(-1, 1); -ms-transform: scale(-1, 1); transform: scale(-1, 1); }
 
@@ -86,23 +92,19 @@ body { font-family: "Vollkorn", sans-serif; font: 16px/1.5; line-height: 1.5; ba
 
 .panel .corner.left_bottom { top: auto; bottom: 0; -webkit-transform: scale(1, -1); -ms-transform: scale(1, -1); transform: scale(1, -1); }
 
-.panel .decor { --width:calc(82px / 2); --height:calc(43px / 2); }
-
-.panel .decor:before, .panel .decor:after { content: ""; width: var(--width); height: var(--height); display: block; position: absolute; top: 0; left: 50%; -webkit-transform: translateX(-50%); -ms-transform: translateX(-50%); transform: translateX(-50%); background: url(../images/panel/centered_corner.png) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; }
+.panel .decor:before, .panel .decor:after { content: ""; width: var(--width_decor_local); height: var(--height_decor_local); display: block; position: absolute; top: 0; left: 50%; -webkit-transform: translateX(-50%); -ms-transform: translateX(-50%); transform: translateX(-50%); background: url(../images/panel/centered_corner.png) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; }
 
 .panel .decor:after { top: auto; bottom: 0; -webkit-transform: translateX(-50%) scale(-1, -1); -ms-transform: translateX(-50%) scale(-1, -1); transform: translateX(-50%) scale(-1, -1); }
 
-.panel.horizontal .decor:before, .panel.horizontal .decor:after { background: url(../images/panel/centered_corner_vertical.png) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; width: var(--height); height: var(--width); top: 50%; left: 2px; position: absolute; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%); }
+.panel.horizontal .decor:before, .panel.horizontal .decor:after { background: url(../images/panel/centered_corner_vertical.png) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; width: var(--height_decor_local); height: var(--width_decor_local); top: 50%; left: 2px; position: absolute; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%); }
 
 .panel.horizontal .decor:after { top: 50%; left: auto; right: 2px; -webkit-transform: translateY(-50%) scale(-1, -1); -ms-transform: translateY(-50%) scale(-1, -1); transform: translateY(-50%) scale(-1, -1); }
 
-.panel.sm .panel_holder { --size_border: 5px; }
-
-.panel.sm .corner { --size: calc(71px / 3); }
-
-.panel.sm .decor { --width:calc(82px / 3); --height:calc(43px / 3); }
-
 .panel_holder { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; height: 100%; overflow: hidden; }
+
+.panel_header { -webkit-box-flex: 0; -ms-flex: 0 0 auto; flex: 0 0 auto; background: rgba(255, 0, 0, 0.2); padding: calc(var(--size_border_local) * 2.7); position: relative; margin: calc(var(--size_border_local) * -2.7) calc(var(--size_border_local) * -2.7) 0; background: var(--border_img_h) repeat-x 0 100%; -webkit-background-size: auto var(--size_border_local); background-size: auto var(--size_border_local); margin-bottom: calc(var(--size_border_local) * 2); }
+
+.panel_content { -webkit-box-flex: 1; -ms-flex: 1 1 auto; flex: 1 1 auto; overflow: auto; height: 100%; background: rgba(0, 128, 0, 0.2); }
 
 .justify-content-center { -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
 

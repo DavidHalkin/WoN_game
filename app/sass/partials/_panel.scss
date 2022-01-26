@@ -3,13 +3,30 @@
 	background-position: 100% 100% !important;
 	background-repeat: no-repeat !important;
 	position: relative;
+	border-radius: 6px;
+	overflow: hidden;
+	--size_border_local: calc(var(--size_border) / 2);
+	--size_corner_local: calc(var(--size_corner) / 2);
+	--width_decor_local: calc(var(--width_decor) / 2);
+	--height_decor_local:calc(var(--height_decor) / 2);
+	&.md{
+		--size_border_local: calc(var(--size_border) / 2 * 0.75);
+		--size_corner_local: calc(var(--size_corner) / 2 * 0.75);
+		--width_decor_local: calc(var(--width_decor) / 2 * 0.75);
+		--height_decor_local:calc(var(--height_decor) / 2 * 0.75);
+	}
+	&.sm{
+		--size_border_local: calc(var(--size_border) / 2 * 0.5);
+		--size_corner_local: calc(var(--size_corner) / 2 * 0.5);
+		--width_decor_local: calc(var(--width_decor) / 2 * 0.5);
+		--height_decor_local:calc(var(--height_decor) / 2 * 0.5);
+	}
 	.panel_holder{
-		--size_border: calc(17px / 2);
 		background-image: 
-			url(../images/panel/v_border.png),
-			url(../images/panel/v_border.png),
-			url(../images/panel/h_border.png),
-			url(../images/panel/h_border.png);
+			var(--border_img_v),
+			var(--border_img_v),
+			var(--border_img_h),
+			var(--border_img_h);
 		background-repeat: 
 			repeat-y,
 			repeat-y,
@@ -21,23 +38,22 @@
 			0 0,
 			0 100%;
 		background-size:
-			var(--size_border) auto,
-			var(--size_border) auto,
-			auto var(--size_border),
-			auto var(--size_border);
+			var(--size_border_local) auto,
+			var(--size_border_local) auto,
+			auto var(--size_border_local),
+			auto var(--size_border_local);
 
-		padding: calc(var(--size_border) * 2.7);
+		padding: calc(var(--size_border_local) * 2.7);
 	}
 	.corner{
-		--size: calc(71px / 2);
 		pointer-events: none;
 		position: absolute;
 		top: 0;
 		left: 0;
 		background: url(../images/panel/corner.png) no-repeat 0 0;
 		background-size: cover;
-		width: var(--size);
-		height: var(--size);
+		width: var(--size_corner_local);
+		height: var(--size_corner_local);
 		&.right_top{
 			left: auto;
 			right: 0;
@@ -57,12 +73,10 @@
 		}
 	}
 	.decor{
-		--width:calc(82px / 2);
-		--height:calc(43px / 2);
 		&:before,&:after{
 			content: "";
-			width: var(--width);
-			height: var(--height);
+			width: var(--width_decor_local);
+			height: var(--height_decor_local);
 			display: block;
 			position: absolute;
 			top: 0;
@@ -82,8 +96,8 @@
 			&:before,&:after{
 				background: url(../images/panel/centered_corner_vertical.png) no-repeat 0 0;
 				background-size: cover;
-				width: var(--height);
-				height: var(--width);
+				width: var(--height_decor_local);
+				height: var(--width_decor_local);
 				top: 50%;
 				left: 2px;
 				position: absolute;
@@ -97,18 +111,7 @@
 			}
 		}
 	}
-	&.sm{
-		.panel_holder{
-			--size_border: 5px;
-		}
-		.corner{
-			--size: calc(71px / 3);
-		}
-		.decor{
-			--width:calc(82px / 3);
-			--height:calc(43px / 3);
-		}
-	}
+	
 }
 .panel_holder{
 	display: flex;
@@ -116,14 +119,19 @@
 	height: 100%;
 	overflow: hidden;
 }
-// .panel_header{
-// 	flex: 0 0 auto;
-// 	background: rgba(red,.2);
-// }
-// .panel_content{
-// 	flex: 1 0 auto;
-// 	padding: 10px 0;
-// 	overflow: auto;
-// 	height: 100%;
-// 	background: rgba(green,.2);
-// }
+.panel_header{
+	flex: 0 0 auto;
+	background: rgba(red,.2);
+	padding: calc(var(--size_border_local) * 2.7);
+	position: relative;
+	margin: calc(var(--size_border_local) * -2.7) calc(var(--size_border_local) * -2.7) 0;
+	background: var(--border_img_h) repeat-x 0 100%;
+	background-size: auto  var(--size_border_local);
+	margin-bottom: calc(var(--size_border_local) * 2);
+}
+.panel_content{
+	flex: 1 1 auto;
+	overflow: auto;
+	height: 100%;
+	background: rgba(green,.2);
+}
