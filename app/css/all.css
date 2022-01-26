@@ -106,6 +106,14 @@ body { font-family: "Vollkorn", sans-serif; font: 16px/1.5; line-height: 1.5; ba
 
 .panel_content { -webkit-box-flex: 1; -ms-flex: 1 1 auto; flex: 1 1 auto; overflow: auto; height: 100%; background: rgba(0, 128, 0, 0.2); }
 
+.circle { --height:111px; --width:110px; --width_circle:calc(var(--width) / 2); --height_circle:calc(var(--height) / 2); display: inline-block; width: var(--width_circle); height: var(--height_circle); background: url(../images/circles/circle.png) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; position: relative; }
+
+.circle img { position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); -o-object-fit: cover; object-fit: cover; width: 80%; height: 80%; }
+
+.circle.md { --width_circle:calc(var(--width) / 2* 0.75); --height_circle:calc(var(--height) / 2 * 0.75); }
+
+.circle.sm { --width_circle:calc(var(--width) / 2* 0.5); --height_circle:calc(var(--height) / 2 * 0.5); }
+
 .justify-content-center { -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
 
 .d-block { display: block; }

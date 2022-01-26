@@ -1,0 +1,29 @@
+.circle{
+	--height:111px;
+	--width:110px;
+	--width_circle:calc(var(--width) / 2);
+	--height_circle:calc(var(--height) / 2);
+	display: inline-block;
+	width: var(--width_circle);
+	height: var(--height_circle);
+	background: url(../images/circles/circle.png) no-repeat 0 0;
+	background-size: cover;
+	position: relative;
+	img{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform:translate(-50%,-50%);
+		object-fit:cover;
+		width: 80%;
+		height:80%;
+	}
+	&.md{
+		--width_circle:calc(var(--width) / 2* 0.75);
+		--height_circle:calc(var(--height) / 2 * 0.75);
+	}
+	&.sm{
+		--width_circle:calc(var(--width) / 2* 0.5);
+		--height_circle:calc(var(--height) / 2 * 0.5);
+	}
+}
