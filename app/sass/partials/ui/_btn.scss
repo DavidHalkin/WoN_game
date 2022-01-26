@@ -2,16 +2,82 @@
 	cursor: pointer;
 }
 .btn{
+	--px:20px;
+	--py:17px;
+	--size_corner_local:calc(var(--size_corner) / 2.7);
+	--paddings_local:var(--py)  var(--px);
+	--font_size_local:16px;
 	text-align:center;
 	vertical-align:middle;
 	user-select:none;
 	transition: all 0.15s ease;
 	display: inline-block;
-	background: #858a4d;
-	padding: 20px;
+	background: $primary;
+	border-radius: 6px;
+	overflow: hidden;
 	border: 0;
-	color: #fff;
+	color: $light;
+	position: relative;
+	font-size: var(--font_size_local);
+	&.md{
+		--size_corner_local:calc(var(--size_corner) / 2.7 * 0.75);
+
+		--font_size_local:calc(16px * 0.75);
+
+		--paddings_local: calc(var(--py) * 0.75) calc(var(--px) * 0.75);
+	}
+	&.sm{
+		--size_corner_local:calc(var(--size_corner) / 2.7 * 0.5);
+
+		--font_size_local:calc(16px * 0.65);
+
+		--paddings_local: calc(var(--py) * 0.65) calc(var(--px) * 0.65);
+	}
+	> span{
+		display: flex;
+		align-items:center;
+		padding: var(--paddings_local);
+		&:before,&:after{
+			content: "";
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: var(--size_corner_local);
+			height: var(--size_corner_local);
+			background: var(--corner_img) no-repeat;
+			background-size: cover;
+			transform:scale(1,-1);
+			pointer-events: none;
+		}
+		&:after{
+			left: auto;
+			right: 0;
+			transform:scale(-1,-1);
+		}
+	}
+	svg{
+		max-width: 16px;
+		flex: 0 0 16px;
+		margin-right: 5px;
+	}
+	&:before,&:after{
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: var(--size_corner_local);
+		height: var(--size_corner_local);
+		background: var(--corner_img) no-repeat;
+		background-size: cover;
+		pointer-events: none;
+	}
+	&:after{
+		left: auto;
+		right: 0;
+		transform:scale(-1,1);
+	}
 	&:hover{
+		color: $light;
 		color: #fff;
 		text-decoration: none;
 		transition: all 0.3s ease;
