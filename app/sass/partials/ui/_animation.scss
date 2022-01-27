@@ -1,0 +1,25 @@
+.btn{
+	transition: var(--animation_static);
+	&:hover{
+		transition: var(--animation_hovered);
+		filter:saturate(var(--unit));
+	}
+}
+a.rectangle{
+	img{
+		transition: var(--animation_static);
+	}
+	&:hover{
+		img{
+			transition: var(--animation_hovered);
+			filter:saturate(var(--unit));
+		}
+	}
+}
+a.circle{
+	transition: var(--animation_static);
+	&:hover{
+		transition: var(--animation_hovered);
+		filter:saturate(var(--unit));
+	}
+}

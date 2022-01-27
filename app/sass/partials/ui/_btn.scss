@@ -10,7 +10,7 @@
 	text-align:center;
 	vertical-align:middle;
 	user-select:none;
-	transition: all 0.15s ease;
+	
 	display: inline-block;
 	background: $primary;
 	border-radius: 6px;
@@ -80,7 +80,6 @@
 		color: $light;
 		color: #fff;
 		text-decoration: none;
-		transition: all 0.3s ease;
-		filter: saturate(2);
+		
 	}
 }
