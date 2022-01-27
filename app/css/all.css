@@ -972,19 +972,19 @@ body { font-family: "Vollkorn", sans-serif; font: 16px/1.5; line-height: 1.5; ba
 
 .btn { -webkit-transition: var(--animation_static); -o-transition: var(--animation_static); transition: var(--animation_static); }
 
-.btn:hover { -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); -webkit-filter: saturate(var(--unit)); filter: saturate(var(--unit)); }
+.btn:hover { -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); -webkit-filter: saturate(var(--unit)) brightness(calc(var(--unit) * 0.75)); filter: saturate(var(--unit)) brightness(calc(var(--unit) * 0.75)); }
 
 a.rectangle img { -webkit-transition: var(--animation_static); -o-transition: var(--animation_static); transition: var(--animation_static); }
 
-a.rectangle:hover img { -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); -webkit-filter: saturate(var(--unit)); filter: saturate(var(--unit)); }
+a.rectangle:hover img { -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); -webkit-filter: saturate(var(--unit)) brightness(calc(var(--unit) * 0.75)); filter: saturate(var(--unit)) brightness(calc(var(--unit) * 0.75)); }
 
 a.circle { -webkit-transition: var(--animation_static); -o-transition: var(--animation_static); transition: var(--animation_static); }
 
-a.circle:hover { -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); -webkit-filter: saturate(var(--unit)); filter: saturate(var(--unit)); }
+a.circle:hover { -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); -webkit-filter: saturate(var(--unit)) brightness(calc(var(--unit) * 0.75)); filter: saturate(var(--unit)) brightness(calc(var(--unit) * 0.75)); }
 
 a.square img { -webkit-transition: var(--animation_static); -o-transition: var(--animation_static); transition: var(--animation_static); }
 
-a.square:hover img { -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); -webkit-filter: saturate(var(--unit)); filter: saturate(var(--unit)); }
+a.square:hover img { -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); -webkit-filter: saturate(var(--unit)) brightness(calc(var(--unit) * 0.75)); filter: saturate(var(--unit)) brightness(calc(var(--unit) * 0.75)); }
 
 /* vollkorn-regular - latin_cyrillic */
 @font-face { font-family: 'Vollkorn'; src: url("../fonts/vollkorn-v17-latin_cyrillic-regular.eot"); /* IE9 Compat Modes */ src: local(""), url("../fonts/vollkorn-v17-latin_cyrillic-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/vollkorn-v17-latin_cyrillic-regular.woff2") format("woff2"), url("../fonts/vollkorn-v17-latin_cyrillic-regular.woff") format("woff"), url("../fonts/vollkorn-v17-latin_cyrillic-regular.ttf") format("truetype"), url("../fonts/vollkorn-v17-latin_cyrillic-regular.svg#Vollkorn") format("svg"); /* Legacy iOS */ font-style: normal; font-weight: 400; font-display: swap; }

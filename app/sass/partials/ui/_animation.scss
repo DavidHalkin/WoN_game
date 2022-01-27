@@ -2,7 +2,7 @@
 	transition: var(--animation_static);
 	&:hover{
 		transition: var(--animation_hovered);
-		filter:saturate(var(--unit));
+		filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
 	}
 }
 a.rectangle{
@@ -12,7 +12,7 @@ a.rectangle{
 	&:hover{
 		img{
 			transition: var(--animation_hovered);
-			filter:saturate(var(--unit));
+			filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
 		}
 	}
 }
@@ -20,7 +20,7 @@ a.circle{
 	transition: var(--animation_static);
 	&:hover{
 		transition: var(--animation_hovered);
-		filter:saturate(var(--unit));
+		filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
 	}
 }
 a.square{
@@ -30,7 +30,7 @@ a.square{
 	&:hover{
 		img{
 			transition: var(--animation_hovered);
-			filter:saturate(var(--unit));
+			filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
 		}
 	}
 }
