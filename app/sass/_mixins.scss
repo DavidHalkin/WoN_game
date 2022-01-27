@@ -38,3 +38,103 @@
 	max-width:$width * 1%;
 	max-height:$height * 1%;
 }
+// ------------margin------------
+
+// margin-top
+@for $i from 0 to 31 {
+  $side: $i;
+  .mt-#{$side} {
+    margin-top:#{$side}px !important;
+  }
+}
+// margin-bottom
+@for $i from 0 to 31 {
+  $side: $i;
+  .mb-#{$side} {
+    margin-bottom:#{$side}px !important;
+  }
+}
+// margin-left
+@for $i from 0 to 31 {
+  $side: $i;
+  .ml-#{$side} {
+    margin-left:#{$side}px !important;
+  }
+}
+// margin-right
+@for $i from 0 to 31 {
+  $side: $i;
+  .mr-#{$side} {
+    margin-right:#{$side}px !important;
+  }
+}
+// margin-x
+@for $i from 0 to 31 {
+  $side: $i;
+  .mx-#{$side} {
+    margin-left: #{$side}px !important;
+    margin-right: #{$side}px !important;
+  }
+}
+// margin-x NEGATIVE
+@for $i from 1 to 31 {
+  $side: $i;
+  .mx-n#{$side} {
+    margin-left:#{-$side}px !important;
+    margin-right: #{-$side}px !important;
+  }
+}
+// margin-y
+@for $i from 0 to 31 {
+  $side: $i;
+  .my-#{$side} {
+    margin-top: #{$side}px !important;
+    margin-bottom: #{$side}px !important;
+  }
+}
+// ------------padding------------
+
+// padding-top
+@for $i from 1 to 31 {
+  $side: $i;
+  .pt-#{$side} {
+    padding-top:#{$side}px !important;
+  }
+}
+// padding-bottom
+@for $i from 1 to 31 {
+  $side: $i;
+  .pb-#{$side} {
+    padding-bottom:#{$side}px !important;
+  }
+}
+// padding-left
+@for $i from 1 to 31 {
+  $side: $i;
+  .pl-#{$side} {
+    padding-left:#{$side}px !important;
+  }
+}
+// padding-right
+@for $i from 1 to 31 {
+  $side: $i;
+  .pr-#{$side} {
+    padding-right:#{$side}px !important;
+  }
+}
+// padding-x
+@for $i from 1 to 31 {
+  $side: $i;
+  .px-#{$side} {
+    padding-right:#{$side}px !important;
+    padding-left:#{$side}px !important;
+  }
+}
+// padding-y
+@for $i from 1 to 31 {
+  $side: $i;
+  .py-#{$side} {
+    padding-top: #{$side}px !important;
+    padding-bottom: #{$side}px !important;
+  }
+}

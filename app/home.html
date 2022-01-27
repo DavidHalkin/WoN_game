@@ -8,7 +8,95 @@
 	</head>
 	<body>
 		<div class="wrapper">
-			
+			<div id="field_map" class="field_map"></div>
+			<div class="aside_sidebar" style="bottom: 160px; right: 5px; width: 360px; height: 70vh;">
+				<div class="panel" style=" background-image: url(images/panel/bg_1.png);">
+					<div class="panel_holder">
+						<div class="panel_header py-10">
+							<div class="d-flex align-items-center">
+								<div class="pr-20">
+									<a href="#" class="circle emblem md d-block my-4"><img src="https://picsum.photos/200" alt=""></a>
+									<a href="#" class="circle emblem md d-block my-4"><img src="images/circles/emblem.png" alt=""></a>
+								</div>
+								<h3 class="mb-0 fz_20 text-center lh_1_25">Городской город Городской</h3>
+							</div>
+							<div class="decor">
+								<span class="corner"></span>
+								<span class="corner right_top"></span>
+								<span class="corner right_bottom"></span>
+								<span class="corner left_bottom"></span>
+							</div>
+						</div>
+						<div class="panel_content">
+							<div class="px-3">
+								<div class="d-flex mx-n3 flex-wrap">
+									<div class="col-auto px-3 pb-6">
+										<a href="#" class="square">
+											<img src="images/circles/example.png" alt="">
+										</a>
+									</div>
+									<div class="col-auto px-3 pb-6">
+										<div class="square">
+											<img src="images/circles/example.png" alt="">
+										</div>
+									</div>
+									<div class="col-auto px-3 pb-6">
+										<div class="square">
+											<img src="images/circles/example.png" alt="">
+										</div>
+									</div>
+									<div class="col-auto px-3 pb-6">
+										<div class="square">
+											<img src="images/circles/example.png" alt="">
+										</div>
+									</div>
+									<div class="col-auto px-3 pb-6">
+										<div class="square">
+											<img src="images/circles/example.png" alt="">
+										</div>
+									</div>
+									<div class="col-auto px-3 pb-6">
+										<div class="square">
+											<img src="images/circles/example.png" alt="">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="pt-10">
+								<h3 class="fz_20 mb-20">Производства</h3>
+								<a href="#" class="btn md px-15 mr-5"><span>Создать</span></a>
+								<a href="#" class="btn md px-15"><span>Управление</span></a>
+								<ul class="list-unstyled py-15">
+									<li>Лесопилка: 38 зданий (630 людей)</li>
+									<li>Сад: 5 полей (35 людей)</li>
+									<li>Кузница: 10 зданий (40 людей)</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="decor ">
+						<span class="corner"></span>
+						<span class="corner right_top"></span>
+						<span class="corner right_bottom"></span>
+						<span class="corner left_bottom"></span>
+					</div>
+				</div>
+			</div>
 		</div>
+		<script>
+		    var map;
+		    function initMap() {
+		      map = new google.maps.Map(document.getElementById('field_map'), {
+		      center: {lat: -34.397, lng: 150.644},
+		      zoom: 8
+		      });
+		    }
+    	</script>
+   		<script src="https://maps.googleapis.com/maps/api/js?key= AIzaSyAY-nlxihSvoGM3MlB-RmLZNaVhFPoZra4&callback=initMap" async defer></script>
+   		<style>
+   			.gmnoprint{
+   				display: none !important;
+   			}
+   		</style>
 	</body>
 </html>

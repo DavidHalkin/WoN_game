@@ -49,3 +49,34 @@
 		@include centered_img(100,100);
 	}
 }
+.square{
+	--size:110px;
+	--square_size:calc(var(--size) / 2);
+	width: var(--square_size);
+	height: var(--square_size);
+	background: url(../images/square/square.png) no-repeat 0 0;
+	background-size: cover;
+	position: relative;
+	// display: inline-block;
+	display: block;
+	img{
+		@include centered_img(90,90);
+	}
+	&.md{
+		--square_size:calc(var(--size) / 2* 0.75);
+	}
+	&.sm{
+		--square_size:calc(var(--size) / 2* 0.5);
+	}
+}
+.text_holder{
+	--size_x:110px;
+	--size_y:44px;
+	--text_holder_x:calc(var(--size_x) / 2);
+	--text_holder_y:calc(var(--size_y) / 2);
+	width:var(--text_holder_x);
+	height:var(--text_holder_y);
+	background: url(../images/square/txt_holder.png) no-repeat 0 0;
+	background-size: cover;
+	display: inline-block;
+}

@@ -5,6 +5,7 @@
 	position: relative;
 	border-radius: 6px;
 	overflow: hidden;
+	height: 100%;
 	--size_border_local: calc(var(--size_border) / 2);
 	--size_corner_local: calc(var(--size_corner) / 2);
 	--width_decor_local: calc(var(--width_decor) / 2);
@@ -133,5 +134,5 @@
 	flex: 1 1 auto;
 	overflow: auto;
 	height: 100%;
-	background: rgba(green,.2);
+	// background: rgba(green,.2);
 }

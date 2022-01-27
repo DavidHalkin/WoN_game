@@ -23,3 +23,14 @@ a.circle{
 		filter:saturate(var(--unit));
 	}
 }
+a.square{
+	img{
+		transition: var(--animation_static);
+	}
+	&:hover{
+		img{
+			transition: var(--animation_hovered);
+			filter:saturate(var(--unit));
+		}
+	}
+}
