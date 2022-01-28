@@ -16,3 +16,29 @@ body{
 	position: absolute;
 	// z-index: 10;
 }
+.accordion_hidden_part{
+	max-height: 200px;
+	overflow: hidden;
+}
+.scroll{
+	// scrollbar-color: green #000;
+	// scrollbar-width: thin;
+	// &::-webkit-scrollbar {
+	// 	width: 10px;
+	// }
+
+	// &::-webkit-scrollbar-track {
+	// background-color: #000;
+	// }
+
+	// &::-webkit-scrollbar-thumb {
+	// 	background: red;
+	// }
+	// scroll-behavior: smooth;
+	-ms-overflow-style: none;
+      scrollbar-width: none;
+      &::-webkit-scrollbar{
+		width: 0;
+		height: 0;
+      }
+}

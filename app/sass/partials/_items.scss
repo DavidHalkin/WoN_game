@@ -62,9 +62,13 @@
 	img{
 		@include centered_img(90,90);
 	}
+	&.mdd{
+		--square_size:calc(var(--size) / 2 - 3px);
+	}
 	&.md{
 		--square_size:calc(var(--size) / 2* 0.75);
 	}
+
 	&.sm{
 		--square_size:calc(var(--size) / 2* 0.5);
 	}

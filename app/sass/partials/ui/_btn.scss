@@ -10,10 +10,9 @@
 	text-align:center;
 	vertical-align:middle;
 	user-select:none;
-	
 	display: inline-block;
 	background: $primary;
-	border-radius: 6px;
+	border-radius: calc(var(--indent) + 2px);
 	overflow: hidden;
 	border: 0;
 	color: $light;
@@ -25,6 +24,7 @@
 		--font_size_local:calc(16px * 0.75);
 
 		--paddings_local: calc(var(--py) * 0.75) calc(var(--px) * 0.75);
+		border-radius: calc(var(--indent) + 1px);
 	}
 	&.sm{
 		--size_corner_local:calc(var(--size_corner) / 2.7 * 0.5);
@@ -32,6 +32,7 @@
 		--font_size_local:calc(16px * 0.65);
 
 		--paddings_local: calc(var(--py) * 0.65) calc(var(--px) * 0.65);
+		border-radius: calc(var(--indent));
 	}
 	> span{
 		display: flex;
@@ -82,4 +83,10 @@
 		text-decoration: none;
 		
 	}
+}
+.switcher{
+	width: 25px;
+	height: 25px;
+	background: red;
+	display: inline-block;
 }

@@ -872,6 +872,12 @@ body { font-family: "Vollkorn", sans-serif; font: 16px/1.5; line-height: 1.5; ba
 
 .aside_sidebar { position: absolute; }
 
+.accordion_hidden_part { max-height: 200px; overflow: hidden; }
+
+.scroll { -ms-overflow-style: none; scrollbar-width: none; }
+
+.scroll::-webkit-scrollbar { width: 0; height: 0; }
+
 .panel { background-color: #180f0a; background-position: 100% 100% !important; background-repeat: no-repeat !important; position: relative; -webkit-border-radius: 6px; border-radius: 6px; overflow: hidden; height: 100%; --size_border_local: calc(var(--size_border) / 2); --size_corner_local: calc(var(--size_corner) / 2); --width_decor_local: calc(var(--width_decor) / 2); --height_decor_local:calc(var(--height_decor) / 2); }
 
 .panel.md { --size_border_local: calc(var(--size_border) / 2 * 0.75); --size_corner_local: calc(var(--size_corner) / 2 * 0.75); --width_decor_local: calc(var(--width_decor) / 2 * 0.75); --height_decor_local:calc(var(--height_decor) / 2 * 0.75); }
@@ -936,6 +942,8 @@ body { font-family: "Vollkorn", sans-serif; font: 16px/1.5; line-height: 1.5; ba
 
 .square img { position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); max-width: 90%; max-height: 90%; }
 
+.square.mdd { --square_size:calc(var(--size) / 2 - 3px); }
+
 .square.md { --square_size:calc(var(--size) / 2* 0.75); }
 
 .square.sm { --square_size:calc(var(--size) / 2* 0.5); }
@@ -991,11 +999,11 @@ a.square:hover img { -webkit-transition: var(--animation_hovered); -o-transition
 
 .btn:not(:disabled):not(.disabled) { cursor: pointer; }
 
-.btn { --px:20px; --py:17px; --size_corner_local:calc(var(--size_corner) / 2.7); --paddings_local:var(--py)  var(--px); --font_size_local:16px; text-align: center; vertical-align: middle; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; display: inline-block; background: #180f0a; -webkit-border-radius: 6px; border-radius: 6px; overflow: hidden; border: 0; color: #b8afaa; position: relative; font-size: var(--font_size_local); }
+.btn { --px:20px; --py:17px; --size_corner_local:calc(var(--size_corner) / 2.7); --paddings_local:var(--py)  var(--px); --font_size_local:16px; text-align: center; vertical-align: middle; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; display: inline-block; background: #180f0a; -webkit-border-radius: calc(var(--indent) + 2px); border-radius: calc(var(--indent) + 2px); overflow: hidden; border: 0; color: #b8afaa; position: relative; font-size: var(--font_size_local); }
 
-.btn.md { --size_corner_local:calc(var(--size_corner) / 2.7 * 0.75); --font_size_local:calc(16px * 0.75); --paddings_local: calc(var(--py) * 0.75) calc(var(--px) * 0.75); }
+.btn.md { --size_corner_local:calc(var(--size_corner) / 2.7 * 0.75); --font_size_local:calc(16px * 0.75); --paddings_local: calc(var(--py) * 0.75) calc(var(--px) * 0.75); -webkit-border-radius: calc(var(--indent) + 1px); border-radius: calc(var(--indent) + 1px); }
 
-.btn.sm { --size_corner_local:calc(var(--size_corner) / 2.7 * 0.5); --font_size_local:calc(16px * 0.65); --paddings_local: calc(var(--py) * 0.65) calc(var(--px) * 0.65); }
+.btn.sm { --size_corner_local:calc(var(--size_corner) / 2.7 * 0.5); --font_size_local:calc(16px * 0.65); --paddings_local: calc(var(--py) * 0.65) calc(var(--px) * 0.65); -webkit-border-radius: calc(var(--indent)); border-radius: calc(var(--indent)); }
 
 .btn > span { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; padding: var(--paddings_local); }
 
@@ -1010,6 +1018,8 @@ a.square:hover img { -webkit-transition: var(--animation_hovered); -o-transition
 .btn:after { left: auto; right: 0; -webkit-transform: scale(-1, 1); -ms-transform: scale(-1, 1); transform: scale(-1, 1); }
 
 .btn:hover { color: #b8afaa; color: #fff; text-decoration: none; }
+
+.switcher { width: 25px; height: 25px; background: red; display: inline-block; }
 
 .fz_10 { font-size: 10px !important; }
 
@@ -1056,5 +1066,7 @@ a.square:hover img { -webkit-transition: var(--animation_hovered); -o-transition
 .list-unstyled { list-style: none; padding: 0; margin: 0; }
 
 .lh_1_25 { line-height: 1.25; }
+
+.font-weight-normal { font-weight: normal; }
 
 /*# sourceMappingURL=all.css.map */
