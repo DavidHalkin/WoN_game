@@ -997,6 +997,12 @@ a.square:hover img { -webkit-transition: var(--animation_hovered); -o-transition
 /* vollkorn-regular - latin_cyrillic */
 @font-face { font-family: 'Vollkorn'; src: url("../fonts/vollkorn-v17-latin_cyrillic-regular.eot"); /* IE9 Compat Modes */ src: local(""), url("../fonts/vollkorn-v17-latin_cyrillic-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/vollkorn-v17-latin_cyrillic-regular.woff2") format("woff2"), url("../fonts/vollkorn-v17-latin_cyrillic-regular.woff") format("woff"), url("../fonts/vollkorn-v17-latin_cyrillic-regular.ttf") format("truetype"), url("../fonts/vollkorn-v17-latin_cyrillic-regular.svg#Vollkorn") format("svg"); /* Legacy iOS */ font-style: normal; font-weight: 400; font-display: swap; }
 
+/* vollkorn-700 - latin_cyrillic */
+@font-face { font-family: 'Vollkorn'; src: url("../fonts/vollkorn-v17-latin_cyrillic-700.eot"); /* IE9 Compat Modes */ src: local(""), url("../fonts/vollkorn-v17-latin_cyrillic-700.eot?#iefix") format("embedded-opentype"), url("../fonts/vollkorn-v17-latin_cyrillic-700.woff2") format("woff2"), url("../fonts/vollkorn-v17-latin_cyrillic-700.woff") format("woff"), url("../fonts/vollkorn-v17-latin_cyrillic-700.ttf") format("truetype"), url("../fonts/vollkorn-v17-latin_cyrillic-700.svg#Vollkorn") format("svg"); /* Legacy iOS */ font-style: normal; font-weight: 700; font-display: swap; }
+
+/* vollkorn-italic - latin_cyrillic */
+@font-face { font-family: 'Vollkorn'; src: url("../fonts/vollkorn-v17-latin_cyrillic-italic.eot"); /* IE9 Compat Modes */ src: local(""), url("../fonts/vollkorn-v17-latin_cyrillic-italic.eot?#iefix") format("embedded-opentype"), url("../fonts/vollkorn-v17-latin_cyrillic-italic.woff2") format("woff2"), url("../fonts/vollkorn-v17-latin_cyrillic-italic.woff") format("woff"), url("../fonts/vollkorn-v17-latin_cyrillic-italic.ttf") format("truetype"), url("../fonts/vollkorn-v17-latin_cyrillic-italic.svg#Vollkorn") format("svg"); /* Legacy iOS */ font-style: italic; font-weight: 400; font-display: swap; }
+
 .btn:not(:disabled):not(.disabled) { cursor: pointer; }
 
 .btn { --px:20px; --py:17px; --size_corner_local:calc(var(--size_corner) / 2.7); --paddings_local:var(--py)  var(--px); --font_size_local:16px; text-align: center; vertical-align: middle; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; display: inline-block; background: #180f0a; -webkit-border-radius: calc(var(--indent) + 2px); border-radius: calc(var(--indent) + 2px); overflow: hidden; border: 0; color: #b8afaa; position: relative; font-size: var(--font_size_local); }
@@ -1068,5 +1074,7 @@ a.square:hover img { -webkit-transition: var(--animation_hovered); -o-transition
 .lh_1_25 { line-height: 1.25; }
 
 .font-weight-normal { font-weight: normal; }
+
+.font-italic { font-style: italic; }
 
 /*# sourceMappingURL=all.css.map */
