@@ -87,6 +87,9 @@
 .switcher{
 	width: 25px;
 	height: 25px;
-	background: red;
+	background: blue;
 	display: inline-block;
+	&.horizontal{
+		height: 40px;
+	}
 }
