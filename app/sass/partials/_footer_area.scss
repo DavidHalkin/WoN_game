@@ -24,11 +24,15 @@
 	.area_army{
 		position: relative;
 		// max-width: 100%;
+		// &.closed{
+		// 	width: 100px;
+		// 	.title_panel{display: none;}
+		// }
 	}
 	.title_panel{
 		position: absolute;
 		bottom: 100%;
-		left: 0;
+		// left: 0;
 		z-index: 1;
 		margin-bottom: -3px;
 	}

@@ -1026,7 +1026,7 @@ body { font-family: "Vollkorn", sans-serif; font: 16px/1.5; line-height: 1.5; ba
 
 .footer_area .area_army { position: relative; }
 
-.footer_area .title_panel { position: absolute; bottom: 100%; left: 0; z-index: 1; margin-bottom: -3px; }
+.footer_area .title_panel { position: absolute; bottom: 100%; z-index: 1; margin-bottom: -3px; }
 
 .holder_slider { overflow: hidden; overflow-x: auto; }
 
