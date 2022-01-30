@@ -37,38 +37,8 @@
 	overflow: hidden;
 	overflow-x: auto;
 }
-.actions_panel{
-	pointer-events:auto;
-	--h:322px;
-	--w:427px;
-	--height:calc(var(--h) / 2);
-	--width:calc(var(--w) / 2);
-	background-color: $primary;
-	background-position: 100% 100% !important;
-	background-repeat: no-repeat !important;
-	border-radius: calc(var(--indent) + 2px);
-	.actions_panel_holder{
-		width:var(--width);
-		height:var(--height);
-		background: url(../images/square/actions-panel.png) no-repeat 0 0;
-		background-size: cover;
-	}
-	.actions_grid{
-		padding:2px 9px 0;
-		margin: 0 -5px;
-	}
-	.actions_col{
-		max-width: 25%;
-		flex:0 0 25%;
-		padding:5px 5px;
-		.actions_item{
-			position: relative;
-			display: block;
-			height: 42px;
-			// background: rgba(red,.3);
-			img{
-				@include centered_img(100,100);
-			}
-		}
-	}
+
+.slider_panel {
+	position: relative;
+	// max-width: 10% !important;
 }

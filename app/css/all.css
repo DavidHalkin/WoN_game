@@ -1030,6 +1030,8 @@ body { font-family: "Vollkorn", sans-serif; font: 16px/1.5; line-height: 1.5; ba
 
 .holder_slider { overflow: hidden; overflow-x: auto; }
 
+.slider_panel { position: relative; }
+
 .actions_panel { pointer-events: auto; --h:322px; --w:427px; --height:calc(var(--h) / 2); --width:calc(var(--w) / 2); background-color: #180f0a; background-position: 100% 100% !important; background-repeat: no-repeat !important; -webkit-border-radius: calc(var(--indent) + 2px); border-radius: calc(var(--indent) + 2px); }
 
 .actions_panel .actions_panel_holder { width: var(--width); height: var(--height); background: url(../images/square/actions-panel.png) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; }
