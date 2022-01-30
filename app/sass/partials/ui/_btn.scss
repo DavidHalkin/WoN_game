@@ -85,11 +85,51 @@
 	}
 }
 .switcher{
-	width: 25px;
-	height: 25px;
-	background: blue;
+	--w:calc(37px / 2);
+	--h:calc(49px / 2);
+	width: var(--w);
+	height: var(--h);
+	background: url(../images/btns/arrow_short.png) no-repeat 0 0;
+	background-size: cover;
 	display: inline-block;
-	&.horizontal{
-		height: 40px;
+	&.down{
+		transform:rotate(90deg);
+		&:hover{
+			// transform:rotate(90deg) scale(-1,-1);
+		}
+		&.opened{
+			transform:rotate(90deg) scale(-1,1);
+		}
 	}
+	&.left{
+		transform:scale(-1,1);
+	}
+	&.switcher_slider{
+		--w:calc(38px / 2);
+		--h:calc(70px / 2);
+		width: var(--w);
+		height: var(--h);
+		background: url(../images/btns/arrow.png) no-repeat 0 0;
+		background-size: cover;
+		position: absolute;
+		top: 50%;
+		left: 0;
+		transform:translate(-50%,-50%) scale(-1,1);
+		z-index: 5;
+		pointer-events:auto;
+		&.opened{
+			transform:translate(-50%,-50%);
+		}
+	}
+}
+.close_btn{
+	--s:calc(56px / 2);
+	width: var(--s);
+	height: var(--s);
+	background: url(../images/btns/close.png) no-repeat 0 0;
+	background-size: cover;
+	display: block;
+	top:0;
+	right: 0;
+	z-index: 2;
 }

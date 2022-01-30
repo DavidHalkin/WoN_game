@@ -1,4 +1,4 @@
-.btn{
+.btn,.close_btn,.switcher{
 	transition: var(--animation_static);
 	&:hover{
 		transition: var(--animation_hovered);
@@ -24,6 +24,17 @@ a.circle{
 	}
 }
 a.square{
+	img{
+		transition: var(--animation_static);
+	}
+	&:hover{
+		img{
+			transition: var(--animation_hovered);
+			filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
+		}
+	}
+}
+a.actions_item{
 	img{
 		transition: var(--animation_static);
 	}

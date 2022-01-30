@@ -138,3 +138,10 @@
     padding-bottom: #{$side}px !important;
   }
 }
+// padding
+@for $i from 1 to 31 {
+  $side: $i;
+  .p-#{$side} {
+    padding: #{$side}px !important;
+  }
+}

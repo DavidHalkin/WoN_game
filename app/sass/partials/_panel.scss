@@ -3,7 +3,7 @@
 	background-position: 100% 100% !important;
 	background-repeat: no-repeat !important;
 	position: relative;
-	border-radius: 6px;
+	border-radius: calc(var(--indent) + 2px);
 	overflow: hidden;
 	height: 100%;
 	--size_border_local: calc(var(--size_border) / 2);
@@ -15,12 +15,16 @@
 		--size_corner_local: calc(var(--size_corner) / 2 * 0.75);
 		--width_decor_local: calc(var(--width_decor) / 2 * 0.75);
 		--height_decor_local:calc(var(--height_decor) / 2 * 0.75);
+
+		border-radius: calc(var(--indent) + 1px);
 	}
 	&.sm{
 		--size_border_local: calc(var(--size_border) / 2 * 0.5);
 		--size_corner_local: calc(var(--size_corner) / 2 * 0.5);
 		--width_decor_local: calc(var(--width_decor) / 2 * 0.5);
 		--height_decor_local:calc(var(--height_decor) / 2 * 0.5);
+
+		border-radius: var(--indent);
 	}
 	.panel_holder{
 		background-image: 
@@ -90,6 +94,13 @@
 			top: auto;
 			bottom: 0;
 			transform:translateX(-50%) scale(-1,-1);
+		}
+	}
+	&.centered_corners_none{
+		.decor{
+			&:before,&:after{
+				content: none;
+			}
 		}
 	}
 	&.horizontal{
