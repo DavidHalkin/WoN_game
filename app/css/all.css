@@ -1174,11 +1174,11 @@ body { font: 16px/1.25 "Vollkorn", sans-serif; background: #180f0a; color: #b8af
 
 .test { position: fixed; top: 30%; left: 50%; background: #ccc; z-index: 100; width: 200px; max-height: 200px; }
 
-.test .a { height: 100%; min-width: 0; min-height: 0; }
+.test .a { height: 100%; overflow: hidden; }
 
-.test .h { background: #000; color: #fff; -webkit-box-flex: 0; -ms-flex: 0 0 auto; flex: 0 0 auto; }
+.test .h { -ms-flex-preferred-size: 0; flex-basis: 0; -webkit-box-flex: 1; -ms-flex-positive: 1; flex-grow: 1; max-width: 100%; background: #000; color: #fff; }
 
-.test .c { -webkit-box-flex: 1; -ms-flex: 1 1 auto; flex: 1 1 auto; background: blue; overflow: auto; min-width: 0; min-height: 0; }
+.test .c { background: blue; overflow: auto; }
 
 .justify-content-center { -webkit-box-pack: center !important; -ms-flex-pack: center !important; justify-content: center !important; }
 

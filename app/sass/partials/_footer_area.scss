@@ -112,24 +112,32 @@
 	// overflow: auto;
 	width: 200px;
 	max-height: 200px;
-	// height: 200px;
+	// min-height: 0;
 	.a{
 		height: 100%;
-		min-width: 0;
-		min-height: 0;
 		// min-height: 0;
+		overflow: hidden;
 	}
 	.h{
+		flex-basis: 0;
+	flex-grow: 1;
+	max-width: 100%;
+	
 		background: #000;
 		color: #fff;
-		flex: 0 0 auto;
+		// flex: 0 0 auto;
+
+// 		flex: 0 0 auto;
+// width: auto;
+// max-width: 100%;
+
 	}
 	.c{
-		flex: 1 1 auto;
+		// flex: 1 1 auto;
 		background: blue;
 		overflow: auto;
-		min-width: 0;
-		min-height: 0;
+		// min-height: 0;
 		// height: 100%;
+		
 	}
 }
