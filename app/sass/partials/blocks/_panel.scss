@@ -1,11 +1,24 @@
+.panel_holder{
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	// overflow: hidden;
+}
+.panel_content{
+	flex: 1 1 auto;
+	overflow: auto;
+
+	height: 100%;
+}
 .panel{
+	height: 100%;
+
+
 	background-color: $primary;
 	background-position: 100% 100% !important;
 	background-repeat: no-repeat !important;
 	position: relative;
 	border-radius: calc(var(--indent) + 2px);
-	// overflow: hidden;
-	height: 100%;
 	--size_border_local: calc(var(--size_border) / 2);
 	--size_corner_local: calc(var(--size_corner) / 2);
 	--width_decor_local: calc(var(--width_decor) / 2);
@@ -128,12 +141,7 @@
 	}
 	
 }
-.panel_holder{
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	// overflow: hidden;
-}
+
 .panel_header{
 	flex: 0 0 auto;
 	background: rgba(red,.2);
@@ -143,10 +151,4 @@
 	background: var(--border_img_h) repeat-x 0 100%;
 	background-size: auto  var(--size_border_local);
 	margin-bottom: calc(var(--size_border_local) * 2);
-}
-.panel_content{
-	flex: 1 1 auto;
-	overflow: auto;
-	height: 100%;
-	// background: rgba(green,.2);
 }
