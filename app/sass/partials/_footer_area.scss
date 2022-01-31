@@ -9,11 +9,11 @@
 	.panel{
 		pointer-events:auto;
 	}
-	.test_1{
+	.game_modes{
 		max-width: 250px;
 		flex:0 0 250px;
-		height: 250px;
-		background: #ccc;
+		// height: 250px;
+		// background: #ccc;
 		pointer-events:auto;
 	}
 	.params{
@@ -45,4 +45,11 @@
 .slider_panel {
 	position: relative;
 	// max-width: 10% !important;
+}
+.aside_sidebar{
+	width: 360px;
+	position: absolute;
+	bottom: 190px;
+	right: 5px;
+	height: calc(100vh - 177px - 100px);
 }

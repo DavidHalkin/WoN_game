@@ -1,0 +1,13 @@
+.photo_block{
+	position: relative;
+	&:after{
+		width: 100px;
+		height: 100px;
+		background: var(--corner_img) no-repeat 0 0;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		content: "";
+		transform:scale(1,-1);
+	}
+}
