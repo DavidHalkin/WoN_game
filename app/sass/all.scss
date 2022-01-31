@@ -4,13 +4,14 @@
 '_mixins',
 'partials/_params',
 
-'partials/_panel',
-'partials/_circles',
-'partials/_items',
-'partials/_footer_area',
-'partials/_actions_panel',
-'partials/_photo_block',
+'partials/blocks/_panel',
+'partials/blocks/_circles.scss',
+'partials/blocks/_items.scss',
+'partials/blocks/_actions_panel.scss',
+'partials/blocks/_photo_block.scss',
+
 'partials/_header_area',
+'partials/_footer_area',
 
 'partials/ui/_grid',
 'partials/ui/_animation',

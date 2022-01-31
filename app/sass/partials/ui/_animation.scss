@@ -45,3 +45,26 @@ a.actions_item{
 		}
 	}
 }
+.nav_list{
+	li{
+		> a{
+			img{
+				transition: var(--animation_static);
+			}
+		}
+		.drop_down{
+			transition: var(--animation_static);
+		}
+		&:hover{
+			.drop_down{
+				transition: var(--animation_static);
+			}
+			> a{
+				img{
+					transition: var(--animation_hovered);
+					filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
+				}
+			}
+		}
+	}
+}

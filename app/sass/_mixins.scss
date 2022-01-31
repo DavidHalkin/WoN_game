@@ -92,6 +92,13 @@
     margin-bottom: #{$side}px !important;
   }
 }
+// margin
+@for $i from 0 to 31 {
+  $side: $i;
+  .m-#{$side} {
+    margin: #{$side}px !important;
+  }
+}
 // ------------padding------------
 
 // padding-top

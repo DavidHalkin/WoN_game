@@ -10,3 +10,89 @@
 		pointer-events:auto;
 	}
 }
+.main_nav{
+	position: relative;
+	.switcher_slider{
+		transform:translateX(-50%);
+		&.opened{
+			transform:translateX(-50%) scale(-1,1);
+		}
+	}
+	// anim
+	&.closed{
+		.nav_list{
+			> li:not(:first-of-type){
+				display: none;
+			}
+		}
+	}
+}
+.nav_list{
+	li{
+		position: relative;
+		.drop_down{
+			position: absolute;
+			top: 100%;
+			left: 0;
+			background: green;
+			width: 200px;
+			z-index: 5;
+			visibility: hidden;
+			opacity: 0;
+			ul{
+				li{
+					a{
+						padding: 10px;
+						color: #fff;
+						display: block;
+						&:hover{
+							background: red;
+							text-decoration: none;
+						}
+					}
+					.drop_down{
+						top: 0;
+						left: 100%;
+					}
+					&:hover{
+						> a{
+							background: red;
+						}
+					}
+				}
+			}
+		}
+		&:hover{
+			> .drop_down{
+				visibility: visible;
+				opacity: 1;
+			}
+		}
+	}
+}
+.panel_town{
+	.town_img{
+		max-width: 80px;
+		flex:0 0 80px;
+		position: relative;
+		.circle{
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			z-index: 2;
+			transform:translate(45%,5px)
+		}
+	}
+	.square_img{
+		position: relative;
+		display: block;
+		.square_img_cont{
+			position: relative;
+			// height: 100%;
+			display: block;
+			img{
+				// @include centered_img(100,100);
+			}
+		}
+	}
+}

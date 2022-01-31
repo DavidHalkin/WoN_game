@@ -92,6 +92,9 @@
 	background: url(../images/btns/arrow_short.png) no-repeat 0 0;
 	background-size: cover;
 	display: inline-block;
+	border: 0;
+	outline: none;
+	padding: 0;
 	&.down{
 		transform:rotate(90deg);
 		&:hover{
@@ -111,15 +114,8 @@
 		height: var(--h);
 		background: url(../images/btns/arrow.png) no-repeat 0 0;
 		background-size: cover;
-		position: absolute;
-		top: 50%;
-		left: 0;
-		transform:translate(-50%,-50%) scale(-1,1);
 		z-index: 5;
 		pointer-events:auto;
-		&.opened{
-			transform:translate(-50%,-50%);
-		}
 	}
 }
 .close_btn{

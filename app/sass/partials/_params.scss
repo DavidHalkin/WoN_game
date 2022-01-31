@@ -1,7 +1,5 @@
 body{
-	font-family: "Vollkorn", sans-serif;
-	font: 16px/1.5;
-	line-height: 1.5;
+	font: 16px/1.25 "Vollkorn", sans-serif;
 	background: $primary;
 	color: $light;
 }
@@ -25,6 +23,14 @@ body{
 }
 .position-absolute{
 	position: absolute !important;
+}
+.img-fluid{
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+.text-muted{
+	color: $muted;
 }
 .scroll{
 	// scrollbar-color: green #000;

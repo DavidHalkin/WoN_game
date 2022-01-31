@@ -84,3 +84,65 @@
 	background-size: cover;
 	display: inline-block;
 }
+.square_img{
+	position: relative;
+	display: inline-block;
+	
+	--size_corner_local: calc(var(--size_corner) / 2);
+	img{
+		border-radius: calc(var(--indent) + 2px);
+	}
+	&.md{
+		--size_corner_local: calc(var(--size_corner) / 2 * 0.75);
+
+		border-radius: calc(var(--indent) + 1px);
+	}
+	&.sm{
+		--size_corner_local: calc(var(--size_corner) / 2 * 0.5);
+		border-radius: var(--indent);
+	}
+	&:before,&:after{
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: var(--size_corner_local);
+		height: var(--size_corner_local);
+		background: var(--corner_img) no-repeat;
+		background-size: cover;
+		pointer-events: none;
+		z-index: 2;
+	}
+	&:after{
+		left: auto;
+		top: auto;
+		bottom: 0;
+		right: 0;
+		transform:scale(-1,-1);
+
+	}
+	.square_img_cont{
+		position: relative;
+		display: block;
+		&:before,&:after{
+			content: "";
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: var(--size_corner_local);
+			height: var(--size_corner_local);
+			background: var(--corner_img) no-repeat;
+			background-size: cover;
+			pointer-events: none;
+			z-index: 2;
+			transform:scale(-1,1);
+		}
+		&:after{
+			top: auto;
+			bottom: 0;
+			right: auto;
+			left: 0;
+			transform:scale(1,-1);
+		}
+	}
+}
