@@ -35,7 +35,7 @@
 		background: var(--corner_img) no-repeat;
 		background-size: cover;
 		pointer-events: none;
-		z-index: 2;
+		z-index: 4;
 	}
 	&:after{
 		left: auto;

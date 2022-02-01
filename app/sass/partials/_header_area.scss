@@ -3,7 +3,6 @@
 	top: 5px;
 	left: 5px;
 	right: 5px;
-	// background: red;
 	z-index: 5;
 	pointer-events: none;
 	.panel{
@@ -15,7 +14,7 @@
 	.switcher_slider{
 		transform:translateX(-50%);
 		&.opened{
-			transform:translateX(-50%) scale(-1,1);
+			
 		}
 	}
 	// anim
@@ -72,8 +71,8 @@
 }
 .panel_town{
 	.town_img{
-		max-width: 80px;
-		flex:0 0 80px;
+		max-width: 75px;
+		flex:0 0 75px;
 		position: relative;
 		.circle{
 			position: absolute;
@@ -90,9 +89,19 @@
 			position: relative;
 			// height: 100%;
 			display: block;
+			height: 75px;
+			overflow: hidden;
 			img{
 				// @include centered_img(100,100);
 			}
+		}
+	}
+}
+.progress_panel{
+	position: relative;
+	&.closed{
+		.txt_inf{
+			display: none !important;
 		}
 	}
 }

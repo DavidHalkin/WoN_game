@@ -24,14 +24,17 @@ a.circle{
 	}
 }
 a.square{
-	img{
-		transition: var(--animation_static);
-	}
+	transition: var(--animation_static);
+	// img{
+	// 	transition: var(--animation_static);
+	// }
 	&:hover{
-		img{
-			transition: var(--animation_hovered);
-			filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
-		}
+		transition: var(--animation_hovered);
+		filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
+		// img{
+		// 	transition: var(--animation_hovered);
+		// 	filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
+		// }
 	}
 }
 a.actions_item{
@@ -48,9 +51,10 @@ a.actions_item{
 .nav_list{
 	li{
 		> a{
-			img{
-				transition: var(--animation_static);
-			}
+			transition: var(--animation_static);
+			// img{
+			// 	transition: var(--animation_static);
+			// }
 		}
 		.drop_down{
 			transition: var(--animation_static);
@@ -60,10 +64,12 @@ a.actions_item{
 				transition: var(--animation_static);
 			}
 			> a{
-				img{
-					transition: var(--animation_hovered);
+				transition: var(--animation_hovered);
 					filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
-				}
+				// img{
+				// 	transition: var(--animation_hovered);
+				// 	filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
+				// }
 			}
 		}
 	}

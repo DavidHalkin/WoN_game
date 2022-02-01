@@ -16,6 +16,10 @@
 		--width_circle:calc(var(--size) / 2* 0.75);
 		--height_circle:calc(var(--size) / 2 * 0.75);
 	}
+	&.mdd{
+		--width_circle:calc(var(--size) / 2 - 3px);
+		--height_circle:calc(var(--size) / 2 - 3px);
+	}
 	&.sm{
 		--width_circle:calc(var(--size) / 2* 0.5);
 		--height_circle:calc(var(--size) / 2 * 0.5);

@@ -1,0 +1,36 @@
+.aside_sidebar{
+	--h-header:100px;
+	--h-footer:190px;
+	width: 360px;
+	position: absolute;
+	top: 70px;
+	right: 5px;
+	// height: calc(100vh - var(--h-header) - var(--h-footer));
+	// max-height: calc(100vh - var(--h-header) - var(--h-footer));
+	height: auto !important;
+	.panel_holder{
+		max-height: calc(100vh - var(--h-header) - var(--h-footer));
+		height: auto !important;
+	}
+	.panel_header{
+		flex:none;
+		flex: 0 0 auto;
+	}
+	.panel_content {
+		flex:1;
+	}
+}
+.aside_sidebar{
+	.panel_holder{
+		display: grid;
+	  	grid-template-rows: min-content 1fr;
+	  	
+	  	.panel_header {
+	  		
+	  	}
+		.panel_content  {
+			grid-row: span 2;
+			overflow-y: auto;
+		}
+	}
+}
