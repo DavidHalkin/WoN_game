@@ -26,49 +26,7 @@
 		}
 	}
 }
-.nav_list{
-	li{
-		position: relative;
-		.drop_down{
-			position: absolute;
-			top: 100%;
-			left: 0;
-			background: green;
-			width: 200px;
-			z-index: 5;
-			visibility: hidden;
-			opacity: 0;
-			ul{
-				li{
-					a{
-						padding: 10px;
-						color: #fff;
-						display: block;
-						&:hover{
-							background: red;
-							text-decoration: none;
-						}
-					}
-					.drop_down{
-						top: 0;
-						left: 100%;
-					}
-					&:hover{
-						> a{
-							background: red;
-						}
-					}
-				}
-			}
-		}
-		&:hover{
-			> .drop_down{
-				visibility: visible;
-				opacity: 1;
-			}
-		}
-	}
-}
+
 .panel_town{
 	.town_img{
 		max-width: 75px;
