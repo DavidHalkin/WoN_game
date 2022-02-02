@@ -81,6 +81,15 @@
 							}
 						}
 					}
+					&.active{
+						> a{
+							// filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
+							&:after{
+								@include hover_drop;
+								opacity: 1 !important;
+							}
+						}
+					}
 				}
 			}
 		}

@@ -72,5 +72,10 @@ a.actions_item{
 				// }
 			}
 		}
+		&.active{
+			> a{
+				filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
+			}
+		}
 	}
 }
