@@ -90,6 +90,20 @@
 							}
 						}
 					}
+					&.has_drop{
+						> a{
+							padding-right: 20px;
+							&:before{
+								content: "";
+								@include arrow;
+								position: absolute;
+								top: 50%;
+								right: 5px;
+								transform:translateY(-50%);
+								z-index: 1;
+							}
+						}
+					}
 				}
 			}
 		}
