@@ -12,7 +12,6 @@
 }
 .panel{
 	height: 100%;
-
 	background-color: $primary;
 	background-position: 100% 100% !important;
 	background-repeat: no-repeat !important;
@@ -150,4 +149,22 @@
 	background: var(--border_img_h) repeat-x 0 100%;
 	background-size: auto  var(--size_border_local);
 	margin-bottom: calc(var(--size_border_local) * 2);
+}
+.title_panel{
+	position: relative;
+	pointer-events:auto;
+	&:after{
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 100%;
+		background: var(--decorate_img) 0 0 no-repeat;
+		background-size: cover;
+		--width:calc(var(--size_w) / 2);
+		--height:calc(var(--size_h) / 2);
+		width:var(--width);
+		height:var(--height);
+		z-index: -1;
+		margin-left: -2px;
+	}
 }

@@ -1,13 +1,16 @@
 .photo_block{
 	position: relative;
+	--w:calc(409px / 2);
+	--h:calc(410px / 2);
 	&:after{
-		width: 100px;
-		height: 100px;
-		background: var(--corner_img) no-repeat 0 0;
+		width: var(--w);
+		height:  var(--h);
+		background: url(../images/ui/corner.png) no-repeat 0 0;
+		background-size: cover;
 		position: absolute;
 		bottom: 0;
 		left: 0;
 		content: "";
-		transform:scale(1,-1);
+		// transform:scale(1,-1);
 	}
 }

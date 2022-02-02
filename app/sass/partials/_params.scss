@@ -42,6 +42,21 @@ body{
 .text-muted{
 	color: $muted;
 }
+.ico_half{
+	// flex: 0 0 auto;
+	// width: auto;
+	// max-width: 100%;
+	// display: flex;
+	background: red;
+	float: left;
+	img{
+		max-width: 50%;
+		// display: block;
+		// height: auto;
+		// font-size: 0;
+		// line-height: 0;
+	}
+}
 // .scroll{
 // 	-ms-overflow-style: none;
 //       scrollbar-width: none;
