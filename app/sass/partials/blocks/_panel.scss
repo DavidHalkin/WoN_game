@@ -38,27 +38,12 @@
 		border-radius: var(--indent);
 	}
 	.panel_holder{
+		background-color: green;
 		border-radius: calc(var(--indent) + 2px);
-		background-image: 
-			var(--border_img_v),
-			var(--border_img_v),
-			var(--border_img_h),
-			var(--border_img_h);
-		background-repeat: 
-			repeat-y,
-			repeat-y,
-			repeat-x,
-			repeat-x;
-		background-position: 
-			0 0,
-			100% 0,
-			0 0,
-			0 100%;
-		background-size:
-			var(--size_border_local) auto,
-			var(--size_border_local) auto,
-			auto var(--size_border_local),
-			auto var(--size_border_local);
+		background: var(--border_img_v), var(--border_img_v),	var(--border_img_h), var(--border_img_h);
+		background-position: 0 0, 100% 0, 0 0, 0 100%;
+		background-repeat: repeat-y, repeat-y, repeat-x, repeat-x;
+		background-size:var(--size_border_local) auto, var(--size_border_local) auto, auto var(--size_border_local), auto var(--size_border_local);
 
 		padding: calc(var(--size_border_local) * 2.7);
 	}
