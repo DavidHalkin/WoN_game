@@ -9,57 +9,6 @@
 	.panel{
 		pointer-events:auto;
 	}
-	.game_modes{
-		max-width: 250px;
-		flex:0 0 250px;
-		// height: 250px;
-		// background: #ccc;
-		pointer-events:auto;
-	}
-	.params{
-		.circle{
-			margin-bottom: 8px;
-		}
-	}
-	.area_army{
-		position: relative;
-		// max-width: 100%;
-		// &.closed{
-		// 	width: 100px;
-		// 	.title_panel{display: none;}
-		// }
-		.switcher_slider{
-			position: absolute;
-			top: 50%;
-			left: 0;
-			transform:translate(-50%,-50%) scale(-1,1);
-			
-			&.opened{
-				transform:translate(-50%,-50%);
-			}
-		}
-		// anim
-		&.closed{
-			.holder_slider_list{
-				> .slider_item:not(:first-of-type){
-					display: none;
-				}
-			}
-		}
-	}
-	.title_panel{
-		position: absolute;
-		bottom: 100%;
-		// left: 0;
-		z-index: 1;
-		margin-bottom: -3px;
-	}
-}
-.holder_slider{
-	overflow: hidden;
-	overflow-x: auto;
+	
 }
 
-.slider_panel {
-	position: relative;
-}

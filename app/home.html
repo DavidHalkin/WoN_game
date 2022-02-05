@@ -6,19 +6,19 @@
 		<link rel="stylesheet" href="css/all.css">
 		<title>#_home</title>
 	</head>
-	<body>
+	<body style="background:#ccc;">
 		<div class="wrapper">
-			<div id="field_map" class="field_map"></div>
+			<!-- <div id="field_map" class="field_map"></div> -->
 			<!-- header_part strat -->
 			<div class="header_area d-flex justify-content-between align-items-start">
 				<div class="col-auto d-flex  align-items-start">
-					<div class="main_nav d-flex align-items-center slide_at_left">
+					<div class="panel_nav d-flex align-items-center slide_at_left">
 						<div class="slider_panel">
 							<div class="panel md horizontal" style="background-image: url(images/panel/bg/main_nav.png);">
-								<div class="panel_holder flex-row px-20 py-15">
+								<div class="panel_holder flex-row">
 									<ul class="nav_list d-flex list-unstyled m-0">
-										<li class="mx-8 ">
-											<a href="#" class="square ">
+										<li>
+											<a href="#" class="square size_1 size_lg_3 size_xl_4">
 												<img src="images/circles/example.png" alt="">
 											</a>
 											<div class="drop_down">
@@ -64,8 +64,8 @@
 												</div>
 											</div>
 										</li>
-										<li class="mx-8 ">
-											<a href="#" class="square  ">
+										<li>
+											<a href="#" class="square size_1 size_lg_3 size_xl_4">
 												<img src="images/circles/example.png" alt="">
 											</a>
 											<div class="drop_down">
@@ -111,26 +111,26 @@
 												</div>
 											</div>
 										</li>
-										<li class="mx-8 ">
-											<a href="#" class="square  ">
+										<li>
+											<a href="#" class="square size_1 size_lg_3 size_xl_4">
 												<img src="images/circles/example.png" alt="">
 											</a>
 
 										</li>
-										<li class="mx-8 ">
-											<a href="#" class="square  ">
+										<li>
+											<a href="#" class="square size_1 size_lg_3 size_xl_4">
 												<img src="images/circles/example.png" alt="">
 											</a>
 
 										</li>
-										<li class="mx-8 ">
-											<a href="#" class="square  ">
+										<li>
+											<a href="#" class="square size_1 size_lg_3 size_xl_4">
 												<img src="images/circles/example.png" alt="">
 											</a>
 
 										</li>
-										<li class="mx-8 ">
-											<a href="#" class="square mdd ">
+										<li>
+											<a href="#" class="square size_1 size_lg_3 size_xl_4">
 												<img src="images/circles/example.png" alt="">
 											</a>
 
@@ -147,21 +147,21 @@
 						</div>
 						<button class="switcher switcher_slider" onclick="this.parentElement.classList.toggle('closed')"></button>
 					</div>
-					<div class="panel_town">
+					<div class="panel_town mr-10">
 						<div class="panel md horizontal" style="background-image: url(images/panel/bg/panel_town.png);">
-							<div class="panel_holder flex-row px-30 py-15 align-items-center">
-								<a href="#" class="circle emblem mdd d-block mr-15"><img src="https://picsum.photos/200" alt=""></a>
+							<div class="panel_holder flex-row align-items-center">
+								<a href="#" class="circle emblem size_2 size_xl_5 d-block mr-15"><img src="https://picsum.photos/200" alt=""></a>
 								<div class="town_img">
 									<a class="square_img md" href="#1">
 										<span class="square_img_cont">
 											<img src="https://picsum.photos/200" alt="" class="img-fluid">
 										</span>
 									</a>
-									<a href="#2" class="circle emblem md"><img src="images/circles/emblem.png" alt=""></a>
+									<a href="#2" class="circle emblem size_1 size_xl_2"><img src="images/circles/emblem.png" alt=""></a>
 								</div>	
-								<div class="col pl-30">
-									<h3 class="m-0 fz_26">Camp</h3>
-									<p class="m-0 fz_21 text-muted">115 citizen</p>
+								<div class="col part_txt">
+									<h3 class="m-0">Camp</h3>
+									<p class="m-0 text-muted">115 citizen</p>
 								</div>
 							</div>
 							<div class="decor">
@@ -174,15 +174,13 @@
 					</div>
 				</div>
 				<div class="col-auto d-flex justify-content-end align-items-center">
-					<div class="ducat_panel">
+					<div class="panel_ducat">
 						<div class="panel md horizontal" style="background-image: url(images/panel/bg/ducat_panel.png);">
-							<div class="panel_holder flex-row px-30 py-10 align-items-center">
-								<!-- <i class="ico ico-ducat"></i> -->
-								
+							<div class="panel_holder flex-row align-items-center">
 								<div class="ico_half">
 									<img src="images/icons/ducat.png" alt="">
 								</div>
-								<span class="fz_17 pl-10">123123</span>
+								<p class="mb-0 pl-10">123123</p>
 							</div>
 							<div class="decor">
 								<span class="corner"></span>
@@ -192,20 +190,20 @@
 							</div>
 						</div>
 					</div>
-					<div class="progress_panel d-flex align-items-center slide_at_right">
+					<div class="panel_progress d-flex align-items-center slide_at_right">
 						<button class="switcher switcher_slider" onclick="this.parentElement.classList.toggle('closed')"></button>
 						<div class="slider_panel">
 							<div class="panel md horizontal" style="background-image: url(images/panel/bg/progress_panel.png);">
-								<div class="panel_holder flex-row px-10 py-10">
-									<a href="#" class="circle emblem md d-block mx-20"><img src="images/circles/emblem.png" alt=""></a>
-									<div class="txt_inf d-flex align-items-center pr-20">
+								<div class="panel_holder flex-row">
+									<a href="#" class="circle emblem circle size_1 size_lg_2 size_xl_3 d-block"><img src="images/circles/emblem.png" alt=""></a>
+									<div class="txt_inf d-flex align-items-center">
 										<div class="d-inline-flex align-items-center">
 											<img src="https://picsum.photos/18" alt="">
-											<span class="pl-10 fz_17">74/1000</span>
+											<p class="m-0 pl-10">74/1000</p>
 										</div>
 										<div class="d-inline-flex align-items-center pl-15">
 											<img src="https://picsum.photos/18" alt="">
-											<span class="pl-10 fz_17">74/1000</span>
+											<p class="m-0 pl-10">74/1000</p>
 										</div>
 									</div>
 								</div>
@@ -218,12 +216,12 @@
 							</div>
 						</div>
 					</div>
-					<div class="user_panel ml-10">
+					<div class="panel_user ml-10">
 						<div class="panel md horizontal" style="background-image: url(images/panel/bg/user_panel.png);">
-							<div class="panel_holder flex-row px-30 py-10">
-								<a href="#" class="circle md mx-4"><img src="images/circles/example.png" alt=""></a>
-								<a href="#" class="circle md mx-4"><img src="images/circles/example.png" alt=""></a>
-								<a href="#" class="circle md mx-4"><img src="images/circles/example.png" alt=""></a>
+							<div class="panel_holder flex-row">
+								<a href="#" class="circle size_1 size_lg_2 size_xl_3 mx-4"><img src="images/circles/example.png" alt=""></a>
+								<a href="#" class="circle size_1 size_lg_2 size_xl_3 mx-4"><img src="images/circles/example.png" alt=""></a>
+								<a href="#" class="circle size_1 size_lg_2 size_xl_3 mx-4"><img src="images/circles/example.png" alt=""></a>
 							</div>
 							<div class="decor">
 								<span class="corner"></span>
@@ -237,16 +235,16 @@
 			</div>
 			<!-- header_part end -->
 			<!-- right sidebar start -->
-				<div class="panel aside_sidebar" style="background-image: url(images/panel/bg/aside.png);">
+				<div class="panel panel_sidebar" style="background-image: url(images/panel/bg/aside.png);">
 					<!-- close btn start-->
 					<a href="#" class="close_btn position-absolute"></a>
 					<!-- close btn end-->
 					<div class="panel_holder">
 						<div class="panel_header py-10">
 							<div class="d-flex align-items-center">
-								<div class="pr-25 pl-7">
-									<a href="#" class="circle emblem md d-block my-4"><img src="https://picsum.photos/200" alt=""></a>
-									<a href="#" class="circle emblem md d-block my-4"><img src="images/circles/emblem.png" alt=""></a>
+								<div class="pr-25 pl-3">
+									<a href="#" class="circle emblem size_2 size_xl_4 d-block my-4"><img src="https://picsum.photos/200" alt=""></a>
+									<a href="#" class="circle emblem size_2 size_xl_4 d-block my-4"><img src="images/circles/emblem.png" alt=""></a>
 								</div>
 								<h3 class="mb-0 fz_25 font-weight-normal">Lorem ipsum dolor sit, amet consectetur</h3>
 							</div>
@@ -261,27 +259,27 @@
 							<div class="px-3">
 								<div class="d-flex mx-n3 flex-wrap">
 									<div class="col-auto px-3 pb-6">
-										<div class="square mdd">
+										<div class="square size_3 size_xl_4">
 											<img src="images/circles/example.png" alt="">
 										</div>
 									</div>
 									<div class="col-auto px-3 pb-6">
-										<div class="square mdd">
+										<div class="square size_3 size_xl_4">
 											<img src="images/circles/example.png" alt="">
 										</div>
 									</div>
 									<div class="col-auto px-3 pb-6">
-										<div class="square mdd">
+										<div class="square size_3 size_xl_4">
 											<img src="images/circles/example.png" alt="">
 										</div>
 									</div>
 									<div class="col-auto px-3 pb-6">
-										<div class="square mdd">
+										<div class="square size_3 size_xl_4">
 											<img src="images/circles/example.png" alt="">
 										</div>
 									</div>
 									<div class="col-auto px-3 pb-6">
-										<div class="square mdd">
+										<div class="square size_3 size_xl_4">
 											<img src="images/circles/example.png" alt="">
 										</div>
 									</div>
@@ -298,7 +296,7 @@
 										<li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
 									</ul>
 								</div>
-								<div class="col-auto">
+								<div class="col-auto pl-5">
 									<a href="#" class="switcher down switcher_js"></a>
 								</div>
 							</div>
@@ -306,29 +304,29 @@
 								<div class="col accordion_hidden_part">
 									<div class="d-flex  mx-n3 flex-wrap">
 										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle"><img src="images/circles/example.png" alt=""></a>
+											<a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
 										</div>
 										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle"><img src="images/circles/example.png" alt=""></a>
+											<a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
 										</div>
 										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle"><img src="images/circles/example.png" alt=""></a>
+											<a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
 										</div>
 										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle"><img src="images/circles/example.png" alt=""></a>
+											<a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
 										</div>
 										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle"><img src="images/circles/example.png" alt=""></a>
+											<a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
 										</div>
 										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle"><img src="images/circles/example.png" alt=""></a>
+											<a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
 										</div>
 										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle"><img src="images/circles/example.png" alt=""></a>
+											<a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
 										</div>
 									</div>
 								</div>
-								<div class="col-auto">
+								<div class="col-auto pl-5">
 									<a href="#" class="switcher down opened switcher_js"></a>
 								</div>
 							</div>
@@ -345,14 +343,14 @@
 			<!-- right sidebar END -->
 			<!-- footer_area start -->
 			<div class="footer_area d-flex align-items-end">
-				<div class="game_modes">
+				<div class="panel_game_modes">
 					<div class="d-flex align-items-end">
 						<div class="panel md col-auto" style="background-image: url(images/panel/bg/game_modes.png);">
-							<div class="panel_holder px-10 py-30">
-								<a href="#" class="circle md my-3"><img src="images/circles/example.png" alt=""></a>
-								<a href="#" class="circle md my-3"><img src="images/circles/example.png" alt=""></a>
-								<a href="#" class="circle md my-3"><img src="images/circles/example.png" alt=""></a>
-								<a href="#" class="circle md my-3"></a>
+							<div class="panel_holder px-10">
+								<a href="#" class="circle size_2 size_lg_3 size_xl_4 my-3"><img src="images/circles/example.png" alt=""></a>
+								<a href="#" class="circle size_2 size_lg_3 size_xl_4 my-3"><img src="images/circles/example.png" alt=""></a>
+								<a href="#" class="circle size_2 size_lg_3 size_xl_4 my-3"><img src="images/circles/example.png" alt=""></a>
+								<a href="#" class="circle size_2 size_lg_3 size_xl_4 my-3"></a>
 							</div>
 							<div class="decor ">
 								<span class="corner"></span>
@@ -361,14 +359,14 @@
 								<span class="corner left_bottom"></span>
 							</div>
 						</div>
-						<a href="#" class="photo_block d-flex col">
+						<a href="#" class="photo_block d-flex">
 							<img src="images/content/img.png" alt="" class="img-fluid">
 						</a>
 					</div>
 				</div>
 				<div class="col pl-10 right_aside d-flex justify-content-end align-items-end">
 					
-					<div class="area_army d-flex minw_0 justify-content-end slide_at_right">
+					<div class="panel_army d-flex minw_0 justify-content-end slide_at_right">
 						<!-- switcher panel btn -->
 						<button class="switcher switcher_slider" onclick="this.parentElement.classList.toggle('closed')"></button>
 						<!-- switcher panel btn END -->
@@ -386,8 +384,8 @@
 									</div>
 								</div>
 							</div>
-							<div class="panel md horizontal" style="background-image: url(images/panel/bg/area_army.png);">
-								<div class="panel_holder flex-row justify-content-end px-30 pt-30 pb-21">
+							<div class="panel area_army_panel md horizontal" style="background-image: url(images/panel/bg/area_army.png);">
+								<div class="panel_holder flex-row justify-content-end">
 									<div class="holder_slider col">
 										<div class="holder_slider_list d-inline-flex">
 											<div class="slider_item mx-7">
@@ -454,8 +452,8 @@
 									</div>
 									<div class="slider_sidebar pl-10 col-auto d-flex flex-column align-items-center">
 										<div class="params">
-											<a href="#" class="circle d-block md"><img src="images/circles/example.png" alt=""></a>
-											<a href="#" class="circle d-block md"><img src="images/circles/example.png" alt=""></a>
+											<a href="#" class="circle d-block size_2 size_lg_3"><img src="images/circles/example.png" alt=""></a>
+											<a href="#" class="circle d-block size_2 size_lg_3"><img src="images/circles/example.png" alt=""></a>
 										</div>	
 										<div class="d-flex mt-auto">
 											<a href="#" class="switcher left mx-7"></a>
@@ -473,7 +471,7 @@
 						</div>
 					</div>
 					<div class="actions_panel col-auto ml-10">
-						<div class="panel centered_corners_none md" style="  background-image: url(images/panel/bg/actions_panel.png;">
+						<div class="panel centered_corners_none md">
 							<div class="panel_holder p-8">
 								<div class="actions_panel_holder">
 									<div class="d-flex flex-wrap actions_grid">

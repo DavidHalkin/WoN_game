@@ -1,9 +1,13 @@
-.aside_sidebar{
+.panel_sidebar{
 	--h-header:100px;
-	--h-footer:190px;
+	--h-footer:200px;
+	@include media(max, lg) {
+		--h-footer:170px;
+	}
 	width: 360px;
 	position: absolute;
-	top: 70px;
+	z-index: 10;
+	top: 75px;
 	right: 5px;
 	// height: calc(100vh - var(--h-header) - var(--h-footer));
 	// max-height: calc(100vh - var(--h-header) - var(--h-footer));
@@ -20,14 +24,13 @@
 		flex:1;
 	}
 }
-.aside_sidebar{
+.panel_sidebar{
 	.panel_holder{
 		display: grid;
 	  	grid-template-rows: min-content 1fr;
-	  	
-	  	.panel_header {
+	  	// .panel_header {
 	  		
-	  	}
+	  	// }
 		.panel_content{
 			grid-row: span 2;
 			overflow-y: auto;

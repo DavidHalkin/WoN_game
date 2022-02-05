@@ -1,0 +1,42 @@
+.panel_game_modes{
+	max-width: 250px;
+	flex:0 0 250px;
+	pointer-events:auto;
+	.panel_holder{
+		padding-top: 30px;
+		padding-bottom: 30px;
+		@include media(max, xl) {
+			padding-top: 15px;
+			padding-bottom: 15px;
+		}
+	}
+	@include media(max, xl) {
+		max-width: 200px;
+		flex:0 0 200px;
+	}
+}
+.photo_block{
+	position: relative;
+	--w:calc(409px / 2);
+	--h:calc(410px / 2);
+	width: var(--w);
+	&:after{
+		width: var(--w);
+		height:  var(--h);
+		background: url(../images/ui/corner.png) no-repeat 0 0;
+		background-size: cover;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		// background: #000;
+		content: "";
+	}
+	@include media(max, xl)  {
+		--w:calc(409px / 3);
+		--h:calc(410px / 3);
+	}
+	@include media(max, lg)  {
+		--w:calc(409px / 3.5);
+		--h:calc(410px / 3.5);
+	}
+}

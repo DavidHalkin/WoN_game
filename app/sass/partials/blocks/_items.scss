@@ -2,8 +2,11 @@
 	--size_corner_local:calc(var(--size_corner) / 2.7);
 	position: relative;
 	width: 67px;
-	height: 95px;
+	height: 102px;
 	display: block;
+	@include media(max, lg) {
+		height: 85px;
+	}
 	.rectangle_mask{
 		width: 100%;
 		height: 100%;
@@ -62,15 +65,125 @@
 	img{
 		@include centered_img(90,90);
 	}
-	&.mdd{
-		--square_size:calc(var(--size) / 2 - 3px);
+	--size_5:calc(var(--size) / 2);
+	--size_4:calc(var(--size) / 2 - 5px);
+	--size_3:calc(var(--size) / 2* 0.819);
+	--size_2:calc(var(--size) / 2* 0.7);
+	--size_1:calc(var(--size) / 2* 0.6);
+	&.size_5{
+		@include media(min, xs) {
+			--square_size:var(--size_5);
+		}
 	}
-	&.md{
-		--square_size:calc(var(--size) / 2* 0.75);
+	&.size_4{
+		@include media(min, xs) {
+			--square_size:var(--size_4);
+		}
+		
 	}
-
-	&.sm{
-		--square_size:calc(var(--size) / 2* 0.5);
+	&.size_3{
+		@include media(min, xs) {
+			--square_size:var(--size_3);
+		}
+		
+	}
+	&.size_2{
+		@include media(min, xs) {
+			--square_size:var(--size_2);
+		}
+		
+	}
+	&.size_1{
+		@include media(min, xs) {
+			--square_size:var(--size_1);
+		}
+	}
+	// md
+	&.size_md_5{
+		@include media(min, md) {
+			--square_size:var(--size_5);
+		}
+	}
+	&.size_md_4{
+		@include media(min, md) {
+			--square_size:var(--size_4);
+		}
+		
+	}
+	&.size_md_3{
+		@include media(min, md) {
+			--square_size:var(--size_3);
+		}
+		
+	}
+	&.size_md_2{
+		@include media(min, md) {
+			--square_size:var(--size_2);
+		}
+		
+	}
+	&.size_md_1{
+		@include media(min, md) {
+			--square_size:var(--size_1);
+		}
+	}
+	// lg
+	&.size_lg_5{
+		@include media(min, lg) {
+			--square_size:var(--size_5);
+		}
+	}
+	&.size_lg_4{
+		@include media(min, lg) {
+			--square_size:var(--size_4);
+		}
+		
+	}
+	&.size_lg_3{
+		@include media(min, lg) {
+			--square_size:var(--size_3);
+		}
+		
+	}
+	&.size_lg_2{
+		@include media(min, lg) {
+			--square_size:var(--size_2);
+		}
+		
+	}
+	&.size_lg_1{
+		@include media(min, lg) {
+			--square_size:var(--size_1);
+		}
+	}
+	// xl
+	&.size_xl_5{
+		@include media(min, xl) {
+			--square_size:var(--size_5);
+		}
+	}
+	&.size_xl_4{
+		@include media(min, xl) {
+			--square_size:var(--size_4);
+		}
+		
+	}
+	&.size_xl_3{
+		@include media(min, xl) {
+			--square_size:var(--size_3);
+		}
+		
+	}
+	&.size_xl_2{
+		@include media(min, xl) {
+			--square_size:var(--size_2);
+		}
+		
+	}
+	&.size_xl_1{
+		@include media(min, xl) {
+			--square_size:var(--size_1);
+		}
 	}
 }
 .text_holder{

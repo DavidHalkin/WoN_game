@@ -1,0 +1,46 @@
+.panel_army{
+	position: relative;
+	.title_panel{
+		position: absolute;
+		bottom: 100%;
+		left: 0;
+		z-index: 1;
+		margin-bottom: -3px;
+	}
+	.area_army_panel{
+		.panel_holder{
+			padding:25px 30px 21px;
+			@include media(max, lg) {
+				padding:15px 15px 13px;
+			}
+		}
+	}
+	.switcher_slider{
+		position: absolute;
+		top: 50%;
+		left: 0;
+		transform:translate(-50%,-50%) scale(-1,1);
+		
+		&.opened{
+			transform:translate(-50%,-50%);
+		}
+	}
+	.params{
+		.circle{
+			margin-bottom: 8px;
+		}
+	}
+	.holder_slider{
+		// overflow: hidden;
+		overflow-x: auto;
+	}
+	
+	// anim
+	&.closed{
+		.holder_slider_list{
+			> .slider_item:not(:first-of-type){
+				display: none;
+			}
+		}
+	}
+}

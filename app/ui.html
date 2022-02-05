@@ -50,37 +50,78 @@
 			<br>
 			<br>
 			<div style="margin: 50px;">
-				<div class="circle"><img src="images/circles/example.png" alt=""></div>
-				<div class="circle md"><img src="images/circles/example.png" alt=""></div>
-				<div class="circle sm"><img src="images/circles/example.png" alt=""></div>
+				<div class="d-flex text-white">
+					<div class="mx-10">
+						size_5(circle) = 55px
+						<div class="circle size_5"><img src="images/circles/example.png" alt=""></div>
+					</div>
+					<div class="mx-10">
+						.size_4 = 50px
+						<div class="circle size_4"><img src="images/circles/example.png" alt=""></div>
+					</div>
+					<div class="mx-10">
+						.size_3 ~ 45px
+						<div class="circle size_3"><img src="images/circles/example.png" alt=""></div>
+					</div>
+					<div class="mx-10">
+						.size_2 ~ 38.5px
+						<div class="circle size_2"><img src="images/circles/example.png" alt=""></div>
+					</div>
+					<div class="mx-10">
+						.size_1 = 33px
+						<div class="circle size_1"><img src="images/circles/example.png" alt=""></div>
+					</div>
+				</div>
 				<p>кликабельные:</p>
-				<a href="#" class="circle"><img src="images/circles/example.png" alt=""></a>
-				<a href="#" class="circle md"><img src="images/circles/example.png" alt=""></a>
-				<a href="#" class="circle sm"><img src="images/circles/example.png" alt=""></a>
+				<a href="#" class="circle size_5"><img src="images/circles/example.png" alt=""></a>
+				<a href="#" class="circle size_4"><img src="images/circles/example.png" alt=""></a>
+				<a href="#" class="circle size_3"><img src="images/circles/example.png" alt=""></a>
+				<a href="#" class="circle size_2"><img src="images/circles/example.png" alt=""></a>
+				<a href="#" class="circle size_1"><img src="images/circles/example.png" alt=""></a>
 				<p>флаги, добавить класс .emblem</p>
-				<div class="circle emblem"><img src="images/circles/emblem.png" alt=""></div>
-				<div class="circle emblem md"><img src="images/circles/emblem.png" alt=""></div>
-				<div class="circle emblem sm"><img src="images/circles/emblem.png" alt=""></div>
-				<p> кликабельные (первый элемент без тени .no_shadow)</p>
-				<a href="#" class="circle emblem no_shadow"><img src="images/circles/emblem.png" alt=""></a>
-				<a href="#" class="circle emblem md"><img src="images/circles/emblem.png" alt=""></a>
-				<a href="#" class="circle emblem sm "><img src="images/circles/emblem.png" alt=""></a>
+				<div class="circle emblem size_5"><img src="images/circles/emblem.png" alt=""></div>
+				<div class="circle emblem size_4"><img src="images/circles/emblem.png" alt=""></div>
+				<div class="circle emblem size_3"><img src="images/circles/emblem.png" alt=""></div>
+				<div class="circle emblem size_2"><img src="images/circles/emblem.png" alt=""></div>
+				<div class="circle emblem size_1"><img src="images/circles/emblem.png" alt=""></div>
+
+				<br>
+				<p class="mb-0"> кликабельные (первый элемент без тени .no_shadow)</p>
+				<a href="#" class="circle emblem no_shadow size_5"><img src="images/circles/emblem.png" alt=""></a>
+				<a href="#" class="circle emblem size_4"><img src="images/circles/emblem.png" alt=""></a>
+				<a href="#" class="circle emblem size_3 "><img src="images/circles/emblem.png" alt=""></a>
+				<a href="#" class="circle emblem size_2 "><img src="images/circles/emblem.png" alt=""></a>
+				<a href="#" class="circle emblem size_1 "><img src="images/circles/emblem.png" alt=""></a>
 			</div>
 
 			<div style="margin: 50px;" class="d-flex">
 
-				<div class="square" style="margin-right: 10px;">
+				<div class="square size_5" style="margin-right: 10px;">
 					<img src="images/circles/emblem.png" alt="">
 				</div>
-				<a href="#" class="square md" style="margin-right: 10px;">
+				<a href="#" class="square size_4" style="margin-right: 10px;">
 					<img src="images/circles/example.png" alt="">
 				</a>
-				<a href="#" class="square sm" style="margin-right: 10px;">
+				<a href="#" class="square size_3" style="margin-right: 10px;">
 					<img src="images/circles/emblem.png" alt="">
 				</a>
-				<div class="square" style="margin-right: 10px;">
+				<div class="square size_2" style="margin-right: 10px;">
 					<img src="images/circles/example.png" alt="">
 				</div>
+				<div class="square size_1" style="margin-right: 10px;">
+					<img src="images/circles/example.png" alt="">
+				</div>
+			</div>
+			<div class=" d-flex align-items-center p-20" style="background: #fff;">
+				<div class="">
+					адаптив
+					<a href="#" class="circle size_1 size_md_3 size_lg_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
+				</div>
+				<div class="ml-20">
+					<div class="square size_5 size_md_2 size_lg_4 size_xl_1">
+						<img src="images/circles/example.png" alt="">
+					</div>
+				</div>	
 			</div>
 			<div style="margin: 50px;" class="d-flex">
 				<div  style="margin-right: 18px;">
@@ -173,7 +214,7 @@
 					<span class="corner left_bottom"></span>
 				</div>
 			</div>
-			<div class="panel horizontal" style=" width: 400px; margin: 100px; height: 500px;  background-image: url(images/panel/bg_1.png);">
+			<div class="panel horizontal" style=" width: 400px; margin: 100px; height: 500px;  background-image: url(images/panel/bg/aside.png);">
 				<div class="panel_holder">
 					без классов, с высотой и имагой в бекграунде
 				</div>

@@ -1,0 +1,8 @@
+.panel_user{
+	.panel_holder{
+		padding: 10px 30px;
+		@include media(max, xl) {
+			padding: 10px 20px;
+		}
+	}
+}

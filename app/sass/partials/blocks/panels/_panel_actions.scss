@@ -1,35 +1,43 @@
 .actions_panel{
 	pointer-events:auto;
-	--h:322px;
-	--w:427px;
-	--height:calc(var(--h) / 2);
-	--width:calc(var(--w) / 2);
+	--h:calc(322px / 2);
+	--w:calc(427px / 2);
 	background-color: $primary;
 	background-position: 100% 100% !important;
 	background-repeat: no-repeat !important;
 	border-radius: calc(var(--indent) + 2px);
 	.actions_panel_holder{
-		width:var(--width);
-		height:var(--height);
+		width:var(--w);
+		height:var(--h);
 		background: url(../images/square/actions-panel.png) no-repeat 0 0;
 		background-size: cover;
 	}
 	.actions_grid{
-		padding:2px 9px 0;
-		margin: 0 -5px;
+		// padding:2px 9px 0;
+		// margin: 0 -5px;
+		
+		padding: 2% 3% 0;
+		margin: 0 -1.5%;
 	}
 	.actions_col{
 		max-width: 25%;
 		flex:0 0 25%;
-		padding:5px 5px;
+		// padding:5px;
+		padding: 2%;
 		.actions_item{
 			position: relative;
 			display: block;
-			height: 42px;
+			// height: 42px;
+			height: 0;
+			padding-top: 100%;
 			// background: rgba(red,.3);
 			img{
 				@include centered_img(100,100);
 			}
 		}
+	}
+	@include media(max, lg) {
+		--h:calc(322px / 2.5);
+		--w:calc(427px / 2.5);
 	}
 }

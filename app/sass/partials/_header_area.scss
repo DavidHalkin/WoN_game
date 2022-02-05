@@ -9,13 +9,10 @@
 		pointer-events:auto;
 	}
 }
-.main_nav{
+.panel_nav{
 	position: relative;
 	.switcher_slider{
 		transform:translateX(-50%);
-		&.opened{
-			
-		}
 	}
 	// anim
 	&.closed{
@@ -26,36 +23,7 @@
 		}
 	}
 }
-
-.panel_town{
-	.town_img{
-		max-width: 75px;
-		flex:0 0 75px;
-		position: relative;
-		.circle{
-			position: absolute;
-			bottom: 0;
-			right: 0;
-			z-index: 2;
-			transform:translate(45%,5px)
-		}
-	}
-	.square_img{
-		position: relative;
-		display: block;
-		.square_img_cont{
-			position: relative;
-			// height: 100%;
-			display: block;
-			height: 75px;
-			overflow: hidden;
-			img{
-				// @include centered_img(100,100);
-			}
-		}
-	}
-}
-.progress_panel{
+.panel_progress{
 	position: relative;
 	&.closed{
 		.txt_inf{

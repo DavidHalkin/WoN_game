@@ -1,28 +1,135 @@
 .circle{
 	--size:110px;
-	--width_circle:calc(var(--size) / 2);
-	--height_circle:calc(var(--size) / 2);
+	--size_circle:calc(var(--size) / 2);
 	display: inline-block;
 	display: block;
-	width: var(--width_circle);
-	height: var(--height_circle);
+	width: var(--size_circle);
+	height: var(--size_circle);
 	background: url(../images/circles/circle.png) no-repeat 0 0;
 	background-size: cover;
 	position: relative;
 	img{
 		@include centered_img(80,80);
 	}
-	&.md{
-		--width_circle:calc(var(--size) / 2* 0.75);
-		--height_circle:calc(var(--size) / 2 * 0.75);
+	--size_5:calc(var(--size) / 2);
+	--size_4:calc(var(--size) / 2 - 5px);
+	--size_3:calc(var(--size) / 2* 0.819);
+	--size_2:calc(var(--size) / 2* 0.7);
+	--size_1:calc(var(--size) / 2* 0.6);
+	&.size_5{
+		@include media(min, xs) {
+			--size_circle:var(--size_5);
+		}
 	}
-	&.mdd{
-		--width_circle:calc(var(--size) / 2 - 3px);
-		--height_circle:calc(var(--size) / 2 - 3px);
+	&.size_4{
+		@include media(min, xs) {
+			--size_circle:var(--size_4);
+		}
+		
 	}
-	&.sm{
-		--width_circle:calc(var(--size) / 2* 0.5);
-		--height_circle:calc(var(--size) / 2 * 0.5);
+	&.size_3{
+		@include media(min, xs) {
+			--size_circle:var(--size_3);
+		}
+		
+	}
+	&.size_2{
+		@include media(min, xs) {
+			--size_circle:var(--size_2);
+		}
+		
+	}
+	&.size_1{
+		@include media(min, xs) {
+			--size_circle:var(--size_1);
+		}
+	}
+	// md
+	&.size_md_5{
+		@include media(min, md) {
+			--size_circle:var(--size_5);
+		}
+	}
+	&.size_md_4{
+		@include media(min, md) {
+			--size_circle:var(--size_4);
+		}
+		
+	}
+	&.size_md_3{
+		@include media(min, md) {
+			--size_circle:var(--size_3);
+		}
+		
+	}
+	&.size_md_2{
+		@include media(min, md) {
+			--size_circle:var(--size_2);
+		}
+		
+	}
+	&.size_md_1{
+		@include media(min, md) {
+			--size_circle:var(--size_1);
+		}
+	}
+	// lg
+	&.size_lg_5{
+		@include media(min, lg) {
+			--size_circle:var(--size_5);
+		}
+	}
+	&.size_lg_4{
+		@include media(min, lg) {
+			--size_circle:var(--size_4);
+		}
+		
+	}
+	&.size_lg_3{
+		@include media(min, lg) {
+			--size_circle:var(--size_3);
+		}
+		
+	}
+	&.size_lg_2{
+		@include media(min, lg) {
+			--size_circle:var(--size_2);
+		}
+		
+	}
+	&.size_lg_1{
+		@include media(min, lg) {
+			--size_circle:var(--size_1);
+		}
+	}
+	// xl
+	&.size_xl_5{
+		@include media(min, xl) {
+			--size_circle:var(--size_5);
+		}
+	}
+	&.size_xl_4{
+		@include media(min, xl) {
+			--size_circle:var(--size_4);
+		}
+		
+	}
+	&.size_xl_3{
+		@include media(min, xl) {
+			--size_circle:var(--size_3);
+		}
+		
+	}
+	&.size_xl_2{
+		@include media(min, xl) {
+			--size_circle:var(--size_2);
+		}
+		
+	}
+	&.size_xl_1{
+		@include media(min, xl) {
+			--size_circle:var(--size_1);
+		}
 	}
 	&.emblem{
 		background: none;

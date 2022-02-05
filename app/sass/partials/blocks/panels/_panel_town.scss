@@ -1,0 +1,57 @@
+.panel_town{
+	--h_town: 75px;
+	
+	@include media(max, xl) {
+		--h_town: 55px;
+	}
+	.panel_holder{
+		padding: 15px 30px;
+		@include media(max, xl) {
+			padding: 15px 20px;
+		}
+	}
+	.town_img{
+		max-width: var(--h_town);
+		flex:0 0 var(--h_town);
+		position: relative;
+		.circle{
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			z-index: 2;
+			transform:translate(45%,5px)
+		}
+	}
+	.square_img{
+		position: relative;
+		display: block;
+		.square_img_cont{
+			position: relative;
+			// height: 100%;
+			display: block;
+			height: var(--h_town);
+			overflow: hidden;
+			img{
+				// @include centered_img(100,100);
+			}
+		}
+	}
+	.part_txt{
+		padding-left: 30px;
+		@include media(max, xl)  {
+			padding-left: 20px;
+		}
+	}
+	h3{
+		font-size: 26px;
+		@include media(max, xl) {
+			font-size: 20px;
+		}
+	}
+	p{
+		font-size: 21px;
+		@include media(max, xl) {
+			font-size: 16px;
+		}
+	}
+}

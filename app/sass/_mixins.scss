@@ -1,34 +1,34 @@
 
-// $sizes: ("xs":320px, "sm":576px, "md":768px, "lg":992px, "xl":1200px);
+$sizes: ("xs":1px, "md":1024px, "lg":1200px,"xl":1600px);
 
-// @function getPreviousSize($currentSize) {
-//   $keys: map-keys($sizes);
-//   $index: index($keys, $currentSize)-1;
-//   $value: map-values($sizes);
-//   @return nth($value, $index);
-// }
+@function getPreviousSize($currentSize) {
+  $keys: map-keys($sizes);
+  $index: index($keys, $currentSize)-1;
+  $value: map-values($sizes);
+  @return nth($value, $index);
+}
 
-// @mixin media($minmax, $media) {
-//   @each $size, $resolution in $sizes {
-//     @if $media == $size {
-//       @if ($minmax != "only") {
-//         @media only screen and (#{$minmax}-width: $resolution) {
-//           @content;
-//         }
-//       } @else {
-//         @if (index(map-keys($sizes), $media) > 1) {
-//           @media only screen and (min-width: getPreviousSize($media)+1) and (max-width: $resolution) {
-//             @content;
-//           }
-//         } @else {
-//           @media only screen and (max-width: $resolution) {
-//             @content;
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
+@mixin media($minmax, $media) {
+  @each $size, $resolution in $sizes {
+    @if $media == $size {
+      @if ($minmax != "only") {
+        @media only screen and (#{$minmax}-width: $resolution) {
+          @content;
+        }
+      } @else {
+        @if (index(map-keys($sizes), $media) > 1) {
+          @media only screen and (min-width: getPreviousSize($media)+1) and (max-width: $resolution) {
+            @content;
+          }
+        } @else {
+          @media only screen and (max-width: $resolution) {
+            @content;
+          }
+        }
+      }
+    }
+  }
+}
 @mixin centered_img($width, $height) {
 	position: absolute;
 	top: 50%;

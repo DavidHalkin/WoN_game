@@ -15,11 +15,22 @@
   transition: all 0.6s ease;
   background: rgba(#955100,.2);
 }
-
+.panel_nav{
+	.panel_holder{
+		padding: 15px 20px;
+		@include media(max, lg) {
+			padding:10px 15px;
+		}
+	}
+}
 .nav_list{
 	li{
 		position: relative;
 		font-size: 17px;
+		margin: 0 8px;
+		@include media(max, xl) {
+			margin: 0 4px;
+		}
 		.drop_down{
 			position: absolute;
 			top: 100%;
