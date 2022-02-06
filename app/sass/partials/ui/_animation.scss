@@ -49,7 +49,7 @@ a.actions_item{
 		}
 	}
 }
-.nav_list{
+.nav_list,.dropdown_item {
 	li{
 		> a{
 			transition: var(--animation_static);

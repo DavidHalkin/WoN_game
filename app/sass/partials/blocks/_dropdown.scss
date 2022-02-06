@@ -1,3 +1,18 @@
+.dropdown_item{
+	position: relative;
+	&:hover,li:hover{
+		> .drop_down{
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+	&:hover {
+		> a{
+			transition: var(--animation_hovered);
+					filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
+		}
+	}
+}
 .drop_down{
 	position: absolute;
 	top: 100%;
@@ -9,6 +24,7 @@
 	ul{
 		padding: var(--size_border_local) 0 0;
 		li{
+			position: relative;
 			padding:3px var(--size_border_local);
 			&:after{
 				content: "";
