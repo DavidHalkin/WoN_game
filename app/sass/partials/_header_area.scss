@@ -15,7 +15,7 @@
 		transform:translateX(-50%);
 	}
 	// anim
-	&.closed{
+	&.closed{ 
 		.nav_list{
 			> li:not(:first-of-type){
 				display: none;
