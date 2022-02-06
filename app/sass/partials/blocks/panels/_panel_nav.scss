@@ -1,20 +1,4 @@
-@mixin hover_drop{
-  content: "";
-  // width: calc(100% - 10px);
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  display: block;
-  // background: rgba(green,.4);
-  border-radius: 3px;
-  box-shadow:inset 0 0 5px rgba(#955100,1) , 0 0 10px rgba(#955100,0.5);
-  z-index: 3;
-  opacity: 0;
-  transition: all 0.6s ease;
-  background: rgba(#955100,.2);
-}
+
 .panel_nav{
 	.panel_holder{
 		padding: 15px 20px;
@@ -31,93 +15,7 @@
 		@include media(max, xl) {
 			margin: 0 4px;
 		}
-		.drop_down{
-			position: absolute;
-			top: 100%;
-			left: 0;
-			width: 250px;
-			z-index: 5;
-			visibility: hidden;
-			opacity: 0;
-			ul{
-				padding: var(--size_border_local) 0 0;
-				li{
-					padding:3px var(--size_border_local);
-					&:after{
-						content: "";
-						bottom: 0;
-						left: 50%;
-						transform:translateX(-50%);
-						position: absolute;
-						width: calc(100% - var(--size_border_local) * 2);
-						height: var(--size_border_local);
-						background: var(--border_img_h) 0 0 repeat-x;
-						background-size: auto var(--size_border_local);
-						z-index: 1;
-					}
-					&:last-of-type{
-						&:after{
-							content: none;
-						}
-					}
-					a{
-						padding: 4px 7px;
-						margin: 0 5px var(--size_border_local);
-						color: $light;
-						display: block;
-						// margin: 0 10px;
-						position: relative;
-						&:after{
-							@include hover_drop;
-						}
-						&:hover{
-							// background: red;
-							text-decoration: none;
-							&:after{
-								@include hover_drop;
-								opacity: 1 !important;
-							}
-						}
-					}
-					.drop_down{
-						top: 0;
-						left: 100%;
-						// margin-left: -2px;
-					}
-					&:hover{
-						> a{
-							&:after{
-								@include hover_drop;
-								opacity: 1 !important;
-							}
-						}
-					}
-					&.active{
-						> a{
-							// filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
-							&:after{
-								@include hover_drop;
-								opacity: 1 !important;
-							}
-						}
-					}
-					&.has_drop{
-						> a{
-							padding-right: 20px;
-							&:before{
-								content: "";
-								@include arrow;
-								position: absolute;
-								top: 50%;
-								right: 5px;
-								transform:translateY(-50%);
-								z-index: 1;
-							}
-						}
-					}
-				}
-			}
-		}
+
 		&:hover{
 			> .drop_down{
 				visibility: visible;
@@ -126,3 +24,6 @@
 		}
 	}
 }
+
+
+// 

@@ -2,7 +2,12 @@
 	--h_town: 75px;
 	
 	@include media(max, xl) {
-		--h_town: 55px;
+		--h_town: 50px;
+	}
+	max-width: 350px;
+	@include media(max, xl) {
+		max-width: 250px;
+		color: red !important;
 	}
 	.panel_holder{
 		padding: 15px 30px;
@@ -43,9 +48,10 @@
 		}
 	}
 	h3{
-		font-size: 26px;
+		font-size: 15px;
+		word-wrap:break-word;
 		@include media(max, xl) {
-			font-size: 20px;
+			font-size: 14px;
 		}
 	}
 	p{

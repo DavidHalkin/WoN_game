@@ -1,5 +1,37 @@
 
-$sizes: ("xs":1px, "md":1024px, "lg":1200px,"xl":1600px);
+// $sizes: ("xs":1, "md":1024, "lg":1200,"xl":1600);
+
+// @function getPreviousSize($currentSize) {
+//   $keys: map-keys($sizes);
+//   $index: index($keys, $currentSize)-1;
+//   $value: map-values($sizes);
+//   @return nth($value, $index);
+// }
+
+// @mixin media($minmax, $media) {
+//   @each $size, $resolution in $sizes {
+//     @if $media == $size {
+//       @if ($minmax != "only") {
+//         @media only screen and (#{$minmax}-width: $resolution + px) {
+//           @content;
+//         }
+//       } @else {
+//         @if (index(map-keys($sizes), $media) > 1) {
+//           @media only screen and (min-width: getPreviousSize($media)+1) and (max-width: $resolution + px) {
+//             @content;
+//           }
+//         } @else {
+//           @media only screen and (max-width: $resolution - 0.02 + px) {
+//             @content;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+
+$sizes: ("xs":1, "md":1024, "lg":1200,"xl":1600);
 
 @function getPreviousSize($currentSize) {
   $keys: map-keys($sizes);
@@ -12,16 +44,20 @@ $sizes: ("xs":1px, "md":1024px, "lg":1200px,"xl":1600px);
   @each $size, $resolution in $sizes {
     @if $media == $size {
       @if ($minmax != "only") {
-        @media only screen and (#{$minmax}-width: $resolution) {
-          @content;
-        }
+        $resolution_fix: $resolution;
+          @if ($minmax == "max") {
+            $resolution_fix: $resolution - 0.02
+          }
+          @media only screen and (#{$minmax}-width: $resolution_fix + px) {
+            @content;
+          }
       } @else {
         @if (index(map-keys($sizes), $media) > 1) {
-          @media only screen and (min-width: getPreviousSize($media)+1) and (max-width: $resolution) {
+          @media only screen and (min-width: getPreviousSize($media)+1) and (max-width: $resolution + px) {
             @content;
           }
         } @else {
-          @media only screen and (max-width: $resolution) {
+          @media only screen and (max-width: $resolution + px) {
             @content;
           }
         }
@@ -29,6 +65,7 @@ $sizes: ("xs":1px, "md":1024px, "lg":1200px,"xl":1600px);
     }
   }
 }
+
 @mixin centered_img($width, $height) {
 	position: absolute;
 	top: 50%;
@@ -38,7 +75,23 @@ $sizes: ("xs":1px, "md":1024px, "lg":1200px,"xl":1600px);
 	max-width:$width * 1%;
 	max-height:$height * 1%;
 }
-
+@mixin hover_drop{
+  content: "";
+  // width: calc(100% - 10px);
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  // background: rgba(green,.4);
+  border-radius: 3px;
+  box-shadow:inset 0 0 5px rgba(#955100,1) , 0 0 10px rgba(#955100,0.5);
+  z-index: 3;
+  opacity: 0;
+  transition: all 0.6s ease;
+  background: rgba(#955100,.2);
+}
 // ------------margin------------
 
 // margin-top
