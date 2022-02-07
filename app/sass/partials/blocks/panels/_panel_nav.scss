@@ -5,6 +5,39 @@
 			padding:10px 15px;
 		}
 	}
+	@include media(max, lg) {
+		background: red;
+		position: relative;
+		// padding-bottom: 10px;
+		padding-right: 10px;
+		.switcher {
+			display: none;
+		}
+		.slider_panel{
+			position: absolute;
+			top: 100%;
+			left: 0;
+			padding-top: 10px;
+			visibility: hidden;
+			opacity: 0;
+			.panel_holder{
+				flex-direction: column;
+				padding: 10px 12px;
+				ul{
+					flex-direction: column;
+					li{
+						margin: 4px 0;
+					}
+				}
+			}
+		}
+		&:hover{
+			.slider_panel{
+				visibility: visible;
+				opacity: 1;
+			}
+		}
+	}
 }
 .nav_list{
 	> li{
@@ -24,5 +57,11 @@
 				opacity: 1;
 			}
 		}
+	}
+}
+.mob_btn{
+	cursor: pointer;
+	@include media(min, lg) {
+		display: none;
 	}
 }

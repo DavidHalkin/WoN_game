@@ -21,6 +21,16 @@
 	z-index: 10;
 	visibility: hidden;
 	opacity: 0;
+	@include media(max, lg) {
+		.panel_nav &{
+			top: 0;
+			left: 100%;
+			padding-left: 10px;
+			.drop_down{
+				padding-left: 0;
+			}
+		}
+	}
 	ul{
 		padding: var(--size_border_local) 0 0;
 		li{

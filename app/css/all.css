@@ -1006,10 +1006,6 @@ body { font: 16px/1.25 "Vollkorn", sans-serif; background: #180f0a; color: #b8af
 
 .slider_panel { position: relative; }
 
-.scroll { -ms-overflow-style: none; scrollbar-width: none; }
-
-.scroll::-webkit-scrollbar { width: 0; height: 0; }
-
 .justify-content-center { -webkit-box-pack: center !important; -ms-flex-pack: center !important; justify-content: center !important; }
 
 .justify-content-end { -webkit-box-pack: end !important; -ms-flex-pack: end !important; justify-content: flex-end !important; }
@@ -1240,6 +1236,9 @@ body { font: 16px/1.25 "Vollkorn", sans-serif; background: #180f0a; color: #b8af
 
 .drop_down { position: absolute; top: 100%; left: 0; width: 250px; z-index: 10; visibility: hidden; opacity: 0; }
 
+@media only screen and (max-width: 1199.98px) { .panel_nav .drop_down { top: 0; left: 100%; padding-left: 10px; }
+  .panel_nav .drop_down .drop_down { padding-left: 0; } }
+
 .drop_down ul { padding: var(--size_border_local) 0 0; }
 
 .drop_down ul li { position: relative; padding: 3px var(--size_border_local); }
@@ -1318,6 +1317,14 @@ body { font: 16px/1.25 "Vollkorn", sans-serif; background: #180f0a; color: #b8af
 
 @media only screen and (max-width: 1199.98px) { .panel_nav .panel_holder { padding: 10px 15px; } }
 
+@media only screen and (max-width: 1199.98px) { .panel_nav { background: red; position: relative; padding-right: 10px; }
+  .panel_nav .switcher { display: none; }
+  .panel_nav .slider_panel { position: absolute; top: 100%; left: 0; padding-top: 10px; visibility: hidden; opacity: 0; }
+  .panel_nav .slider_panel .panel_holder { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; padding: 10px 12px; }
+  .panel_nav .slider_panel .panel_holder ul { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
+  .panel_nav .slider_panel .panel_holder ul li { margin: 4px 0; }
+  .panel_nav:hover .slider_panel { visibility: visible; opacity: 1; } }
+
 .nav_list > li { margin: 0 8px; }
 
 @media only screen and (max-width: 1599.98px) { .nav_list > li { margin: 0 4px; } }
@@ -1325,6 +1332,10 @@ body { font: 16px/1.25 "Vollkorn", sans-serif; background: #180f0a; color: #b8af
 .nav_list li { position: relative; font-size: 17px; }
 
 .nav_list li:hover > .drop_down { visibility: visible; opacity: 1; }
+
+.mob_btn { cursor: pointer; }
+
+@media only screen and (min-width: 1200px) { .mob_btn { display: none; } }
 
 .panel_town { --h_town: 75px; max-width: 350px; }
 
