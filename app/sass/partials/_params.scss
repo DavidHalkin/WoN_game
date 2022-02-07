@@ -43,11 +43,11 @@ body{
 	position: relative;
 }
 
-// .scroll{
-// 	-ms-overflow-style: none;
-//       scrollbar-width: none;
-//       &::-webkit-scrollbar{
-// 		width: 0;
-// 		height: 0;
-//       }
-// }
+.scroll{
+	-ms-overflow-style: none;
+      scrollbar-width: none;
+      &::-webkit-scrollbar{
+		width: 0;
+		height: 0;
+      }
+}
