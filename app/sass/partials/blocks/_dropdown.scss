@@ -2,14 +2,15 @@
 	position: relative;
 	&:hover,li:hover{
 		> .drop_down{
-			visibility: visible;
-			opacity: 1;
+			// visibility: visible;
+			// opacity: 1;
+			display: block;
 		}
 	}
 	&:hover {
 		> a{
 			transition: var(--animation_hovered);
-					filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
+			filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
 		}
 	}
 }
@@ -19,8 +20,9 @@
 	left: 0;
 	width: 250px;
 	z-index: 10;
-	visibility: hidden;
-	opacity: 0;
+	// visibility: hidden;
+	// opacity: 0;
+	display: none;
 	@include media(max, lg) {
 		.panel_nav &{
 			top: 0;

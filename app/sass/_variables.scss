@@ -1,14 +1,14 @@
 :root{
 	// border-bg of panel
-	--border_img_h: url(../images/panel/h_border.png);
-	--border_img_v: url(../images/panel/v_border.png);
+	--border_img_h: url(/images/panel/h_border.png);
+	--border_img_v: url(/images/panel/v_border.png);
 	--size_border: 17px;
 	// corners
 	--size_corner: 68px;
-	--corner_img: url(../images/panel/corner.png);
+	--corner_img: url(/images/panel/corner.png);
 
 	// decorate corner in title army etc
-	--decorate_img: url(../images/panel/decorate.png);
+	--decorate_img: url(/images/panel/decorate.png);
 	--size_w:76px;
 	--size_h:77px;
 	// centered corners
