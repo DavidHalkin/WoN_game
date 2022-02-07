@@ -10,6 +10,15 @@
 	}
 	.panel_holder{
 		padding: 15px 30px;
+		position: relative;
+		> .drop_down{
+			width: 100%;
+		}
+		&:hover{
+			> .drop_down{
+				display: block;
+			}
+		}
 		@include media(max, xl) {
 			padding: 15px 20px;
 		}

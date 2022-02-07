@@ -79,6 +79,9 @@
 				left: 100%;
 			}
 			&:hover{
+				.drop_down{
+					display: block;
+				}
 				> a{
 					&:after{
 						@include hover_drop;
