@@ -6,10 +6,9 @@
 		}
 	}
 	@include media(max, lg) {
-		background: red;
 		position: relative;
-		// padding-bottom: 10px;
-		padding-right: 10px;
+		margin-right: 10px;
+		pointer-events: auto;
 		.switcher {
 			display: none;
 		}
@@ -27,6 +26,7 @@
 					flex-direction: column; 
 					li{
 						margin: 4px 0;
+						display: block !important;
 					}
 				}
 			}
@@ -61,6 +61,7 @@
 }
 .mob_btn{
 	cursor: pointer;
+	// padding-bottom: 10px;
 	@include media(min, lg) {
 		display: none;
 	}
