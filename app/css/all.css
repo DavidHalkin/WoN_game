@@ -1006,9 +1006,11 @@ body { font: 16px/1.25 "Vollkorn", sans-serif; background: #180f0a; color: #b8af
 
 .slider_panel { position: relative; }
 
-.scroll { -ms-overflow-style: none; scrollbar-width: none; }
+.text-danger { color: red; }
 
-.scroll::-webkit-scrollbar { width: 0; height: 0; }
+.scroll .content_scroll { -ms-overflow-style: none; scrollbar-width: none; }
+
+.scroll .content_scroll::-webkit-scrollbar { width: 0; height: 0; }
 
 .justify-content-center { -webkit-box-pack: center !important; -ms-flex-pack: center !important; justify-content: center !important; }
 
@@ -1271,7 +1273,15 @@ body { font: 16px/1.25 "Vollkorn", sans-serif; background: #180f0a; color: #b8af
 
 .drop_down ul li.has_drop > a:before { content: ""; --w:calc( 21px / 2); --h:calc( 34px / 2); width: var(--w); width: var(--w); max-width: var(--w); -webkit-box-flex: 0; -ms-flex: 0 0 var(--w); flex: 0 0 var(--w); height: var(--h); background: url(../images/icons/arrow.png) 0 0 no-repeat; -webkit-background-size: cover; background-size: cover; position: absolute; top: 50%; right: 5px; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%); z-index: 1; }
 
-.scrollbar { position: absolute; top: 0; bottom: 0; right: 0; width: 16px; height: 100%; background: red; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
+.drop_down .grid_column .panel_holder .panel_content.scroll { padding: 10px 0 !important; }
+
+.drop_down .grid_column .panel_holder .panel_content.scroll .content_scroll { padding-right: 25px; }
+
+.drop_down .scrollbar { top: 10px; bottom: 10px; height: calc(100% - 20px); right: 5px; }
+
+.scrollbar { position: absolute; top: 0; bottom: 0; right: 0; width: 16px; height: 100%; background: red; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; display: none; }
+
+.scroll .scrollbar { display: -webkit-box; display: -ms-flexbox; display: flex; }
 
 .scrollbar .btn_func { width: 100%; height: 16px; background: green; -webkit-box-flex: 0; -ms-flex: 0 0 auto; flex: 0 0 auto; }
 
@@ -1417,19 +1427,21 @@ body { font: 16px/1.25 "Vollkorn", sans-serif; background: #180f0a; color: #b8af
 
 @media only screen and (max-width: 1599.98px) { .panel_progress .panel_holder p { font-size: 15px; } }
 
-.panel_sidebar { --h-header:100px; --h-footer:200px; width: 360px; position: absolute; z-index: 10; top: 75px; right: 5px; height: auto !important; }
+.grid_column { height: auto !important; }
+
+.grid_column .panel_holder { display: grid; grid-template-rows: -webkit-min-content 1fr; grid-template-rows: min-content 1fr; }
+
+.grid_column .panel_holder .panel_content { grid-row: span 2; overflow: hidden; }
+
+.grid_column .panel_holder .panel_content.scroll { overflow: hidden; }
+
+.grid_column .panel_holder .panel_content.scroll .content_scroll { overflow-y: auto; height: 100%; padding-right: 30px; }
+
+.panel_sidebar { --h-header:100px; --h-footer:200px; width: 360px; position: absolute; z-index: 5; top: 75px; right: 5px; }
 
 @media only screen and (max-width: 1199.98px) { .panel_sidebar { --h-footer:170px; } }
 
-.panel_sidebar .panel_holder { max-height: calc(100vh - var(--h-header) - var(--h-footer)); height: auto !important; }
-
-.panel_sidebar .panel_header { -webkit-box-flex: 0; -ms-flex: none; flex: none; -ms-flex: 0 0 auto; flex: 0 0 auto; }
-
-.panel_sidebar .panel_content { -webkit-box-flex: 1; -ms-flex: 1; flex: 1; }
-
-.panel_sidebar .panel_holder { display: grid; grid-template-rows: -webkit-min-content 1fr; grid-template-rows: min-content 1fr; }
-
-.panel_sidebar .panel_holder .panel_content { grid-row: span 2; overflow-y: auto; }
+.panel_sidebar .panel_holder { max-height: calc(100vh - var(--h-header) - var(--h-footer)); }
 
 .header_area { position: absolute; top: 5px; left: 5px; right: 5px; z-index: 11; pointer-events: none; }
 
@@ -1512,7 +1524,7 @@ a.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o-tran
 
 .switcher { --w:calc(37px / 2); --h:calc(49px / 2); width: var(--w); height: var(--h); background: url(../images/btns/arrow_short.png) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; display: inline-block; border: 0; outline: none; padding: 0; }
 
-.switcher.down { -webkit-transform: rotate(90deg); -ms-transform: rotate(90deg); transform: rotate(90deg); }
+.switcher.down { -webkit-transform: rotate(-90deg); -ms-transform: rotate(-90deg); transform: rotate(-90deg); }
 
 .switcher.down.opened { -webkit-transform: rotate(90deg) scale(-1, 1); -ms-transform: rotate(90deg) scale(-1, 1); transform: rotate(90deg) scale(-1, 1); }
 

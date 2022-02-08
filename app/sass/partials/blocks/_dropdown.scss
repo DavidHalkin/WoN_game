@@ -113,4 +113,16 @@
 			}
 		}
 	}
+	.grid_column .panel_holder .panel_content.scroll{
+		padding: 10px 0 !important;
+	}
+	.grid_column .panel_holder .panel_content.scroll .content_scroll{
+		padding-right: 25px;
+	}
+	.scrollbar{
+		top: 10px;
+		bottom: 10px;
+		height: calc(100% - 20px);
+		right: 5px;
+	}
 }

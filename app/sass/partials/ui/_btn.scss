@@ -96,7 +96,8 @@
 	outline: none;
 	padding: 0;
 	&.down{
-		transform:rotate(90deg);
+		// transform-origin:left center;
+		transform:rotate(-90deg);
 		&:hover{
 			// transform:rotate(90deg) scale(-1,-1);
 		}

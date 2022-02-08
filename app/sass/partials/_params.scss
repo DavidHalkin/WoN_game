@@ -43,12 +43,16 @@ body{
 .slider_panel {
 	position: relative;
 }
-
+.text-danger{
+	color: red;
+}
 .scroll{
-	-ms-overflow-style: none;
-      scrollbar-width: none;
-      &::-webkit-scrollbar{
-		width: 0;
-		height: 0;
+	.content_scroll{
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+		&::-webkit-scrollbar{
+			width: 0;
+			height: 0;
       }
+	}
 }
