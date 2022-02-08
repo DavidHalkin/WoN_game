@@ -1363,7 +1363,7 @@ body { font: 16px/1.25 "Vollkorn", sans-serif; background: #180f0a; color: #b8af
 
 @media only screen and (min-width: 1200px) { .mob_btn { display: none; } }
 
-.panel_town { --h_town: 75px; max-width: 350px; }
+.panel_town { --h_town: 75px; max-width: 421px; }
 
 @media only screen and (max-width: 1599.98px) { .panel_town { --h_town: 50px; } }
 
@@ -1391,7 +1391,7 @@ body { font: 16px/1.25 "Vollkorn", sans-serif; background: #180f0a; color: #b8af
 
 @media only screen and (max-width: 1599.98px) { .panel_town .part_txt { padding-left: 20px; } }
 
-.panel_town h3 { font-size: 15px; word-wrap: break-word; }
+.panel_town h3 { font-size: 25px; font-weight: normal; word-wrap: break-word; }
 
 @media only screen and (max-width: 1599.98px) { .panel_town h3 { font-size: 14px; } }
 

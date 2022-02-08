@@ -3,7 +3,7 @@
 	@include media(max, xl) {
 		--h_town: 50px;
 	}
-	max-width: 350px;
+	max-width: 421px;
 	@include media(max, xl) {
 		max-width: 250px;
 		color: red !important;
@@ -62,7 +62,8 @@
 		}
 	}
 	h3{
-		font-size: 15px;
+		font-size: 25px;
+		font-weight: normal;
 		word-wrap:break-word;
 		@include media(max, xl) {
 			font-size: 14px;
