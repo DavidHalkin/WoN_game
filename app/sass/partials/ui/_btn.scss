@@ -153,3 +153,23 @@
 	right: 3px;
 	z-index: 2;
 }
+.mob_btn{
+	.panel_holder{
+		width: 65px;
+		height: 65px;
+		align-items:center;
+		justify-content:center;
+	}
+	.decor{
+		&:after,&:before{
+			content: none;
+		}
+	}
+	.corner{
+		background: var(--decorate_img) 0 0 no-repeat;
+		background-size: cover;
+		--width:calc(var(--size_w) / 2);
+		--height:calc(var(--size_h) / 2);
+		border-radius: 0;
+	}
+}

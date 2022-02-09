@@ -16,12 +16,14 @@
 			position: absolute;
 			top: 100%;
 			left: 0;
-			padding-top: 10px;
+			// padding-top: 10px;
 			visibility: hidden;
 			opacity: 0;
 			.panel_holder{
 				flex-direction: column;
-				padding: 10px 12px;
+				// padding: 10px 12px;
+				padding: 10px 10px;
+
 				ul{
 					flex-direction: column; 
 					li{
