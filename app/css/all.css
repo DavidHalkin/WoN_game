@@ -1411,7 +1411,7 @@ body { font: 16px/1.25 "Vollkorn", sans-serif; background: #180f0a; color: #b8af
 
 .panel_town .dropdown_item > .drop_down { width: 100%; padding: 0; }
 
-.panel_town .dropdown_item > .drop_down .scroll_js { max-height: 520px; }
+.panel_town .dropdown_item > .drop_down .scroll_js { max-height: 540px; }
 
 .panel_town .panel_holder { padding: 0 30px; position: relative; }
 
@@ -1538,6 +1538,10 @@ a.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o-tran
 
 .btn:not(:disabled):not(.disabled) { cursor: pointer; }
 
+a { color: #b8afaa; -webkit-transition: var(--animation_static); -o-transition: var(--animation_static); transition: var(--animation_static); }
+
+a:hover { color: #fff; text-decoration: none; -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); }
+
 .btn { --px:20px; --py:17px; --size_corner_local:calc(var(--size_corner) / 2.7); --paddings_local:var(--py)  var(--px); --font_size_local:16px; text-align: center; vertical-align: middle; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; display: inline-block; background: #180f0a; -webkit-border-radius: calc(var(--indent) + 2px); border-radius: calc(var(--indent) + 2px); overflow: hidden; border: 0; color: #b8afaa; position: relative; font-size: var(--font_size_local); }
 
 .btn.md { --size_corner_local:calc(var(--size_corner) / 2.7 * 0.75); --font_size_local:calc(16px * 0.75); --paddings_local: calc(var(--py) * 0.75) calc(var(--px) * 0.75); -webkit-border-radius: calc(var(--indent) + 1px); border-radius: calc(var(--indent) + 1px); }
@@ -1556,7 +1560,7 @@ a.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o-tran
 
 .btn:after { left: auto; right: 0; -webkit-transform: scale(-1, 1); -ms-transform: scale(-1, 1); transform: scale(-1, 1); }
 
-.btn:hover { color: #b8afaa; color: #fff; text-decoration: none; }
+.btn:hover { color: #fff; text-decoration: none; }
 
 .switcher { --w:calc(37px / 2); --h:calc(49px / 2); width: var(--w); height: var(--h); background: url(../images/btns/arrow_short.png) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; display: inline-block; border: 0; outline: none; padding: 0; }
 

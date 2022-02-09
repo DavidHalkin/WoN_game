@@ -16,7 +16,8 @@
 			width: 100%;
 			padding: 0;
 			.scroll_js{
-				max-height: 520px;
+				// max-height: 520px;
+				max-height: 540px;
 			}
 		}
 	}
@@ -74,6 +75,9 @@
 		line-height: 1;
 		font-weight: normal;
 		word-wrap:break-word;
+		// a{
+		// 	color: $light;
+		// }
 		@include media(max, xl) {
 			font-size: 20px;
 		}

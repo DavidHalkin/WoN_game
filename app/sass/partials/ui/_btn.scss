@@ -1,6 +1,16 @@
 .btn:not(:disabled):not(.disabled){
 	cursor: pointer;
 }
+a{
+	color: $light;
+	transition: var(--animation_static);
+
+	&:hover{
+		color: #fff;
+		text-decoration: none;
+		transition: var(--animation_hovered);
+	}
+}
 .btn{
 	--px:20px;
 	--py:17px;
@@ -78,7 +88,7 @@
 		transform:scale(-1,1);
 	}
 	&:hover{
-		color: $light;
+		// color: $light;
 		color: #fff;
 		text-decoration: none;
 		
