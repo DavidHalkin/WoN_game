@@ -12,6 +12,27 @@
 		.switcher {
 			display: none;
 		}
+		.panel{
+			.decor{
+				&:before,&:after{
+					content: "";
+					width: var(--width_decor_local);
+					height: var(--height_decor_local);
+					display: block;
+					position: absolute;
+					top: 0;
+					left: 50%;
+					transform:translateX(-50%);
+					background: url(../images/panel/centered_corner.png) no-repeat 0 0;
+					background-size: cover;
+				}
+				&:after{
+					top: auto;
+					bottom: 0;
+					transform:translateX(-50%) scale(-1,-1);
+				}
+			}
+		}
 		.slider_panel{
 			position: absolute;
 			top: 100%;
@@ -22,7 +43,7 @@
 			.panel_holder{
 				flex-direction: column;
 				// padding: 10px 12px;
-				padding: 10px 10px;
+				padding: 15px 10px;
 
 				ul{
 					flex-direction: column; 
