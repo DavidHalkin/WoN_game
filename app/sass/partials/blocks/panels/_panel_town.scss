@@ -3,19 +3,25 @@
 	@include media(max, xl) {
 		--h_town: 50px;
 	}
-	max-width: 421px;
+	--w_panel:435px;
+	max-width: var(--w_panel);
+	flex:0 0 var(--w_panel);
 	@include media(max, xl) {
-		max-width: 250px;
-		color: red !important;
+		--w_panel:330px;
 	}
 	.dropdown_item{
+		padding-bottom: 15px;
+		margin-top: 15px;
 		> .drop_down{
 			width: 100%;
 			padding: 0;
+			.scroll_js{
+				max-height: 250px;
+			}
 		}
 	}
 	.panel_holder{
-		padding: 15px 30px;
+		padding: 0 30px;
 		position: relative;
 		> .drop_down{
 			width: 100%;
@@ -26,13 +32,15 @@
 			}
 		}
 		@include media(max, xl) {
-			padding: 15px 20px;
+			padding: 0 20px;
 		}
 	}
 	.town_img{
 		max-width: var(--h_town);
 		flex:0 0 var(--h_town);
 		position: relative;
+		margin-top: 15px;
+		margin-bottom: 15px;
 		.circle{
 			position: absolute;
 			bottom: 0;
@@ -56,17 +64,18 @@
 		}
 	}
 	.part_txt{
-		padding-left: 30px;
+		padding: 10px 0 10px 30px;
 		@include media(max, xl)  {
-			padding-left: 20px;
+			padding: 10px 0 10px 20px;
 		}
 	}
 	h3{
 		font-size: 25px;
+		line-height: 1;
 		font-weight: normal;
 		word-wrap:break-word;
 		@include media(max, xl) {
-			font-size: 14px;
+			font-size: 20px;
 		}
 	}
 	p{

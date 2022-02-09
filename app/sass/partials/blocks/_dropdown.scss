@@ -113,16 +113,63 @@
 			}
 		}
 	}
-	.grid_column .panel_holder .panel_content.scroll{
+	.etc_drop{
+		padding-bottom: 5px;
+		li{
+			
+			padding-top: 0;
+			padding-bottom: 0;
+			> a{
+				padding: 0 5px 0 48px;
+				@include media(max, xl) {
+					padding: 0 5px 0 30px;
+				}
+				margin: 0;
+				background-image: url(../images/ui/line_drop.png);
+				background-size: 100% auto;
+				background-repeat: no-repeat;
+				background-position: 0 100%;
+				&:after{content: none !important;}
+				&:hover{
+					background-color: #2f1405;
+				}
+			}
+			.part_txt{
+				padding-left: 15px;
+			}
+			.town_img{
+				margin-top: 10px;
+				margin-bottom: 15px;
+			}
+			&.active{
+				background-color: #2f1405;
+			}
+			&:after{
+				left: 0;
+				bottom: 0;
+				width: 100%;
+				height: 10px;
+				transform:none;
+				
+				content: none;
+			}
+			&:last-of-type{
+				>a{
+					background-image: none;
+				}
+			}
+		}
+	}
+	.grid_column .panel_holder.scroll_js .panel_content{
 		padding: 10px 0 !important;
 	}
-	.grid_column .panel_holder .panel_content.scroll .content_scroll{
-		padding-right: 25px;
+	.grid_column .panel_holder.scroll_js  .panel_content .content_scroll{
+		padding-right: 40px;
 	}
 	.scrollbar{
 		top: 10px;
 		bottom: 10px;
 		height: calc(100% - 20px);
-		right: 5px;
+		right: 23px;
 	}
 }

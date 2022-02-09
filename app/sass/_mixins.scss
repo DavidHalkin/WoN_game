@@ -31,7 +31,7 @@
 // }
 
 
-$sizes: ("xs":1, "md":1024, "lg":1200,"xl":1600);
+$sizes: ("xs":1, "md":1024, "lg":1300,"xl":1600);
 
 @function getPreviousSize($currentSize) {
   $keys: map-keys($sizes);

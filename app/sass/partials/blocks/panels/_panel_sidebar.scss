@@ -1,27 +1,4 @@
-.grid_column{
-	height: auto !important;
-	.panel_holder{
-		display: grid;
-	  	grid-template-rows: min-content 1fr;
-	  	// max-height: 400px;
-	  	// height: auto !important;
-		.panel_content{
-			grid-row: span 2;
-			// overflow-y: auto;
-			overflow: hidden;
-			// for scroll
-			&.scroll{
-				overflow: hidden;
-				.content_scroll{
-					overflow-y: auto;
-					height: 100%;
-					padding-right: 30px;
-				}
-			}
-			
-		}
-	}
-}
+
 .panel_sidebar{
 	--h-header:100px;
 	--h-footer:200px;
@@ -36,11 +13,4 @@
 	.panel_holder{
 		max-height: calc(100vh - var(--h-header) - var(--h-footer));
 	}
-	// .panel_header{
-	// 	flex:none;
-	// 	flex: 0 0 auto;
-	// }
-	// .panel_content {
-	// 	flex:1;
-	// }
 }
