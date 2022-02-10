@@ -1,10 +1,10 @@
 .btn:not(:disabled):not(.disabled){
 	cursor: pointer;
 }
-a{
+a,.hovered_item{
 	color: $light;
 	transition: var(--animation_static);
-
+	cursor: pointer;
 	&:hover{
 		color: #fff;
 		text-decoration: none;
@@ -152,6 +152,8 @@ a{
 	}
 }
 .close_btn{
+	border: 0;
+	padding: 0;
 	border-radius: 6px;
 	--s:calc(56px / 2);
 	width: var(--s);

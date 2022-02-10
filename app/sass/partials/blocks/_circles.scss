@@ -8,6 +8,8 @@
 	background: url(../images/circles/circle.png) no-repeat 0 0;
 	background-size: cover;
 	position: relative;
+	padding: 0;
+	border: 0;
 	img{
 		@include centered_img(80,80);
 	}

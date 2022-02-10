@@ -6,7 +6,7 @@
 		// transform: scale3D(1.07, 1.07, 1);
 	}
 }
-a.rectangle{
+a.rectangle,button.rectangle{
 	img{
 		transition: var(--animation_static);
 	}
@@ -17,14 +17,14 @@ a.rectangle{
 		}
 	}
 }
-a.circle{
+a.circle,button.circle{
 	transition: var(--animation_static);
 	&:hover{
 		transition: var(--animation_hovered);
 		filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
 	}
 }
-a.square{
+a.square,button.square{
 	transition: var(--animation_static);
 	// img{
 	// 	transition: var(--animation_static);

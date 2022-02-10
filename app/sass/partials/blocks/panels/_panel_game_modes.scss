@@ -1,7 +1,7 @@
 .panel_game_modes{
 	max-width: 250px;
 	flex:0 0 250px;
-	pointer-events:auto;
+	// pointer-events:auto;
 	.panel_holder{
 		padding-top: 30px;
 		padding-bottom: 30px;
@@ -20,6 +20,7 @@
 	--w:calc(409px / 2);
 	--h:calc(410px / 2);
 	width: var(--w);
+	pointer-events:auto;
 	&:after{
 		width: var(--w);
 		height:  var(--h);

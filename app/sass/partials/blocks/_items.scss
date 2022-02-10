@@ -4,6 +4,9 @@
 	width: 67px;
 	height: 102px;
 	display: block;
+	padding: 0;
+	border: 0;
+	background: none;
 	@include media(max, lg) {
 		height: 85px;
 	}
@@ -62,6 +65,9 @@
 	position: relative;
 	// display: inline-block;
 	display: block;
+	// 
+	padding: 0;
+	border: 0;
 	img{
 		@include centered_img(90,90);
 	}
