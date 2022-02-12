@@ -17,7 +17,7 @@ a.rectangle,button.rectangle{
 		}
 	}
 }
-a.circle,button.circle{
+a.circle,button.circle,.btn_func,.handler{
 	transition: var(--animation_static);
 	&:hover{
 		transition: var(--animation_hovered);

@@ -1158,7 +1158,23 @@ body { font: 16px/1.25 "Vollkorn", sans-serif; background: #180f0a; color: #b8af
 
 .circle.left_center { position: absolute; left: 0 !important; right: auto !important; top: 50% !important; bottom: auto !important; -webkit-transform: translate(-50%, -50%) !important; -ms-transform: translate(-50%, -50%) !important; transform: translate(-50%, -50%) !important; }
 
-.rectangle { --size_corner_local:calc(var(--size_corner) / 2.7); position: relative; width: 67px; height: 102px; display: block; padding: 0; border: 0; background: none; }
+.rectangle { --size_corner_local:calc(var(--size_corner) / 2.7); position: relative; width: 67px; height: 102px; display: block; padding: 0; border: 0; background: none; --color_shadow:rgba(0,0,0,0.7); }
+
+.rectangle.type_danger { --color_shadow:rgba(255,0,0,0.6); }
+
+.rectangle.type_active { --color_shadow:rgba(255,185,0,0.6); }
+
+.rectangle.type_active .rectangle_mask:after { -webkit-box-shadow: inset 0 0 15px var(--color_shadow), inset 0 0 0 1px rgba(255, 185, 0, 0.3); box-shadow: inset 0 0 15px var(--color_shadow), inset 0 0 0 1px rgba(255, 185, 0, 0.3); }
+
+.rectangle.type_disabled { opacity: .3; cursor: inherit; }
+
+.rectangle.type_disabled .rectangle_mask:before { content: none; }
+
+.rectangle.type_disabled:hover img { -webkit-transition: none; -o-transition: none; transition: none; -webkit-filter: none; filter: none; }
+
+.rectangle.type_warning { --color_shadow:rgba(255,111,0,0.6); }
+
+.rectangle.type_primary { --color_shadow:rgba(0,144,255,0.6); }
 
 @media only screen and (max-width: 1299.98px) { .rectangle { height: 85px; } }
 
@@ -1166,7 +1182,7 @@ body { font: 16px/1.25 "Vollkorn", sans-serif; background: #180f0a; color: #b8af
 
 .rectangle .rectangle_mask:before, .rectangle .rectangle_mask:after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #a5aca7; mix-blend-mode: saturation; z-index: 1; }
 
-.rectangle .rectangle_mask:after { mix-blend-mode: normal; background: none; -webkit-box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.7); box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.7); }
+.rectangle .rectangle_mask:after { mix-blend-mode: normal; background: none; -webkit-box-shadow: inset 0 0 15px var(--color_shadow); box-shadow: inset 0 0 15px var(--color_shadow); }
 
 .rectangle:before, .rectangle:after { content: ""; position: absolute; top: -1px; left: -1px; width: var(--size_corner_local); height: var(--size_corner_local); background: var(--corner_img) no-repeat; -webkit-background-size: cover; background-size: cover; pointer-events: none; z-index: 4; }
 
@@ -1323,7 +1339,7 @@ body { font: 16px/1.25 "Vollkorn", sans-serif; background: #180f0a; color: #b8af
 
 .scroll_js .scrollbar { display: -webkit-box; display: -ms-flexbox; display: flex; }
 
-.scrollbar .btn_func { width: var(--scroll_button_width); height: var(--scroll_button_height); background: green; -webkit-box-flex: 0; -ms-flex: 0 0 auto; flex: 0 0 auto; background: var(--scroll_button_img) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; cursor: pointer; }
+.scrollbar .btn_func { width: var(--scroll_button_width); height: var(--scroll_button_height); background: green; -webkit-box-flex: 0; -ms-flex: 0 0 auto; flex: 0 0 auto; background: var(--scroll_button_img) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; }
 
 .scrollbar .btn_func.arrow_next { -webkit-transform: scale(-1, -1); -ms-transform: scale(-1, -1); transform: scale(-1, -1); }
 
@@ -1507,9 +1523,9 @@ a.rectangle img, button.rectangle img { -webkit-transition: var(--animation_stat
 
 a.rectangle:hover img, button.rectangle:hover img { -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); -webkit-filter: saturate(var(--unit)) brightness(calc(var(--unit) * 0.75)); filter: saturate(var(--unit)) brightness(calc(var(--unit) * 0.75)); }
 
-a.circle, button.circle { -webkit-transition: var(--animation_static); -o-transition: var(--animation_static); transition: var(--animation_static); }
+a.circle, button.circle, .btn_func, .handler { -webkit-transition: var(--animation_static); -o-transition: var(--animation_static); transition: var(--animation_static); }
 
-a.circle:hover, button.circle:hover { -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); -webkit-filter: saturate(var(--unit)) brightness(calc(var(--unit) * 0.75)); filter: saturate(var(--unit)) brightness(calc(var(--unit) * 0.75)); }
+a.circle:hover, button.circle:hover, .btn_func:hover, .handler:hover { -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); -webkit-filter: saturate(var(--unit)) brightness(calc(var(--unit) * 0.75)); filter: saturate(var(--unit)) brightness(calc(var(--unit) * 0.75)); }
 
 a.square, button.square { -webkit-transition: var(--animation_static); -o-transition: var(--animation_static); transition: var(--animation_static); }
 

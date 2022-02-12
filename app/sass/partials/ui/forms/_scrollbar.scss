@@ -59,7 +59,7 @@
 		flex:0 0 auto;
 		background: var(--scroll_button_img) no-repeat 0 0;
 		background-size: cover;
-		cursor: pointer;
+		// cursor: pointer;
 		&.arrow_next{
 			transform:scale(-1,-1);
 		}
