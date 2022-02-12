@@ -1,7 +1,9 @@
 :root{
 	// border-bg of panel
 	--border_img_h: url(../images/panel/h_border.png);
+	--border_img_h_bottom: url(../images/panel/h_border_bottom.png);
 	--border_img_v: url(../images/panel/v_border.png);
+	--border_img_v_right: url(../images/panel/v_border_right.png);
 	--size_border: 17px;
 	// corners
 	--size_corner: 68px;
@@ -21,6 +23,17 @@
 	--unit:2;
 	// indents
 	--indent:4px;
+	// scroll
+	--scroll_bar_img:url(../images/scroll/bar.png);
+	--scroll_bar_size:31px;
+
+	--scroll_button_img:url(../images/scroll/button.png);
+	--scroll_button_w:34px;
+	--scroll_button_h:30px;
+
+	--scroll_handler_img:url(../images/scroll/handler.png);
+	--scroll_handler_w:20px;
+	--scroll_handler_h:45px;
 }
 $primary :#180f0a;
 $light :#b8afaa;

@@ -33,31 +33,51 @@
 	}
 }
 .scrollbar{
+	--size_scroll_bar:calc(var(--scroll_bar_size) / 2);
+
+	--scroll_button_width:calc(var(--scroll_button_w) / 2);
+	--scroll_button_height:calc(var(--scroll_button_h) / 2);
+
+	--scroll_handler_width:calc(var(--scroll_handler_w) / 2);
+	--scroll_handler_height:calc(var(--scroll_handler_h) / 2);
 	position: absolute;
 	top: 0;
 	bottom: 0;
 	right: 0;
 	width: 16px;
 	height: 100%;
-	background: red;
+	// background: red;
 	display: flex;
 	flex-direction: column;
 	display: none;
 	.scroll_js &{display: flex;}
 	.btn_func{
-		width: 100%;
-		height: 16px;
+		// width: 100%;
+		width:var(--scroll_button_width);
+		height: var(--scroll_button_height);
 		background: green;
 		flex:0 0 auto;
+		background: var(--scroll_button_img) no-repeat 0 0;
+		background-size: cover;
+		cursor: pointer;
+		&.arrow_next{
+			transform:scale(-1,-1);
+		}
 	}
 	.bar{
 		flex:1 1 auto;
 		position: relative;
+		background: var(--scroll_bar_img)  repeat-y 0 0;
+		background-size: var(--size_scroll_bar) auto;
 		.handler{
-			background: #000;
+			background: var(--scroll_handler_img) no-repeat 0 0;
+			background-size: cover;
+			width: var(--scroll_handler_width);
+			height: var(--scroll_handler_height);
 			position: absolute;
-			left: 0;
-			width: 100%;
+			left: 50%;
+			// left: 1px;
+			transform:translate(-50%);
 			display: block;
 		}
 	}

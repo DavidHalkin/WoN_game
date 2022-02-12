@@ -41,7 +41,7 @@
 	.panel_holder{
 		background-color: green;
 		border-radius: calc(var(--indent) + 2px);
-		background: var(--border_img_v), var(--border_img_v),	var(--border_img_h), var(--border_img_h);
+		background: var(--border_img_v), var(--border_img_v_right),	var(--border_img_h), var(--border_img_h_bottom);
 		background-position: 0 0, 100% 0, 0 0, 0 100%;
 		background-repeat: repeat-y, repeat-y, repeat-x, repeat-x;
 		background-size:var(--size_border_local) auto, var(--size_border_local) auto, auto var(--size_border_local), auto var(--size_border_local);

@@ -72,7 +72,7 @@ textarea { overflow: auto; resize: vertical; }
 
 fieldset { min-width: 0; padding: 0; margin: 0; border: 0; }
 
-:root { --border_img_h: url(../images/panel/h_border.png); --border_img_v: url(../images/panel/v_border.png); --size_border: 17px; --size_corner: 68px; --corner_img: url(../images/panel/corner.png); --decorate_img: url(../images/panel/decorate.png); --size_w:76px; --size_h:77px; --width_decor:82px; --height_decor:43px; --animation_static: all 0.15s ease; --animation_hovered:all 0.3s ease; --unit:2; --indent:4px; }
+:root { --border_img_h: url(../images/panel/h_border.png); --border_img_h_bottom: url(../images/panel/h_border_bottom.png); --border_img_v: url(../images/panel/v_border.png); --border_img_v_right: url(../images/panel/v_border_right.png); --size_border: 17px; --size_corner: 68px; --corner_img: url(../images/panel/corner.png); --decorate_img: url(../images/panel/decorate.png); --size_w:76px; --size_h:77px; --width_decor:82px; --height_decor:43px; --animation_static: all 0.15s ease; --animation_hovered:all 0.3s ease; --unit:2; --indent:4px; --scroll_bar_img:url(../images/scroll/bar.png); --scroll_bar_size:31px; --scroll_button_img:url(../images/scroll/button.png); --scroll_button_w:34px; --scroll_button_h:30px; --scroll_handler_img:url(../images/scroll/handler.png); --scroll_handler_w:20px; --scroll_handler_h:45px; }
 
 .mt-0 { margin-top: 0px !important; }
 
@@ -1078,7 +1078,7 @@ body { font: 16px/1.25 "Vollkorn", sans-serif; background: #180f0a; color: #b8af
 
 .panel.sm { --size_border_local: calc(var(--size_border) / 2 * 0.5); --size_corner_local: calc(var(--size_corner) / 2 * 0.5); --width_decor_local: calc(var(--width_decor) / 2 * 0.5); --height_decor_local:calc(var(--height_decor) / 2 * 0.5); -webkit-border-radius: var(--indent); border-radius: var(--indent); }
 
-.panel .panel_holder { background-color: green; -webkit-border-radius: calc(var(--indent) + 2px); border-radius: calc(var(--indent) + 2px); background: var(--border_img_v), var(--border_img_v), var(--border_img_h), var(--border_img_h); background-position: 0 0, 100% 0, 0 0, 0 100%; background-repeat: repeat-y, repeat-y, repeat-x, repeat-x; -webkit-background-size: var(--size_border_local) auto, var(--size_border_local) auto, auto var(--size_border_local), auto var(--size_border_local); background-size: var(--size_border_local) auto, var(--size_border_local) auto, auto var(--size_border_local), auto var(--size_border_local); padding: calc(var(--size_border_local) * 2.7); }
+.panel .panel_holder { background-color: green; -webkit-border-radius: calc(var(--indent) + 2px); border-radius: calc(var(--indent) + 2px); background: var(--border_img_v), var(--border_img_v_right), var(--border_img_h), var(--border_img_h_bottom); background-position: 0 0, 100% 0, 0 0, 0 100%; background-repeat: repeat-y, repeat-y, repeat-x, repeat-x; -webkit-background-size: var(--size_border_local) auto, var(--size_border_local) auto, auto var(--size_border_local), auto var(--size_border_local); background-size: var(--size_border_local) auto, var(--size_border_local) auto, auto var(--size_border_local), auto var(--size_border_local); padding: calc(var(--size_border_local) * 2.7); }
 
 .panel .corner { pointer-events: none; position: absolute; top: 0; left: 0; background: var(--corner_img) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; width: var(--size_corner_local); height: var(--size_corner_local); -webkit-border-radius: calc(var(--indent) + 2px) 0 0 0; border-radius: calc(var(--indent) + 2px) 0 0 0; }
 
@@ -1319,15 +1319,17 @@ body { font: 16px/1.25 "Vollkorn", sans-serif; background: #180f0a; color: #b8af
 
 .grid_column .panel_holder.scroll_js .content_scroll { overflow-y: auto; height: 100%; padding-right: 30px; }
 
-.scrollbar { position: absolute; top: 0; bottom: 0; right: 0; width: 16px; height: 100%; background: red; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; display: none; }
+.scrollbar { --size_scroll_bar:calc(var(--scroll_bar_size) / 2); --scroll_button_width:calc(var(--scroll_button_w) / 2); --scroll_button_height:calc(var(--scroll_button_h) / 2); --scroll_handler_width:calc(var(--scroll_handler_w) / 2); --scroll_handler_height:calc(var(--scroll_handler_h) / 2); position: absolute; top: 0; bottom: 0; right: 0; width: 16px; height: 100%; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; display: none; }
 
 .scroll_js .scrollbar { display: -webkit-box; display: -ms-flexbox; display: flex; }
 
-.scrollbar .btn_func { width: 100%; height: 16px; background: green; -webkit-box-flex: 0; -ms-flex: 0 0 auto; flex: 0 0 auto; }
+.scrollbar .btn_func { width: var(--scroll_button_width); height: var(--scroll_button_height); background: green; -webkit-box-flex: 0; -ms-flex: 0 0 auto; flex: 0 0 auto; background: var(--scroll_button_img) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; cursor: pointer; }
 
-.scrollbar .bar { -webkit-box-flex: 1; -ms-flex: 1 1 auto; flex: 1 1 auto; position: relative; }
+.scrollbar .btn_func.arrow_next { -webkit-transform: scale(-1, -1); -ms-transform: scale(-1, -1); transform: scale(-1, -1); }
 
-.scrollbar .bar .handler { background: #000; position: absolute; left: 0; width: 100%; display: block; }
+.scrollbar .bar { -webkit-box-flex: 1; -ms-flex: 1 1 auto; flex: 1 1 auto; position: relative; background: var(--scroll_bar_img) repeat-y 0 0; -webkit-background-size: var(--size_scroll_bar) auto; background-size: var(--size_scroll_bar) auto; }
+
+.scrollbar .bar .handler { background: var(--scroll_handler_img) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; width: var(--scroll_handler_width); height: var(--scroll_handler_height); position: absolute; left: 50%; -webkit-transform: translate(-50%); -ms-transform: translate(-50%); transform: translate(-50%); display: block; }
 
 .actions_panel { pointer-events: auto; --h:calc(322px / 2); --w:calc(427px / 2); background-color: #180f0a; background-position: 100% 100% !important; background-repeat: no-repeat !important; -webkit-border-radius: calc(var(--indent) + 2px); border-radius: calc(var(--indent) + 2px); }
 
