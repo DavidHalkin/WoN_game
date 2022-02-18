@@ -1,6 +1,7 @@
 window.ui = {};
 window.ui.modes = new Modes('.panel_game_modes');
-window.ui.city = new City('.panel_town > .panel > .panel_holder > .part_txt');
+window.ui.city = new City();
+window.ui.city.sizeTextCity();
 window.ui.customScroll = new CustomScroll();
 
 /* MODES
@@ -23,13 +24,16 @@ function Modes(selector) {
 /* PANEL CITY
 ------------------------------------------- */
 function City(selector) {
-    const part_txt = $(selector);    
-    const h3 = part_txt.querySelector('h3');
-    const link = h3.querySelector('a');
+    this.sizeTextCity = function() {
+        console.log('hello');
+        const part_txt = $('.panel_town > .panel > .panel_holder > .part_txt');    
+        const h3 = part_txt.querySelector('h3');
+        const link = h3.querySelector('a');
 
-    if (link.offsetWidth > h3.offsetWidth) {
-        h3.style.fontSize = '16px';
-    }     
+        if (link.offsetWidth > h3.offsetWidth) {
+            h3.style.fontSize = '16px';
+        }
+    }         
 }
 
 /* CUSTOM SCROLL
