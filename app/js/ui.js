@@ -2,7 +2,8 @@ window.ui = {};
 window.ui.modes = new Modes('.panel_game_modes');
 window.ui.city = new City();
 window.ui.city.sizeTextCity();
-window.ui.customScroll = new CustomScroll();
+new CustomScroll();
+new CustomAccordion();
 
 /* MODES
 ------------------------------------------- */
@@ -26,14 +27,14 @@ function Modes(selector) {
 function City(selector) {
     this.sizeTextCity = function() {
         console.log('hello');
-        const part_txt = $('.panel_town > .panel > .panel_holder > .part_txt');    
+        const part_txt = $('.panel_town > .panel > .panel_holder > .part_txt');
         const h3 = part_txt.querySelector('h3');
         const link = h3.querySelector('a');
 
-        if (link.offsetWidth > h3.offsetWidth) {
+        // if (link.offsetWidth > h3.offsetWidth) {
             h3.style.fontSize = '16px';
-        }
-    }         
+        // }
+    }
 }
 
 /* CUSTOM SCROLL
@@ -55,12 +56,12 @@ function CustomScroll() {
         scroll.classList.add('scroll_js');
 
         this.content = scroll.querySelector('.panel_content'),
-        this.contentScroll = scroll.querySelector('.content_scroll'),
-        this.scrollBar = scroll.querySelector('.scrollbar'),
-        this.bar = scroll.querySelector('.bar'),
-        this.thumb = scroll.querySelector('.handler'),
-        this.up = scroll.querySelector('.arrow_prev'),
-        this.down = scroll.querySelector('.arrow_next');
+            this.contentScroll = scroll.querySelector('.content_scroll'),
+            this.scrollBar = scroll.querySelector('.scrollbar'),
+            this.bar = scroll.querySelector('.bar'),
+            this.thumb = scroll.querySelector('.handler'),
+            this.up = scroll.querySelector('.arrow_prev'),
+            this.down = scroll.querySelector('.arrow_next');
 
         this.thumb.style.transition = 'none';
 
@@ -156,7 +157,18 @@ function CustomScroll() {
                 if (content_scroll.offsetHeight > panel_content.offsetHeight) {
                     _this.init(scroll);
                 }
-            }        
+            }
+        });
+    }
+}
+
+/* CUSTOM ACCORDION
+------------------------------------------- */
+function CustomAccordion() {
+    let acc = document.getElementsByClassName("section_accordion");
+    for (i = 0; i < acc.length; i++) {
+        acc[i].lastElementChild.addEventListener("click", function() {
+            this.parentNode.firstElementChild.classList.toggle('closed');
         });
     }
 }
