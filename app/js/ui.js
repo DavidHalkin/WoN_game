@@ -42,44 +42,43 @@ function City(selector) {
 /* CUSTOM SCROLL
 ------------------------------------------- */
 function CustomScroll() {
-    const _this = this;
     const scrolls = document.querySelectorAll('.panel_holder');
 
-    this.content = null;
-    this.contentScroll = null;
-    this.scrollBar = null;
-    this.bar = null;
-    this.thumb = null;
-    this.up = null;
-    this.down = null;
-    this.moveY = 0;
+    let content = null;
+    let contentScroll = null;
+    let scrollBar = null;
+    let bar = null;
+    let thumb = null;
+    let up = null;
+    let down = null;
+    let moveY = 0;
 
-    this.init = function(scroll) {
+    function start(scroll) {
         scroll.classList.add('scroll_js');
 
-        this.content = scroll.querySelector('.panel_content'),
-            this.contentScroll = scroll.querySelector('.content_scroll'),
-            this.scrollBar = scroll.querySelector('.scrollbar'),
-            this.bar = scroll.querySelector('.bar'),
-            this.thumb = scroll.querySelector('.handler'),
-            this.up = scroll.querySelector('.arrow_prev'),
-            this.down = scroll.querySelector('.arrow_next');
+        content = scroll.querySelector('.panel_content'),
+        contentScroll = scroll.querySelector('.content_scroll'),
+        scrollBar = scroll.querySelector('.scrollbar'),
+        bar = scroll.querySelector('.bar'),
+        thumb = scroll.querySelector('.handler'),
+        up = scroll.querySelector('.arrow_prev'),
+        down = scroll.querySelector('.arrow_next');
 
-        this.thumb.style.transition = 'none';
+        thumb.style.transition = 'none';
 
-        this.thumb.onmousedown = (e) => {
+        thumb.onmousedown = (e) => {
             e.preventDefault();
 
-            this.contentScroll.removeEventListener('scroll', onScrollMove);
+            contentScroll.removeEventListener('scroll', onScrollMove);
 
-            let shiftY = e.clientY - _this.thumb.getBoundingClientRect().top;
+            let shiftY = e.clientY - thumb.getBoundingClientRect().top;
 
             document.addEventListener('mousemove', onMouseMove);
             document.addEventListener('mouseup', onMouseUp);
 
             function onMouseMove(e) {
-                _this.moveY = e.clientY - shiftY - _this.bar.getBoundingClientRect().top;
-                _this.moveScroll(e);
+                moveY = e.clientY - shiftY - bar.getBoundingClientRect().top;
+                moveScroll(e);
             }
 
             function onMouseUp() {
@@ -88,54 +87,67 @@ function CustomScroll() {
             }
         }
 
-        this.contentScroll.onmouseover = () => this.contentScroll.addEventListener('scroll', onScrollMove);
+        contentScroll.onmouseover = () => contentScroll.addEventListener('scroll', onScrollMove);
 
         function onScrollMove(e) {
-            const maxContentScroll = _this.contentScroll.scrollHeight - _this.content.scrollHeight;
-            const maxThumbScroll = _this.bar.offsetHeight - _this.thumb.offsetHeight;
+            const maxContentScroll = contentScroll.scrollHeight - content.scrollHeight;
+            const maxThumbScroll = bar.offsetHeight - thumb.offsetHeight;
 
             const ratio = e.target.scrollTop / maxContentScroll;
             let thumbScroll = maxThumbScroll * ratio;
 
             if (thumbScroll >= maxThumbScroll) thumbScroll = maxThumbScroll;
 
-            _this.moveY = thumbScroll;
-            _this.thumb.style.top = `${thumbScroll}px`;
+            moveY = thumbScroll;
+            thumb.style.top = `${thumbScroll}px`;
         }
 
-        this.up.onclick = (e) => {
+        up.onclick = (e) => {
             e.preventDefault();
 
-            this.contentScroll.removeEventListener('scroll', onScrollMove);
+            contentScroll.removeEventListener('scroll', onScrollMove);
 
-            _this.moveY = _this.moveY - 10;
-            _this.moveScroll(e);
+            moveY = moveY - 10;
+            moveScroll(e);
         }
 
-        this.down.onclick = (e) => {
+        down.onclick = (e) => {
             e.preventDefault();
 
-            this.contentScroll.removeEventListener('scroll', onScrollMove);
+            contentScroll.removeEventListener('scroll', onScrollMove);
 
-            _this.moveY = _this.moveY + 10;
-            _this.moveScroll(e);
+            moveY = moveY + 10;
+            moveScroll(e);
+        }
+
+        moveScroll = function(e) {
+            e.preventDefault();
+
+            let end = bar.offsetHeight - thumb.offsetHeight;
+
+            if (moveY <= 0) moveY = 0;
+            if (moveY >= end) moveY = end;
+
+            let handPos = moveY / end;
+            let scrollAmout = (contentScroll.scrollHeight - bar.offsetHeight)*handPos;
+
+            thumb.style.top = moveY + 'px';
+            contentScroll.scrollTo(0, scrollAmout);
         }
     }
 
-    this.moveScroll = function(e) {
-        e.preventDefault();
+    const resizeObserver = new ResizeObserver(entries => {
+        let content_scroll = entries[0].target.closest('.panel_holder');
+        let panel_content = entries[1].target;
 
-        let end = this.bar.offsetHeight - this.thumb.offsetHeight;
+        if (entries[0].contentRect.height > panel_content.offsetHeight) {
+            start(content_scroll);
+        } else {
+            content_scroll.classlist.remove('scroll_js');
+        }   
 
-        if (this.moveY <= 0) this.moveY = 0;
-        if (this.moveY >= end) this.moveY = end;
-
-        let handPos = this.moveY / end;
-        let scrollAmout = (this.contentScroll.scrollHeight - this.bar.offsetHeight)*handPos;
-
-        this.thumb.style.top = this.moveY + 'px';
-        this.contentScroll.scrollTo(0, scrollAmout);
-    }
+        console.log(content_scroll.offsetHeight, panel_content.offsetHeight, entries);
+    });
 
     scrolls.forEach(scroll => {
         const panel_content = scroll.querySelector('.panel_content');
@@ -143,25 +155,10 @@ function CustomScroll() {
         if (panel_content != null) {
             const content_scroll = scroll.querySelector('.content_scroll');
 
-            if (content_scroll.offsetHeight > panel_content.offsetHeight) {
-                _this.init(scroll);
-            }
+            resizeObserver.observe(content_scroll);
+            resizeObserver.observe(panel_content);
         }
     });
-
-    window.onresize = () => {
-        scrolls.forEach(scroll => {
-            const panel_content = scroll.querySelector('.panel_content');
-
-            if (panel_content != null) {
-                const content_scroll = scroll.querySelector('.content_scroll');
-
-                if (content_scroll.offsetHeight > panel_content.offsetHeight) {
-                    _this.init(scroll);
-                }
-            }
-        });
-    }
 }
 
 /* CUSTOM ACCORDION
