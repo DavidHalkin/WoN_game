@@ -1,7 +1,7 @@
 window.ui = {};
 window.ui.modes = new Modes('.panel_game_modes');
-window.ui.city = new City();
-window.ui.city.sizeTextCity();
+window.ui.city = new City('.panel_town');
+
 new CustomScroll();
 new CustomAccordion();
 
@@ -25,15 +25,17 @@ function Modes(selector) {
 /* PANEL CITY
 ------------------------------------------- */
 function City(selector) {
-    this.sizeTextCity = function() {
-        console.log('hello');
-        const part_txt = $('.panel_town > .panel > .panel_holder > .part_txt');
-        const h3 = part_txt.querySelector('h3');
-        const link = h3.querySelector('a');
+    const elem = $(selector);
 
-        // if (link.offsetWidth > h3.offsetWidth) {
+    sizeTextCity();
+
+    function sizeTextCity() {
+        const part_txt = elem.querySelector('.panel > .panel_holder > .part_txt');
+        const h3 = part_txt.querySelector('h3');
+
+        if (h3.offsetWidth > part_txt.offsetWidth) {
             h3.style.fontSize = '16px';
-        // }
+        }
     }
 }
 
@@ -75,7 +77,7 @@ function CustomScroll() {
             document.addEventListener('mousemove', onMouseMove);
             document.addEventListener('mouseup', onMouseUp);
 
-            function onMouseMove(e) {                
+            function onMouseMove(e) {
                 _this.moveY = e.clientY - shiftY - _this.bar.getBoundingClientRect().top;
                 _this.moveScroll(e);
             }
@@ -87,7 +89,7 @@ function CustomScroll() {
         }
 
         this.contentScroll.onmouseover = () => this.contentScroll.addEventListener('scroll', onScrollMove);
-        
+
         function onScrollMove(e) {
             const maxContentScroll = _this.contentScroll.scrollHeight - _this.content.scrollHeight;
             const maxThumbScroll = _this.bar.offsetHeight - _this.thumb.offsetHeight;
@@ -123,10 +125,10 @@ function CustomScroll() {
     this.moveScroll = function(e) {
         e.preventDefault();
 
-        let end = this.bar.offsetHeight - this.thumb.offsetHeight;  
+        let end = this.bar.offsetHeight - this.thumb.offsetHeight;
 
         if (this.moveY <= 0) this.moveY = 0;
-        if (this.moveY >= end) this.moveY = end; 
+        if (this.moveY >= end) this.moveY = end;
 
         let handPos = this.moveY / end;
         let scrollAmout = (this.contentScroll.scrollHeight - this.bar.offsetHeight)*handPos;
@@ -144,7 +146,7 @@ function CustomScroll() {
             if (content_scroll.offsetHeight > panel_content.offsetHeight) {
                 _this.init(scroll);
             }
-        }        
+        }
     });
 
     window.onresize = () => {
@@ -165,7 +167,7 @@ function CustomScroll() {
 /* CUSTOM ACCORDION
 ------------------------------------------- */
 function CustomAccordion() {
-    let acc = document.getElementsByClassName("section_accordion");
+    let acc = $$('.section_accordion');
     for (i = 0; i < acc.length; i++) {
         acc[i].lastElementChild.addEventListener("click", function() {
             this.parentNode.firstElementChild.classList.toggle('closed');
@@ -175,4 +177,7 @@ function CustomAccordion() {
 
 function $(selector) {
     return document.querySelector(selector);
+}
+function $$(selector) {
+    return document.querySelectorAll(selector);
 }
