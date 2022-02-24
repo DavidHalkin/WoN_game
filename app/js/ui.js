@@ -137,22 +137,34 @@ function CustomScroll() {
     }
 
     const resizeObserver = new ResizeObserver(entries => {
-        let content_scroll = entries[0].target.closest('.panel_holder');
-        let panel_content = entries[1].target;
 
-        if (entries[0].contentRect.height > panel_content.offsetHeight) {
-            start(content_scroll);
-        } else {
-            content_scroll.classlist.remove('scroll_js');
-        }   
+        for (const element of entries) {
 
-        console.log(content_scroll.offsetHeight, panel_content.offsetHeight, entries);
+            const elem = element.target;
+            const panel_holder = elem.closest('.panel_holder');
+
+            if (elem.classList.contains('content_scroll')) {
+                if (element.target.scrollHeight > element.target.parentElement.offsetHeight) {
+                    start(panel_holder);
+                } else {
+                    panel_holder.classList.remove('scroll_js');
+                }
+            } else if (elem.classList.contains('panel_content')) {
+                if (element.contentRect.height < elem.querySelector('.content_scroll').scrollHeight) {
+                    start(panel_holder);
+                } else {
+                    panel_holder.classList.remove('scroll_js');
+                }
+            }
+
+        }
+
     });
 
     scrolls.forEach(scroll => {
         const panel_content = scroll.querySelector('.panel_content');
 
-        if (panel_content != null) {
+        if (panel_content) {
             const content_scroll = scroll.querySelector('.content_scroll');
 
             resizeObserver.observe(content_scroll);
