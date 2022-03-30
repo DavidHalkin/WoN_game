@@ -7,7 +7,7 @@
 	max-width: var(--w_panel);
 	flex:0 0 var(--w_panel);
 	@include media(max, xl) {
-		--w_panel:330px; 
+		--w_panel:330px;
 	}
 	.dropdown_item{
 		padding-bottom: 15px;
@@ -15,15 +15,12 @@
 		> .drop_down{
 			width: 100%;
 			padding: 0;
-			.scroll_js{
-				// max-height: 520px;
-				max-height: 540px;
-			}
 		}
 	}
 	.panel_holder{
 		padding: 0 30px;
 		position: relative;
+		max-height: 530px;
 		> .drop_down{
 			width: 100%;
 		}
@@ -34,6 +31,9 @@
 		}
 		@include media(max, xl) {
 			padding: 0 20px;
+		}
+		@media (max-width: 1600px) {
+			max-height: 400px;
 		}
 	}
 	.town_img{
@@ -65,12 +65,15 @@
 		}
 	}
 	.part_txt{
-		padding: 10px 0 10px 30px;
+		padding: 10px 0;
+		margin-left: 30px;
 		@include media(max, xl)  {
-			padding: 10px 0 10px 20px;
+			padding: 10px 0;
+			margin-left: 20px;
 		}
 	}
 	h3{
+		display: inline-block;
 		font-size: 25px;
 		line-height: 1;
 		font-weight: normal;

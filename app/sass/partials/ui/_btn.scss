@@ -1,10 +1,6 @@
-.btn:not(:disabled):not(.disabled){
-	cursor: pointer;
-}
 a,.hovered_item{
 	color: $light;
 	transition: var(--animation_static);
-	cursor: pointer;
 	&:hover{
 		color: #fff;
 		text-decoration: none;
@@ -91,7 +87,7 @@ a,.hovered_item{
 		// color: $light;
 		color: #fff;
 		text-decoration: none;
-		
+
 	}
 }
 .switcher{

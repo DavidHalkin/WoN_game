@@ -46,7 +46,7 @@
 				padding: 15px 10px;
 
 				ul{
-					flex-direction: column; 
+					flex-direction: column;
 					li{
 						margin: 4px 0;
 						display: block !important;
@@ -72,7 +72,7 @@
 	li{
 		position: relative;
 		font-size: 17px;
-		
+
 
 		&:hover{
 			> .drop_down{
@@ -84,7 +84,6 @@
 	}
 }
 .mob_btn{
-	cursor: pointer;
 	// padding-bottom: 10px;
 	@include media(min, lg) {
 		display: none;

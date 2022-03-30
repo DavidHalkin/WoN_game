@@ -1,8 +1,12 @@
+@mixin hover {
+	transition: var(--animation_hovered);
+	filter: saturate(2) brightness(1.5);
+}
+
 .btn,.close_btn,.switcher{
 	transition: var(--animation_static);
 	&:hover{
-		transition: var(--animation_hovered);
-		filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
+		@include hover;
 		// transform: scale3D(1.07, 1.07, 1);
 	}
 }
@@ -12,16 +16,14 @@ a.rectangle,button.rectangle{
 	}
 	&:hover{
 		img{
-			transition: var(--animation_hovered);
-			filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
+			@include hover;
 		}
 	}
 }
 a.circle,button.circle,.btn_func,.handler{
 	transition: var(--animation_static);
 	&:hover{
-		transition: var(--animation_hovered);
-		filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
+		@include hover;
 	}
 }
 a.square,button.square{
@@ -30,53 +32,19 @@ a.square,button.square{
 	// 	transition: var(--animation_static);
 	// }
 	&:hover{
-		transition: var(--animation_hovered);
-		filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
+		@include hover;
 		// img{
-		// 	transition: var(--animation_hovered);
-		// 	filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
+		// 	@include hover;
 		// }
 	}
 }
-a.actions_item{
+button.actions_item{
 	img{
 		transition: var(--animation_static);
 	}
 	&:hover{
 		img{
-			transition: var(--animation_hovered);
-			filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
-		}
-	}
-}
-.nav_list,.drop_down {
-	li{
-		> a{
-			transition: var(--animation_static);
-			// img{
-			// 	transition: var(--animation_static);
-			// }
-		}
-		.drop_down{
-			transition: var(--animation_static);
-		}
-		&:hover{
-			.drop_down{
-				transition: var(--animation_static);
-			}
-			> a{
-				transition: var(--animation_hovered);
-				filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
-				// img{
-				// 	transition: var(--animation_hovered);
-				// 	filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
-				// }
-			}
-		}
-		&.active{
-			> a{
-				filter:saturate(var(--unit)) brightness(calc(var(--unit) * 0.75));
-			}
+			@include hover;
 		}
 	}
 }
