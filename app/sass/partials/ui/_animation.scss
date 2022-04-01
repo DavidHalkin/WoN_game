@@ -57,3 +57,14 @@ button.actions_item{
 		}
 	}
 }
+.mini_info{
+	.mini_holder{
+		input{
+			transition: var(--animation_static);
+			&:focus{
+				transition: var(--animation_hovered);
+				filter: saturate(2);
+			}
+		}
+	}
+}
