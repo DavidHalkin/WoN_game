@@ -1,6 +1,7 @@
 .custom_checkbox{
 	--square_size:calc(var(--size) / 2 * 0.435);
-	// --square_size:calc(var(--size));
+	--checkbox_mark_width:calc(var(--checkbox_mark_w) / 2);
+	--checkbox_mark_height:calc(var(--checkbox_mark_h) / 2);
 	[type="checkbox"]{
 		&:disabled{
 			+ label{
@@ -43,12 +44,13 @@
 				}
 				&:after{
 					content:"";
-					width: 10px;
-					height: 10px;
-					background: red;
+					width: var(--checkbox_mark_width);
+					height: var(--checkbox_mark_height);
+					background: var(--checkbox_mark_img);
+					background-size: cover;
 					position: absolute;
-					top: 10px;
-					left: 10px;
+					top: 5px;
+					left: 5px;
 					transition: var(--animation_static);
 				}
     		}
