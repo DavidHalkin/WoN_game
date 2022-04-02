@@ -91,11 +91,10 @@
 	}
 }
 .square{
-	--size:110px;
 	--square_size:calc(var(--size) / 2);
 	width: var(--square_size);
 	height: var(--square_size);
-	background: url(../images/square/square.png) no-repeat 0 0;
+	background: var(--square_img) no-repeat 0 0;
 	background-size: cover;
 	position: relative;
 	// display: inline-block;

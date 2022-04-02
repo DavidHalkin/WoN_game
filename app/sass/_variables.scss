@@ -36,15 +36,22 @@
 
 	// slider
 	--slider_bar_img:url(../images/slider/bar.png);
-	--slider_bar_size:31px;
+	--slider_bar_size:21px;
 	// slider decor
 	--slider_button_img:url(../images/slider/decor.png);
-	--slider_button_w:223px;
-	--slider_button_h:165px;
+	--slider_button_w:39px;
+	--slider_button_h:29px;
 
 	--slider_handler_img:url(../images/slider/handler.png);
-	--slider_handler_w:121px;
-	--slider_handler_h:209px;
+	--slider_handler_w:43px;
+	--slider_handler_h:75px;
+
+	// .square item
+	--square_img:url(../images/square/square.png);
+	// .circle item
+	--circle_img:url(../images/circles/circle.png);
+	// .circle and .square size
+	--size:110px;
 }
 $primary :#180f0a;
 $light :#b8afaa;

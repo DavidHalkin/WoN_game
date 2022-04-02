@@ -1,11 +1,10 @@
 .circle{
-	--size:110px;
 	--size_circle:calc(var(--size) / 2);
 	display: inline-block;
 	display: block;
 	width: var(--size_circle);
 	height: var(--size_circle);
-	background: url(../images/circles/circle.png) no-repeat 0 0;
+	background: var(--circle_img) no-repeat 0 0;
 	background-size: cover;
 	position: relative;
 	padding: 0;
