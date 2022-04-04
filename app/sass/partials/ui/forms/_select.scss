@@ -1,3 +1,64 @@
 .select{
-	
+	position: relative;
+	.select_header{
+		.panel_holder{
+			width: 100%;
+			border: 0;
+			outline: 0;
+			text-align: left;
+			color: $light;
+			flex-direction: row;
+			align-items: center;
+			position: relative;
+			padding-right: 30px;
+			padding-left: 16px;
+			span{
+				@include  text-truncate;
+			}
+			&:after{
+				content: "";
+				@include arrow;
+				position: absolute;
+				top: 50%;
+				right: 12px;
+				transform:translateY(-50%) rotate(90deg);
+				z-index: 1;
+				transition: var(--animation_static);
+			}
+		}
+		
+	}
+	.drop_down{
+		// width: 100%;
+		width: auto;
+		// .panel_holder{
+			
+		// }
+		.etc_drop {
+			li{
+				> a{
+					padding: 10px 16px 8px;
+					display: flex;
+					align-items:center;
+					.ico{
+						margin-right: 12px;
+
+					}
+				}
+			}
+		}
+	}
+	&.opened{
+		.select_header{
+			.panel_holder{
+				&:after{
+					transform:translateY(-50%) rotate(90deg) scale(-1,-1);
+					transition: var(--animation_hovered);
+				}
+			}
+		}
+		.drop_down{
+			display: block;
+		}
+	}
 }

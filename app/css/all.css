@@ -1004,6 +1004,8 @@ body { font: 16px/1.25 "Vollkorn", sans-serif; background: #180f0a; color: #b8af
 
 .text-danger { color: red; }
 
+.text-truncate { overflow: hidden; -o-text-overflow: ellipsis; text-overflow: ellipsis; white-space: nowrap; }
+
 .justify-content-center { -webkit-box-pack: center !important; -ms-flex-pack: center !important; justify-content: center !important; }
 
 .justify-content-end { -webkit-box-pack: end !important; -ms-flex-pack: end !important; justify-content: flex-end !important; }
@@ -1333,7 +1335,11 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .drop_down .grid_column .panel_holder.scroll_js .panel_content .content_scroll { padding-right: 40px; }
 
+.select .drop_down .grid_column .panel_holder.scroll_js .panel_content .content_scroll { padding-right: 16px; }
+
 .drop_down .scrollbar { top: 10px; bottom: 10px; height: calc(100% - 20px); right: 23px; }
+
+.select .drop_down .scrollbar { right: 0; }
 
 .scroll_js .content_scroll { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -1426,6 +1432,24 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 .mini_info .mini_holder input:disabled { opacity: 1; border-color: transparent; -webkit-border-radius: 0; border-radius: 0; -webkit-box-shadow: none; box-shadow: none; }
 
 .mini_info.has_error .mini_holder input { border-color: red; }
+
+.select { position: relative; }
+
+.select .select_header .panel_holder { width: 100%; border: 0; outline: 0; text-align: left; color: #b8afaa; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; -webkit-box-align: center; -ms-flex-align: center; align-items: center; position: relative; padding-right: 30px; padding-left: 16px; }
+
+.select .select_header .panel_holder span { overflow: hidden; -o-text-overflow: ellipsis; text-overflow: ellipsis; white-space: nowrap; }
+
+.select .select_header .panel_holder:after { content: ""; --w:calc( 21px / 2); --h:calc( 34px / 2); width: var(--w); width: var(--w); max-width: var(--w); -webkit-box-flex: 0; -ms-flex: 0 0 var(--w); flex: 0 0 var(--w); height: var(--h); background: url(../images/icons/arrow.png) 0 0 no-repeat; -webkit-background-size: cover; background-size: cover; position: absolute; top: 50%; right: 12px; -webkit-transform: translateY(-50%) rotate(90deg); -ms-transform: translateY(-50%) rotate(90deg); transform: translateY(-50%) rotate(90deg); z-index: 1; -webkit-transition: var(--animation_static); -o-transition: var(--animation_static); transition: var(--animation_static); }
+
+.select .drop_down { width: auto; }
+
+.select .drop_down .etc_drop li > a { padding: 10px 16px 8px; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
+
+.select .drop_down .etc_drop li > a .ico { margin-right: 12px; }
+
+.select.opened .select_header .panel_holder:after { -webkit-transform: translateY(-50%) rotate(90deg) scale(-1, -1); -ms-transform: translateY(-50%) rotate(90deg) scale(-1, -1); transform: translateY(-50%) rotate(90deg) scale(-1, -1); -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); }
+
+.select.opened .drop_down { display: block; }
 
 .actions_panel { pointer-events: auto; --h:calc(322px / 2); --w:calc(427px / 2); background-color: #180f0a; background-position: 100% 100% !important; background-repeat: no-repeat !important; -webkit-border-radius: calc(var(--indent) + 2px); border-radius: calc(var(--indent) + 2px); }
 

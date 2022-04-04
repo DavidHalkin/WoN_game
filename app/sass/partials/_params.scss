@@ -45,3 +45,6 @@ body{
 .text-danger{
 	color: red;
 }
+.text-truncate {
+  @include  text-truncate;
+}

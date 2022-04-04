@@ -149,13 +149,19 @@
 	.grid_column .panel_holder.scroll_js .panel_content{
 		padding: 10px 0 !important;
 	}
-	.grid_column .panel_holder.scroll_js  .panel_content .content_scroll{
+	.grid_column .panel_holder.scroll_js .panel_content .content_scroll{
 		padding-right: 40px;
+		.select &{
+			padding-right: 16px;
+		}
 	}
 	.scrollbar{
 		top: 10px;
 		bottom: 10px;
 		height: calc(100% - 20px);
 		right: 23px;
+		.select & {
+			right: 0;
+		}
 	}
 }

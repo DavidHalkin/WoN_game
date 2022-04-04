@@ -60,6 +60,11 @@ $sizes: ("xs":1, "md":1024, "lg":1300,"xl":1600);
   transition: all 0.6s ease;
   background: rgba(#955100,.2);
 }
+@mixin text-truncate{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 // ------------margin------------
 
 // margin-top
