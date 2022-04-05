@@ -1126,7 +1126,7 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .circle { --size_circle:calc(var(--size) / 2); display: inline-block; display: block; width: var(--size_circle); height: var(--size_circle); background: var(--circle_img) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; position: relative; padding: 0; border: 0; --size_5:calc(var(--size) / 2); --size_4:calc(var(--size) / 2 - 5px); --size_3:calc(var(--size) / 2* 0.819); --size_2:calc(var(--size) / 2* 0.7); --size_1:calc(var(--size) / 2* 0.6); }
 
-.circle img { position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); max-width: 80%; max-height: 80%; }
+.circle img { position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }
 
 @media only screen and (min-width: 1px) { .circle.size_5 { --size_circle:var(--size_5); } }
 
@@ -1212,7 +1212,7 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .square { --square_size:calc(var(--size) / 2); width: var(--square_size); height: var(--square_size); background: var(--square_img) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; position: relative; display: block; padding: 0; border: 0; --size_5:calc(var(--size) / 2); --size_4:calc(var(--size) / 2 - 5px); --size_3:calc(var(--size) / 2* 0.819); --size_2:calc(var(--size) / 2* 0.7); --size_1:calc(var(--size) / 2* 0.6); }
 
-.square img { position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); max-width: 90%; max-height: 90%; }
+.square img { position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }
 
 @media only screen and (min-width: 1px) { .square.size_5 { --square_size:var(--size_5); } }
 
