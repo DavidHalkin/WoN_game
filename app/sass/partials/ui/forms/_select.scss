@@ -10,7 +10,7 @@
 			flex-direction: row;
 			align-items: center;
 			position: relative;
-			padding-right: 30px;
+			padding-right: 38px;
 			padding-left: 16px;
 			span{
 				@include  text-truncate;
@@ -20,7 +20,7 @@
 				@include arrow;
 				position: absolute;
 				top: 50%;
-				right: 12px;
+				right: 20px;
 				transform:translateY(-50%) rotate(90deg);
 				z-index: 1;
 				transition: var(--animation_static);
@@ -29,15 +29,14 @@
 		
 	}
 	.drop_down{
-		// width: 100%;
-		width: auto;
+		width: 100%;
 		// .panel_holder{
 			
 		// }
 		.etc_drop {
 			li{
 				> a{
-					padding: 10px 16px 8px;
+					padding: 6px 16px 9px;
 					display: flex;
 					align-items:center;
 					.ico{

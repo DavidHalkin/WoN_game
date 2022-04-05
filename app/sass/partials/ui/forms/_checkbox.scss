@@ -1,23 +1,24 @@
-.custom_checkbox{
+.checkbox{
 	--square_size:calc(var(--size) / 2 * 0.435);
 	--checkbox_mark_width:calc(var(--checkbox_mark_w) / 2);
 	--checkbox_mark_height:calc(var(--checkbox_mark_h) / 2);
 	[type="checkbox"]{
 		&:disabled{
 			+ label{
-				color: rgba($light,.6);
-				&:before{
-					opacity: 0.9;
-					filter: grayscale(90%);
-				}
-				&:after{
-					opacity: 0.9;
-					filter: grayscale(90%);
-				}
+				// color: rgba($light,.6);
+				opacity: .5;
+				// &:before{
+				// 	opacity: .5;
+				// 	// filter: grayscale(90%);
+				// }
+				// &:after{
+				// 	opacity: .5;
+				// 	// filter: grayscale(90%);
+				// }
 			}
-			&:checked{
+			// &:checked{
 				
-			}
+			// }
 		}
 		&:checked,&:not(:checked){
 			position: absolute;

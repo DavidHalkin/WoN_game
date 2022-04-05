@@ -90,7 +90,7 @@
 		@include centered_img(100,100);
 	}
 }
-.square{
+.square,.mini_info.mini_info_square .item_ico{
 	--square_size:calc(var(--size) / 2);
 	width: var(--square_size);
 	height: var(--square_size);

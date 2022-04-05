@@ -53,17 +53,15 @@
 	display: flex;
 	align-items:center;
 	// max-width: 100%;
-	.circle,.square{
+	.item_ico{
 		z-index: 2;
 	}
 	label{
 		padding-right: 10px;
+		padding-right: 20px;
 		margin: 0;
-	// 	flex: 0 0 auto;
-	// width: auto;
-	// max-width: 100%;
 		~ .mini_holder{
-			margin-left: 0;
+			// margin-left: 0;
 		}
 	}
 	.mini_holder{

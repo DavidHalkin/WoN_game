@@ -112,7 +112,8 @@
 				}
 				margin: 0;
 				background-image: url(../images/ui/line_drop.png);
-				background-size: 100% auto;
+				// background-size: 100% auto;
+				background-size: 100% 3px;
 				background-repeat: no-repeat;
 				background-position: 0 100%;
 				&:after{content: none !important;}
@@ -148,6 +149,9 @@
 	}
 	.grid_column .panel_holder.scroll_js .panel_content{
 		padding: 10px 0 !important;
+		.select &{
+			padding: 0 !important;
+		}
 	}
 	.grid_column .panel_holder.scroll_js .panel_content .content_scroll{
 		padding-right: 40px;
