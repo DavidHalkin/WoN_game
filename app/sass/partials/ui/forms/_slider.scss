@@ -2,9 +2,23 @@
 	.mini_info{
 		display: none;
 	}
+	// &.label{
+	// 	.mini_info{
+	// 		label{
+	// 			display: block;
+	// 		}
+	// 	}
+	// }
 	&.has_mini_info{
 		.mini_info{
 			display: flex;
+			label{
+				display: block;
+			}
+			.mini_holder{
+				max-width: 50px;
+				flex:0 0 50px;
+			}
 		}
 	}
 }

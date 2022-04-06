@@ -55,13 +55,22 @@
 	// max-width: 100%;
 	.item_ico{
 		z-index: 2;
+		+ .mini_holder{
+			margin-left: -10px;
+		}
 	}
 	label{
 		padding-right: 10px;
-		padding-right: 20px;
+		// padding-right: 20px;
 		margin: 0;
+		display: none;
 		~ .mini_holder{
 			// margin-left: 0;
+		}
+	}
+	&.label{
+		label{
+			display: block;
 		}
 	}
 	.mini_holder{
@@ -70,7 +79,7 @@
 		max-width: 100%;
 		min-width: 0;
 		min-width: 50px;
-		margin-left: -10px;
+		// margin-left: -10px;
 		position: relative;
 		// z-index: 1;
 		input{
