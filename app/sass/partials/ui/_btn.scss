@@ -110,6 +110,9 @@ a,.hovered_item{
 		&.opened{
 			transform:rotate(90deg) scale(-1,1);
 		}
+		.closed &{
+			transform: rotate(-90deg) scaleX(-1);
+		}
 	}
 	&.left{
 		transform:scale(-1,1);
