@@ -1449,13 +1449,21 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .select .select_header .panel_holder span { overflow: hidden; -o-text-overflow: ellipsis; text-overflow: ellipsis; white-space: nowrap; }
 
+.select .select_header .panel_holder .ico { margin-right: 12px; }
+
 .select .select_header .panel_holder:after { content: ""; --w:calc( 21px / 2); --h:calc( 34px / 2); width: var(--w); width: var(--w); max-width: var(--w); -webkit-box-flex: 0; -ms-flex: 0 0 var(--w); flex: 0 0 var(--w); height: var(--h); background: url(../images/icons/arrow.png) 0 0 no-repeat; -webkit-background-size: cover; background-size: cover; position: absolute; top: 50%; right: 20px; -webkit-transform: translateY(-50%) rotate(90deg); -ms-transform: translateY(-50%) rotate(90deg); transform: translateY(-50%) rotate(90deg); z-index: 1; -webkit-transition: var(--animation_static); -o-transition: var(--animation_static); transition: var(--animation_static); }
 
-.select .drop_down { min-width: 100%; width: auto; }
+.select.select_drop_up .drop_down { bottom: 100%; top: auto; }
 
-.select .drop_down .etc_drop li > a { padding: 6px 16px 9px; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
+.select.select_100p .drop_down { width: 100%; }
 
-.select .drop_down .etc_drop li > a .ico { margin-right: 12px; }
+.select .drop_down { width: auto; }
+
+.select .drop_down .etc_drop li > a { padding: 6px 12px 9px; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
+
+.select .drop_down .etc_drop li > a .ico { margin-right: 12px; max-width: 18px; -webkit-box-flex: 0; -ms-flex: 0 0 18px; flex: 0 0 18px; }
+
+.select .drop_down .etc_drop li > a .ico img { display: block; max-width: 100%; height: auto; }
 
 .select.opened .select_header .panel_holder:after { -webkit-transform: translateY(-50%) rotate(90deg) scale(-1, -1); -ms-transform: translateY(-50%) rotate(90deg) scale(-1, -1); transform: translateY(-50%) rotate(90deg) scale(-1, -1); -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); }
 
