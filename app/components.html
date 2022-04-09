@@ -5,13 +5,26 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="stylesheet" href="css/all.css">
 		<title>UI</title>
+		<link href="themes/prism.css" rel="stylesheet" />
 		<style>
 			p{color: #fff;}
 		</style>
 	</head>
-	<body style="background: #858a4d;">
+	<body style="background: #38271D;">
 		<div class="wrapper p-30">
 			<div style="width:340px">
+				<h1>mini_info</h1>
+				<pre><code>
+{
+	"type": "mini_info",
+	"name": "db_name",
+	"label": "Доход",
+	"icon": "/url",
+	"url": "/url",
+	"value": "2411 (+48453)",
+	"editable": false
+}
+				</code></pre>
 				<div class="mini_info label mb-20">
 					<label>.label in parent</label>
 					<a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
@@ -33,8 +46,6 @@
 						<input type="text" value="error">
 					</div>
 				</div>
-				<hr>
-				<hr>
 				<div class="mini_info mb-20">
 					<label>Рабы</label>
 					<div class="item_ico size_1">
@@ -44,7 +55,6 @@
 						<input type="text" value="1223">
 					</div>
 				</div>
-				<hr>
 				<div class="mini_info mb-20">
 					<label>Рабы</label>
 					<div class="mini_holder">
@@ -60,28 +70,38 @@
 						<input type="text" value="1223">
 					</div>
 				</div>
-				<div class="p-20 m-20" style="background:gray;">
-					<!-- slider  start-->
-					<div class="slider my-30">
-						<div class="mini_info mb-20">
-							<label>Рабы</label>
-							<div class="mini_holder">
-								<input type="text" value="1223">
-							</div>
-						</div>
-						<div class="slider_holder">
-							<div class="decor_slider slider_prev"></div>
-							<div class="slider_bar">
-								<div class="slider_progress" style="width:50%;">
-									<div class="handler"></div>
-								</div>
-							</div>
-							<div class="decor_slider slider_next"></div>
+				<hr>
+				<h1>slider</h1>
+				<pre><code>
+{
+	"type": "slider",
+	"label": "",
+	"icon": "/url",
+	"editable": true,
+	"value": 5792,
+	"min": 0,
+	"max": 12512
+}
+				</code></pre>
+				<!-- slider  start-->
+				<div class="slider my-30">
+					<div class="mini_info mb-20">
+						<label>Рабы</label>
+						<div class="mini_holder">
+							<input type="text" value="1223">
 						</div>
 					</div>
-					<!-- slider  End-->
+					<div class="slider_holder">
+						<div class="decor_slider slider_prev"></div>
+						<div class="slider_bar">
+							<div class="slider_progress" style="width:50%;">
+								<div class="handler"></div>
+							</div>
+						</div>
+						<div class="decor_slider slider_next"></div>
+					</div>
 				</div>
-				<div class="p-20 m-20" style="background:gray;">
+				<!-- slider  End-->
 				<!-- slider  start-->
 				<div class="slider has_mini_info  my-30">
 					<div class="mini_info mb-20">
@@ -101,32 +121,69 @@
 					</div>
 				</div>
 				<!-- slider  End-->
+				<hr>
 			</div>
-			</div>
-			<div class="py-30">
+			<h1>checkbox</h1>
+			<pre><code>
+{
+	"type": "checkbox",
+	"label": "Название",
+	"url": "/url",
+	"ajax": true,
+	"value": true,
+	"editable": true
+}
+			</code></pre>
+			<div class="py-10">
 				<div class="checkbox">
 					<input type="checkbox" id="f1s" checked disabled>
 					<label for="f1s">disabled checked</label>
 				</div>
 			</div>
-			<div class="py-30">
+			<div class="py-10">
 				<div class="checkbox">
 					<input type="checkbox" id="f1">
 					<label for="f1">lorem</label>
 				</div>
 			</div>
-			<div class="py-30">
+			<div class="py-10">
 				<div class="checkbox">
 					<input type="checkbox" id="f11">
 					<label for="f11"></label>
 				</div>
 			</div>
-			<div class="py-30">
+			<div class="py-10">
 				<div class="checkbox">
 					<input type="checkbox" id="f1f1">
 					<label for="f1f1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nostrum excepturi quod expedita animi voluptates nisi in eligendi eos voluptate consequuntur quas, autem? Consectetur doloremque quos facere odio repudiandae voluptate?Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nostrum excepturi quod expedita animi voluptates nisi in eligendi eos voluptate consequuntur quas, autem? Consectetur doloremque quos facere odio repudiandae voluptate?</label>
 				</div>
 			</div>
+			<hr>
+			<h1>select</h1>
+			<pre><code>
+{
+	"type": "select",
+	"label": "Название",
+	"url": "/url",
+	"ajax": true,
+	"value": true,
+	"editable": true,
+	"list": [
+		{
+			"name": "Пункт списка",
+			"value": 01
+		},
+		{
+			"name": "Пункт списка",
+			"value": true
+		},
+		{
+			"name": "Пункт списка",
+			"value": "hello"
+		}
+	]
+}
+			</code></pre>
 			<div class="py-30">
 				<div class="select opened">
 					<div class="select_header">
@@ -413,6 +470,46 @@
 			<br>
 			<br>
 			<br>
+			<hr>
+			<h1>property</h1>
+			<pre><code>
+{
+	"type": "property",
+	"name": "Оружейная мастерская",
+	"icon": "https://",
+	"amount": "2411",
+	"people": "650 / 1500",
+	"production": [
+		{
+			"type": "mini_info",
+			"name": "db_name",
+			"label": "",
+			"icon": "https://",
+			"url": "https://",
+			"value": "2411 (+48453)",
+			"editable": false
+		},
+		{
+			"type": "mini_info",
+			"name": "db_name",
+			"label": "",
+			"icon": "https://",
+			"url": "https://",
+			"value": "2411 (+48453)",
+			"editable": false
+		},
+		{
+			"type": "mini_info",
+			"name": "db_name",
+			"label": "",
+			"icon": "https://",
+			"url": "https://",
+			"value": "2411 (+48453)",
+			"editable": false
+		}
+	]
+}
+			</code></pre>
 			<div class="py-30" style="width:330px;">
 				<div class="property closed fold_js">
 					<div class="property_head d-flex align-items-center">
@@ -527,5 +624,6 @@
 			<br>
 			<br>
 		</div>
+	<script src="prism.js"></script>
 	</body>
 </html>
