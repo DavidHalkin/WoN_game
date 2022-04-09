@@ -7,12 +7,24 @@
 		<title>UI</title>
 		<style>
 			p{color: #fff;}
+			kbd {
+				background-color: #00000055;
+				padding: .15em .4em;
+				border-radius: 3px;
+			}
 		</style>
 	</head>
 	<body style="background: #38271D;">
 		<div class="wrapper p-30">
-			<div style="width:340px">
+			<div style="width:400px">
 				<h1>mini_info</h1>
+				<p>Параметры:</p>
+				<ul>
+					<li>класс <kbd>label</kbd> — наличие заголовка</li>
+					<li>класс <kbd>mini_info_square</kbd> — квадратная иконка</li>
+					<li>класс <kbd>has_error</kbd> — ошибка</li>
+					<li>атрибут <kbd>disabled</kbd> на теге <kbd>input</kbd> для запрета редактирования</li>
+				</ul>
 				<pre><code>
 {
 	"type": "mini_info",
