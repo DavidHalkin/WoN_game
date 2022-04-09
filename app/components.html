@@ -5,7 +5,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="stylesheet" href="css/all.css">
 		<title>UI</title>
-		<link href="themes/prism.css" rel="stylesheet" />
 		<style>
 			p{color: #fff;}
 		</style>
@@ -620,10 +619,75 @@
 					</div>
 				</div>
 			</div>
-			<br>
-			<br>
-			<br>
+			<hr>
+			<h1>text</h1>
+			<pre><code>
+{
+	"type": "text",
+	"content": "HTML"
+}
+			</code></pre>
+			<div class="py-10">
+				<p>Lorem ipsum dolor sit amet, <a href="#">consectetur</a> adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				<ul>
+					<li>hello</li>
+					<li>world</li>
+				</ul>
+				<p>Duis aute irure <strong>dolor in reprehenderit</strong> in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			</div>
+			<hr>
+			<h1>button</h1>
+			<pre><code>
+{
+	"type": "button",
+	"name": "Название кнопки",
+	"url": "/url",
+	"ajax": true
+}
+			</code></pre>
+			<hr>
+			<h1>icon</h1>
+			<pre><code>
+{
+	"type": "icon",
+	"url": "/url",
+	"ajax": false,
+	"round": true
+}
+			</code></pre>
+			<hr>
+			<h1>tabs</h1>
+			<pre><code>
+{
+	"type": "tabs",
+	"tabs": [
+		{
+			"name": "Здания",
+			"icon": "https://",
+			"content": []
+		},
+		{
+			"name": "Здания",
+			"icon": "https://",
+			"content": []
+		},
+		{
+			"name": "Здания",
+			"icon": "https://",
+			"content": []
+		}
+	]
+}
+			</code></pre>
+			<hr>
+			<h1>section</h1>
+			<pre><code>
+{
+	"type": "section",
+	"name": "Ресурсы",
+	"components": []
+}
+			</code></pre>
 		</div>
-	<script src="prism.js"></script>
 	</body>
 </html>
