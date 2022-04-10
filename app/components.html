@@ -1,736 +1,1086 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<link rel="stylesheet" href="css/all.css">
-		<title>UI</title>
-		<style>
-			p{color: #fff;}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/all.css">
+    <title>UI</title>
+    <style>
+        p{color: #fff;}
 			kbd {
 				background-color: #00000055;
 				padding: .15em .4em;
 				border-radius: 3px;
 			}
 		</style>
-	</head>
-	<body style="background: #38271D;">
-		<div class="wrapper p-30">
-			<div style="width:400px">
-				<h1>mini_info</h1>
-				<p>Параметры:</p>
-				<ul>
-					<li>класс <kbd>label</kbd> — наличие заголовка</li>
-					<li>класс <kbd>mini_info_square</kbd> — квадратная иконка</li>
-					<li>класс <kbd>has_error</kbd> — ошибка</li>
-					<li>атрибут <kbd>disabled</kbd> на теге <kbd>input</kbd> для запрета редактирования</li>
-				</ul>
-				<pre><code>
-{
-	"type": "mini_info",
-	"name": "db_name",
-	"label": "Доход",
-	"icon": "/url",
-	"url": "/url",
-	"value": "2411 (+48453)",
-	"editable": false
-}
-				</code></pre>
-				<div class="mini_info label mb-20">
-					<label>.label in parent</label>
-					<a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
-					<div class="mini_holder">
-						<input type="text" value="1223" disabled>
-					</div>
-				</div>
-				<div class="mini_info mini_info_square label mb-20">
-					<label>.label +  .mini_info_square</label>
-					<a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
-					<div class="mini_holder">
-						<input type="text" value="add .mini_info_square">
-					</div>
-				</div>
-				<div class="mini_info has_error mb-20">
-					<label>Рабы</label>
-					<a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
-					<div class="mini_holder">
-						<input type="text" value="error">
-					</div>
-				</div>
-				<div class="mini_info mb-20">
-					<label>Рабы</label>
-					<a href="#" class="item_ico size_1">
-						<img src="images/circles/example.png" alt="">
-					</a>
-					<div class="mini_holder">
-						<input type="text" value="1223">
-					</div>
-				</div>
-				<div class="mini_info mb-20">
-					<label>Рабы</label>
-					<div class="mini_holder">
-						<input type="text" value="1223">
-					</div>
-				</div>
-				<div class="mini_info label mb-20">
-					<label>Рабы</label>
-					<a href="#" class="item_ico size_1">
-						<img src="images/circles/example.png" alt="">
-					</a>
-					<div class="mini_holder">
-						<input type="text" value="1223">
-					</div>
-				</div>
-				<hr>
-				<h1>slider</h1>
-				<ul>
-					<li>класс <kbd>has_mini_info</kbd> добавляейт инпут и лейбл</li>
-				</ul>
-				<pre><code>
-{
-	"type": "slider",
-	"label": "",
-	"icon": "/url",
-	"editable": true,
-	"value": 5792,
-	"min": 0,
-	"max": 12512
-}
-				</code></pre>
-				<!-- slider  start-->
-				<div class="slider my-30">
-					<div class="mini_info mb-20">
-						<label>Рабы</label>
-						<div class="mini_holder">
-							<input type="text" value="12345">
-						</div>
-					</div>
-					<div class="slider_holder">
-						<div class="decor_slider slider_prev"></div>
-						<div class="slider_bar">
-							<div class="slider_progress" style="width:50%;">
-								<div class="handler"></div>
-							</div>
-						</div>
-						<div class="decor_slider slider_next"></div>
-					</div>
-				</div>
-				<!-- slider  End-->
-				<!-- slider  start-->
-				<div class="slider has_mini_info  my-30">
-					<div class="mini_info mb-20">
-						<label>.has_mini_info</label>
-						<div class="mini_holder">
-							<input type="text" value="12345">
-						</div>
-					</div>
-					<div class="slider_holder">
-						<div class="decor_slider slider_prev"></div>
-						<div class="slider_bar">
-							<div class="slider_progress" style="width:50%;">
-								<div class="handler"></div>
-							</div>
-						</div>
-						<div class="decor_slider slider_next"></div>
-					</div>
-				</div>
-				<!-- slider  End-->
-				<hr>
-			</div>
-			<h1>checkbox</h1>
-			<ul>
-				<li>есть атрибуты у инпута : <kbd>disabled</kbd> и <kbd>checked</kbd></li>
-				<li>класс <kbd>checkbox_no_label</kbd> убирает блок <kbd>checkbox_label</kbd> его можно и не иметь этот блок с текстом</li>
-			</ul>
-			<pre><code>
-{
-	"type": "checkbox",
-	"label": "Название",
-	"url": "/url",
-	"ajax": true,
-	"value": true,
-	"editable": true
-}
-			</code></pre>
-			<div class="py-10">
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" checked disabled>
-						<i class="checkbox_item"></i>
-						<span class="checkbox_label">lorem lorem lorem</span>
-					</label>
-				</div>
-			</div>
-			<div class="py-10">
-				<div class="checkbox">
-					<label>
-						<input type="checkbox">
-						<i class="checkbox_item"></i>
-						<span class="checkbox_label">lorem lorem lorem</span>
-					</label>
-				</div>
-			</div>
-			<div class="py-10">
-				<div class="checkbox checkbox_no_label">
-					<label>
-						<input type="checkbox">
-						<i class="checkbox_item"></i>
-						<span class="checkbox_label">lorem</span>
-					</label>
-				</div>
-			</div>
-			<div class="py-10">
-				<div class="checkbox">
-					<label>
-						<input type="checkbox">
-						<i class="checkbox_item"></i>
-						<span class="checkbox_label">Lorem ipsum dolor sit amet, consectetur adipisicing, elit. In eveniet nemo officiis et nisi ducimus quisquam fugiat illum consectetur consequuntur ipsum, doloribus vero optio? Doloremque est beatae libero, sunt! Quia. Lorem ipsum dolor sit amet, consectetur adipisicing, elit. In eveniet nemo officiis et nisi ducimus quisquam fugiat illum consectetur consequuntur ipsum, doloribus vero optio? Doloremque est beatae libero, sunt! Quia.</span>
-					</label>
-				</div>
-			</div>
-			<hr>
-			<h1>select</h1>
-			<ul>
-				<li>класс <kbd>opened</kbd> открывает сам список дропа</li>
-				<li>класс <kbd>select_drop_up</kbd> список дропа вверх</li>
-				<li>класс <kbd>select_100p </kbd> список дропа заполняется ни шрину родителя(по умолчанию ширина авто,изза наполнения , и до ширины родителя)</li>
-				<li>высоту ставим инлайново джеесом на <kbd>panel_holder</kbd> и не забывам про класс <kbd>scroll_js</kbd></li>
-				<li>у списка дропа, на <kbd>li</kbd> может висеть класс <kbd>active</kbd></li>
-			</ul>
-			<pre><code>
-{
-	"type": "select",
-	"label": "Название",
-	"url": "/url",
-	"ajax": true,
-	"value": true,
-	"editable": true,
-	"list": [
-		{
-			"name": "Пункт списка",
-			"value": 01
-		},
-		{
-			"name": "Пункт списка",
-			"value": true
-		},
-		{
-			"name": "Пункт списка",
-			"value": "hello"
-		}
-	]
-}
-			</code></pre>
-			<div class="py-30">
-				<div class="select opened">
-					<div class="select_header">
-						<div class="panel sm centered_corners_none" style="background-image: url(images/panel/bg/aside.png);">
-							<button class="panel_holder">
-								<i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-								<span>add <i style="color:red;">.opened</i> to parent <i style="color:red;">.select</i> Lorem ipsum dolor sit amet consectetur adipisicing, elit. Consequatur eius corrupti voluptate provident aliquid ipsa, voluptatem autem quasi, nulla, debitis quae vitae temporibus vel. Neque non, eveniet? Voluptatibus, dignissimos recusandae!</span>
-							</button>
-							<div class="decor ">
-								<span class="corner"></span>
-								<span class="corner right_top"></span>
-								<span class="corner right_bottom"></span>
-								<span class="corner left_bottom"></span>
-							</div>
-						</div>
-					</div>
-					<div class="drop_down">
-						<div class="panel grid_column sm centered_corners_none">
-							<div class="panel_holder p-0">
-								<div class="panel_content ">
-									<div class="content_scroll">
-										<ul class="etc_drop list-unstyled m-0">
-											<li>
-												<a href="#">
-													<i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-													<span>lorem</span>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-													<span>Lorem, ipsum dolor sit amet</span>
-												</a>
-											</li>
-											<li class="active">
-												<a href="#">
-													<span>lorem</span>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-													<span>lorem</span>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-													<span>lorem</span>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-													<span>lorem</span>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-													<span>lorem</span>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-													<span>lorem</span>
-												</a>
-											</li>
-										</ul>
-									</div>
-									<div class="scrollbar">
-										<div class="btn_func arrow_prev"></div>
-										<div class="bar">
-											<div class="handler"></div>
-										</div>
-										<div class="btn_func arrow_next"></div>
-									</div>
-								</div>
+</head>
 
-							</div>
-							<div class="decor">
-								<span class="corner"></span>
-								<span class="corner right_top"></span>
-								<span class="corner right_bottom"></span>
-								<span class="corner left_bottom"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br><br> <br><br> <br><br> <br>
-			<br> <br><br> <br><br> <br><br>
-			<div class="py-30">
-				<div class="select opened select_drop_up" style="max-width:300px;">
-					<div class="select_header">
-						<div class="panel sm centered_corners_none" style="background-image: url(images/panel/bg/aside.png);">
-							<button class="panel_holder">
-								<span>Lorem ipsum <i style="color:red;">.select_drop_up</i>dolor sit amet consectetur adipisicing elit. Aliquid alias iure repudiandae numquam qui fugiat itaque incidunt, maxime omnis provident sint minus rerum, quidem veniam illo laudantium sunt. Hic, quaerat.</span>
-							</button>
-							<div class="decor ">
-								<span class="corner"></span>
-								<span class="corner right_top"></span>
-								<span class="corner right_bottom"></span>
-								<span class="corner left_bottom"></span>
-							</div>
-						</div>
-					</div>
-					<div class="drop_down">
-						<div class="panel grid_column sm centered_corners_none">
-							<div class="panel_holder p-0 scroll_js" style="max-height: 200px;">
-								<div class="panel_content ">
-									<div class="content_scroll">
-										<ul class="etc_drop list-unstyled m-0">
-											<li>
-												<a href="#">
-													<i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-													<span>lorem</span>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-													<span>Lorem</span>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<span>lorem</span>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-													<span>lorem</span>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-													<span>lorem</span>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-													<span>lorem</span>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-													<span>lorem</span>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-													<span>lorem</span>
-												</a>
-											</li>
-										</ul>
-									</div>
-									<div class="scrollbar">
-										<div class="btn_func arrow_prev"></div>
-										<div class="bar">
-											<div class="handler"></div>
-										</div>
-										<div class="btn_func arrow_next"></div>
-									</div>
-								</div>
+<body style="background: #38271D;">
+    <div class="wrapper p-30">
+        <div style="width:400px">
+            <h1>mini_info</h1>
+            <p>Параметры:</p>
+            <ul>
+                <li>класс <kbd>label</kbd> — наличие заголовка</li>
+                <li>класс <kbd>mini_info_square</kbd> — квадратная иконка</li>
+                <li>класс <kbd>has_error</kbd> — ошибка</li>
+                <li>атрибут <kbd>disabled</kbd> на теге <kbd>input</kbd> для запрета редактирования</li>
+            </ul>
+            <pre>
+            	<code>
+					{
+						"type": "mini_info",
+						"name": "db_name",
+						"label": "Доход",
+						"icon": "/url",
+						"url": "/url",
+						"value": "2411 (+48453)",
+						"editable": false
+					}
+				</code>
+			</pre>
+            <div class="mini_info label mb-20">
+                <label>.label in parent</label>
+                <a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
+                <div class="mini_holder">
+                    <input type="text" value="1223" disabled>
+                </div>
+            </div>
+            <div class="mini_info mini_info_square label mb-20">
+                <label>.label + .mini_info_square</label>
+                <a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
+                <div class="mini_holder">
+                    <input type="text" value="add .mini_info_square">
+                </div>
+            </div>
+            <div class="mini_info has_error mb-20">
+                <label>Рабы</label>
+                <a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
+                <div class="mini_holder">
+                    <input type="text" value="error">
+                </div>
+            </div>
+            <div class="mini_info mb-20">
+                <label>Рабы</label>
+                <a href="#" class="item_ico size_1">
+                    <img src="images/circles/example.png" alt="">
+                </a>
+                <div class="mini_holder">
+                    <input type="text" value="1223">
+                </div>
+            </div>
+            <div class="mini_info mb-20">
+                <label>Рабы</label>
+                <div class="mini_holder">
+                    <input type="text" value="1223">
+                </div>
+            </div>
+            <div class="mini_info label mb-20">
+                <label>Рабы</label>
+                <a href="#" class="item_ico size_1">
+                    <img src="images/circles/example.png" alt="">
+                </a>
+                <div class="mini_holder">
+                    <input type="text" value="1223">
+                </div>
+            </div>
+            <hr>
+            <h1>slider</h1>
+            <ul>
+                <li>класс <kbd>has_mini_info</kbd> добавляейт инпут и лейбл</li>
+            </ul>
+            <pre>
+            	<code>
+					{
+						"type": "slider",
+						"label": "",
+						"icon": "/url",
+						"editable": true,
+						"value": 5792,
+						"min": 0,
+						"max": 12512
+					}
+				</code>
+			</pre>
+            <!-- slider  start-->
+            <div class="slider my-30">
+                <div class="mini_info mb-20">
+                    <label>Рабы</label>
+                    <div class="mini_holder">
+                        <input type="text" value="12345">
+                    </div>
+                </div>
+                <div class="slider_holder">
+                    <div class="decor_slider slider_prev"></div>
+                    <div class="slider_bar">
+                        <div class="slider_progress" style="width:50%;">
+                            <div class="handler"></div>
+                        </div>
+                    </div>
+                    <div class="decor_slider slider_next"></div>
+                </div>
+            </div>
+            <!-- slider  End-->
+            <!-- slider  start-->
+            <div class="slider has_mini_info  my-30">
+                <div class="mini_info mb-20">
+                    <label>.has_mini_info</label>
+                    <div class="mini_holder">
+                        <input type="text" value="12345">
+                    </div>
+                </div>
+                <div class="slider_holder">
+                    <div class="decor_slider slider_prev"></div>
+                    <div class="slider_bar">
+                        <div class="slider_progress" style="width:50%;">
+                            <div class="handler"></div>
+                        </div>
+                    </div>
+                    <div class="decor_slider slider_next"></div>
+                </div>
+            </div>
+            <!-- slider  End-->
+            <hr>
+        </div>
+        <h1>checkbox</h1>
+        <ul>
+            <li>есть атрибуты у инпута : <kbd>disabled</kbd> и <kbd>checked</kbd></li>
+            <li>класс <kbd>checkbox_no_label</kbd> убирает блок <kbd>checkbox_label</kbd> его можно и не иметь этот блок с текстом</li>
+        </ul>
+        <pre>
+        	<code>
+				{
+					"type": "checkbox",
+					"label": "Название",
+					"url": "/url",
+					"ajax": true,
+					"value": true,
+					"editable": true
+				}
+			</code>
+		</pre>
+        <div class="py-10">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" checked disabled>
+                    <i class="checkbox_item"></i>
+                    <span class="checkbox_label">lorem lorem lorem</span>
+                </label>
+            </div>
+        </div>
+        <div class="py-10">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox">
+                    <i class="checkbox_item"></i>
+                    <span class="checkbox_label">lorem lorem lorem</span>
+                </label>
+            </div>
+        </div>
+        <div class="py-10">
+            <div class="checkbox checkbox_no_label">
+                <label>
+                    <input type="checkbox">
+                    <i class="checkbox_item"></i>
+                    <span class="checkbox_label">lorem</span>
+                </label>
+            </div>
+        </div>
+        <div class="py-10">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox">
+                    <i class="checkbox_item"></i>
+                    <span class="checkbox_label">Lorem ipsum dolor sit amet, consectetur adipisicing, elit. In eveniet nemo officiis et nisi ducimus quisquam fugiat illum consectetur consequuntur ipsum, doloribus vero optio? Doloremque est beatae libero, sunt! Quia. Lorem ipsum dolor sit amet, consectetur adipisicing, elit. In eveniet nemo officiis et nisi ducimus quisquam fugiat illum consectetur consequuntur ipsum, doloribus vero optio? Doloremque est beatae libero, sunt! Quia.</span>
+                </label>
+            </div>
+        </div>
+        <hr>
+        <h1>select</h1>
+        <ul>
+            <li>класс <kbd>opened</kbd> открывает сам список дропа</li>
+            <li>класс <kbd>select_drop_up</kbd> список дропа вверх</li>
+            <li>класс <kbd>select_100p </kbd> список дропа заполняется ни шрину родителя(по умолчанию ширина авто,изза наполнения , и до ширины родителя)</li>
+            <li>высоту ставим инлайново джеесом на <kbd>panel_holder</kbd> и не забывам про класс <kbd>scroll_js</kbd></li>
+            <li>у списка дропа, на <kbd>li</kbd> может висеть класс <kbd>active</kbd></li>
+        </ul>
+        <pre>
+        	<code>
+				{
+					"type": "select",
+					"label": "Название",
+					"url": "/url",
+					"ajax": true,
+					"value": true,
+					"editable": true,
+					"list": [
+						{
+							"name": "Пункт списка",
+							"value": 01
+						},
+						{
+							"name": "Пункт списка",
+							"value": true
+						},
+						{
+							"name": "Пункт списка",
+							"value": "hello"
+						}
+					]
+				}
+			</code>
+		</pre>
+        <div class="py-30">
+            <div class="select opened">
+                <div class="select_header">
+                    <div class="panel sm centered_corners_none" style="background-image: url(images/panel/bg/aside.png);">
+                        <button class="panel_holder">
+                            <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                            <span>add <i style="color:red;">.opened</i> to parent <i style="color:red;">.select</i> Lorem ipsum dolor sit amet consectetur adipisicing, elit. Consequatur eius corrupti voluptate provident aliquid ipsa, voluptatem autem quasi, nulla, debitis quae vitae temporibus vel. Neque non, eveniet? Voluptatibus, dignissimos recusandae!</span>
+                        </button>
+                        <div class="decor ">
+                            <span class="corner"></span>
+                            <span class="corner right_top"></span>
+                            <span class="corner right_bottom"></span>
+                            <span class="corner left_bottom"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop_down">
+                    <div class="panel grid_column sm centered_corners_none">
+                        <div class="panel_holder p-0">
+                            <div class="panel_content ">
+                                <div class="content_scroll">
+                                    <ul class="etc_drop list-unstyled m-0">
+                                        <li>
+                                            <a href="#">
+                                                <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                <span>lorem</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                <span>Lorem, ipsum dolor sit amet</span>
+                                            </a>
+                                        </li>
+                                        <li class="active">
+                                            <a href="#">
+                                                <span>lorem</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                <span>lorem</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                <span>lorem</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                <span>lorem</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                <span>lorem</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                <span>lorem</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="scrollbar">
+                                    <div class="btn_func arrow_prev"></div>
+                                    <div class="bar">
+                                        <div class="handler"></div>
+                                    </div>
+                                    <div class="btn_func arrow_next"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="decor">
+                            <span class="corner"></span>
+                            <span class="corner right_top"></span>
+                            <span class="corner right_bottom"></span>
+                            <span class="corner left_bottom"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br><br> <br><br> <br><br> <br>
+        <br> <br><br> <br><br> <br><br>
+        <div class="py-30">
+            <div class="select opened select_drop_up" style="max-width:300px;">
+                <div class="select_header">
+                    <div class="panel sm centered_corners_none" style="background-image: url(images/panel/bg/aside.png);">
+                        <button class="panel_holder">
+                            <span>Lorem ipsum <i style="color:red;">.select_drop_up</i>dolor sit amet consectetur adipisicing elit. Aliquid alias iure repudiandae numquam qui fugiat itaque incidunt, maxime omnis provident sint minus rerum, quidem veniam illo laudantium sunt. Hic, quaerat.</span>
+                        </button>
+                        <div class="decor ">
+                            <span class="corner"></span>
+                            <span class="corner right_top"></span>
+                            <span class="corner right_bottom"></span>
+                            <span class="corner left_bottom"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop_down">
+                    <div class="panel grid_column sm centered_corners_none">
+                        <div class="panel_holder p-0 scroll_js" style="max-height: 200px;">
+                            <div class="panel_content ">
+                                <div class="content_scroll">
+                                    <ul class="etc_drop list-unstyled m-0">
+                                        <li>
+                                            <a href="#">
+                                                <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                <span>lorem</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                <span>Lorem</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span>lorem</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                <span>lorem</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                <span>lorem</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                <span>lorem</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                <span>lorem</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                <span>lorem</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="scrollbar">
+                                    <div class="btn_func arrow_prev"></div>
+                                    <div class="bar">
+                                        <div class="handler"></div>
+                                    </div>
+                                    <div class="btn_func arrow_next"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="decor">
+                            <span class="corner"></span>
+                            <span class="corner right_top"></span>
+                            <span class="corner right_bottom"></span>
+                            <span class="corner left_bottom"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br> <br><br> <br><br>
+        <div class="py-30">
+            <div class="select select_100p opened" style="max-width:300px;">
+                <div class="select_header">
+                    <div class="panel sm centered_corners_none" style="background-image: url(images/panel/bg/aside.png);">
+                        <button class="panel_holder">
+                            <span>Lorem ipsum <i style="color:red;">.select_100p</i></span>
+                        </button>
+                        <div class="decor ">
+                            <span class="corner"></span>
+                            <span class="corner right_top"></span>
+                            <span class="corner right_bottom"></span>
+                            <span class="corner left_bottom"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="drop_down">
+                    <div class="panel grid_column sm centered_corners_none">
+                        <div class="panel_holder p-0 scroll_js" style="max-height: 200px;">
+                            <div class="panel_content ">
+                                <div class="content_scroll">
+                                    <ul class="etc_drop list-unstyled m-0">
+                                        <li>
+                                            <a href="#">
+                                                <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                <span>lorem</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                <span>Lorem</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span>lorem</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                <span>lorem</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                <span>lorem</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                <span>lorem</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                <span>lorem</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                <span>lorem</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="scrollbar">
+                                    <div class="btn_func arrow_prev"></div>
+                                    <div class="bar">
+                                        <div class="handler"></div>
+                                    </div>
+                                    <div class="btn_func arrow_next"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="decor">
+                            <span class="corner"></span>
+                            <span class="corner right_top"></span>
+                            <span class="corner right_bottom"></span>
+                            <span class="corner left_bottom"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <hr>
+        <h1>property</h1>
+        <ul>
+            <li>класс<kbd>closed </kbd>должен висеть по умолчанию (на родителе), он не показывает дроп-аккордеон <kbd>.property_holder</kbd></li>
+            <li>К классу <kbd>property_row</kbd> добавить <kbd>col_2</kbd> и будут в 2 строки</li>
+            <li>К классу <kbd>property_row</kbd> добавить <kbd>col_3</kbd> и будут в 3 строки</li>
+        </ul>
+        <pre>
+        	<code>
+				{
+					"type": "property",
+					"name": "Оружейная мастерская",
+					"icon": "https://",
+					"amount": "2411",
+					"people": "650 / 1500",
+					"production": [
+						{
+							"type": "mini_info",
+							"name": "db_name",
+							"label": "",
+							"icon": "https://",
+							"url": "https://",
+							"value": "2411 (+48453)",
+							"editable": false
+						},
+						{
+							"type": "mini_info",
+							"name": "db_name",
+							"label": "",
+							"icon": "https://",
+							"url": "https://",
+							"value": "2411 (+48453)",
+							"editable": false
+						},
+						{
+							"type": "mini_info",
+							"name": "db_name",
+							"label": "",
+							"icon": "https://",
+							"url": "https://",
+							"value": "2411 (+48453)",
+							"editable": false
+						}
+					]
+				}
+			</code>
+		</pre>
+        <div class="py-30" style="width:330px;" id="version_1">
+            <div class="property fold_js">
+                <div class="property_head d-flex align-items-center">
+                    <div class="property_prev square size_4">
+                        <img src="https://picsum.photos/200" alt="">
+                    </div>
+                    <div class="property_details col">
+                        <h3>add .closed to .property</h3>
+                        <div class="property_details_row">
+                            <div class="column">
+                                <div class="mini_info mini_info_square">
+                                    <label>.label in parent</label>
+                                    <a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
+                                    <div class="mini_holder">
+                                        <input type="text" value="2456" disabled="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="mini_info mini_info_square">
+                                    <label>.label in parent</label>
+                                    <a href="#" class="item_ico size_1"></a>
+                                    <div class="mini_holder">
+                                        <input type="text" value="1500 / 1500" disabled="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="property_section">
+                    <div class="property_title d-flex align-items-center pb-4">
+                        <div class="col">
+                            <h3>Мясо свиней:</h3>
+                        </div>
+                        <div class="col-auto">
+                            <button type="button" class="switcher down"></button>
+                        </div>
+                    </div>
+                    <div class="property_holder">
+                        <div class="property_info">
+                            <h4>at .property_row add <span style="color:red;">.col_2</span></h4>
+                            <div class="property_row col_2">
+                                <div class="mini_info">
+                                    <label>.label in parent</label>
+                                    <a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
+                                    <div class="mini_holder">
+                                        <input type="text" value="1223" disabled="">
+                                    </div>
+                                </div>
+                                <div class="mini_info">
+                                    <label>.label in parent</label>
+                                    <a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
+                                    <div class="mini_holder">
+                                        <input type="text" value="1223" disabled="">
+                                    </div>
+                                </div>
+                                <div class="mini_info">
+                                    <label>.label in parent</label>
+                                    <a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
+                                    <div class="mini_holder">
+                                        <input type="text" value="1223" disabled="">
+                                    </div>
+                                </div>
+                                <div class="mini_info">
+                                    <label>.label in parent</label>
+                                    <a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
+                                    <div class="mini_holder">
+                                        <input type="text" value="1223" disabled="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="property_info">
+                            <h4>at .property_row add <span style="color:red;">.col_3</span></h4>
+                            <div class="property_row col_3">
+                                <div class="mini_info">
+                                    <label>.label in parent</label>
+                                    <a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
+                                    <div class="mini_holder">
+                                        <input type="text" value="1223" disabled="">
+                                    </div>
+                                </div>
+                                <div class="mini_info">
+                                    <label>.label in parent</label>
+                                    <a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
+                                    <div class="mini_holder">
+                                        <input type="text" value="1223" disabled="">
+                                    </div>
+                                </div>
+                                <div class="mini_info">
+                                    <label>.label in parent</label>
+                                    <a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
+                                    <div class="mini_holder">
+                                        <input type="text" value="1223" disabled="">
+                                    </div>
+                                </div>
+                                <div class="mini_info">
+                                    <label>.label in parent</label>
+                                    <a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
+                                    <div class="mini_holder">
+                                        <input type="text" value="1223" disabled="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h1>text</h1>
+        <pre>
+        	<code>
+				{
+					"type": "text",
+					"content": "HTML"
+				}
+			</code>
+		</pre>
+        <div class="py-10">
+            <p>Lorem ipsum dolor sit amet, <a href="#">consectetur</a> adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <ul>
+                <li>hello</li>
+                <li>world</li>
+            </ul>
+            <p>Duis aute irure <strong>dolor in reprehenderit</strong> in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+        <hr>
+        <h1>button</h1>
+        <ul>
+            <li>по умолчанию - бюольшая кнопка</li>
+            <li>классы <kbd>md</kbd> и <kbd>sm</kbd> - регулирование размера</li>
+        </ul>
+        <pre>
+        	<code>
+				{
+					"type": "button",
+					"name": "Название кнопки",
+					"url": "/url",
+					"ajax": true
+				}
+			</code>
+		</pre>
+        <br>
+        <a href="#" class="btn"><span>Кнопка default</span></a>
+        <a href="#" class="btn md"><span>Кнопка .md</span></a>
+        <a href="#" class="btn sm"><span>Кнопка .md</span></a>
+        <a href="#" class="btn">
+            <span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="svg-inline--fa fa-anchor fa-w-18">
+                    <path fill="currentColor" d="M12.971 352h32.394C67.172 454.735 181.944 512 288 512c106.229 0 220.853-57.38 242.635-160h32.394c10.691 0 16.045-12.926 8.485-20.485l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0l-67.029 67.029c-7.56 7.56-2.206 20.485 8.485 20.485h35.146c-20.29 54.317-84.963 86.588-144.117 94.015V256h52c6.627 0 12-5.373 12-12v-40c0-6.627-5.373-12-12-12h-52v-5.47c37.281-13.178 63.995-48.725 64-90.518C384.005 43.772 341.605.738 289.37.01 235.723-.739 192 42.525 192 96c0 41.798 26.716 77.35 64 90.53V192h-52c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h52v190.015c-58.936-7.399-123.82-39.679-144.117-94.015h35.146c10.691 0 16.045-12.926 8.485-20.485l-67.029-67.029c-4.686-4.686-12.284-4.686-16.971 0L4.485 331.515C-3.074 339.074 2.28 352 12.971 352zM288 64c17.645 0 32 14.355 32 32s-14.355 32-32 32-32-14.355-32-32 14.355-32 32-32z"></path>
+                </svg>
+                Кнопка с иконкой
+            </span>
+        </a>
+        <hr>
+        <h1>icon</h1>
+        <ul>
+            <li>у кругов класс <kbd>circle</kbd> . у квадратов класс <kbd>square</kbd></li>
+            <li>есть 5 размеров. (см ниже) самый большой это класс <kbd>size_5</kbd> самый маленький <kbd>size_1</kbd>.по умолчанию без класса модификатора - самый большой = 55px</li>
+            <li>что бы была кликабельность, вместо дива <kbd>div.circle</kbd> сделать <kbd>a.circle</kbd></li>
+            <li>какие-то эмблемы(круги. логика другая. сверху набрасывается как бы маска поверх картинки) добавить класс <kbd>emblem</kbd>. картинки должны быть квадраты!!!!! <br>с размерами - те же классы модификаторы. <br><strong class="red">по умолчанию емблемы с внутренней тенью!!!!!</strong> <br> <strong>Эмблемы молгут быть без тени - <kbd>no_shadow </kbd></strong> <br>эмблемы работают только для <kbd>circle</kbd></li>
+            <li>адаптивные классы на круги и квадраты- всё как у бутстрапа модификаторы <kbd>size_1 size_md_3 size_lg_4 size_xl_5</kbd>в самом <span class="red">мелком</span> разрешени <kbd>size_1</kbd> , в <span class="red">xl и до бесконечности</span> <kbd>size_5</kbd></li>
+            <li></li>
+        </ul>
+        <pre>
+        	<code>
+				{
+					"type": "icon",
+					"url": "/url",
+					"ajax": false,
+					"round": true
+				}
+			</code>
+		</pre>
+        <br>
+        <br>
+        <br>
+        <div class="d-flex text-white">
+            <div class="mx-10">
+                size_5(circle) = 55px
+                <div class="circle size_5"><img src="images/circles/example.png" alt=""></div>
+            </div>
+            <div class="mx-10">
+                .size_4 = 50px
+                <a href="#" class="square size_4"><img src="images/circles/example.png" alt=""></a>
+            </div>
+            <div class="mx-10">
+                .size_3 ~ 45px
+                <div class="circle size_3"><img src="images/circles/example.png" alt=""></div>
+            </div>
+            <div class="mx-10">
+                .size_2 ~ 38.5px
+                <div class="circle size_2"><img src="images/circles/example.png" alt=""></div>
+            </div>
+            <div class="mx-10">
+                .size_1 = 33px
+                <div class="circle size_1"><img src="images/circles/example.png" alt=""></div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h4>ЭМБЛЕМЫ</h4>
+        <div class="circle emblem size_5"><img src="images/circles/emblem.png" alt=""></div>
+        <a href="#" class="circle emblem size_3"><img src="images/circles/emblem.png" alt=""></a>
+        <a href="#" class="circle emblem no_shadow"><img src="images/circles/emblem.png" alt=""></a>
+        <br>
+        <br>
+        <br>
+        <h4>Адаптив</h4>
+        <a href="#" class="circle size_1 size_md_3 size_lg_4 size_xl_5"></a>
+        <a href="#" class="square  size_md_3 size_lg_4 size_xl_1"></a>
+        <br>
+        <br>
+        <hr>
+        <h1>tabs</h1>
+        <pre>
+        	<code>
+				{
+					"type": "tabs",
+					"tabs": [
+						{
+							"name": "Здания",
+							"icon": "https://",
+							"content": []
+						},
+						{
+							"name": "Здания",
+							"icon": "https://",
+							"content": []
+						},
+						{
+							"name": "Здания",
+							"icon": "https://",
+							"content": []
+						}
+					]
+				}
+			</code>
+		</pre>
+        <hr>
+        <h1>section</h1>
+        <ul>
+            <li>2 варианта структуры (когда компоненты, под переключателем(стрелка), на 100% и с отсупом от стрелки) <a class="red" href="#version_1">вариант 1</a> и  <a class="red" href="#version_2">вариант 2</a></li>
+            <!-- <li></li>
+            <li>класс <kbd>short</kbd> на <kbd>section_accordion</kbd> при классе <kbd>closed</kbd> делает блок <kbd>.accordion_hidden_part</kbd> высотой в 25px</li>
+            <li>если класса <kbd>short</kbd> нету, то при <kbd>closed</kbd> , блок <kbd>accordion_hidden_part</kbd> максимум 200px и затеняется</li> -->
+            <li> класс <kbd>closed</kbd>, на <kbd>section_accordion </kbd>, делает блок<kbd>accordion_hidden_part</kbd>-  обрезаным по высоте на 200px и с тенями</li>
+            <li>класс <kbd>short</kbd>,на блоке <kbd>section_accordion </kbd> , делает блок <kbd>accordion_hidden_part</kbd> -  высотой в 25px</li>
+        </ul>
+        <pre>
+        	<code>
+				{
+					"type": "section",
+					"name": "Ресурсы",
+					"components": []
+				}
+			</code>
+		</pre>
+        <div class="section_accordion closed d-flex pt-10  align-items-start" style="width:285px;">
+            <div class="col accordion_hidden_part">
+                <h3 class="fz_20 mb-12">Производства</h3>
+                <a href="#" class="btn md px-15 mr-5"><span>Создать</span></a>
+                <a href="#" class="btn md px-15"><span>Управление</span></a>
+                <ul class="list-unstyled py-15">
+                    <li>Лесопилка: 38 зданий (630 людей)</li>
+                    <li>Сад: 5 полей (35 людей)</li>
+                    <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                    <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                    <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                    <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                    <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                    <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                    <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                    <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                    <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                </ul>
+            </div>
+            <div class="col-auto pl-5">
+                <button type="button" class="switcher down"></button>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div style="background: green;">
+            <div class="property fold_js" style="width:285px;" >
+                <div class="property_head d-flex align-items-center">
+                    <div class="property_prev square size_4">
+                        <img src="https://picsum.photos/200" alt="">
+                    </div>
+                    <div class="property_details col">
+                        <h3>add .closed to .property</h3>
+                        <div class="property_details_row">
+                            <div class="column">
+                                <div class="mini_info mini_info_square">
+                                    <label>.label in parent</label>
+                                    <a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
+                                    <div class="mini_holder">
+                                        <input type="text" value="2456" disabled="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="mini_info mini_info_square">
+                                    <label>.label in parent</label>
+                                    <a href="#" class="item_ico size_1"></a>
+                                    <div class="mini_holder">
+                                        <input type="text" value="1500 / 1500" disabled="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section_accordion closed d-flex pt-10  align-items-start">
+                    <div class="col accordion_hidden_part">
+                        <h3 class="fz_20 mb-12">Производства</h3>
+                        <a href="#" class="btn md px-15 mr-5"><span>Создать</span></a>
+                        <a href="#" class="btn md px-15"><span>Управление</span></a>
+                        <ul class="list-unstyled py-15">
+                            <li>Лесопилка: 38 зданий (630 людей)</li>
+                            <li>Сад: 5 полей (35 людей)</li>
+                            <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                            <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                            <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                            <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                            <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                            <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                            <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                            <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                            <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                        </ul>
+                    </div>
+                    <div class="col-auto pl-5">
+                        <button type="button" class="switcher down"></button>
+                    </div>
+                </div>
+                <div class="section_accordion closed short d-flex pt-10 align-items-start">
+                    <div class="col accordion_hidden_part">
+                        <div class="d-flex  mx-n3 flex-wrap">
+                            <div class="col-auto px-3 pb-6">
+                                <a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
+                            </div>
+                            <div class="col-auto px-3 pb-6">
+                                <a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
+                            </div>
+                            <div class="col-auto px-3 pb-6">
+                                <a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
+                            </div>
+                            <div class="col-auto px-3 pb-6">
+                                <a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
+                            </div>
+                            <div class="col-auto px-3 pb-6">
+                                <a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
+                            </div>
+                            <div class="col-auto px-3 pb-6">
+                                <a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
+                            </div>
+                            <div class="col-auto px-3 pb-6">
+                                <a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
+                            </div>
+                            <div class="col-auto px-3 pb-6">
+                                <a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
+                            </div>
+                            <div class="col-auto px-3 pb-6">
+                                <a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
+                            </div>
+                            <div class="col-auto px-3 pb-6">
+                                <a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
+                            </div>
+                            <div class="col-auto px-3 pb-6">
+                                <a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
+                            </div>
+                            <div class="col-auto px-3 pb-6">
+                                <a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
+                            </div>
+                            <div class="col-auto px-3 pb-6">
+                                <a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
+                            </div>
+                            <div class="col-auto px-3 pb-6">
+                                <a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
+                            </div>
+                            <div class="col-auto px-3 pb-6">
+                                <a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
+                            </div>
+                            <div class="col-auto px-3 pb-6">
+                                <a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
+                            </div>
+                            <div class="col-auto px-3 pb-6">
+                                <a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
+                            </div>
+                            <div class="col-auto px-3 pb-6">
+                                <a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
+                            </div>
+                            <div class="col-auto px-3 pb-6">
+                                <a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
+                            </div>
+                            <div class="col-auto px-3 pb-6">
+                                <a href="#" class="circle size_4 size_xl_5"><img src="images/circles/example.png" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto pl-5">
+                        <button type="button" class="switcher down"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div style="background: indigo;" id="version_2">
+            <div class="property fold_js">
+                <div class="property_head d-flex align-items-center">
+                    <div class="property_prev square size_4">
+                        <img src="https://picsum.photos/200" alt="">
+                    </div>
+                    <div class="property_details col">
+                        <h3>add .closed to .property</h3>
+                        <div class="property_details_row">
+                            <div class="column">
+                                <div class="mini_info mini_info_square">
+                                    <label>.label in parent</label>
+                                    <a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
+                                    <div class="mini_holder">
+                                        <input type="text" value="2456" disabled="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="mini_info mini_info_square">
+                                    <label>.label in parent</label>
+                                    <a href="#" class="item_ico size_1"></a>
+                                    <div class="mini_holder">
+                                        <input type="text" value="1500 / 1500" disabled="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section_accordion closed d-flex pt-10  align-items-start">
+                    <div class="col accordion_hidden_part">
+                        <h3 class="pb-10">Производства</h3>
+                        <h4>at .property_row add <span style="color:red;">.col_2</span></h4>
+                        <div class="property_row col_2">
+                            <div class="mini_info">
+                                <label>.label in parent</label>
+                                <a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
+                                <div class="mini_holder">
+                                    <input type="text" value="1223" disabled="">
+                                </div>
+                            </div>
+                            <div class="mini_info">
+                                <label>.label in parent</label>
+                                <a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
+                                <div class="mini_holder">
+                                    <input type="text" value="1223" disabled="">
+                                </div>
+                            </div>
+                            <div class="mini_info">
+                                <label>.label in parent</label>
+                                <a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
+                                <div class="mini_holder">
+                                    <input type="text" value="1223" disabled="">
+                                </div>
+                            </div>
+                            <div class="mini_info">
+                                <label>.label in parent</label>
+                                <a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
+                                <div class="mini_holder">
+                                    <input type="text" value="1223" disabled="">
+                                </div>
+                            </div>
+                        </div>
+                        <h4>at .property_row add <span style="color:red;">.col_3</span></h4>
+                        <div class="property_row col_3">
+                                <div class="mini_info">
+                                    <label>.label in parent</label>
+                                    <a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
+                                    <div class="mini_holder">
+                                        <input type="text" value="1223" disabled="">
+                                    </div>
+                                </div>
+                                <div class="mini_info">
+                                    <label>.label in parent</label>
+                                    <a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
+                                    <div class="mini_holder">
+                                        <input type="text" value="1223" disabled="">
+                                    </div>
+                                </div>
+                                <div class="mini_info">
+                                    <label>.label in parent</label>
+                                    <a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
+                                    <div class="mini_holder">
+                                        <input type="text" value="1223" disabled="">
+                                    </div>
+                                </div>
+                                <div class="mini_info">
+                                    <label>.label in parent</label>
+                                    <a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
+                                    <div class="mini_holder">
+                                        <input type="text" value="1223" disabled="">
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="col-auto pl-5">
+                        <button type="button" class="switcher down"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/map/ui.js"></script>
+</body>
 
-							</div>
-							<div class="decor">
-								<span class="corner"></span>
-								<span class="corner right_top"></span>
-								<span class="corner right_bottom"></span>
-								<span class="corner left_bottom"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<br> <br><br> <br><br>
-			<div class="py-30">
-				<div class="select select_100p opened" style="max-width:300px;">
-					<div class="select_header">
-						<div class="panel sm centered_corners_none" style="background-image: url(images/panel/bg/aside.png);">
-							<button class="panel_holder">
-								<span>Lorem ipsum <i style="color:red;">.select_100p</i></span>
-							</button>
-							<div class="decor ">
-								<span class="corner"></span>
-								<span class="corner right_top"></span>
-								<span class="corner right_bottom"></span>
-								<span class="corner left_bottom"></span>
-							</div>
-						</div>
-					</div>
-					<div class="drop_down">
-						<div class="panel grid_column sm centered_corners_none">
-							<div class="panel_holder p-0 scroll_js" style="max-height: 200px;">
-								<div class="panel_content ">
-									<div class="content_scroll">
-										<ul class="etc_drop list-unstyled m-0">
-											<li>
-												<a href="#">
-													<i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-													<span>lorem</span>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-													<span>Lorem</span>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<span>lorem</span>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-													<span>lorem</span>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-													<span>lorem</span>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-													<span>lorem</span>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-													<span>lorem</span>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-													<span>lorem</span>
-												</a>
-											</li>
-										</ul>
-									</div>
-									<div class="scrollbar">
-										<div class="btn_func arrow_prev"></div>
-										<div class="bar">
-											<div class="handler"></div>
-										</div>
-										<div class="btn_func arrow_next"></div>
-									</div>
-								</div>
-
-							</div>
-							<div class="decor">
-								<span class="corner"></span>
-								<span class="corner right_top"></span>
-								<span class="corner right_bottom"></span>
-								<span class="corner left_bottom"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<hr>
-			<h1>property</h1>
-			<ul>
-				<li>класс<kbd>closed </kbd>должен висеть по умолчанию (на родителе), он не показывает дроп-аккордеон <kbd>.property_holder</kbd></li>
-				<li>К классу <kbd>property_row</kbd> добавить <kbd>col_2</kbd> и будут в 2 строки</li>
-				<li>К классу <kbd>property_row</kbd> добавить <kbd>col_3</kbd> и будут в 3 строки</li>
-			</ul>
-			<pre><code>
-{
-	"type": "property",
-	"name": "Оружейная мастерская",
-	"icon": "https://",
-	"amount": "2411",
-	"people": "650 / 1500",
-	"production": [
-		{
-			"type": "mini_info",
-			"name": "db_name",
-			"label": "",
-			"icon": "https://",
-			"url": "https://",
-			"value": "2411 (+48453)",
-			"editable": false
-		},
-		{
-			"type": "mini_info",
-			"name": "db_name",
-			"label": "",
-			"icon": "https://",
-			"url": "https://",
-			"value": "2411 (+48453)",
-			"editable": false
-		},
-		{
-			"type": "mini_info",
-			"name": "db_name",
-			"label": "",
-			"icon": "https://",
-			"url": "https://",
-			"value": "2411 (+48453)",
-			"editable": false
-		}
-	]
-}
-			</code></pre>
-			<div class="py-30" style="width:330px;">
-				<div class="property fold_js">
-					<div class="property_head d-flex align-items-center">
-						<div class="property_prev square size_4">
-							<img src="https://picsum.photos/200" alt="">
-						</div>
-						<div class="property_details col">
-							<h3>add .closed to .property</h3>
-							<div class="property_details_row">
-								<div class="column">
-									<div class="mini_info mini_info_square">
-										<label>.label in parent</label>
-										<a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
-										<div class="mini_holder">
-											<input type="text" value="2456" disabled="">
-										</div>
-									</div>
-								</div>
-								<div class="column">
-									<div class="mini_info mini_info_square">
-										<label>.label in parent</label>
-										<a href="#" class="item_ico size_1"></a>
-										<div class="mini_holder">
-											<input type="text" value="1500 / 1500" disabled="">
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="property_section">
-						<div class="property_title d-flex align-items-center pb-4">
-							<div class="col">
-								<h3>Мясо свиней:</h3>
-							</div>
-							<div class="col-auto">
-								<button type="button" class="switcher down"></button>
-							</div>
-						</div>
-						<div class="property_holder">
-							<div class="property_info">
-								<h4>at .property_row add <span style="color:red;">.col_2</span></h4>
-								<div class="property_row col_2">
-									<div class="mini_info">
-										<label>.label in parent</label>
-										<a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
-										<div class="mini_holder">
-											<input type="text" value="1223" disabled="">
-										</div>
-									</div>
-									<div class="mini_info">
-										<label>.label in parent</label>
-										<a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
-										<div class="mini_holder">
-											<input type="text" value="1223" disabled="">
-										</div>
-									</div>
-									<div class="mini_info">
-										<label>.label in parent</label>
-										<a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
-										<div class="mini_holder">
-											<input type="text" value="1223" disabled="">
-										</div>
-									</div>
-									<div class="mini_info">
-										<label>.label in parent</label>
-										<a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
-										<div class="mini_holder">
-											<input type="text" value="1223" disabled="">
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="property_info">
-								<h4>at .property_row add  <span style="color:red;">.col_3</span></h4>
-								<div class="property_row col_3">
-									<div class="mini_info">
-										<label>.label in parent</label>
-										<a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
-										<div class="mini_holder">
-											<input type="text" value="1223" disabled="">
-										</div>
-									</div>
-									<div class="mini_info">
-										<label>.label in parent</label>
-										<a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
-										<div class="mini_holder">
-											<input type="text" value="1223" disabled="">
-										</div>
-									</div>
-									<div class="mini_info">
-										<label>.label in parent</label>
-										<a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
-										<div class="mini_holder">
-											<input type="text" value="1223" disabled="">
-										</div>
-									</div>
-									<div class="mini_info">
-										<label>.label in parent</label>
-										<a href="#" class="item_ico size_1"><img src="images/circles/example.png" alt=""></a>
-										<div class="mini_holder">
-											<input type="text" value="1223" disabled="">
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<hr>
-			<h1>text</h1>
-			<pre><code>
-{
-	"type": "text",
-	"content": "HTML"
-}
-			</code></pre>
-			<div class="py-10">
-				<p>Lorem ipsum dolor sit amet, <a href="#">consectetur</a> adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-				<ul>
-					<li>hello</li>
-					<li>world</li>
-				</ul>
-				<p>Duis aute irure <strong>dolor in reprehenderit</strong> in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			</div>
-			<hr>
-			<h1>button</h1>
-			<pre><code>
-{
-	"type": "button",
-	"name": "Название кнопки",
-	"url": "/url",
-	"ajax": true
-}
-			</code></pre>
-			<hr>
-			<h1>icon</h1>
-			<pre><code>
-{
-	"type": "icon",
-	"url": "/url",
-	"ajax": false,
-	"round": true
-}
-			</code></pre>
-			<hr>
-			<h1>tabs</h1>
-			<pre><code>
-{
-	"type": "tabs",
-	"tabs": [
-		{
-			"name": "Здания",
-			"icon": "https://",
-			"content": []
-		},
-		{
-			"name": "Здания",
-			"icon": "https://",
-			"content": []
-		},
-		{
-			"name": "Здания",
-			"icon": "https://",
-			"content": []
-		}
-	]
-}
-			</code></pre>
-			<hr>
-			<h1>section</h1>
-			<pre><code>
-{
-	"type": "section",
-	"name": "Ресурсы",
-	"components": []
-}
-			</code></pre>
-		</div>
-	</body>
 </html>
