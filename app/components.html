@@ -59,9 +59,9 @@
 				</div>
 				<div class="mini_info mb-20">
 					<label>Рабы</label>
-					<div class="item_ico size_1">
+					<a href="#" class="item_ico size_1">
 						<img src="images/circles/example.png" alt="">
-					</div>
+					</a>
 					<div class="mini_holder">
 						<input type="text" value="1223">
 					</div>
@@ -74,15 +74,18 @@
 				</div>
 				<div class="mini_info label mb-20">
 					<label>Рабы</label>
-					<div class="item_ico size_1">
+					<a href="#" class="item_ico size_1">
 						<img src="images/circles/example.png" alt="">
-					</div>
+					</a>
 					<div class="mini_holder">
 						<input type="text" value="1223">
 					</div>
 				</div>
 				<hr>
 				<h1>slider</h1>
+				<ul>
+					<li>класс <kbd>has_mini_info</kbd> добавляейт инпут и лейбл</li>
+				</ul>
 				<pre><code>
 {
 	"type": "slider",
@@ -99,7 +102,7 @@
 					<div class="mini_info mb-20">
 						<label>Рабы</label>
 						<div class="mini_holder">
-							<input type="text" value="1223">
+							<input type="text" value="12345">
 						</div>
 					</div>
 					<div class="slider_holder">
@@ -118,7 +121,7 @@
 					<div class="mini_info mb-20">
 						<label>.has_mini_info</label>
 						<div class="mini_holder">
-							<input type="text" value="1223">
+							<input type="text" value="12345">
 						</div>
 					</div>
 					<div class="slider_holder">
@@ -135,6 +138,10 @@
 				<hr>
 			</div>
 			<h1>checkbox</h1>
+			<ul>
+				<li>есть атрибуты у инпута : <kbd>disabled</kbd> и <kbd>checked</kbd></li>
+				<li>класс <kbd>checkbox_no_label</kbd> убирает блок <kbd>checkbox_label</kbd> его можно и не иметь этот блок с текстом</li>
+			</ul>
 			<pre><code>
 {
 	"type": "checkbox",
@@ -147,30 +154,49 @@
 			</code></pre>
 			<div class="py-10">
 				<div class="checkbox">
-					<input type="checkbox" id="f1s" checked disabled>
-					<label for="f1s">disabled checked</label>
+					<label>
+						<input type="checkbox" checked disabled>
+						<i class="checkbox_item"></i>
+						<span class="checkbox_label">lorem lorem lorem</span>
+					</label>
 				</div>
 			</div>
 			<div class="py-10">
 				<div class="checkbox">
-					<input type="checkbox" id="f1">
-					<label for="f1">lorem</label>
+					<label>
+						<input type="checkbox">
+						<i class="checkbox_item"></i>
+						<span class="checkbox_label">lorem lorem lorem</span>
+					</label>
+				</div>
+			</div>
+			<div class="py-10">
+				<div class="checkbox checkbox_no_label">
+					<label>
+						<input type="checkbox">
+						<i class="checkbox_item"></i>
+						<span class="checkbox_label">lorem</span>
+					</label>
 				</div>
 			</div>
 			<div class="py-10">
 				<div class="checkbox">
-					<input type="checkbox" id="f11">
-					<label for="f11"></label>
-				</div>
-			</div>
-			<div class="py-10">
-				<div class="checkbox">
-					<input type="checkbox" id="f1f1">
-					<label for="f1f1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nostrum excepturi quod expedita animi voluptates nisi in eligendi eos voluptate consequuntur quas, autem? Consectetur doloremque quos facere odio repudiandae voluptate?Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nostrum excepturi quod expedita animi voluptates nisi in eligendi eos voluptate consequuntur quas, autem? Consectetur doloremque quos facere odio repudiandae voluptate?</label>
+					<label>
+						<input type="checkbox">
+						<i class="checkbox_item"></i>
+						<span class="checkbox_label">Lorem ipsum dolor sit amet, consectetur adipisicing, elit. In eveniet nemo officiis et nisi ducimus quisquam fugiat illum consectetur consequuntur ipsum, doloribus vero optio? Doloremque est beatae libero, sunt! Quia. Lorem ipsum dolor sit amet, consectetur adipisicing, elit. In eveniet nemo officiis et nisi ducimus quisquam fugiat illum consectetur consequuntur ipsum, doloribus vero optio? Doloremque est beatae libero, sunt! Quia.</span>
+					</label>
 				</div>
 			</div>
 			<hr>
 			<h1>select</h1>
+			<ul>
+				<li>класс <kbd>opened</kbd> открывает сам список дропа</li>
+				<li>класс <kbd>select_drop_up</kbd> список дропа вверх</li>
+				<li>класс <kbd>select_100p </kbd> список дропа заполняется ни шрину родителя(по умолчанию ширина авто,изза наполнения , и до ширины родителя)</li>
+				<li>высоту ставим инлайново джеесом на <kbd>panel_holder</kbd> и не забывам про класс <kbd>scroll_js</kbd></li>
+				<li>у списка дропа, на <kbd>li</kbd> может висеть класс <kbd>active</kbd></li>
+			</ul>
 			<pre><code>
 {
 	"type": "select",
@@ -229,7 +255,7 @@
 													<span>Lorem, ipsum dolor sit amet</span>
 												</a>
 											</li>
-											<li>
+											<li class="active">
 												<a href="#">
 													<span>lorem</span>
 												</a>
@@ -483,6 +509,11 @@
 			<br>
 			<hr>
 			<h1>property</h1>
+			<ul>
+				<li>класс<kbd>closed </kbd>должен висеть по умолчанию (на родителе), он не показывает дроп-аккордеон <kbd>.property_holder</kbd></li>
+				<li>К классу <kbd>property_row</kbd> добавить <kbd>col_2</kbd> и будут в 2 строки</li>
+				<li>К классу <kbd>property_row</kbd> добавить <kbd>col_3</kbd> и будут в 3 строки</li>
+			</ul>
 			<pre><code>
 {
 	"type": "property",
@@ -522,13 +553,13 @@
 }
 			</code></pre>
 			<div class="py-30" style="width:330px;">
-				<div class="property closed fold_js">
+				<div class="property fold_js">
 					<div class="property_head d-flex align-items-center">
 						<div class="property_prev square size_4">
 							<img src="https://picsum.photos/200" alt="">
 						</div>
 						<div class="property_details col">
-							<h3>del .closed to .property</h3>
+							<h3>add .closed to .property</h3>
 							<div class="property_details_row">
 								<div class="column">
 									<div class="mini_info mini_info_square">
@@ -560,7 +591,7 @@
 								<button type="button" class="switcher down"></button>
 							</div>
 						</div>
-						<div class="property_holder toggle_content_js">
+						<div class="property_holder">
 							<div class="property_info">
 								<h4>at .property_row add <span style="color:red;">.col_2</span></h4>
 								<div class="property_row col_2">

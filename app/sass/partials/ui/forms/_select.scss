@@ -47,6 +47,12 @@
 		width: auto;
 		.etc_drop {
 			li{
+				&.active{
+					background: none;
+					>a {
+						background-color: #2f1405;
+					}
+				}
 				> a{
 					padding: 6px 12px 9px;
 					display: flex;
