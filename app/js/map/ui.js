@@ -6,9 +6,11 @@ window.ui.bottom = new Bottom('.panel_army');
 
 new CustomScroll();
 new CustomAccordion();
+new Tabs();
 
 function Modes(selector) {
     const elem = $(selector);
+    if (!elem) return;
     const list = elem.querySelector('.panel_holder');
     const buttons = Array.from(list.children);
 
@@ -24,6 +26,7 @@ function Modes(selector) {
 function City(selector) {
 
     const elem = $(selector);
+    if (!elem) return;
     const currentCityNameContainer = elem.querySelector('.panel_holder > .part_txt');
     const currentCityName = currentCityNameContainer.querySelector('h3');
 
@@ -76,9 +79,13 @@ function City(selector) {
 function Aside(selector) {
 
     const elem = $(selector);
+    if (!elem) return;
     const closeBtn = elem.querySelector('.close_btn');
+    const container = $('div#field_map');
 
     if (closeBtn) closeBtn.onclick = close;
+
+    container.addEventListener('map:click:left:response', mapClickSolver);
 
     this.close = close;
 
@@ -87,11 +94,18 @@ function Aside(selector) {
         elem.style.display = 'none';
 
     }
+    function mapClickSolver(event) {
+
+        console.log(JSON.parse(event.detail));
+
+    }
+
 
 }
 function Bottom(selector) {
 
     const elem = $(selector);
+    if (!elem) return;
     const panelname = elem.querySelector('#paneltitle');
 
     enableRenaming(panelname);
@@ -305,6 +319,35 @@ function enableRenaming(element) {
                     });
                 }
             });
+
+    }
+
+}
+function Tabs() {
+
+    const allTabs = $$('.tab_section');
+
+    allTabs.forEach(tab => new Tab(tab));
+
+    function Tab(elem) {
+
+        const navTabs = elem.children[0].firstElementChild.children;
+        const content = elem.children[1];
+
+        [...navTabs].forEach(tab => {
+            tab.onclick = ev => {
+                const tabID = tab.firstElementChild.getAttribute('href');
+
+                for (const contentPane of content.children) {
+                    contentPane.classList.remove('active');
+                }
+                for (const tabBtn of navTabs) {
+                    tabBtn.classList.remove('active');
+                }
+                tab.classList.add('active');
+                content.querySelector(tabID).classList.add('active');
+            }
+        });
 
     }
 
