@@ -1074,9 +1074,13 @@ a.circle, button.circle, .btn_func, .handler { -webkit-transition: var(--animati
 
 a.circle:hover, button.circle:hover, .btn_func:hover, .handler:hover { -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); -webkit-filter: saturate(2) brightness(1.5); filter: saturate(2) brightness(1.5); }
 
+a.circle.active, button.circle.active, .btn_func.active, .handler.active { -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); -webkit-filter: saturate(2) brightness(1.5); filter: saturate(2) brightness(1.5); }
+
 a.square, button.square { -webkit-transition: var(--animation_static); -o-transition: var(--animation_static); transition: var(--animation_static); }
 
 a.square:hover, button.square:hover { -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); -webkit-filter: saturate(2) brightness(1.5); filter: saturate(2) brightness(1.5); }
+
+a.square.active, button.square.active { -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); -webkit-filter: saturate(2) brightness(1.5); filter: saturate(2) brightness(1.5); }
 
 button.actions_item img { -webkit-transition: var(--animation_static); -o-transition: var(--animation_static); transition: var(--animation_static); }
 
@@ -1344,6 +1348,24 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 .drop_down .scrollbar { top: 10px; bottom: 10px; height: calc(100% - 20px); right: 23px; }
 
 .select .drop_down .scrollbar { right: 0; }
+
+.tab_section { overflow: hidden; }
+
+.tab_nav ul { padding: 0 50px; }
+
+.tab_nav ul li { width: 100px; height: 90px; text-align: center; margin: 0 6px; }
+
+.tab_nav ul li.active a { color: #000; position: relative; pointer-events: none; }
+
+.tab_nav ul li.active a:before, .tab_nav ul li.active a:after { content: ""; width: 99999px; height: 10px; background: red; position: absolute; bottom: 0; right: 100%; }
+
+.tab_nav ul li.active a:after { right: auto; left: 100%; }
+
+.tab_nav ul li a { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; height: 100%; border: 10px solid red; border-bottom: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+
+.tab_pane { display: none; }
+
+.tab_pane.active { display: block; }
 
 .scroll_js .content_scroll { -ms-overflow-style: none; scrollbar-width: none; }
 

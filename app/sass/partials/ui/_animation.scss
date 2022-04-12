@@ -25,6 +25,9 @@ a.circle,button.circle,.btn_func,.handler{
 	&:hover{
 		@include hover;
 	}
+	&.active{
+		@include hover;
+	}
 }
 a.square,button.square{
 	transition: var(--animation_static);
@@ -36,6 +39,9 @@ a.square,button.square{
 		// img{
 		// 	@include hover;
 		// }
+	}
+	&.active{
+		@include hover;
 	}
 }
 button.actions_item{

@@ -848,7 +848,7 @@
             <li>что бы была кликабельность, вместо дива <kbd>div.circle</kbd> сделать <kbd>a.circle</kbd></li>
             <li>какие-то эмблемы(круги. логика другая. сверху набрасывается как бы маска поверх картинки) добавить класс <kbd>emblem</kbd>. картинки должны быть квадраты!!!!! <br>с размерами - те же классы модификаторы. <br><strong class="red">по умолчанию емблемы с внутренней тенью!!!!!</strong> <br> <strong>Эмблемы молгут быть без тени - <kbd>no_shadow </kbd></strong> <br>эмблемы работают только для <kbd>circle</kbd></li>
             <li>адаптивные классы на круги и квадраты- всё как у бутстрапа модификаторы <kbd>size_1 size_md_3 size_lg_4 size_xl_5</kbd>в самом <span class="red">мелком</span> разрешени <kbd>size_1</kbd> , в <span class="red">xl и до бесконечности</span> <kbd>size_5</kbd></li>
-            <li></li>
+            <li>если добавить класс <kbd>.active</kbd> на круг или квадрат, то будет подсвечивание</li>
         </ul>
         <pre>
         	<code>
@@ -893,6 +893,8 @@
         <div class="circle emblem size_5"><img src="/images/map/circles/emblem.png" alt=""></div>
         <a href="#" class="circle emblem size_3"><img src="/images/map/circles/emblem.png" alt=""></a>
         <a href="#" class="circle emblem no_shadow"><img src="/images/map/circles/emblem.png" alt=""></a>
+        <h4>.active</h4>
+        <a href="#" class="circle emblem active"><img src="/images/map/circles/emblem.png" alt=""></a>
         <br>
         <br>
         <br>
@@ -903,6 +905,9 @@
         <br>
         <hr>
         <h1>tabs</h1>
+        <ul>
+        	<li>табы</li>
+        </ul>
         <pre>
         	<code>
 				{
@@ -927,6 +932,30 @@
 				}
 			</code>
 		</pre>
+		<div class="tab_section">
+			<div class="tab_nav">
+				<ul class="list-unstyled d-flex">
+					<li><a href="#t1">nav_1</a></li>
+					<li class="active"><a href="#t2">nav_2</a></li>
+					<li><a href="#t3">nav_3</a></li>
+					<li><a href="#t4">nav_4</a></li>
+				</ul>
+			</div>
+			<div class="tab_content">
+				<div class="tab_pane" id="t1">
+					tab_1
+				</div>
+				<div class="tab_pane active" id="t2">
+					tab_2
+				</div>
+				<div class="tab_pane" id="t3">
+					tab_3
+				</div>
+				<div class="tab_pane" id="t4">
+					tab_4
+				</div>
+			</div>
+		</div>
         <hr>
         <h1>section</h1>
         <ul>
