@@ -670,7 +670,7 @@
                 </div>
             </div>
         </div> -->
-		<div style="width:285px;" class="py-30">
+        <div style="width:285px;" class="py-30">
             <div class="property fold_js">
                 <div class="property_head d-flex align-items-center">
                     <div class="property_prev square size_4">
@@ -906,7 +906,7 @@
         <hr>
         <h1>tabs</h1>
         <ul>
-        	<li>табы</li>
+            <li>табы</li>
         </ul>
         <pre>
         	<code>
@@ -932,13 +932,13 @@
 				}
 			</code>
 		</pre>
-		<div class="tab_section">
+        <!-- <div class="tab_section">
 			<div class="tab_nav">
 				<ul class="list-unstyled d-flex">
-					<li><a href="#t1">nav_1</a></li>
-					<li class="active"><a href="#t2">nav_2</a></li>
-					<li><a href="#t3">nav_3</a></li>
-					<li><a href="#t4">nav_4</a></li>
+					<li><a href="#t1"><span class="link_holder">nav_1</span></a></li>
+					<li class="active"><a href="#t2"><span class="link_holder">nav_2</span></a></li>
+					<li><a href="#t3"><span class="link_holder">nav_3</span></a></li>
+					<li><a href="#t4"><span class="link_holder">nav_4</span></a></li>
 				</ul>
 			</div>
 			<div class="tab_content">
@@ -955,16 +955,74 @@
 					tab_4
 				</div>
 			</div>
-		</div>
+		</div> -->
+        <div class="tab_section panel grid_column" style="background-image: url(images/panel/bg/aside.png); width: 400px; margin-top: 30px;">
+            <!-- close btn start-->
+            <a href="#" class="close_btn position-absolute"></a>
+            <!-- close btn end-->
+            <div class="panel_holder scroll_js" style="height:500px;">
+                <div class="panel_header">
+                    <div class="tab_nav">
+                        <ul class="list-unstyled d-flex">
+                            <li>
+                                <a href="#t11">
+                                    <span class="link_holder">nav_11</span>
+                                </a>
+                            </li>
+                            <li class="active">
+                                <a href="#t22">
+                                    <span class="link_holder">nav_22</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#t33">
+                                    <span class="link_holder">
+                                        <img src="https://picsum.photos/200" alt="">
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel_content pb-10">
+                    <div class="content_scroll">
+                        <div class="tab_content">
+                            <div class="tab_pane" id="t11">
+                                tab_11
+                            </div>
+                            <div class="tab_pane active" id="t22">
+                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum obcaecati nam modi corporis a, ea assumenda consequatur necessitatibus eligendi est excepturi delectus quod aliquid aliquam quia aperiam non veniam cupiditate!
+                            </div>
+                            <div class="tab_pane" id="t33">
+                                tab_33
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scrollbar">
+                        <div class="btn_func arrow_prev"></div>
+                        <div class="bar">
+                            <div class="handler" style=" top:10%;"></div>
+                        </div>
+                        <div class="btn_func arrow_next"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="decor ">
+                <span class="corner"></span>
+                <span class="corner right_top"></span>
+                <span class="corner right_bottom"></span>
+                <span class="corner left_bottom"></span>
+            </div>
+        </div>
         <hr>
         <h1>section</h1>
         <ul>
-            <li>2 варианта структуры (когда компоненты, под переключателем(стрелка), на 100% и с отсупом от стрелки) <a class="red" href="#version_1">вариант 1</a> и  <a class="red" href="#version_2">вариант 2</a></li>
+            <li>2 варианта структуры (когда компоненты, под переключателем(стрелка), на 100% и с отсупом от стрелки) <a class="red" href="#version_1">вариант 1</a> и <a class="red" href="#version_2">вариант 2</a></li>
             <!-- <li></li>
             <li>класс <kbd>short</kbd> на <kbd>section_accordion</kbd> при классе <kbd>closed</kbd> делает блок <kbd>.accordion_hidden_part</kbd> высотой в 25px</li>
             <li>если класса <kbd>short</kbd> нету, то при <kbd>closed</kbd> , блок <kbd>accordion_hidden_part</kbd> максимум 200px и затеняется</li> -->
-            <li> класс <kbd>closed</kbd>, на <kbd>section_accordion </kbd>, делает блок<kbd>accordion_hidden_part</kbd>-  обрезаным по высоте на 200px и с тенями</li>
-            <li>класс <kbd>short</kbd>,на блоке <kbd>section_accordion </kbd> , делает блок <kbd>accordion_hidden_part</kbd> -  высотой в 25px</li>
+            <li> класс <kbd>closed</kbd>, на <kbd>section_accordion </kbd>, делает блок<kbd>accordion_hidden_part</kbd>- обрезаным по высоте на 200px и с тенями</li>
+            <li>класс <kbd>short</kbd>,на блоке <kbd>section_accordion </kbd> , делает блок <kbd>accordion_hidden_part</kbd> - высотой в 25px</li>
         </ul>
         <pre>
         	<code>

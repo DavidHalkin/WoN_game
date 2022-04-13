@@ -68,7 +68,7 @@ textarea { overflow: auto; resize: vertical; }
 
 fieldset { min-width: 0; padding: 0; margin: 0; border: 0; }
 
-:root { --border_img_h: url(../images/panel/h_border.png); --border_img_h_bottom: url(../images/panel/h_border_bottom.png); --border_img_v: url(../images/panel/v_border.png); --border_img_v_right: url(../images/panel/v_border_right.png); --size_border: 17px; --size_corner: 68px; --corner_img: url(../images/panel/corner.png); --decorate_img: url(../images/panel/decorate.png); --size_w:76px; --size_h:77px; --width_decor:82px; --height_decor:43px; --animation_static: all 0.15s ease; --animation_hovered: all 0.3s ease; --indent:4px; --scroll_bar_img:url(../images/scroll/bar.png); --scroll_bar_size:31px; --scroll_button_img:url(../images/scroll/button.png); --scroll_button_w:34px; --scroll_button_h:30px; --scroll_handler_img:url(../images/scroll/handler.png); --scroll_handler_w:20px; --scroll_handler_h:45px; --slider_bar_img:url(../images/slider/bar.png); --slider_bar_size:21px; --slider_button_img:url(../images/slider/decor.png); --slider_button_w:39px; --slider_button_h:29px; --slider_handler_img:url(../images/slider/handler.png); --slider_handler_w:43px; --slider_handler_h:75px; --square_img:url(../images/square/square.png); --circle_img:url(../images/circles/circle.png); --size:110px; --checkbox_mark_img:url(../images/icons/check_mark.png); --checkbox_mark_w:34px; --checkbox_mark_h:32px; }
+:root { --border_img_h: url(../images/panel/h_border.png); --border_img_h_bottom: url(../images/panel/h_border_bottom.png); --border_img_v: url(../images/panel/v_border.png); --border_img_v_right: url(../images/panel/v_border_right.png); --size_border: 17px; --size_corner: 68px; --corner_img: url(../images/panel/corner.png); /*tabs corners and decorate*/ --tab_img_active: url(../images/tab/corner_tab.png); --tab_size_active:58px; --tab_img_boder: url(../images/tab/corner_border.png); --tab_size_boder: 60px; --decorate_img: url(../images/panel/decorate.png); --size_w:76px; --size_h:77px; --width_decor:82px; --height_decor:43px; --animation_static: all 0.15s ease; --animation_hovered: all 0.3s ease; --indent:4px; --scroll_bar_img:url(../images/scroll/bar.png); --scroll_bar_size:31px; --scroll_button_img:url(../images/scroll/button.png); --scroll_button_w:34px; --scroll_button_h:30px; --scroll_handler_img:url(../images/scroll/handler.png); --scroll_handler_w:20px; --scroll_handler_h:45px; --slider_bar_img:url(../images/slider/bar.png); --slider_bar_size:21px; --slider_button_img:url(../images/slider/decor.png); --slider_button_w:39px; --slider_button_h:29px; --slider_handler_img:url(../images/slider/handler.png); --slider_handler_w:43px; --slider_handler_h:75px; --square_img:url(../images/square/square.png); --circle_img:url(../images/circles/circle.png); --size:110px; --checkbox_mark_img:url(../images/icons/check_mark.png); --checkbox_mark_w:34px; --checkbox_mark_h:32px; }
 
 .mt-0 { margin-top: 0px !important; }
 
@@ -1349,19 +1349,41 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .select .drop_down .scrollbar { right: 0; }
 
-.tab_section { overflow: hidden; }
+.tab_section { --tab_size_active_local: calc(var(--tab_size_active) / 2); --tab_size_boder_local: calc(var(--tab_size_boder) / 2); --width_local:calc(var(--size_w) / 2.8); --height_local:calc(var(--size_h) / 2.8); }
 
-.tab_nav ul { padding: 0 50px; }
+.tab_section.md { --tab_size_active_local: calc(var(--tab_size_active) / 2 * 0.75); --tab_size_boder_local: calc(var(--tab_size_boder) / 2 * 0.75); --width_local:calc(var(--size_w) / 2.8 * 0.75); --height_local:calc(var(--size_h) / 2.8 * 0.75); }
 
-.tab_nav ul li { width: 100px; height: 90px; text-align: center; margin: 0 6px; }
+.tab_section.sm { --tab_size_active_local: calc(var(--tab_size_active) / 2 * 0.5); --tab_size_boder_local: calc(var(--tab_size_boder) / 2 * 0.5); --width_local:calc(var(--size_w) / 2.8 * 0.5); --height_local:calc(var(--size_h) / 2.8 * 0.5); }
 
-.tab_nav ul li.active a { color: #000; position: relative; pointer-events: none; }
+.tab_section .panel_header { background: none; overflow: hidden; }
 
-.tab_nav ul li.active a:before, .tab_nav ul li.active a:after { content: ""; width: 99999px; height: 10px; background: red; position: absolute; bottom: 0; right: 100%; }
+.tab_nav:after, .tab_nav:before { content: ""; background: var(--tab_img_boder) no-repeat 0 0; -webkit-background-size: var(--tab_size_boder_local) var(--tab_size_boder_local); background-size: var(--tab_size_boder_local) var(--tab_size_boder_local); width: var(--tab_size_boder_local); height: var(--tab_size_boder_local); position: absolute; left: 0; bottom: 2px; -webkit-transform: scale(1, -1); -ms-transform: scale(1, -1); transform: scale(1, -1); }
+
+.tab_nav:before { left: auto; right: 0; -webkit-transform: scale(-1, -1); -ms-transform: scale(-1, -1); transform: scale(-1, -1); z-index: 1; }
+
+.tab_nav ul li { max-width: 65px; -webkit-box-flex: 0; -ms-flex: 0 0 65px; flex: 0 0 65px; text-align: center; margin-right: 12px; }
+
+.tab_nav ul li.active { position: relative; }
+
+.tab_nav ul li.active:before, .tab_nav ul li.active:after { content: ""; width: var(--tab_size_active_local); height: var(--tab_size_active_local); background-image: var(--tab_img_active); -webkit-background-size: var(--tab_size_active_local) var(--tab_size_active_local); background-size: var(--tab_size_active_local) var(--tab_size_active_local); position: absolute; bottom: 0; right: calc(100% - var(--size_border_local)); z-index: 2; -webkit-transform: scale(1, -1); -ms-transform: scale(1, -1); transform: scale(1, -1); }
+
+.tab_nav ul li.active:after { right: auto; left: calc(100% - var(--size_border_local)); -webkit-transform: scale(-1, -1); -ms-transform: scale(-1, -1); transform: scale(-1, -1); }
+
+.tab_nav ul li.active a { position: relative; pointer-events: none; -webkit-border-radius: 0 0 20px 20px; border-radius: 0 0 20px 20px; }
+
+.tab_nav ul li.active a:before, .tab_nav ul li.active a:after { content: ""; width: 99999px; height: var(--size_border_local); background: var(--border_img_h_bottom); background-position: 0 100%; background-repeat: repeat-x; -webkit-background-size: auto var(--size_border_local); background-size: auto var(--size_border_local); position: absolute; bottom: 0; right: 100%; }
 
 .tab_nav ul li.active a:after { right: auto; left: 100%; }
 
-.tab_nav ul li a { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; height: 100%; border: 10px solid red; border-bottom: 0; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+.tab_nav ul li a { display: block; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; background: var(--border_img_v), var(--border_img_v_right), var(--border_img_h); background-position: 0 0, 100% 0, 0 0; background-repeat: repeat-y, repeat-y, repeat-x; -webkit-background-size: var(--size_border_local) auto, var(--size_border_local) auto, auto var(--size_border_local); background-size: var(--size_border_local) auto, var(--size_border_local) auto, auto var(--size_border_local); }
+
+.tab_nav ul li a .link_holder { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; height: 60px; position: relative; padding: var(--size_border_local); }
+
+.tab_nav ul li a .link_holder:after, .tab_nav ul li a .link_holder:before { content: ""; position: absolute; top: 0; left: 0; background: var(--decorate_img) 0 0 no-repeat; -webkit-background-size: cover; background-size: cover; width: var(--width_local); height: var(--height_local); }
+
+.tab_nav ul li a .link_holder:before { left: auto; right: 0; -webkit-transform: scale(-1, 1); -ms-transform: scale(-1, 1); transform: scale(-1, 1); }
+
+.tab_nav ul li a .link_holder img { -o-object-fit: content; object-fit: content; width: 100%; height: 100%; }
 
 .tab_pane { display: none; }
 
