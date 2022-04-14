@@ -79,7 +79,7 @@ gulp.task('sprite', function () {
   var spriteData = gulp.src('app/images/sprites/*.png').pipe(spritesmith({
     imgName: 'sprite.png',
     cssName: '_sprite.scss',
-    imgPath: '../images/sprite.png',
+    imgPath: '/images/map/sprite.png',
     padding: 5
   }));
   var imgStream = spriteData.img

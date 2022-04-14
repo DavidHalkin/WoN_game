@@ -87,7 +87,7 @@
 			top: 0;
 			left: 50%;
 			transform:translateX(-50%);
-			background: url(../images/panel/centered_corner.png) no-repeat 0 0;
+			background: url(/images/map/panel/centered_corner.png) no-repeat 0 0;
 			background-size: cover;
 		}
 		&:after{
@@ -106,7 +106,7 @@
 	&.horizontal{
 		.decor{
 			&:before,&:after{
-				background: url(../images/panel/centered_corner_vertical.png) no-repeat 0 0;
+				background: url(/images/map/panel/centered_corner_vertical.png) no-repeat 0 0;
 				background-size: cover;
 				width: var(--height_decor_local);
 				height: var(--width_decor_local);

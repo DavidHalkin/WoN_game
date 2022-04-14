@@ -95,7 +95,7 @@ a,.hovered_item{
 	--h:calc(49px / 2);
 	width: var(--w);
 	height: var(--h);
-	background: url(../images/btns/arrow_short.png) no-repeat 0 0;
+	background: url(/images/map/btns/arrow_short.png) no-repeat 0 0;
 	background-size: cover;
 	display: inline-block;
 	border: 0;
@@ -122,7 +122,7 @@ a,.hovered_item{
 		--h:calc(70px / 2);
 		width: var(--w);
 		height: var(--h);
-		background: url(../images/btns/arrow.png) no-repeat 0 0;
+		background: url(/images/map/btns/arrow.png) no-repeat 0 0;
 		background-size: cover;
 		z-index: 5;
 		pointer-events:auto;
@@ -157,7 +157,7 @@ a,.hovered_item{
 	--s:calc(56px / 2);
 	width: var(--s);
 	height: var(--s);
-	background: url(../images/btns/close.png) no-repeat 0 0;
+	background: url(/images/map/btns/close.png) no-repeat 0 0;
 	background-size: cover;
 	display: block;
 	top:3px;

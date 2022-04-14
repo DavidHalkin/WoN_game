@@ -158,12 +158,12 @@
 			position: absolute;
 			top: 0;
 			left: 0;
-			background: url(../images/circles/circle_empty_shadow.png) no-repeat 0 0;
+			background: url(/images/map/circles/circle_empty_shadow.png) no-repeat 0 0;
 			background-size: cover;
 		}
 		&.no_shadow{
 			&:after{
-				background: url(../images/circles/circle_empty.png) no-repeat 0 0;
+				background: url(/images/map/circles/circle_empty.png) no-repeat 0 0;
 				background-size: cover;
 			}
 		}
