@@ -1,4 +1,17 @@
-.tab_section{
+// .tab_section{
+	
+// 	&.md{
+		
+// 	}
+// 	&.sm{
+		
+// 	}
+// 	.panel_header {
+// 		background: none;
+// 		overflow: hidden;
+// 	}
+// }
+.tab_nav{
 	// active corners
 	--tab_size_active_local: calc(var(--tab_size_active) / 2);
 
@@ -8,27 +21,23 @@
 	// top tab decor
 	--width_local:calc(var(--size_w) / 2.8);
 	--height_local:calc(var(--size_h) / 2.8);
-	&.md{
+	.md &{
 		--tab_size_active_local: calc(var(--tab_size_active) / 2 * 0.75);
 		--tab_size_boder_local: calc(var(--tab_size_boder) / 2 * 0.75);
 		--width_local:calc(var(--size_w) / 2.8 * 0.75);
 		--height_local:calc(var(--size_h) / 2.8 * 0.75);
 	}
-	&.sm{
+	.sm &{
 		--tab_size_active_local: calc(var(--tab_size_active) / 2 * 0.5);
 		--tab_size_boder_local: calc(var(--tab_size_boder) / 2 * 0.5);
 		--width_local:calc(var(--size_w) / 2.8 * 0.5);
 		--height_local:calc(var(--size_h) / 2.8 * 0.5);
 	}
-	
-	
-	.panel_header {
-		background: none;
-		overflow: hidden;
-	}
-}
-.tab_nav{
-	// position: relative;
+
+	position: relative;
+	overflow: hidden;
+	margin:0 calc(var(--size_border_local) * -2.7);
+	padding: 0 calc(var(--size_border_local) * 2.7) var(--tab_size_boder_local);
 	&:after,&:before{
 		content: "";
 		background: var(--tab_img_boder) no-repeat 0 0;
@@ -37,7 +46,8 @@
 		height: var(--tab_size_boder_local);
 		position: absolute;
 		left: 0;
-		bottom: 2px;
+		bottom: calc(var(--size_border_local) + 1px);
+		// top: calc(100% - var(--size_border_local) - 1px);
 		transform:scale(1,-1);
 	}
 	&:before{
