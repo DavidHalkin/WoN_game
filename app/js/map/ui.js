@@ -325,7 +325,7 @@ function enableRenaming(element) {
 }
 function Tabs() {
 
-    const allTabs = $$('.tab_section');
+    const allTabs = $$('.tabs');
 
     allTabs.forEach(tab => new Tab(tab));
 
@@ -336,6 +336,7 @@ function Tabs() {
 
         [...navTabs].forEach(tab => {
             tab.onclick = ev => {
+                ev.preventDefault();
                 const tabID = tab.firstElementChild.getAttribute('href');
 
                 for (const contentPane of content.children) {
