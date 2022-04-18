@@ -147,6 +147,7 @@
         <ul>
             <li>есть атрибуты у инпута : <kbd>disabled</kbd> и <kbd>checked</kbd></li>
             <li>класс <kbd>checkbox_no_label</kbd> убирает блок <kbd>checkbox_label</kbd> его можно и не иметь этот блок с текстом</li>
+            <li>класс <kbd>checkbox_has_img</kbd> делает имагу вместо маркера. для этого в теге <kbd>i</kbd> засунуть имагу</li>
         </ul>
         <pre>
             <code>
@@ -160,6 +161,24 @@
                 }
             </code>
         </pre>
+        <div class="py-10">
+            <div class="checkbox checkbox_has_img">
+                <label>
+                    <input type="checkbox" checked disabled>
+                    <i class="checkbox_item"><img src="https://picsum.photos/200" alt=""></i>
+                    <span class="checkbox_label">lorem lorem lorem</span>
+                </label>
+            </div>
+        </div>
+        <div class="py-10">
+            <div class="checkbox checkbox_has_img">
+                <label>
+                    <input type="checkbox">
+                    <i class="checkbox_item"><img src="https://picsum.photos/200/400" alt=""></i>
+                    <span class="checkbox_label">lorem lorem lorem</span>
+                </label>
+            </div>
+        </div>
         <div class="py-10">
             <div class="checkbox">
                 <label>
@@ -906,7 +925,8 @@
         <hr>
         <h1>tabs</h1>
         <ul>
-            <li>табы</li>
+            <li>на <kbd>.tabs</kbd>поствить <kbd>.tab_nav_big</kbd> и будут большие табы(сам УЛ)</li>
+            <li>учитвая, что табы всчегда будут жить в <kbd>.panel</kbd> работают классы <kbd>md</kbd> <kbd>sm</kbd>.. и сами табы тоже будут уменьшаться(бордера ,декорации)</li>
         </ul>
         <pre>
             <code>
@@ -932,35 +952,11 @@
                 }
             </code>
         </pre>
-        <!-- <div class="tab_section">
-            <div class="tab_nav">
-                <ul class="list-unstyled d-flex">
-                    <li><a href="#t1"><span class="link_holder">nav_1</span></a></li>
-                    <li class="active"><a href="#t2"><span class="link_holder">nav_2</span></a></li>
-                    <li><a href="#t3"><span class="link_holder">nav_3</span></a></li>
-                    <li><a href="#t4"><span class="link_holder">nav_4</span></a></li>
-                </ul>
-            </div>
-            <div class="tab_content">
-                <div class="tab_pane" id="t1">
-                    tab_1
-                </div>
-                <div class="tab_pane active" id="t2">
-                    tab_2
-                </div>
-                <div class="tab_pane" id="t3">
-                    tab_3
-                </div>
-                <div class="tab_pane" id="t4">
-                    tab_4
-                </div>
-            </div>
-        </div> -->
         <div class=" panel grid_column" style="background-image: url(/images/map/panel/bg/aside.png); width: 400px; margin-top: 30px;">
             <!-- close btn start-->
             <a href="#" class="close_btn position-absolute"></a>
             <!-- close btn end-->
-            <div class="panel_holder scroll_js" style="height:500px;">
+            <div class="panel_holder scroll_js">
                 <div class="panel_header py-10">
                     <div class="d-flex align-items-center">
                         <div class="pr-25">
@@ -978,7 +974,7 @@
                 </div>
                 <div class="panel_content pb-10">
                     <div class="content_scroll">
-                        <div class="tabs">
+                        <div class="tabs tab_nav_big">
                             <div class="tab_nav">
                                 <ul class="list-unstyled d-flex">
                                     <li>
@@ -993,7 +989,7 @@
                                                 </svg>
                                             </span>
                                         </a>
-                                    </li> 
+                                    </li>
                                     <li>
                                         <a href="#t33">
                                             <span class="link_holder">
@@ -1003,15 +999,24 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="tab_content">
-                                <div class="tab_pane" id="t11">
-                                    tab_11
+                            <div class="tab_content scroll_js" style="max-height:150px;">
+                                <div class="content_scroll">
+                                    <div class="tab_pane" id="t11">
+                                        tab_11
+                                    </div>
+                                    <div class="tab_pane active" id="t22">
+                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum obcaecati nam modi corporis a, ea assumenda consequatur necessitatibus eligendi est excepturi delectus quod aliquid aliquam quia aperiam non veniam cupiditate!Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum obcaecati nam modi corporis a, ea assumenda consequatur necessitatibus eligendi est excepturi delectus quod aliquid aliquam quia aperiam non veniam cupiditate!
+                                    </div>
+                                    <div class="tab_pane" id="t33">
+                                        tab_33
+                                    </div>
                                 </div>
-                                <div class="tab_pane active" id="t22">
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum obcaecati nam modi corporis a, ea assumenda consequatur necessitatibus eligendi est excepturi delectus quod aliquid aliquam quia aperiam non veniam cupiditate!
-                                </div>
-                                <div class="tab_pane" id="t33">
-                                    tab_33
+                                <div class="scrollbar">
+                                    <div class="btn_func arrow_prev"></div>
+                                    <div class="bar">
+                                        <div class="handler" style=" top:10%;"></div>
+                                    </div>
+                                    <div class="btn_func arrow_next"></div>
                                 </div>
                             </div>
                         </div>
