@@ -140,6 +140,17 @@ a,.hovered_item{
 		}
 	}
 }
+.dropdown_item{
+	.switcher.switcher_slider.down{
+		transform: rotate(-90deg) scaleX(-1);
+	}
+	&:hover{
+		.switcher.switcher_slider.down{
+			transform:rotate(-90deg);
+			@include hover;
+		}
+	}
+}
 .panel_army.slide_at_right {
 	.switcher_slider{
 		transform:translate(-50%,-50%) scale(1,1);

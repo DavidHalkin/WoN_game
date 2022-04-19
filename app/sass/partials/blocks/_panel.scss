@@ -10,7 +10,7 @@
 	position: relative;
 	height: 100%;
 }
-.panel{ 
+.panel{
 	height: 100%;
 	background-color: $primary;
 	background-position: 100% 100% !important;
@@ -37,7 +37,9 @@
 
 		border-radius: var(--indent);
 	}
-	
+	&.selected{
+		box-shadow: inset 0 0 15px 4px #FFE600;
+	}
 	.panel_holder{
 		background-color: green;
 		border-radius: calc(var(--indent) + 2px);

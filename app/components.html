@@ -1046,6 +1046,7 @@
             <li>если класса <kbd>short</kbd> нету, то при <kbd>closed</kbd> , блок <kbd>accordion_hidden_part</kbd> максимум 200px и затеняется</li> -->
             <li> класс <kbd>closed</kbd>, на <kbd>section_accordion </kbd>, делает блок<kbd>accordion_hidden_part</kbd>- обрезаным по высоте на 200px и с тенями</li>
             <li>класс <kbd>short</kbd>,на блоке <kbd>section_accordion </kbd> , делает блок <kbd>accordion_hidden_part</kbd> - высотой в 25px</li>
+            <li class="pt-20" >класс <kbd>selected</kbd> на <kbd>.panel</kbd> выделяет тенью жёлтой</li>
         </ul>
         <pre>
             <code>
@@ -1078,6 +1079,21 @@
             <div class="col-auto pl-5">
                 <button type="button" class="switcher down"></button>
             </div>
+        </div>
+
+        <div class="py-30" style="max-width:200px;">
+            <div class="panel md horizontal selected" style="background-image: url(/images/map/panel/bg/ducat_panel.png);">
+                    <div class="panel_holder flex-row align-items-center">
+                        <a href="#" class="circle emblem size_3"><img src="/images/map/circles/emblem.png" alt=""></a>
+                        <p class="mb-0 pl-10">.selected</p>
+                    </div>
+                    <div class="decor">
+                        <span class="corner"></span>
+                        <span class="corner right_top"></span>
+                        <span class="corner right_bottom"></span>
+                        <span class="corner left_bottom"></span>
+                    </div>
+                </div>
         </div>
         <br>
         <br>
