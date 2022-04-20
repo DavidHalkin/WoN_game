@@ -1,0 +1,365 @@
+{
+  "info": [
+    {
+      "type": "tabs",
+      "tabs": [
+        {
+          "type": "tab",
+          "name": "Недра",
+          "icon": "https://",
+          "content": [
+            {
+              "type": "section",
+              "name": "Недра",
+              "components": {
+                "1": {
+                  "type": "mini_info",
+                  "name": "resurs_1",
+                  "label": "Дерево",
+                  "icon": "/game_files/img/resurs/derevo.png",
+                  "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=1",
+                  "ajax": true,
+                  "value": "310k (+259)",
+                  "editable": false,
+                  "tooltip": [
+                    {
+                      "text": "-0 Порча"
+                    }
+                  ]
+                },
+                "6": {
+                  "type": "mini_info",
+                  "name": "resurs_6",
+                  "label": "Лошади",
+                  "icon": "/game_files/img/resurs/koni.png",
+                  "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=6",
+                  "ajax": true,
+                  "value": "847418120mm (+7061817mm)",
+                  "editable": false
+                },
+                "13": {
+                  "type": "mini_info",
+                  "name": "resurs_13",
+                  "label": "Глина",
+                  "icon": "/game_files/img/resurs/glina.png",
+                  "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=13",
+                  "ajax": true,
+                  "value": "237kk",
+                  "editable": false
+                },
+                "27": {
+                  "type": "mini_info",
+                  "name": "resurs_27",
+                  "label": "Мрамор",
+                  "icon": "/game_files/img/resurs/mramor.png",
+                  "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=27",
+                  "ajax": true,
+                  "value": "12kk",
+                  "editable": false
+                },
+                "37": {
+                  "type": "mini_info",
+                  "name": "resurs_37",
+                  "label": "Рыба",
+                  "icon": "/game_files/img/resurs/fish.png",
+                  "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=37",
+                  "ajax": true,
+                  "value": "355580556419814400mm (+5333708346297216mm)",
+                  "editable": false,
+                  "tooltip": [
+                    {
+                      "text": "-0 Порча"
+                    }
+                  ]
+                },
+                "40": {
+                  "type": "mini_info",
+                  "name": "resurs_40",
+                  "label": "Злаки",
+                  "icon": "/game_files/img/resurs/zlak.png",
+                  "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=40",
+                  "ajax": true,
+                  "value": "0mm (+0mm)",
+                  "editable": false,
+                  "tooltip": [
+                    {
+                      "text": "-0 Порча"
+                    }
+                  ]
+                },
+                "41": {
+                  "type": "mini_info",
+                  "name": "resurs_41",
+                  "label": "Бобы",
+                  "icon": "/game_files/img/resurs/boby.png",
+                  "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=41",
+                  "ajax": true,
+                  "value": "0mm (+0mm)",
+                  "editable": false,
+                  "tooltip": [
+                    {
+                      "text": "-0 Порча"
+                    }
+                  ]
+                },
+                "42": {
+                  "type": "mini_info",
+                  "name": "resurs_42",
+                  "label": "Фрукты",
+                  "icon": "/game_files/img/resurs/fruit.png",
+                  "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=42",
+                  "ajax": true,
+                  "value": "0mm (+0mm)",
+                  "editable": false,
+                  "tooltip": [
+                    {
+                      "text": "-0 Порча"
+                    }
+                  ]
+                },
+                "43": {
+                  "type": "mini_info",
+                  "name": "resurs_43",
+                  "label": "Овощи",
+                  "icon": "/game_files/img/resurs/ovosh.png",
+                  "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=43",
+                  "ajax": true,
+                  "value": "0mm (+0mm)",
+                  "editable": false,
+                  "tooltip": [
+                    {
+                      "text": "-0 Порча"
+                    }
+                  ]
+                },
+                "51": {
+                  "type": "mini_info",
+                  "name": "resurs_51",
+                  "label": "Ягоды",
+                  "icon": "/game_files/img/resurs/yagody.png",
+                  "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=51",
+                  "ajax": true,
+                  "value": "0mm (+0mm)",
+                  "editable": false,
+                  "tooltip": [
+                    {
+                      "text": "-0 Порча"
+                    }
+                  ]
+                },
+                "58": {
+                  "type": "mini_info",
+                  "name": "resurs_58",
+                  "label": "Пряности",
+                  "icon": "/game_files/img/resurs/pryanosti.png",
+                  "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=58",
+                  "ajax": true,
+                  "value": "0mm (+0mm)",
+                  "editable": false,
+                  "tooltip": [
+                    {
+                      "text": "-0 Порча"
+                    }
+                  ]
+                },
+                "67": {
+                  "type": "mini_info",
+                  "name": "resurs_67",
+                  "label": "Овцы",
+                  "icon": "/game_files/img/resurs/ovechka.png",
+                  "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=67",
+                  "ajax": true,
+                  "value": "847418120mm (+7061817mm)",
+                  "editable": false
+                },
+                "68": {
+                  "type": "mini_info",
+                  "name": "resurs_68",
+                  "label": "Свиньи",
+                  "icon": "/game_files/img/resurs/pig.png",
+                  "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=68",
+                  "ajax": true,
+                  "value": "847418120mm (+7061817mm)",
+                  "editable": false
+                },
+                "168": {
+                  "type": "mini_info",
+                  "name": "resurs_168",
+                  "label": "Конопля",
+                  "icon": "/game_files/img/resurs/konoplya.png",
+                  "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=168",
+                  "ajax": true,
+                  "value": "0mm (+0mm)",
+                  "editable": false,
+                  "tooltip": [
+                    {
+                      "text": "-0 Порча"
+                    }
+                  ]
+                },
+                "173": {
+                  "type": "mini_info",
+                  "name": "resurs_173",
+                  "label": "Соль",
+                  "icon": "/game_files/img/resurs/",
+                  "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=173",
+                  "ajax": true,
+                  "value": "3600k",
+                  "editable": false,
+                  "tooltip": [
+                    {
+                      "text": "-0 Порча"
+                    }
+                  ]
+                },
+                "178": {
+                  "type": "mini_info",
+                  "name": "resurs_178",
+                  "label": "Птица",
+                  "icon": "/game_files/img/resurs/",
+                  "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=178",
+                  "ajax": true,
+                  "value": "847418120mm (+7061817mm)",
+                  "editable": false
+                },
+                "179": {
+                  "type": "mini_info",
+                  "name": "resurs_179",
+                  "label": "Скот",
+                  "icon": "/game_files/img/resurs/",
+                  "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=179",
+                  "ajax": true,
+                  "value": "847418120mm (+7061817mm)",
+                  "editable": false
+                },
+                "188": {
+                  "type": "mini_info",
+                  "name": "resurs_188",
+                  "label": "Песок",
+                  "icon": "/game_files/img/resurs/",
+                  "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=188",
+                  "ajax": true,
+                  "value": "227mk",
+                  "editable": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "tab",
+          "name": "Здания",
+          "icon": "https://",
+          "content": [
+            {
+              "type": "section",
+              "name": "Здания",
+              "components": [
+                {
+                  "type": "property",
+                  "name": "Городской дом ",
+                  "icon": "https://te.etnoera.ru/game_files/img/zdan/1497810132_DomVost_2_64.png",
+                  "amount": "60",
+                  "people": "0 / 600",
+                  "production": [
+
+                  ]
+                },
+                {
+                  "type": "property",
+                  "name": "Рубка леса",
+                  "icon": "https://te.etnoera.ru/game_files/img/zdan/1497077753_Lsrbkbtr_128.png",
+                  "amount": "12",
+                  "people": "0 / 60",
+                  "production": {
+                    "1": {
+                      "type": "mini_info",
+                      "name": "resurs_1",
+                      "label": "Дерево",
+                      "icon": "/game_files/img/resurs/derevo.png",
+                      "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=1",
+                      "ajax": true,
+                      "value": "0",
+                      "editable": false,
+                      "tooltip": [
+                        {
+                          "text": "-0 Порча"
+                        }
+                      ]
+                    },
+                    "2": {
+                      "type": "mini_info",
+                      "name": "resurs_2",
+                      "label": "Смола",
+                      "icon": "/game_files/img/resurs/",
+                      "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=2",
+                      "ajax": true,
+                      "value": "0",
+                      "editable": false
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tab",
+          "name": "Население",
+          "icon": "https://",
+          "content": [
+            {
+              "type": "section",
+              "name": "Знать 1620",
+              "components": [
+
+              ]
+            },
+            {
+              "type": "section",
+              "name": "Бедуины 980",
+              "components": [
+
+              ]
+            },
+            {
+              "type": "section",
+              "name": "Феллахи 980",
+              "components": [
+
+              ]
+            },
+            {
+              "type": "section",
+              "name": "Торговцы 932",
+              "components": [
+
+              ]
+            },
+            {
+              "type": "section",
+              "name": "Духовенство 936",
+              "components": [
+
+              ]
+            },
+            {
+              "type": "section",
+              "name": "Гулямы 946",
+              "components": [
+
+              ]
+            },
+            {
+              "type": "section",
+              "name": "Ремесленники 946",
+              "components": [
+
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

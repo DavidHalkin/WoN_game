@@ -1,0 +1,259 @@
+{
+    "info": [
+        {
+            "type": "section",
+            "name": "Население",
+            "components": [
+                {
+                    "type": "icon",
+                    "icon": "/game_files/img/tribe/1442332748_.png",
+                    "tooltip": [
+                        {
+                            "text": "Арабы"
+                        }
+                    ],
+                    "round": false
+                },
+                {
+                    "type": "icon",
+                    "icon": "/game_files/img/relig/1442347977_.png",
+                    "tooltip": [
+                        {
+                            "text": "Шиизм"
+                        }
+                    ],
+                    "round": false
+                }
+            ]
+        },
+        {
+            "type": "section",
+            "name": "Производства",
+            "components": [
+                {
+                    "type": "button",
+                    "name": "Создать",
+                    "url": "/ajax?do=build_new&c=city&city_id=745",
+                    "ajax": true
+                },
+                {
+                    "type": "button",
+                    "name": "Управление",
+                    "url": "/ajax?do=city_info&c=city&city_id=745",
+                    "ajax": true
+                },
+                {
+                    "type": "text",
+                    "content": ""
+                }
+            ]
+        },
+        {
+            "type": "section",
+            "name": "Ресурсы",
+            "components": [
+                {
+                    "type": "icon",
+                    "icon": "/game_files/img/resurs/derevo.png",
+                    "tooltip": [
+                        {
+                            "text": "Дерево"
+                        }
+                    ],
+                    "round": true
+                },
+                {
+                    "type": "icon",
+                    "icon": "/game_files/img/resurs/koni.png",
+                    "tooltip": [
+                        {
+                            "text": "Лошади"
+                        }
+                    ],
+                    "round": true
+                },
+                {
+                    "type": "icon",
+                    "icon": "/game_files/img/resurs/glina.png",
+                    "tooltip": [
+                        {
+                            "text": "Глина"
+                        }
+                    ],
+                    "round": true
+                },
+                {
+                    "type": "icon",
+                    "icon": "/game_files/img/resurs/zlak.png",
+                    "tooltip": [
+                        {
+                            "text": "Злаки"
+                        }
+                    ],
+                    "round": true
+                },
+                {
+                    "type": "icon",
+                    "icon": "/game_files/img/resurs/boby.png",
+                    "tooltip": [
+                        {
+                            "text": "Бобы"
+                        }
+                    ],
+                    "round": true
+                },
+                {
+                    "type": "icon",
+                    "icon": "/game_files/img/resurs/fruit.png",
+                    "tooltip": [
+                        {
+                            "text": "Фрукты"
+                        }
+                    ],
+                    "round": true
+                },
+                {
+                    "type": "icon",
+                    "icon": "/game_files/img/resurs/ovosh.png",
+                    "tooltip": [
+                        {
+                            "text": "Овощи"
+                        }
+                    ],
+                    "round": true
+                },
+                {
+                    "type": "icon",
+                    "icon": "/game_files/img/resurs/yagody.png",
+                    "tooltip": [
+                        {
+                            "text": "Ягоды"
+                        }
+                    ],
+                    "round": true
+                },
+                {
+                    "type": "icon",
+                    "icon": "/game_files/img/resurs/pryanosti.png",
+                    "tooltip": [
+                        {
+                            "text": "Пряности"
+                        }
+                    ],
+                    "round": true
+                },
+                {
+                    "type": "icon",
+                    "icon": "/game_files/img/resurs/ovechka.png",
+                    "tooltip": [
+                        {
+                            "text": "Овцы"
+                        }
+                    ],
+                    "round": true
+                },
+                {
+                    "type": "icon",
+                    "icon": "/game_files/img/resurs/pig.png",
+                    "tooltip": [
+                        {
+                            "text": "Свиньи"
+                        }
+                    ],
+                    "round": true
+                },
+                {
+                    "type": "icon",
+                    "icon": "/game_files/img/resurs/konoplya.png",
+                    "tooltip": [
+                        {
+                            "text": "Конопля"
+                        }
+                    ],
+                    "round": true
+                },
+                {
+                    "type": "icon",
+                    "icon": "/game_files/img/resurs/",
+                    "tooltip": [
+                        {
+                            "text": "Птица"
+                        }
+                    ],
+                    "round": true
+                },
+                {
+                    "type": "icon",
+                    "icon": "/game_files/img/resurs/",
+                    "tooltip": [
+                        {
+                            "text": "Скот"
+                        }
+                    ],
+                    "round": true
+                },
+                {
+                    "type": "icon",
+                    "icon": "/game_files/img/resurs/",
+                    "tooltip": [
+                        {
+                            "text": "Песок"
+                        }
+                    ],
+                    "round": true
+                }
+            ]
+        }
+    ],
+    "city_header": {
+        "city_name": "Даст",
+        "character": {
+            "image": "/game_files/img/char/facema111312113311137211333253102734.png",
+            "url": "/character?id=613577",
+            "tooltip": [
+                {
+                    "text": "Мухаммед Арабы"
+                }
+            ],
+            "ajax": false
+        },
+        "flag": {
+            "image": "https://te.etnoera.ru/game_files/img/tribe/1442332748_.png",
+            "url": "/state?id=452160",
+            "tooltip": [
+                {
+                    "text": "Шадиград"
+                }
+            ],
+            "ajax": false
+        }
+    },
+    "commands": [
+        {
+            "type": "icon",
+            "tooltip": [
+                {
+                    "text": "Сжечь город"
+                }
+            ],
+            "confirm": true,
+            "icon": "/images/map/btns/commands/11.png",
+            "url": "/ajax?do=burn&c=map&city_id=745",
+            "ajax": true,
+            "round": false
+        },
+        {
+            "type": "icon",
+            "tooltip": [
+                {
+                    "text": "Отправить ресурсы"
+                }
+            ],
+            "icon": "/images/map/btns/commands/01.png",
+            "url": "/sending_resources?city=745",
+            "ajax": false,
+            "round": false
+        }
+    ],
+    "army": []
+}

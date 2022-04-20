@@ -13,4 +13,5 @@
 	.panel_holder{
 		max-height: calc(100vh - var(--h-header) - var(--h-footer));
 	}
+	display: none;
 }
