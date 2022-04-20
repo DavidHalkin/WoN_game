@@ -170,6 +170,7 @@
             <ul>
                 <li>есть атрибуты у инпута : <kbd>disabled</kbd> и <kbd>checked</kbd></li>
                 <li>класс <kbd>checkbox_no_label</kbd> убирает блок <kbd>checkbox_label</kbd> его можно и не иметь этот блок с текстом</li>
+                <li>добавляя имгу в тег <kbd>i.checkbox_item</kbd> и класс <kbd>checkbox_has_img</kbd> получаем маркер- картинку</li>
             </ul>
             <pre>
                 <code>
@@ -183,6 +184,15 @@
                     }
                 </code>
             </pre>
+            <div class="py-10">
+                <div class="checkbox checkbox_has_img">
+                    <label>
+                        <input type="checkbox" checked>
+                        <i class="checkbox_item"><img src="images/map/icons/lock.svg" alt=""></i>
+                        <span class="checkbox_label">lorem lorem lorem</span>
+                    </label>
+                </div>
+            </div>
             <div class="py-10">
                 <div class="checkbox">
                     <label>
