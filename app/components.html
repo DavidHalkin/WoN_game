@@ -1079,7 +1079,9 @@
             <hr>
             <h1>icon_list</h1>
             <ul>
-                <li>описание</li>
+                <li>по-умолчанию блоки <kbd>col_item</kbd> авто, тоесть по наполнению.. как таковой сетки нету строгой(нет %)</li>
+                <li>отступы по-умолчанию 6 пикселей между элементами</li>
+                <li><span class="red">что бы делать иначе сетку и отступы - надо апдейтить и придумывать модификаторы</span></li>
             </ul>
             <pre>
                 <code>
@@ -1089,12 +1091,38 @@
                     }
                 </code>
             </pre>
+            <div class="py-30">
+                <div class="icon_list">
+                    <div class="col_item">
+                        <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
+                    </div>
+                    <div class="col_item">
+                        <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
+                    </div>
+                    <div class="col_item">
+                        <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
+                    </div>
+                    <div class="col_item">
+                        <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
         </section>
         <section class="big_gap" id="slot">
             <hr>
             <h1>slot</h1>
             <ul>
-                <li>описание</li>
+                <li>на <kbd>slot</kbd> добавлять классы для соответсвующего оформления:
+                    <kbd>type_danger</kbd>
+                    <kbd>type_active</kbd>
+                    <kbd>type_disabled</kbd>
+                    <kbd>type_warning</kbd>
+                    <kbd>type_primary</kbd>
+                </li>
+                <li>добавить класс <kbd>has_no_text</kbd> и исчезнет блок с текстом</li>
+                <li>добавить класс <kbd>has_close</kbd> и будет кнопка закрыть</li>
+                <li>добавить класс <kbd>has_top_alert </kbd> и будет алерт тот что слева вверху</li>
+                <li>добавить класс <kbd>bottom_alert </kbd> и будет алерт тот что слева внизу</li>
             </ul>
             <pre>
                 <code>
@@ -1103,6 +1131,136 @@
                     }
                 </code>
             </pre>
+            <div class="py-30">
+                <div class="d-flex">
+                    <div class=" mx-7">
+                        <div class="slot type_danger has_close has_top_alert has_bottom_alert">
+                            <div class="figure_holder">
+                                <button class="figure" type="button">
+                                    <div class="mask">
+                                        <img src="images/map/circles/example.png" alt="">
+                                    </div>
+                                </button>
+                                <button type="button" class="close_btn"></button>
+                                <div class="square size_1 top_alert">
+                                    <img src="/images/map/icons/lock.svg" alt="">
+                                </div>
+                                <div class="square bottom_alert size_1">
+                                    <img src="/images/map/icons/alert.svg" alt="">
+                                </div>
+                            </div>
+                            <div class="text_holder">
+                                first
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" mx-7">
+                        <div class="slot type_active has_top_alert has_close">
+                            <div class="figure_holder">
+                                <button class="figure" type="button">
+                                    <div class="mask">
+                                        <img src="images/map/circles/example.png" alt="">
+                                    </div>
+                                </button>
+                                <button type="button" class="close_btn"></button>
+                                <div class="square size_1 top_alert">
+                                    <img src="/images/map/icons/lock.svg" alt="">
+                                </div>
+                                <div class="square bottom_alert size_1">
+                                    <img src="/images/map/icons/alert.svg" alt="">
+                                </div>
+                            </div>
+                            <div class="text_holder">
+                                1123
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" mx-7">
+                        <div class="slot type_disabled ">
+                            <div class="figure_holder">
+                                <button class="figure" type="button">
+                                    <div class="mask">
+                                        <img src="images/map/circles/example.png" alt="">
+                                    </div>
+                                </button>
+                                <button type="button" class="close_btn"></button>
+                                <div class="square size_1 top_alert">
+                                    <img src="/images/map/icons/lock.svg" alt="">
+                                </div>
+                                <div class="square bottom_alert size_1">
+                                    <img src="/images/map/icons/alert.svg" alt="">
+                                </div>
+                            </div>
+                            <div class="text_holder">
+                                1123
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" mx-7">
+                        <div class="slot has_no_text has_bottom_alert type_warning ">
+                            <div class="figure_holder">
+                                <button class="figure" type="button">
+                                    <div class="mask">
+                                        <img src="images/map/circles/example.png" alt="">
+                                    </div>
+                                </button>
+                                <button type="button" class="close_btn"></button>
+                                <div class="square size_1 top_alert">
+                                    <img src="/images/map/icons/lock.svg" alt="">
+                                </div>
+                                <div class="square bottom_alert size_1">
+                                    <img src="/images/map/icons/alert.svg" alt="">
+                                </div>
+                            </div>
+                            <div class="text_holder">
+                                1123
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" mx-7">
+                        <div class="slot type_primary ">
+                            <div class="figure_holder">
+                                <button class="figure" type="button">
+                                    <div class="mask">
+                                        <img src="https://picsum.photos/200/300" alt="">
+                                    </div>
+                                </button>
+                                <button type="button" class="close_btn"></button>
+                                <div class="square size_1 top_alert">
+                                    <img src="/images/map/icons/lock.svg" alt="">
+                                </div>
+                                <div class="square bottom_alert size_1">
+                                    <img src="/images/map/icons/alert.svg" alt="">
+                                </div>
+                            </div>
+                            <div class="text_holder">
+                                123
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" mx-7">
+                        <div class="slot type_primary ">
+                            <div class="figure_holder">
+                                <button class="figure" type="button">
+                                    <div class="mask">
+                                        <img src="images/map/circles/example.png" alt="">
+                                    </div>
+                                </button>
+                                <button type="button" class="close_btn"></button>
+                                <div class="square size_1 top_alert">
+                                    <img src="/images/map/icons/lock.svg" alt="">
+                                </div>
+                                <div class="square bottom_alert size_1">
+                                    <img src="/images/map/icons/alert.svg" alt="">
+                                </div>
+                            </div>
+                            <div class="text_holder">
+                                last
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
     <script src="js/map/ui.js"></script>

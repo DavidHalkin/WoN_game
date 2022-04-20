@@ -1,874 +1,915 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<link rel="stylesheet" href="css/all.css">
-		<title>#_home</title>
-	</head>
-	<body>
-		<div class="wrapper">
-			<div id="field_map" class="field_map"></div>
-			<!-- <div id="field_map" class="field_map"><canvas id="map"></canvas></div> -->
 
-			<!-- header_part strat -->
-			<div class="header_area d-flex justify-content-between align-items-start">
-				<div class="col-auto d-flex  align-items-start">
-					<div class="panel_nav d-flex align-items-center slide_at_left">
-						<div class="mob_btn">
-							<div class="panel md horizontal">
-								<div class="panel_holder flex-row">
-									<svg width="28" height="23" viewBox="0 0 28 23" fill="none">
-										<rect x="2" width="24" height="3" fill="#C4C4C4"/>
-										<rect y="10" width="28" height="3" fill="#C4C4C4"/>
-										<rect x="2" y="20" width="24" height="3" fill="#C4C4C4"/>
-									</svg>
-								</div>
-								<div class="decor ">
-									<span class="corner"></span>
-									<span class="corner right_top"></span>
-									<span class="corner right_bottom"></span>
-									<span class="corner left_bottom"></span>
-								</div>
-							</div>
-						</div>
-						<div class="slider_panel">
-							<div class="panel md horizontal" style="background-image: url(/images/map/panel/bg/main_nav.png);">
-								<div class="panel_holder flex-row">
-									<ul class="nav_list d-flex list-unstyled m-0">
-										<li>
-											<a href="/" class="square size_3 size_xl_4">
-												<img src="images/map/circles/example.png" alt="">
-											</a>
-											<div class="drop_down">
-												<div class="panel sm centered_corners_none">
-													<div class="panel_holder p-0">
-														<ul class=" list-unstyled m-0">
-															<li><a href="/">test</a></li>
-															<li class="has_drop">
-																<a href="/" class="active">sub lvl 2</a>
-																<div class="drop_down">
-																	<div class="panel sm">
-																		<div class="panel_holder p-0">
-																			<ul class="list-unstyled m-0">
-																				<li><a href="/">test 2</a></li>
-																				<li><a href="/">test 2</a></li>
-																				<li><a href="/">test 2</a></li>
-																			</ul>
-																		</div>
-																		<div class="decor ">
-																			<span class="corner"></span>
-																			<span class="corner right_top"></span>
-																			<span class="corner right_bottom"></span>
-																			<span class="corner left_bottom"></span>
-																		</div>
-																	</div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/all.css">
+    <title>#_home</title>
+</head>
 
-																</div>
-															</li>
-															<li><a href="/">lorem</a></li>
-															<li><a href="/">test</a></li>
-															<li><a href="/">test</a></li>
-															<li><a href="/">Lorem, ipsum dolor sit amet consectetur, adipisicing elit. Commodi, earum aperiam sequi harum quaerat veniam rem temporibus reiciendis recusandae</a></li>
-															<li><a href="/">class no .active on li </a></li>
-															<li><a href="/">test last</a></li>
-														</ul>
-													</div>
-													<div class="decor ">
-														<span class="corner"></span>
-														<span class="corner right_top"></span>
-														<span class="corner right_bottom"></span>
-														<span class="corner left_bottom"></span>
-													</div>
-												</div>
-											</div>
-										</li>
-										<li>
-											<a href="/" class="square size_3 size_xl_4">
-												<img src="images/map/circles/example.png" alt="">
-											</a>
-											<div class="drop_down">
-												<div class="panel sm centered_corners_none ">
-													<div class="panel_holder p-0">
-														<ul class=" list-unstyled m-0">
-															<li><a href="#">test</a></li>
-															<li class="has_drop">
-																<a href="#" class="active">sub lvl  (add on parent li .has_drop)</a>
-																<div class="drop_down">
-																	<div class="panel sm">
-																		<div class="panel_holder p-0">
-																			<ul class="list-unstyled m-0">
-																				<li><a href="#">test 2</a></li>
-																				<li><a href="#">test 2</a></li>
-																				<li><a href="#">test 2</a></li>
-																			</ul>
-																		</div>
-																		<div class="decor ">
-																			<span class="corner"></span>
-																			<span class="corner right_top"></span>
-																			<span class="corner right_bottom"></span>
-																			<span class="corner left_bottom"></span>
-																		</div>
-																	</div>
-
-																</div>
-															</li>
-															<li><a href="#">lorem</a></li>
-															<li><a href="#">test</a></li>
-															<li><a href="#">test</a></li>
-															<li><a href="#">Lorem, ipsum dolor sit amet consectetur, adipisicing elit. Commodi, earum aperiam sequi harum quaerat veniam rem temporibus reiciendis recusandae</a></li>
-															<li><a href="#">class no .active on li </a></li>
-															<li><a href="#">test last</a></li>
-														</ul>
-													</div>
-													<div class="decor ">
-														<span class="corner"></span>
-														<span class="corner right_top"></span>
-														<span class="corner right_bottom"></span>
-														<span class="corner left_bottom"></span>
-													</div>
-												</div>
-											</div>
-										</li>
-										<li>
-											<a href="/" class="square size_3 size_xl_4">
-												<img src="images/map/circles/example.png" alt="">
-											</a>
-										</li>
-										<li>
-											<a href="/" class="square size_3 size_xl_4">
-												<img src="images/map/circles/example.png" alt="">
-											</a>
-										</li>
-										<li>
-											<a href="/" class="square size_3 size_xl_4">
-												<img src="images/map/circles/example.png" alt="">
-											</a>
-										</li>
-										<li>
-											<a href="/" class="square size_3 size_xl_4">
-												<img src="images/map/circles/example.png" alt="">
-											</a>
-										</li>
-									</ul>
-								</div>
-								<div class="decor">
-									<span class="corner"></span>
-									<span class="corner right_top"></span>
-									<span class="corner right_bottom"></span>
-									<span class="corner left_bottom"></span>
-								</div>
-							</div>
-						</div>
-						<button class="switcher switcher_slider" onclick="this.parentElement.classList.toggle('closed')"></button>
-					</div>
-					<div class="panel_town mr-10">
-						<div class="panel md horizontal" style="background-image: url(/images/map/panel/bg/panel_town.png);">
-							<div class="panel_holder flex-row ">
-								<div class="dropdown_item position-static d-flex align-items-center">
-									<!-- <a href="#" class="circle emblem size_2 size_xl_5 d-block"><img src="https://picsum.photos/200" alt=""></a> -->
-									<button class="switcher switcher_slider down"></button>
-									<div class="drop_down">
-										<div class="panel grid_column sm centered_corners_none">
-											<div class="panel_holder p-0">
-												<div class="panel_content ">
-													<div id="city-list" class="content_scroll">
-														<ul class="etc_drop list-unstyled m-0">
-															<li>
-																<a href="#" class="d-flex align-items-center">
-																	<div class="town_img">
-																		<span class="square_img md">
-																			<span class="square_img_cont">
-																				<img src="https://picsum.photos/200" alt="" class="img-fluid">
-																			</span>
-																		</span>
-																		<span class="circle emblem size_1 size_xl_2 left_center"><img src="images/map/circles/emblem.png" alt=""></span>
-																	</div>
-																	<div class="col part_txt align-self-center">
-																		<h3 class="m-0">FIRST</h3>
-																		<p class="m-0 text-muted">115 citizen</p>
-																	</div>
-																</a>
-															</li>
-															<li>
-																<a href="#" class="d-flex align-items-center">
-																	<div class="town_img">
-																		<span class="square_img md">
-																			<span class="square_img_cont">
-																				<img src="https://picsum.photos/200" alt="" class="img-fluid">
-																			</span>
-																		</span>
-																		<span class="circle emblem size_1 size_xl_2 left_center"><img src="images/map/circles/emblem.png" alt=""></span>
-																	</div>
-																	<div class="col part_txt align-self-center">
-																		<h3 class="m-0">000000000000x</h3>
-																		<p class="m-0 text-muted">115 citizen</p>
-																	</div>
-																</a>
-															</li>
-															<li>
-																<a href="#" class="d-flex align-items-center">
-																	<div class="town_img">
-																		<span class="square_img md">
-																			<span class="square_img_cont">
-																				<img src="https://picsum.photos/200" alt="" class="img-fluid">
-																			</span>
-																		</span>
-																		<span class="circle emblem size_1 size_xl_2 left_center"><img src="images/map/circles/emblem.png" alt=""></span>
-																	</div>
-																	<div class="col part_txt align-self-center">
-																		<h3 class="m-0">000000000000x</h3>
-																		<p class="m-0 text-muted">115 citizen</p>
-																	</div>
-																</a>
-															</li>
-															<li>
-																<a href="#" class="d-flex align-items-center">
-																	<div class="town_img">
-																		<span class="square_img md">
-																			<span class="square_img_cont">
-																				<img src="https://picsum.photos/200" alt="" class="img-fluid">
-																			</span>
-																		</span>
-																		<span class="circle emblem size_1 size_xl_2 left_center"><img src="images/map/circles/emblem.png" alt=""></span>
-																	</div>
-																	<div class="col part_txt align-self-center">
-																		<h3 class="m-0">000000000000x</h3>
-																		<p class="m-0 text-muted">115 citizen</p>
-																	</div>
-																</a>
-															</li>
-															<li>
-																<a href="#" class="d-flex align-items-center">
-																	<div class="town_img">
-																		<span class="square_img md">
-																			<span class="square_img_cont">
-																				<img src="https://picsum.photos/200" alt="" class="img-fluid">
-																			</span>
-																		</span>
-																		<span class="circle emblem size_1 size_xl_2 left_center"><img src="images/map/circles/emblem.png" alt=""></span>
-																	</div>
-																	<div class="col part_txt align-self-center">
-																		<h3 class="m-0">LAST</h3>
-																		<p class="m-0 text-muted">115 citizen</p>
-																	</div>
-																</a>
-															</li>
-															<li>
-																<a href="#" class="d-flex align-items-center">
-																	<div class="town_img">
-																		<span class="square_img md">
-																			<span class="square_img_cont">
-																				<img src="https://picsum.photos/200" alt="" class="img-fluid">
-																			</span>
-																		</span>
-																		<span class="circle emblem size_1 size_xl_2 left_center"><img src="images/map/circles/emblem.png" alt=""></span>
-																	</div>
-																	<div class="col part_txt align-self-center">
-																		<h3 class="m-0">FIRST</h3>
-																		<p class="m-0 text-muted">115 citizen</p>
-																	</div>
-																</a>
-															</li>
-															<li>
-																<a href="#" class="d-flex align-items-center">
-																	<div class="town_img">
-																		<span class="square_img md">
-																			<span class="square_img_cont">
-																				<img src="https://picsum.photos/200" alt="" class="img-fluid">
-																			</span>
-																		</span>
-																		<span class="circle emblem size_1 size_xl_2 left_center"><img src="images/map/circles/emblem.png" alt=""></span>
-																	</div>
-																	<div class="col part_txt align-self-center">
-																		<h3 class="m-0">000000000000x</h3>
-																		<p class="m-0 text-muted">115 citizen</p>
-																	</div>
-																</a>
-															</li>
-															<li>
-																<a href="#" class="d-flex align-items-center">
-																	<div class="town_img">
-																		<span class="square_img md">
-																			<span class="square_img_cont">
-																				<img src="https://picsum.photos/200" alt="" class="img-fluid">
-																			</span>
-																		</span>
-																		<span class="circle emblem size_1 size_xl_2 left_center"><img src="images/map/circles/emblem.png" alt=""></span>
-																	</div>
-																	<div class="col part_txt align-self-center">
-																		<h3 class="m-0">000000000000x</h3>
-																		<p class="m-0 text-muted">115 citizen</p>
-																	</div>
-																</a>
-															</li>
-															<li>
-																<a href="#" class="d-flex align-items-center">
-																	<div class="town_img">
-																		<span class="square_img md">
-																			<span class="square_img_cont">
-																				<img src="https://picsum.photos/200" alt="" class="img-fluid">
-																			</span>
-																		</span>
-																		<span class="circle emblem size_1 size_xl_2 left_center"><img src="images/map/circles/emblem.png" alt=""></span>
-																	</div>
-																	<div class="col part_txt align-self-center">
-																		<h3 class="m-0">000000000000x</h3>
-																		<p class="m-0 text-muted">115 citizen</p>
-																	</div>
-																</a>
-															</li>
-															<li>
-																<a href="#" class="d-flex align-items-center">
-																	<div class="town_img">
-																		<span class="square_img md">
-																			<span class="square_img_cont">
-																				<img src="https://picsum.photos/200" alt="" class="img-fluid">
-																			</span>
-																		</span>
-																		<span class="circle emblem size_1 size_xl_2 left_center"><img src="images/map/circles/emblem.png" alt=""></span>
-																	</div>
-																	<div class="col part_txt align-self-center">
-																		<h3 class="m-0">LAST</h3>
-																		<p class="m-0 text-muted">115 citizen</p>
-																	</div>
-																</a>
-															</li>
-														</ul>
-													</div>
-													<div class="scrollbar">
-														<div class="btn_func arrow_prev"></div>
-														<div class="bar">
-															<div class="handler"></div>
-														</div>
-														<div class="btn_func arrow_next"></div>
-													</div>
-												</div>
-
-											</div>
-											<div class="decor">
-												<span class="corner"></span>
-												<span class="corner right_top"></span>
-												<span class="corner right_bottom"></span>
-												<span class="corner left_bottom"></span>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="town_img align-self-center">
-									<a class="square_img md" href="#1">
-										<span class="square_img_cont">
-											<img src="https://picsum.photos/200" alt="" class="img-fluid">
-										</span>
-									</a>
-									<a href="#2" class="circle emblem size_1 size_xl_2"><img src="images/map/circles/emblem.png" alt=""></a>
-								</div>
-								<div class="col part_txt align-self-center">
-									<h3 data-id="1234" data-object="city" class="m-0 hovered_item">00000000000000x123</h3>
-									<p class="m-0 text-muted">115 citizen</p>
-								</div>
-							</div>
-							<div class="decor">
-								<span class="corner"></span>
-								<span class="corner right_top"></span>
-								<span class="corner right_bottom"></span>
-								<span class="corner left_bottom"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-auto d-flex justify-content-end align-items-center">
-					<div class="panel_ducat">
-						<div class="panel md horizontal" style="background-image: url(/images/map/panel/bg/ducat_panel.png);">
-							<div class="panel_holder flex-row align-items-center">
-								<div class="ico_half">
-									<img src="images/map/icons/ducat.png" alt="">
-								</div>
-								<p class="mb-0 pl-10">123456</p>
-							</div>
-							<div class="decor">
-								<span class="corner"></span>
-								<span class="corner right_top"></span>
-								<span class="corner right_bottom"></span>
-								<span class="corner left_bottom"></span>
-							</div>
-						</div>
-					</div>
-					<div class="panel_progress d-flex align-items-center slide_at_right">
-						<button class="switcher switcher_slider" onclick="this.parentElement.classList.toggle('closed')"></button>
-						<div class="slider_panel">
-							<div class="panel md horizontal" style="background-image: url(/images/map/panel/bg/progress_panel.png);">
-								<div class="panel_holder flex-row">
-									<a href="#" class="circle emblem circle size_1 size_lg_2 size_xl_3 d-block"><img src="images/map/circles/emblem.png" alt=""></a>
-									<div class="txt_inf d-flex align-items-center">
-										<div class="d-inline-flex align-items-center">
-											<img src="https://picsum.photos/18" alt="">
-											<p class="m-0 pl-10">123456</p>
-										</div>
-										<div class="d-inline-flex align-items-center pl-15">
-											<img src="https://picsum.photos/18" alt="">
-											<p class="m-0 pl-10">123456</p>
-										</div>
-									</div>
-								</div>
-								<div class="decor">
-									<span class="corner"></span>
-									<span class="corner right_top"></span>
-									<span class="corner right_bottom"></span>
-									<span class="corner left_bottom"></span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="panel_user ml-10">
-						<div class="panel md horizontal" style="background-image: url(/images/map/panel/bg/user_panel.png);">
-							<div class="panel_holder flex-row">
-								<a href="#" class="circle size_1 size_lg_2 size_xl_3 mx-4"><img src="images/map/circles/example.png" alt=""></a>
-								<a href="#" class="circle size_1 size_lg_2 size_xl_3 mx-4"><img src="images/map/circles/example.png" alt=""></a>
-								<a href="#" class="circle size_1 size_lg_2 size_xl_3 mx-4"><img src="images/map/circles/example.png" alt=""></a>
-							</div>
-							<div class="decor">
-								<span class="corner"></span>
-								<span class="corner right_top"></span>
-								<span class="corner right_bottom"></span>
-								<span class="corner left_bottom"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- header_part end -->
-			<!-- right sidebar start -->
-			<div class="panel panel_sidebar grid_column" style="background-image: url(/images/map/panel/bg/aside.png);">
-				<!-- close btn start-->
-				<button type="button" class="close_btn position-absolute"></button>
-				<!-- close btn end-->
-				<div class="panel_holder">
-					<div class="panel_header py-10">
-						<div class="d-flex align-items-center">
-							<div class="pr-25">
-								<a href="#" class="circle emblem size_2 size_xl_4 d-block my-4"><img src="https://picsum.photos/200" alt=""></a>
-								<a href="#" class="circle emblem size_2 size_xl_4 d-block my-4"><img src="images/map/circles/emblem.png" alt=""></a>
-							</div>
-							<h3 class="mb-0 fz_25 font-weight-normal">Lorem ipsum dolor sit, amet consectetur</h3>
-						</div>
-						<div class="decor">
-							<span class="corner"></span>
-							<span class="corner right_top"></span>
-							<span class="corner right_bottom"></span>
-							<span class="corner left_bottom"></span>
-						</div>
-					</div>
-					<div class="panel_content pb-10">
-						<div class="content_scroll">
-							<div class="d-flex mx-n3 flex-wrap">
-								<div class="col-auto px-3 pb-6">
-									<div class="square size_3 size_xl_4">
-										<img src="images/map/circles/example.png" alt="">
-									</div>
-								</div>
-								<div class="col-auto px-3 pb-6">
-									<div class="square size_3 size_xl_4">
-										<img src="images/map/circles/example.png" alt="">
-									</div>
-								</div>
-								<div class="col-auto px-3 pb-6">
-									<div class="square size_3 size_xl_4">
-										<img src="images/map/circles/example.png" alt="">
-									</div>
-								</div>
-								<div class="col-auto px-3 pb-6">
-									<div class="square size_3 size_xl_4">
-										<img src="images/map/circles/example.png" alt="">
-									</div>
-								</div>
-								<div class="col-auto px-3 pb-6">
-									<div class="square size_3 size_xl_4">
-										<img src="images/map/circles/example.png" alt="">
-									</div>
-								</div>
-							</div>
-							<div class="section_accordion closed d-flex pt-10  align-items-start">
-								<div class="col accordion_hidden_part">
-									<h3 class="fz_20 mb-12">Производства</h3>
-									<a href="#" class="btn md px-15 mr-5"><span>Создать</span></a>
-									<a href="#" class="btn md px-15"><span>Управление</span></a>
-									<ul class="list-unstyled py-15">
-										<li>Лесопилка: 38 зданий (630 людей)</li>
-										<li>Сад: 5 полей (35 людей)</li>
-										<li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
-										<li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
-										<li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
-										<li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
-										<li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
-										<li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
-										<li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
-										<li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
-										<li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
-									</ul>
-								</div>
-								<div class="col-auto pl-5">
-									<button type="button" class="switcher down"></button>
-								</div>
-							</div>
-							<div class="section_accordion closed d-flex pt-10 align-items-start">
-								<div class="col accordion_hidden_part">
-									<div class="d-flex  mx-n3 flex-wrap">
-										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
-										</div>
-										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
-										</div>
-										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
-										</div>
-										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
-										</div>
-										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
-										</div>
-										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
-										</div>
-										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
-										</div>
-										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
-										</div>
-										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
-										</div>
-										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
-										</div>
-										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
-										</div>
-										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
-										</div>
-										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
-										</div>
-										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
-										</div>
-										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
-										</div>
-										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
-										</div>
-										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
-										</div>
-										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
-										</div>
-										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
-										</div>
-
-										<div class="col-auto px-3 pb-6">
-											<a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
-										</div>
-									</div>
-								</div>
-								<div class="col-auto pl-5">
-									<button type="button" class="switcher down"></button>
-								</div>
-							</div>
-						</div>
-						<div class="scrollbar">
-							<div class="btn_func arrow_prev"></div>
-							<div class="bar">
-								<div class="handler"></div>
-							</div>
-							<div class="btn_func arrow_next"></div>
-						</div>
-					</div>
-				</div>
-				<div class="decor ">
-					<span class="corner"></span>
-					<span class="corner right_top"></span>
-					<span class="corner right_bottom"></span>
-					<span class="corner left_bottom"></span>
-				</div>
-			</div>
-			<!-- right sidebar END -->
-			<!-- footer_area start -->
-			<div class="footer_area d-flex align-items-end">
-				<div class="panel_game_modes">
-					<div class="d-flex align-items-end">
-						<div class="panel md col-auto" style="background-image: url(/images/map/panel/bg/game_modes.png);">
-							<div class="panel_holder px-10">
-						        <button title="physical" name="physical" type="button" class="active circle size_2 size_lg_3 size_xl_4 my-3">
-						            <img src="/images/map/content/map_modes/w45/2.png" alt="physical"
-						                srcset="/images/map/content/map_modes/w45/2.webp 1x,
+<body>
+    <div class="wrapper">
+        <div id="field_map" class="field_map"></div>
+        <!-- <div id="field_map" class="field_map"><canvas id="map"></canvas></div> -->
+        <!-- header_part strat -->
+        <div class="header_area d-flex justify-content-between align-items-start">
+            <div class="col-auto d-flex  align-items-start">
+                <div class="panel_nav d-flex align-items-center slide_at_left">
+                    <div class="mob_btn">
+                        <div class="panel md horizontal">
+                            <div class="panel_holder flex-row">
+                                <svg width="28" height="23" viewBox="0 0 28 23" fill="none">
+                                    <rect x="2" width="24" height="3" fill="#C4C4C4" />
+                                    <rect y="10" width="28" height="3" fill="#C4C4C4" />
+                                    <rect x="2" y="20" width="24" height="3" fill="#C4C4C4" />
+                                </svg>
+                            </div>
+                            <div class="decor ">
+                                <span class="corner"></span>
+                                <span class="corner right_top"></span>
+                                <span class="corner right_bottom"></span>
+                                <span class="corner left_bottom"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider_panel">
+                        <div class="panel md horizontal" style="background-image: url(/images/map/panel/bg/main_nav.png);">
+                            <div class="panel_holder flex-row">
+                                <ul class="nav_list d-flex list-unstyled m-0">
+                                    <li>
+                                        <a href="/" class="square size_3 size_xl_4">
+                                            <img src="images/map/circles/example.png" alt="">
+                                        </a>
+                                        <div class="drop_down">
+                                            <div class="panel sm centered_corners_none">
+                                                <div class="panel_holder p-0">
+                                                    <ul class=" list-unstyled m-0">
+                                                        <li><a href="/">test</a></li>
+                                                        <li class="has_drop">
+                                                            <a href="/" class="active">sub lvl 2</a>
+                                                            <div class="drop_down">
+                                                                <div class="panel sm">
+                                                                    <div class="panel_holder p-0">
+                                                                        <ul class="list-unstyled m-0">
+                                                                            <li><a href="/">test 2</a></li>
+                                                                            <li><a href="/">test 2</a></li>
+                                                                            <li><a href="/">test 2</a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="decor ">
+                                                                        <span class="corner"></span>
+                                                                        <span class="corner right_top"></span>
+                                                                        <span class="corner right_bottom"></span>
+                                                                        <span class="corner left_bottom"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li><a href="/">lorem</a></li>
+                                                        <li><a href="/">test</a></li>
+                                                        <li><a href="/">test</a></li>
+                                                        <li><a href="/">Lorem, ipsum dolor sit amet consectetur, adipisicing elit. Commodi, earum aperiam sequi harum quaerat veniam rem temporibus reiciendis recusandae</a></li>
+                                                        <li><a href="/">class no .active on li </a></li>
+                                                        <li><a href="/">test last</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="decor ">
+                                                    <span class="corner"></span>
+                                                    <span class="corner right_top"></span>
+                                                    <span class="corner right_bottom"></span>
+                                                    <span class="corner left_bottom"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="/" class="square size_3 size_xl_4">
+                                            <img src="images/map/circles/example.png" alt="">
+                                        </a>
+                                        <div class="drop_down">
+                                            <div class="panel sm centered_corners_none ">
+                                                <div class="panel_holder p-0">
+                                                    <ul class=" list-unstyled m-0">
+                                                        <li><a href="#">test</a></li>
+                                                        <li class="has_drop">
+                                                            <a href="#" class="active">sub lvl (add on parent li .has_drop)</a>
+                                                            <div class="drop_down">
+                                                                <div class="panel sm">
+                                                                    <div class="panel_holder p-0">
+                                                                        <ul class="list-unstyled m-0">
+                                                                            <li><a href="#">test 2</a></li>
+                                                                            <li><a href="#">test 2</a></li>
+                                                                            <li><a href="#">test 2</a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="decor ">
+                                                                        <span class="corner"></span>
+                                                                        <span class="corner right_top"></span>
+                                                                        <span class="corner right_bottom"></span>
+                                                                        <span class="corner left_bottom"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li><a href="#">lorem</a></li>
+                                                        <li><a href="#">test</a></li>
+                                                        <li><a href="#">test</a></li>
+                                                        <li><a href="#">Lorem, ipsum dolor sit amet consectetur, adipisicing elit. Commodi, earum aperiam sequi harum quaerat veniam rem temporibus reiciendis recusandae</a></li>
+                                                        <li><a href="#">class no .active on li </a></li>
+                                                        <li><a href="#">test last</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="decor ">
+                                                    <span class="corner"></span>
+                                                    <span class="corner right_top"></span>
+                                                    <span class="corner right_bottom"></span>
+                                                    <span class="corner left_bottom"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="/" class="square size_3 size_xl_4">
+                                            <img src="images/map/circles/example.png" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/" class="square size_3 size_xl_4">
+                                            <img src="images/map/circles/example.png" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/" class="square size_3 size_xl_4">
+                                            <img src="images/map/circles/example.png" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/" class="square size_3 size_xl_4">
+                                            <img src="images/map/circles/example.png" alt="">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="decor">
+                                <span class="corner"></span>
+                                <span class="corner right_top"></span>
+                                <span class="corner right_bottom"></span>
+                                <span class="corner left_bottom"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="switcher switcher_slider" onclick="this.parentElement.classList.toggle('closed')"></button>
+                </div>
+                <div class="panel_town mr-10">
+                    <div class="panel md horizontal" style="background-image: url(/images/map/panel/bg/panel_town.png);">
+                        <div class="panel_holder flex-row ">
+                            <div class="dropdown_item position-static d-flex align-items-center">
+                                <!-- <a href="#" class="circle emblem size_2 size_xl_5 d-block"><img src="https://picsum.photos/200" alt=""></a> -->
+                                <button class="switcher switcher_slider down"></button>
+                                <div class="drop_down">
+                                    <div class="panel grid_column sm centered_corners_none">
+                                        <div class="panel_holder p-0">
+                                            <div class="panel_content ">
+                                                <div id="city-list" class="content_scroll">
+                                                    <ul class="etc_drop list-unstyled m-0">
+                                                        <li>
+                                                            <a href="#" class="d-flex align-items-center">
+                                                                <div class="town_img">
+                                                                    <span class="square_img md">
+                                                                        <span class="square_img_cont">
+                                                                            <img src="https://picsum.photos/200" alt="" class="img-fluid">
+                                                                        </span>
+                                                                    </span>
+                                                                    <span class="circle emblem size_1 size_xl_2 left_center"><img src="images/map/circles/emblem.png" alt=""></span>
+                                                                </div>
+                                                                <div class="col part_txt align-self-center">
+                                                                    <h3 class="m-0">FIRST</h3>
+                                                                    <p class="m-0 text-muted">115 citizen</p>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="d-flex align-items-center">
+                                                                <div class="town_img">
+                                                                    <span class="square_img md">
+                                                                        <span class="square_img_cont">
+                                                                            <img src="https://picsum.photos/200" alt="" class="img-fluid">
+                                                                        </span>
+                                                                    </span>
+                                                                    <span class="circle emblem size_1 size_xl_2 left_center"><img src="images/map/circles/emblem.png" alt=""></span>
+                                                                </div>
+                                                                <div class="col part_txt align-self-center">
+                                                                    <h3 class="m-0">000000000000x</h3>
+                                                                    <p class="m-0 text-muted">115 citizen</p>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="d-flex align-items-center">
+                                                                <div class="town_img">
+                                                                    <span class="square_img md">
+                                                                        <span class="square_img_cont">
+                                                                            <img src="https://picsum.photos/200" alt="" class="img-fluid">
+                                                                        </span>
+                                                                    </span>
+                                                                    <span class="circle emblem size_1 size_xl_2 left_center"><img src="images/map/circles/emblem.png" alt=""></span>
+                                                                </div>
+                                                                <div class="col part_txt align-self-center">
+                                                                    <h3 class="m-0">000000000000x</h3>
+                                                                    <p class="m-0 text-muted">115 citizen</p>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="d-flex align-items-center">
+                                                                <div class="town_img">
+                                                                    <span class="square_img md">
+                                                                        <span class="square_img_cont">
+                                                                            <img src="https://picsum.photos/200" alt="" class="img-fluid">
+                                                                        </span>
+                                                                    </span>
+                                                                    <span class="circle emblem size_1 size_xl_2 left_center"><img src="images/map/circles/emblem.png" alt=""></span>
+                                                                </div>
+                                                                <div class="col part_txt align-self-center">
+                                                                    <h3 class="m-0">000000000000x</h3>
+                                                                    <p class="m-0 text-muted">115 citizen</p>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="d-flex align-items-center">
+                                                                <div class="town_img">
+                                                                    <span class="square_img md">
+                                                                        <span class="square_img_cont">
+                                                                            <img src="https://picsum.photos/200" alt="" class="img-fluid">
+                                                                        </span>
+                                                                    </span>
+                                                                    <span class="circle emblem size_1 size_xl_2 left_center"><img src="images/map/circles/emblem.png" alt=""></span>
+                                                                </div>
+                                                                <div class="col part_txt align-self-center">
+                                                                    <h3 class="m-0">LAST</h3>
+                                                                    <p class="m-0 text-muted">115 citizen</p>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="d-flex align-items-center">
+                                                                <div class="town_img">
+                                                                    <span class="square_img md">
+                                                                        <span class="square_img_cont">
+                                                                            <img src="https://picsum.photos/200" alt="" class="img-fluid">
+                                                                        </span>
+                                                                    </span>
+                                                                    <span class="circle emblem size_1 size_xl_2 left_center"><img src="images/map/circles/emblem.png" alt=""></span>
+                                                                </div>
+                                                                <div class="col part_txt align-self-center">
+                                                                    <h3 class="m-0">FIRST</h3>
+                                                                    <p class="m-0 text-muted">115 citizen</p>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="d-flex align-items-center">
+                                                                <div class="town_img">
+                                                                    <span class="square_img md">
+                                                                        <span class="square_img_cont">
+                                                                            <img src="https://picsum.photos/200" alt="" class="img-fluid">
+                                                                        </span>
+                                                                    </span>
+                                                                    <span class="circle emblem size_1 size_xl_2 left_center"><img src="images/map/circles/emblem.png" alt=""></span>
+                                                                </div>
+                                                                <div class="col part_txt align-self-center">
+                                                                    <h3 class="m-0">000000000000x</h3>
+                                                                    <p class="m-0 text-muted">115 citizen</p>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="d-flex align-items-center">
+                                                                <div class="town_img">
+                                                                    <span class="square_img md">
+                                                                        <span class="square_img_cont">
+                                                                            <img src="https://picsum.photos/200" alt="" class="img-fluid">
+                                                                        </span>
+                                                                    </span>
+                                                                    <span class="circle emblem size_1 size_xl_2 left_center"><img src="images/map/circles/emblem.png" alt=""></span>
+                                                                </div>
+                                                                <div class="col part_txt align-self-center">
+                                                                    <h3 class="m-0">000000000000x</h3>
+                                                                    <p class="m-0 text-muted">115 citizen</p>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="d-flex align-items-center">
+                                                                <div class="town_img">
+                                                                    <span class="square_img md">
+                                                                        <span class="square_img_cont">
+                                                                            <img src="https://picsum.photos/200" alt="" class="img-fluid">
+                                                                        </span>
+                                                                    </span>
+                                                                    <span class="circle emblem size_1 size_xl_2 left_center"><img src="images/map/circles/emblem.png" alt=""></span>
+                                                                </div>
+                                                                <div class="col part_txt align-self-center">
+                                                                    <h3 class="m-0">000000000000x</h3>
+                                                                    <p class="m-0 text-muted">115 citizen</p>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="d-flex align-items-center">
+                                                                <div class="town_img">
+                                                                    <span class="square_img md">
+                                                                        <span class="square_img_cont">
+                                                                            <img src="https://picsum.photos/200" alt="" class="img-fluid">
+                                                                        </span>
+                                                                    </span>
+                                                                    <span class="circle emblem size_1 size_xl_2 left_center"><img src="images/map/circles/emblem.png" alt=""></span>
+                                                                </div>
+                                                                <div class="col part_txt align-self-center">
+                                                                    <h3 class="m-0">LAST</h3>
+                                                                    <p class="m-0 text-muted">115 citizen</p>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="scrollbar">
+                                                    <div class="btn_func arrow_prev"></div>
+                                                    <div class="bar">
+                                                        <div class="handler"></div>
+                                                    </div>
+                                                    <div class="btn_func arrow_next"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="decor">
+                                            <span class="corner"></span>
+                                            <span class="corner right_top"></span>
+                                            <span class="corner right_bottom"></span>
+                                            <span class="corner left_bottom"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="town_img align-self-center">
+                                <a class="square_img md" href="#1">
+                                    <span class="square_img_cont">
+                                        <img src="https://picsum.photos/200" alt="" class="img-fluid">
+                                    </span>
+                                </a>
+                                <a href="#2" class="circle emblem size_1 size_xl_2"><img src="images/map/circles/emblem.png" alt=""></a>
+                            </div>
+                            <div class="col part_txt align-self-center">
+                                <h3 data-id="1234" data-object="city" class="m-0 hovered_item">00000000000000x123</h3>
+                                <p class="m-0 text-muted">115 citizen</p>
+                            </div>
+                        </div>
+                        <div class="decor">
+                            <span class="corner"></span>
+                            <span class="corner right_top"></span>
+                            <span class="corner right_bottom"></span>
+                            <span class="corner left_bottom"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto d-flex justify-content-end align-items-center">
+                <div class="panel_ducat">
+                    <div class="panel md horizontal" style="background-image: url(/images/map/panel/bg/ducat_panel.png);">
+                        <div class="panel_holder flex-row align-items-center">
+                            <div class="ico_half">
+                                <img src="images/map/icons/ducat.png" alt="">
+                            </div>
+                            <p class="mb-0 pl-10">123456</p>
+                        </div>
+                        <div class="decor">
+                            <span class="corner"></span>
+                            <span class="corner right_top"></span>
+                            <span class="corner right_bottom"></span>
+                            <span class="corner left_bottom"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel_progress d-flex align-items-center slide_at_right">
+                    <button class="switcher switcher_slider" onclick="this.parentElement.classList.toggle('closed')"></button>
+                    <div class="slider_panel">
+                        <div class="panel md horizontal" style="background-image: url(/images/map/panel/bg/progress_panel.png);">
+                            <div class="panel_holder flex-row">
+                                <a href="#" class="circle emblem circle size_1 size_lg_2 size_xl_3 d-block"><img src="images/map/circles/emblem.png" alt=""></a>
+                                <div class="txt_inf d-flex align-items-center">
+                                    <div class="d-inline-flex align-items-center">
+                                        <img src="https://picsum.photos/18" alt="">
+                                        <p class="m-0 pl-10">123456</p>
+                                    </div>
+                                    <div class="d-inline-flex align-items-center pl-15">
+                                        <img src="https://picsum.photos/18" alt="">
+                                        <p class="m-0 pl-10">123456</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="decor">
+                                <span class="corner"></span>
+                                <span class="corner right_top"></span>
+                                <span class="corner right_bottom"></span>
+                                <span class="corner left_bottom"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel_user ml-10">
+                    <div class="panel md horizontal" style="background-image: url(/images/map/panel/bg/user_panel.png);">
+                        <div class="panel_holder flex-row">
+                            <a href="#" class="circle size_1 size_lg_2 size_xl_3 mx-4"><img src="images/map/circles/example.png" alt=""></a>
+                            <a href="#" class="circle size_1 size_lg_2 size_xl_3 mx-4"><img src="images/map/circles/example.png" alt=""></a>
+                            <a href="#" class="circle size_1 size_lg_2 size_xl_3 mx-4"><img src="images/map/circles/example.png" alt=""></a>
+                        </div>
+                        <div class="decor">
+                            <span class="corner"></span>
+                            <span class="corner right_top"></span>
+                            <span class="corner right_bottom"></span>
+                            <span class="corner left_bottom"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- header_part end -->
+        <!-- right sidebar start -->
+        <div class="panel panel_sidebar grid_column" style="background-image: url(/images/map/panel/bg/aside.png); display:block;">
+            <!-- close btn start-->
+            <button type="button" class="close_btn position-absolute"></button>
+            <!-- close btn end-->
+            <div class="panel_holder">
+                <div class="panel_header py-10">
+                    <div class="d-flex align-items-center">
+                        <div class="pr-25">
+                            <a href="#" class="circle emblem size_2 size_xl_4 d-block my-4"><img src="https://picsum.photos/200" alt=""></a>
+                            <a href="#" class="circle emblem size_2 size_xl_4 d-block my-4"><img src="images/map/circles/emblem.png" alt=""></a>
+                        </div>
+                        <h3 class="mb-0 fz_25 font-weight-normal">Lorem ipsum dolor sit, amet consectetur</h3>
+                    </div>
+                    <div class="decor">
+                        <span class="corner"></span>
+                        <span class="corner right_top"></span>
+                        <span class="corner right_bottom"></span>
+                        <span class="corner left_bottom"></span>
+                    </div>
+                </div>
+                <div class="panel_content pb-10">
+                    <div class="content_scroll">
+                        <div class="d-flex mx-n3 flex-wrap">
+                            <div class="col-auto px-3 pb-6">
+                                <div class="square size_3 size_xl_4">
+                                    <img src="images/map/circles/example.png" alt="">
+                                </div>
+                            </div>
+                            <div class="col-auto px-3 pb-6">
+                                <div class="square size_3 size_xl_4">
+                                    <img src="images/map/circles/example.png" alt="">
+                                </div>
+                            </div>
+                            <div class="col-auto px-3 pb-6">
+                                <div class="square size_3 size_xl_4">
+                                    <img src="images/map/circles/example.png" alt="">
+                                </div>
+                            </div>
+                            <div class="col-auto px-3 pb-6">
+                                <div class="square size_3 size_xl_4">
+                                    <img src="images/map/circles/example.png" alt="">
+                                </div>
+                            </div>
+                            <div class="col-auto px-3 pb-6">
+                                <div class="square size_3 size_xl_4">
+                                    <img src="images/map/circles/example.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section_accordion closed d-flex pt-10  align-items-start">
+                            <div class="col accordion_hidden_part">
+                                <h3 class="fz_20 mb-12">Производства</h3>
+                                <a href="#" class="btn md px-15 mr-5"><span>Создать</span></a>
+                                <a href="#" class="btn md px-15"><span>Управление</span></a>
+                                <ul class="list-unstyled py-15">
+                                    <li>Лесопилка: 38 зданий (630 людей)</li>
+                                    <li>Сад: 5 полей (35 людей)</li>
+                                    <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                                    <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                                    <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                                    <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                                    <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                                    <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                                    <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                                    <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                                    <li>Кузница: 10 зданий (<span class="font-italic">40 людей</span>)</li>
+                                </ul>
+                            </div>
+                            <div class="col-auto pl-5">
+                                <button type="button" class="switcher down"></button>
+                            </div>
+                        </div>
+                        <div class="section_accordion closed d-flex pt-10 align-items-start">
+                            <div class="col accordion_hidden_part">
+                                <div class="d-flex  mx-n3 flex-wrap">
+                                    <div class="col-auto px-3 pb-6">
+                                        <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
+                                    </div>
+                                    <div class="col-auto px-3 pb-6">
+                                        <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
+                                    </div>
+                                    <div class="col-auto px-3 pb-6">
+                                        <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
+                                    </div>
+                                    <div class="col-auto px-3 pb-6">
+                                        <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
+                                    </div>
+                                    <div class="col-auto px-3 pb-6">
+                                        <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
+                                    </div>
+                                    <div class="col-auto px-3 pb-6">
+                                        <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
+                                    </div>
+                                    <div class="col-auto px-3 pb-6">
+                                        <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
+                                    </div>
+                                    <div class="col-auto px-3 pb-6">
+                                        <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
+                                    </div>
+                                    <div class="col-auto px-3 pb-6">
+                                        <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
+                                    </div>
+                                    <div class="col-auto px-3 pb-6">
+                                        <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
+                                    </div>
+                                    <div class="col-auto px-3 pb-6">
+                                        <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
+                                    </div>
+                                    <div class="col-auto px-3 pb-6">
+                                        <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
+                                    </div>
+                                    <div class="col-auto px-3 pb-6">
+                                        <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
+                                    </div>
+                                    <div class="col-auto px-3 pb-6">
+                                        <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
+                                    </div>
+                                    <div class="col-auto px-3 pb-6">
+                                        <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
+                                    </div>
+                                    <div class="col-auto px-3 pb-6">
+                                        <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
+                                    </div>
+                                    <div class="col-auto px-3 pb-6">
+                                        <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
+                                    </div>
+                                    <div class="col-auto px-3 pb-6">
+                                        <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
+                                    </div>
+                                    <div class="col-auto px-3 pb-6">
+                                        <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
+                                    </div>
+                                    <div class="col-auto px-3 pb-6">
+                                        <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-auto pl-5">
+                                <button type="button" class="switcher down"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scrollbar">
+                        <div class="btn_func arrow_prev"></div>
+                        <div class="bar">
+                            <div class="handler"></div>
+                        </div>
+                        <div class="btn_func arrow_next"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="decor ">
+                <span class="corner"></span>
+                <span class="corner right_top"></span>
+                <span class="corner right_bottom"></span>
+                <span class="corner left_bottom"></span>
+            </div>
+        </div>
+        <!-- right sidebar END -->
+        <!-- footer_area start -->
+        <div class="footer_area d-flex align-items-end">
+            <div class="panel_game_modes">
+                <div class="d-flex align-items-end">
+                    <div class="panel md col-auto" style="background-image: url(/images/map/panel/bg/game_modes.png);">
+                        <div class="panel_holder px-10">
+                            <button title="physical" name="physical" type="button" class="active circle size_2 size_lg_3 size_xl_4 my-3">
+                                <img src="/images/map/content/map_modes/w45/2.png" alt="physical" srcset="/images/map/content/map_modes/w45/2.webp 1x,
 						                        /images/map/content/map_modes/w90/2.webp 2x">
-						        </button>
-
-						        <button title="polytics" name="polytics" type="button" class="circle size_2 size_lg_3 size_xl_4 my-3">
-						            <img src="/images/map/content/map_modes/w45/6.png" alt="polytics"
-						                srcset="/images/map/content/map_modes/w45/6.webp 1x,
+                            </button>
+                            <button title="polytics" name="polytics" type="button" class="circle size_2 size_lg_3 size_xl_4 my-3">
+                                <img src="/images/map/content/map_modes/w45/6.png" alt="polytics" srcset="/images/map/content/map_modes/w45/6.webp 1x,
 						                        /images/map/content/map_modes/w90/6.webp 2x">
-						        </button>
-						        <button title="vassals" name="vassals" type="button" class="circle size_2 size_lg_3 size_xl_4 my-3">
-						            <img src="/images/map/content/map_modes/w45/8.png" alt="vassals"
-						                srcset="/images/map/content/map_modes/w45/8.webp 1x,
+                            </button>
+                            <button title="vassals" name="vassals" type="button" class="circle size_2 size_lg_3 size_xl_4 my-3">
+                                <img src="/images/map/content/map_modes/w45/8.png" alt="vassals" srcset="/images/map/content/map_modes/w45/8.webp 1x,
 						                        /images/map/content/map_modes/w90/8.webp 2x">
-						        </button>
-						        <button title="trade" name="trade" type="button" class="circle size_2 size_lg_3 size_xl_4 my-3">
-						            <img src="/images/map/content/map_modes/w45/1.png" alt="trade"
-						                srcset="/images/map/content/map_modes/w45/1.webp 1x,
+                            </button>
+                            <button title="trade" name="trade" type="button" class="circle size_2 size_lg_3 size_xl_4 my-3">
+                                <img src="/images/map/content/map_modes/w45/1.png" alt="trade" srcset="/images/map/content/map_modes/w45/1.webp 1x,
 						                        /images/map/content/map_modes/w90/1.webp 2x">
-						        </button>
-
-						        <button title="geo" name="geo" type="button" class="circle size_2 size_lg_3 size_xl_4 my-3">
-						            <img src="/images/map/content/map_modes/w45/3.png" alt="geo"
-						                srcset="/images/map/content/map_modes/w45/3.webp 1x,
+                            </button>
+                            <button title="geo" name="geo" type="button" class="circle size_2 size_lg_3 size_xl_4 my-3">
+                                <img src="/images/map/content/map_modes/w45/3.png" alt="geo" srcset="/images/map/content/map_modes/w45/3.webp 1x,
 						                        /images/map/content/map_modes/w90/3.webp 2x">
-						        </button>
-						        <button title="nature" name="nature" type="button" class="circle size_2 size_lg_3 size_xl_4 my-3">
-						            <img src="/images/map/content/map_modes/w45/4.png" alt="nature"
-						                srcset="/images/map/content/map_modes/w45/4.webp 1x,
+                            </button>
+                            <button title="nature" name="nature" type="button" class="circle size_2 size_lg_3 size_xl_4 my-3">
+                                <img src="/images/map/content/map_modes/w45/4.png" alt="nature" srcset="/images/map/content/map_modes/w45/4.webp 1x,
 						                        /images/map/content/map_modes/w90/4.webp 2x">
-						        </button>
-
-						        <button title="climate" name="climate" type="button" class="circle size_2 size_lg_3 size_xl_4 my-3">
-						            <img src="/images/map/content/map_modes/w45/9.png" alt="climate"
-						                srcset="/images/map/content/map_modes/w45/9.webp 1x,
+                            </button>
+                            <button title="climate" name="climate" type="button" class="circle size_2 size_lg_3 size_xl_4 my-3">
+                                <img src="/images/map/content/map_modes/w45/9.png" alt="climate" srcset="/images/map/content/map_modes/w45/9.webp 1x,
 						                        /images/map/content/map_modes/w90/9.webp 2x">
-						        </button>
-						        <button title="ethnic" name="ethnic" type="button" class="circle size_2 size_lg_3 size_xl_4 my-3">
-						            <img src="/images/map/content/map_modes/w45/7.png" alt="ethnic"
-						                srcset="/images/map/content/map_modes/w45/7.webp 1x,
+                            </button>
+                            <button title="ethnic" name="ethnic" type="button" class="circle size_2 size_lg_3 size_xl_4 my-3">
+                                <img src="/images/map/content/map_modes/w45/7.png" alt="ethnic" srcset="/images/map/content/map_modes/w45/7.webp 1x,
 						                        /images/map/content/map_modes/w90/7.webp 2x">
-						        </button>
-						        <button title="religion" name="religion" type="button" class="circle size_2 size_lg_3 size_xl_4 my-3">
-						            <img src="/images/map/content/map_modes/w45/5.png" alt="religion"
-						                srcset="/images/map/content/map_modes/w45/5.webp 1x,
+                            </button>
+                            <button title="religion" name="religion" type="button" class="circle size_2 size_lg_3 size_xl_4 my-3">
+                                <img src="/images/map/content/map_modes/w45/5.png" alt="religion" srcset="/images/map/content/map_modes/w45/5.webp 1x,
 						                        /images/map/content/map_modes/w90/5.webp 2x">
-						        </button>
+                            </button>
+                        </div>
+                        <div class="decor ">
+                            <span class="corner"></span>
+                            <span class="corner right_top"></span>
+                            <span class="corner right_bottom"></span>
+                            <span class="corner left_bottom"></span>
+                        </div>
+                    </div>
+                    <a href="#" class="photo_block d-flex">
+                        <img src="images/map/content/img.png" alt="" class="img-fluid">
+                    </a>
+                </div>
+            </div>
+            <div class="col pl-10 right_aside d-flex justify-content-end align-items-end">
+                <div class="panel_army d-flex minw_0 justify-content-end slide_at_right">
+                    <!-- switcher panel btn -->
+                    <button class="switcher switcher_slider" onclick="this.parentElement.classList.toggle('closed')"></button>
+                    <!-- switcher panel btn END -->
+                    <div class="slider_panel col-auto">
+                        <div class="title_panel">
+                            <div class="panel sm horizontal">
+                                <div class="panel_holder px-30 py-9">
+                                    <span id="paneltitle" data-id="1234" data-object="army" class="fz_17 hovered_item">Army name</span>
+                                </div>
+                                <div class="decor ">
+                                    <span class="corner"></span>
+                                    <span class="corner right_top"></span>
+                                    <span class="corner right_bottom"></span>
+                                    <span class="corner left_bottom"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel area_army_panel md horizontal" style="background-image: url(/images/map/panel/bg/area_army.png);">
+                            <div class="panel_holder flex-row justify-content-end">
+                                <div class="holder_slider col">
+                                    <div class="holder_slider_list d-inline-flex">
+                                        <div class="slider_item mx-7">
+                                            <div class="slot type_danger has_close has_top_alert has_bottom_alert">
+                                            	<div class="figure_holder">
+                                            		<button class="figure" type="button">
+	                                                    <div class="mask">
+	                                                        <img src="images/map/circles/example.png" alt="">
+	                                                    </div>
+	                                                </button>
+	                                                <button type="button" class="close_btn"></button>
+	                                                <div class="square size_1 top_alert">
+	                                                	<img src="/images/map/icons/lock.svg" alt="">
+	                                                </div>
+	                                                <div class="square bottom_alert size_1">
+	                                                	<img src="/images/map/icons/alert.svg" alt="">
+	                                                </div>
+                                            	</div>
+                                                <div class="text_holder">
+                                                    first
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slider_item mx-7">
+                                            <div class="slot type_active has_top_alert has_close">
+                                                <div class="figure_holder">
+                                            		<button class="figure" type="button">
+	                                                    <div class="mask">
+	                                                        <img src="images/map/circles/example.png" alt="">
+	                                                    </div>
+	                                                </button>
+	                                                <button type="button" class="close_btn"></button>
+	                                                <div class="square size_1 top_alert">
+	                                                	<img src="/images/map/icons/lock.svg" alt="">
+	                                                </div>
+	                                                <div class="square bottom_alert size_1">
+	                                                	<img src="/images/map/icons/alert.svg" alt="">
+	                                                </div>
+                                            	</div>
+                                                <div class="text_holder">
+                                                    1123
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slider_item mx-7">
+                                            <div class="slot type_disabled ">
+                                                <div class="figure_holder">
+                                            		<button class="figure" type="button">
+	                                                    <div class="mask">
+	                                                        <img src="images/map/circles/example.png" alt="">
+	                                                    </div>
+	                                                </button>
+	                                                <button type="button" class="close_btn"></button>
+	                                                <div class="square size_1 top_alert">
+	                                                	<img src="/images/map/icons/lock.svg" alt="">
+	                                                </div>
+	                                                <div class="square bottom_alert size_1">
+	                                                	<img src="/images/map/icons/alert.svg" alt="">
+	                                                </div>
+                                            	</div>
+                                                <div class="text_holder">
+                                                    1123
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slider_item mx-7">
+                                            <div class="slot has_no_text has_bottom_alert type_warning ">
+                                                <div class="figure_holder">
+                                            		<button class="figure" type="button">
+	                                                    <div class="mask">
+	                                                        <img src="images/map/circles/example.png" alt="">
+	                                                    </div>
+	                                                </button>
+	                                                <button type="button" class="close_btn"></button>
+	                                                <div class="square size_1 top_alert">
+	                                                	<img src="/images/map/icons/lock.svg" alt="">
+	                                                </div>
+	                                                <div class="square bottom_alert size_1">
+	                                                	<img src="/images/map/icons/alert.svg" alt="">
+	                                                </div>
+                                            	</div>
+                                                <div class="text_holder">
+                                                    1123
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slider_item mx-7">
+                                            <div class="slot type_primary ">
+                                                <div class="figure_holder">
+                                            		<button class="figure" type="button">
+	                                                    <div class="mask">
+	                                                        <img src="https://picsum.photos/200/300" alt="">
+	                                                    </div>
+	                                                </button>
+	                                                <button type="button" class="close_btn"></button>
+	                                                <div class="square size_1 top_alert">
+	                                                	<img src="/images/map/icons/lock.svg" alt="">
+	                                                </div>
+	                                                <div class="square bottom_alert size_1">
+	                                                	<img src="/images/map/icons/alert.svg" alt="">
+	                                                </div>
+                                            	</div>
+                                                <div class="text_holder">
+                                                    123
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slider_item mx-7">
+                                            <div class="slot type_primary ">
+                                                <div class="figure_holder">
+                                            		<button class="figure" type="button">
+	                                                    <div class="mask">
+	                                                        <img src="images/map/circles/example.png" alt="">
+	                                                    </div>
+	                                                </button>
+	                                                <button type="button" class="close_btn"></button>
+	                                                <div class="square size_1 top_alert">
+	                                                	<img src="/images/map/icons/lock.svg" alt="">
+	                                                </div>
+	                                                <div class="square bottom_alert size_1">
+	                                                	<img src="/images/map/icons/alert.svg" alt="">
+	                                                </div>
+                                            	</div>
+                                                <div class="text_holder">
+                                                    last
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slider_sidebar pl-10 col-auto d-flex flex-column align-items-center">
+                                    <div class="params">
+                                        <a href="#" class="circle d-block size_2 size_lg_3"><img src="images/map/circles/example.png" alt=""></a>
+                                        <a href="#" class="circle d-block size_2 size_lg_3"><img src="images/map/circles/example.png" alt=""></a>
+                                    </div>
+                                    <div class="d-flex mt-auto">
+                                        <button type="button" class="switcher left mx-7"></button>
+                                        <button type="button" class="switcher mx-7"></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="decor">
+                                <span class="corner"></span>
+                                <span class="corner right_top"></span>
+                                <span class="corner right_bottom"></span>
+                                <span class="corner left_bottom"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions_panel col-auto ml-10">
+                    <div class="panel centered_corners_none md">
+                        <div class="panel_holder p-8">
+                            <div class="actions_panel_holder">
+                                <div class="d-flex flex-wrap actions_grid">
+                                    <div class="actions_col">
+                                        <div class="actions_item">
+                                        </div>
+                                    </div>
+                                    <div class="actions_col">
+                                        <button type="button" class="actions_item">
+                                        </button>
+                                    </div>
+                                    <div class="actions_col">
+                                        <button type="button" class="actions_item">
+                                        </button>
+                                    </div>
+                                    <div class="actions_col">
+                                        <button type="button" class="actions_item">
+                                        </button>
+                                    </div>
+                                    <div class="actions_col">
+                                        <button type="button" class="actions_item">
+                                            <img src="https://picsum.photos/200" alt="">
+                                        </button>
+                                    </div>
+                                    <div class="actions_col">
+                                        <button type="button" class="actions_item">
+                                        </button>
+                                    </div>
+                                    <div class="actions_col">
+                                        <button type="button" class="actions_item">
+                                            <img src="images/map/circles/example.png" alt="">
+                                        </button>
+                                    </div>
+                                    <div class="actions_col">
+                                        <button type="button" class="actions_item">
+                                        </button>
+                                    </div>
+                                    <div class="actions_col">
+                                        <button type="button" class="actions_item">
+                                            <img src="https://picsum.photos/200" alt="">
+                                        </button>
+                                    </div>
+                                    <div class="actions_col">
+                                        <button type="button" class="actions_item">
+                                        </button>
+                                    </div>
+                                    <div class="actions_col">
+                                        <button type="button" class="actions_item">
+                                        </button>
+                                    </div>
+                                    <div class="actions_col">
+                                        <button type="button" class="actions_item">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="decor ">
+                            <span class="corner"></span>
+                            <span class="corner right_top"></span>
+                            <span class="corner right_bottom"></span>
+                            <span class="corner left_bottom"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer_area END -->
+    </div>
+    <script>
+    var map;
 
-						    </div>
-							<div class="decor ">
-								<span class="corner"></span>
-								<span class="corner right_top"></span>
-								<span class="corner right_bottom"></span>
-								<span class="corner left_bottom"></span>
-							</div>
-						</div>
-						<a href="#" class="photo_block d-flex">
-							<img src="images/map/content/img.png" alt="" class="img-fluid">
-						</a>
-					</div>
-				</div>
-				<div class="col pl-10 right_aside d-flex justify-content-end align-items-end">
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('field_map'), {
+            center: { lat: -34.397, lng: 150.644 },
+            zoom: 8
+        });
+    }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key= AIzaSyAY-nlxihSvoGM3MlB-RmLZNaVhFPoZra4&callback=initMap" async defer></script>
+    <style>
+    .gmnoprint {
+        display: none !important;
+    }
+    </style>
+    <script src="js/map/ui.js"></script>
+</body>
 
-					<div class="panel_army d-flex minw_0 justify-content-end slide_at_right">
-						<!-- switcher panel btn -->
-						<button class="switcher switcher_slider" onclick="this.parentElement.classList.toggle('closed')"></button>
-						<!-- switcher panel btn END -->
-						<div class="slider_panel col-auto">
-							<div class="title_panel">
-								<div class="panel sm horizontal">
-									<div class="panel_holder px-30 py-9">
-										<span id="paneltitle" data-id="1234" data-object="army" class="fz_17 hovered_item">Army name</span>
-									</div>
-									<div class="decor ">
-										<span class="corner"></span>
-										<span class="corner right_top"></span>
-										<span class="corner right_bottom"></span>
-										<span class="corner left_bottom"></span>
-									</div>
-								</div>
-							</div>
-							<div class="panel area_army_panel md horizontal" style="background-image: url(/images/map/panel/bg/area_army.png);">
-								<div class="panel_holder flex-row justify-content-end">
-									<div class="holder_slider col">
-										<div class="holder_slider_list d-inline-flex">
-											<div class="slider_item mx-7">
-												<button type="button" class="rectangle type_danger">
-													<div class="rectangle_mask">
-														<img src="images/map/circles/example.png" alt="">
-													</div>
-												</button>
-												<div class="text_holder d-flex align-items-center justify-content-center text-center fz_16 mx-auto mt-8">
-													1123
-												</div>
-											</div>
-											<div class="slider_item mx-7">
-												<button type="button" class="rectangle type_active">
-													<div class="rectangle_mask">
-														<img src="images/map/circles/example.png" alt="">
-													</div>
-												</button>
-												<div class="text_holder d-flex align-items-center justify-content-center text-center fz_16 mx-auto mt-8">
-													1123
-												</div>
-											</div>
-											<div class="slider_item mx-7">
-												<button type="button" class="rectangle type_disabled">
-													<div class="rectangle_mask">
-														<img src="images/map/circles/example.png" alt="">
-													</div>
-												</button>
-												<div class="text_holder d-flex align-items-center justify-content-center text-center fz_16 mx-auto mt-8">
-													1123
-												</div>
-											</div>
-											<div class="slider_item mx-7">
-												<button type="button" class="rectangle  type_warning">
-													<div class="rectangle_mask">
-														<img src="images/map/circles/example.png" alt="">
-													</div>
-												</button>
-												<div class="text_holder d-flex align-items-center justify-content-center text-center fz_16 mx-auto mt-8">
-													1123
-												</div>
-											</div>
-											<div class="slider_item mx-7">
-												<button type="button" class="rectangle ">
-													<div class="rectangle_mask">
-														<img src="https://picsum.photos/200/300" alt="">
-													</div>
-												</button>
-												<div class="text_holder d-flex align-items-center justify-content-center text-center fz_16 mx-auto mt-8">
-													1123
-												</div>
-											</div>
-											<div class="slider_item mx-7">
-												<button type="button" class="rectangle type_primary">
-													<div class="rectangle_mask">
-														<img src="images/map/circles/example.png" alt="">
-													</div>
-												</button>
-												<div class="text_holder d-flex align-items-center justify-content-center text-center fz_16 mx-auto mt-8">
-													last
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="slider_sidebar pl-10 col-auto d-flex flex-column align-items-center">
-										<div class="params">
-											<a href="#" class="circle d-block size_2 size_lg_3"><img src="images/map/circles/example.png" alt=""></a>
-											<a href="#" class="circle d-block size_2 size_lg_3"><img src="images/map/circles/example.png" alt=""></a>
-										</div>
-										<div class="d-flex mt-auto">
-											<button type="button" class="switcher left mx-7"></button>
-											<button type="button" class="switcher mx-7"></button>
-										</div>
-									</div>
-								</div>
-								<div class="decor">
-									<span class="corner"></span>
-									<span class="corner right_top"></span>
-									<span class="corner right_bottom"></span>
-									<span class="corner left_bottom"></span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="actions_panel col-auto ml-10">
-						<div class="panel centered_corners_none md">
-							<div class="panel_holder p-8">
-								<div class="actions_panel_holder">
-									<div class="d-flex flex-wrap actions_grid">
-										<div class="actions_col">
-											<div class="actions_item">
-
-											</div>
-										</div>
-										<div class="actions_col">
-											<button type="button" class="actions_item">
-
-											</button>
-										</div>
-										<div class="actions_col">
-											<button type="button" class="actions_item">
-
-											</button>
-										</div>
-										<div class="actions_col">
-											<button type="button" class="actions_item">
-
-											</button>
-										</div>
-										<div class="actions_col">
-											<button type="button" class="actions_item">
-												<img src="https://picsum.photos/200" alt="">
-											</button>
-										</div>
-										<div class="actions_col">
-											<button type="button" class="actions_item">
-
-											</button>
-										</div>
-										<div class="actions_col">
-											<button type="button" class="actions_item">
-												<img src="images/map/circles/example.png" alt="">
-											</button>
-										</div>
-										<div class="actions_col">
-											<button type="button" class="actions_item">
-
-											</button>
-										</div>
-										<div class="actions_col">
-											<button type="button" class="actions_item">
-												<img src="https://picsum.photos/200" alt="">
-											</button>
-										</div>
-										<div class="actions_col">
-											<button type="button" class="actions_item">
-
-											</button>
-										</div>
-										<div class="actions_col">
-											<button type="button" class="actions_item">
-
-											</button>
-										</div>
-										<div class="actions_col">
-											<button type="button" class="actions_item">
-
-											</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="decor ">
-								<span class="corner"></span>
-								<span class="corner right_top"></span>
-								<span class="corner right_bottom"></span>
-								<span class="corner left_bottom"></span>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
-			<!-- footer_area END -->
-		</div>
-		<script>
-		    var map;
-		    function initMap() {
-		      map = new google.maps.Map(document.getElementById('field_map'), {
-		      center: {lat: -34.397, lng: 150.644},
-		      zoom: 8
-		      });
-		    }
-    	</script>
-   		<script src="https://maps.googleapis.com/maps/api/js?key= AIzaSyAY-nlxihSvoGM3MlB-RmLZNaVhFPoZra4&callback=initMap" async defer></script>
-   		<style>
-   			.gmnoprint{
-   				display: none !important;
-   			}
-   		</style>
-		<script src="js/map/ui.js"></script>
-	</body>
 </html>
