@@ -10,29 +10,6 @@ new Tabs();
 
 let cityClickJson, cityBuildJson, cityInfoJson;
 
-try {
-    import('./examples/city_click.json', { assert: { type: 'json' } }).then(
-      (data) => {
-        cityClickJson = data.default;
-      }
-    );
-
-    import('./examples/city_info.json', { assert: { type: 'json' } }).then(
-      (data) => {
-        cityInfoJson = data.default;
-      }
-    );
-
-    import('./examples/city_build.json', { assert: { type: 'json' } }).then(
-      (data) => {
-        cityBuildJson = data.default;
-      }
-    );
-} catch (e) {
-    console.log(e);
-} finally {
-
-}
 
 
 function Modes(selector) {
