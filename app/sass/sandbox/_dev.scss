@@ -1,0 +1,20 @@
+.dev_tabs {
+    position: sticky;
+    top: 0;
+    background-color: #180f0a;
+    height: auto;
+    padding: 10px;
+    z-index: 100;
+
+    a {
+        display: inline-block;
+        padding: 0.25em 0.5em;
+        background-color: hsl(16, 40%, 12%);
+        border: thin solid hsl(16, 40%, 47%);
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}
+section.big_gap {
+    padding: 100px 0 200px;
+}
