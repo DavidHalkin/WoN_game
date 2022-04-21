@@ -876,10 +876,10 @@
             <h1>icon</h1>
             <ul>
                 <li>у кругов класс <kbd>circle</kbd> . у квадратов класс <kbd>square</kbd></li>
-                <li>есть 5 размеров. (см ниже) самый большой это класс <kbd>size_5</kbd> самый маленький <kbd>size_1</kbd>.по умолчанию без класса модификатора - самый большой = 55px</li>
+                <li>есть <span class="fz_30 red">6</span> размеров. (см ниже) самый большой это класс <kbd>size_5</kbd> самый маленький <kbd>size_0</kbd>.по умолчанию без класса модификатора - самый большой = 55px</li>
                 <li>что бы была кликабельность, вместо дива <kbd>div.circle</kbd> сделать <kbd>a.circle</kbd></li>
                 <li>какие-то эмблемы(круги. логика другая. сверху набрасывается как бы маска поверх картинки) добавить класс <kbd>emblem</kbd>. картинки должны быть квадраты!!!!! <br>с размерами - те же классы модификаторы. <br><strong class="red">по умолчанию емблемы с внутренней тенью!!!!!</strong> <br> <strong>Эмблемы молгут быть без тени - <kbd>no_shadow </kbd></strong> <br>эмблемы работают только для <kbd>circle</kbd></li>
-                <li>адаптивные классы на круги и квадраты- всё как у бутстрапа модификаторы <kbd>size_1 size_md_3 size_lg_4 size_xl_5</kbd>в самом <span class="red">мелком</span> разрешени <kbd>size_1</kbd> , в <span class="red">xl и до бесконечности</span> <kbd>size_5</kbd></li>
+                <li>адаптивные классы на круги и квадраты- всё как у бутстрапа модификаторы <kbd>size_0 size_md_3 size_lg_4 size_xl_5</kbd>в самом <span class="red">мелком</span> разрешени <kbd>size_0</kbd> , в <span class="red">xl и до бесконечности</span> <kbd>size_xl_5</kbd></li>
                 <li>если добавить класс <kbd>.active</kbd> на круг или квадрат, то будет подсвечивание</li>
             </ul>
             <pre>
@@ -915,6 +915,10 @@
                 <div class="mx-10">
                     .size_1 = 33px
                     <div class="circle size_1"><img src="/images/map/circles/example.png" alt=""></div>
+                </div>
+                <div class="mx-10">
+                    .size_0 = 24px
+                    <div class="circle size_0"></div>
                 </div>
             </div>
             <br>
@@ -1016,7 +1020,7 @@
                                         tab_11
                                     </div>
                                     <div class="tab_pane active" id="t22">
-                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum obcaecati nam modi corporis a, ea assumenda consequatur necessitatibus eligendi est excepturi delectus quod aliquid aliquam quia aperiam non veniam cupiditate!
+                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum obcaecati nam modi corporis a, ea assumenda consequatur necessitatibus eligendi est excepturi delectus quod aliquid aliquam quia aperiam non veniam cupiditate!Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum obcaecati nam modi corporis a, ea assumenda consequatur necessitatibus eligendi est excepturi delectus quod aliquid aliquam quia aperiam non veniam cupiditate!Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum obcaecati nam modi corporis a, ea assumenda consequatur necessitatibus eligendi est excepturi delectus quod aliquid aliquam quia aperiam non veniam cupiditate!Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum obcaecati nam modi corporis a, ea assumenda consequatur necessitatibus eligendi est excepturi delectus quod aliquid aliquam quia aperiam non veniam cupiditate!Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum obcaecati nam modi corporis a, ea assumenda consequatur necessitatibus eligendi est excepturi delectus quod aliquid aliquam quia aperiam non veniam cupiditate!Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum obcaecati nam modi corporis a, ea assumenda consequatur necessitatibus eligendi est excepturi delectus quod aliquid aliquam quia aperiam non veniam cupiditate!
                                     </div>
                                     <div class="tab_pane" id="t33">
                                         tab_33
@@ -1130,9 +1134,11 @@
                     <kbd>type_primary</kbd>
                 </li>
                 <li>добавить класс <kbd>has_no_text</kbd> и исчезнет блок с текстом</li>
+                <li>добавить класс <kbd>has_sub_info</kbd> и появится блок с цифрами. ширина блока 120пх</li>
                 <li>добавить класс <kbd>has_close</kbd> и будет кнопка закрыть</li>
                 <li>добавить класс <kbd>has_top_alert </kbd> и будет алерт тот что слева вверху</li>
-                <li>добавить класс <kbd>bottom_alert </kbd> и будет алерт тот что слева внизу</li>
+                <li>добавить класс <kbd>has_bottom_alert </kbd> и будет алерт тот что слева внизу</li>
+                <li>добавить класс <kbd>has_bottom_right_alert </kbd> и будет алерт(или эмблема города) тот что справа внизу</li>
             </ul>
             <pre>
                 <code>
@@ -1152,15 +1158,21 @@
                                     </div>
                                 </button>
                                 <button type="button" class="close_btn"></button>
-                                <div class="square size_1 top_alert">
+                                <div class="square size_0 top_alert">
                                     <img src="/images/map/icons/lock.svg" alt="">
                                 </div>
-                                <div class="square bottom_alert size_1">
+                                <div class="square bottom_alert size_0">
                                     <img src="/images/map/icons/alert.svg" alt="">
                                 </div>
+                                <a href="#" class="circle emblem bottom_right_alert size_0">
+                                    <img src="images/map/circles/emblem.png" alt="">
+                                </a>
                             </div>
                             <div class="text_holder">
                                 first
+                            </div>
+                            <div class="sub_info">
+                                <span>123456</span> / <span class="text-danger">123456</span>
                             </div>
                         </div>
                     </div>
@@ -1173,15 +1185,21 @@
                                     </div>
                                 </button>
                                 <button type="button" class="close_btn"></button>
-                                <div class="square size_1 top_alert">
+                                <div class="square size_0 top_alert">
                                     <img src="/images/map/icons/lock.svg" alt="">
                                 </div>
-                                <div class="square bottom_alert size_1">
+                                <div class="square bottom_alert size_0">
                                     <img src="/images/map/icons/alert.svg" alt="">
                                 </div>
+                                <a href="#" class="circle bottom_right_alert emblem size_0">
+                                    <img src="images/map/circles/emblem.png" alt="">
+                                </a>
                             </div>
                             <div class="text_holder">
                                 1123
+                            </div>
+                            <div class="sub_info">
+                                <span>123456</span> / <span class="text-danger">123456</span>
                             </div>
                         </div>
                     </div>
@@ -1194,20 +1212,26 @@
                                     </div>
                                 </button>
                                 <button type="button" class="close_btn"></button>
-                                <div class="square size_1 top_alert">
+                                <div class="square size_0 top_alert">
                                     <img src="/images/map/icons/lock.svg" alt="">
                                 </div>
-                                <div class="square bottom_alert size_1">
+                                <div class="square bottom_alert size_0">
                                     <img src="/images/map/icons/alert.svg" alt="">
                                 </div>
+                                <a href="#" class="circle emblem bottom_right_alert size_0">
+                                    <img src="images/map/circles/emblem.png" alt="">
+                                </a>
                             </div>
                             <div class="text_holder">
                                 1123
                             </div>
+                            <div class="sub_info">
+                                <span>123456</span> / <span class="text-danger">123456</span>
+                            </div>
                         </div>
                     </div>
                     <div class=" mx-7">
-                        <div class="slot has_no_text has_bottom_alert type_warning ">
+                        <div class="slot has_no_text has_bottom_alert has_sub_info type_warning ">
                             <div class="figure_holder">
                                 <button class="figure" type="button">
                                     <div class="mask">
@@ -1215,20 +1239,26 @@
                                     </div>
                                 </button>
                                 <button type="button" class="close_btn"></button>
-                                <div class="square size_1 top_alert">
+                                <div class="square size_0 top_alert">
                                     <img src="/images/map/icons/lock.svg" alt="">
                                 </div>
-                                <div class="square bottom_alert size_1">
+                                <div class="square bottom_alert size_0">
                                     <img src="/images/map/icons/alert.svg" alt="">
                                 </div>
+                                <a href="#" class="circle emblem bottom_right_alert size_0">
+                                    <img src="images/map/circles/emblem.png" alt="">
+                                </a>
                             </div>
                             <div class="text_holder">
                                 1123
                             </div>
+                            <div class="sub_info">
+                                <span>123456</span> / <span class="text-danger">123456</span>
+                            </div>
                         </div>
                     </div>
                     <div class=" mx-7">
-                        <div class="slot type_primary ">
+                        <div class="slot type_primary has_bottom_right_alert">
                             <div class="figure_holder">
                                 <button class="figure" type="button">
                                     <div class="mask">
@@ -1236,20 +1266,53 @@
                                     </div>
                                 </button>
                                 <button type="button" class="close_btn"></button>
-                                <div class="square size_1 top_alert">
+                                <div class="square size_0 top_alert">
                                     <img src="/images/map/icons/lock.svg" alt="">
                                 </div>
-                                <div class="square bottom_alert size_1">
+                                <div class="square bottom_alert size_0">
                                     <img src="/images/map/icons/alert.svg" alt="">
                                 </div>
+                                <a href="#" class="circle emblem bottom_right_alert size_0">
+                                    <img src="images/map/circles/emblem.png" alt="">
+                                </a>
                             </div>
                             <div class="text_holder">
                                 123
                             </div>
+                            <div class="sub_info">
+                                <span>123456</span> / <span class="text-danger">123456</span>
+                            </div>
                         </div>
                     </div>
                     <div class=" mx-7">
-                        <div class="slot type_primary ">
+                        <div class="slot has_bottom_right_alert">
+                            <div class="figure_holder">
+                                <button class="figure" type="button">
+                                    <div class="mask">
+                                       <img src="images/map/circles/example.png" alt="">
+                                    </div>
+                                </button>
+                                <button type="button" class="close_btn"></button>
+                                <div class="square size_0 top_alert">
+                                    <img src="/images/map/icons/lock.svg" alt="">
+                                </div>
+                                <div class="square bottom_alert size_0">
+                                    <img src="/images/map/icons/alert.svg" alt="">
+                                </div>
+                                <a href="#" class="circle emblem bottom_right_alert size_0">
+                                    <img src="images/map/circles/emblem.png" alt="">
+                                </a>
+                            </div>
+                            <div class="text_holder">
+                                123
+                            </div>
+                            <div class="sub_info">
+                                <span>123456</span> / <span class="text-danger">123456</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" mx-7">
+                        <div class="slot type_primary has_sub_info">
                             <div class="figure_holder">
                                 <button class="figure" type="button">
                                     <div class="mask">
@@ -1257,15 +1320,21 @@
                                     </div>
                                 </button>
                                 <button type="button" class="close_btn"></button>
-                                <div class="square size_1 top_alert">
+                                <div class="square size_0 top_alert">
                                     <img src="/images/map/icons/lock.svg" alt="">
                                 </div>
-                                <div class="square bottom_alert size_1">
+                                <div class="square bottom_alert size_0">
                                     <img src="/images/map/icons/alert.svg" alt="">
                                 </div>
+                                <a href="#" class="circle emblem bottom_right_alert size_0">
+                                    <img src="images/map/circles/emblem.png" alt="">
+                                </a>
                             </div>
                             <div class="text_holder">
                                 last
+                            </div>
+                            <div class="sub_info">
+                                <span>123456</span> / <span class="text-danger">123456</span>
                             </div>
                         </div>
                     </div>

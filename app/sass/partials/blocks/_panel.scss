@@ -133,10 +133,10 @@
 	background: rgba(red,.2);
 	padding: calc(var(--size_border_local) * 2.7);
 	position: relative;
-	margin: calc(var(--size_border_local) * -2.7) calc(var(--size_border_local) * -2.7) 0;
 	background: var(--border_img_h) repeat-x 0 100%;
 	background-size: auto  var(--size_border_local);
-	margin-bottom: calc(var(--size_border_local) * 2);
+
+	margin: calc(var(--size_border_local) * -2.7) calc(var(--size_border_local) * -2.7) calc(var(--size_border_local) * 2);
 }
 .title_panel{
 	position: relative;

@@ -1,9 +1,16 @@
 .slot{
-	width: 67px;
+	
 	--color_shadow:rgba(0,0,0,0.7);
 	--size_corner_local:calc(var(--size_corner) / 2.7);
 	.figure_holder{
 		position: relative;
+		width: 70px;
+		height: 100px;
+		@include media(max, lg) {
+			height: 85px;
+		}
+		margin-left: auto;
+		margin-right: auto;
 		.close_btn {
 			top: 0;
 			right: 0;
@@ -21,19 +28,24 @@
 				top: auto;
 				bottom: -1px;
 			}
+			&.bottom_right_alert{
+				top: auto;
+				left: auto;
+				bottom: -4px;
+				right: -4px;
+			}
 		}
 	}
 	.figure{
 		width: 100%;
+		height: 100%;
 		position: relative;
-		height: 102px;
+		
 		display: block;
 		padding: 0;
 		border: 0;
 		background: none;
-		@include media(max, lg) {
-			height: 85px;
-		}
+		
 		&:before,&:after{
 			content: "";
 			position: absolute;
@@ -75,6 +87,13 @@
 			}
 		}
 	}
+	&.has_bottom_right_alert{
+		.figure_holder{
+			.bottom_right_alert{
+				display: block;
+			}
+		}
+	}
 	&.type_danger{
 		--color_shadow:rgba(255,0,0,0.6);
 	}
@@ -112,6 +131,11 @@
 			display: none;
 		}
 	}
+	&.has_sub_info{
+		.sub_info{
+			display: block;
+		}
+	}
 	.mask{
 		width: 100%;
 		height: 100%;
@@ -141,7 +165,12 @@
 		margin: 8px auto 0;
 		display: flex;
 	}
-	
+	.sub_info{
+		margin-left: auto;
+		margin-right: auto;
+		display: none;
+		margin-top: 8px;
+	}
 }
 .text_holder{
 	--size_x:110px;
@@ -157,4 +186,10 @@
 	align-items:center;
 	justify-content: center;
 	font-size: 16px;
+}
+.sub_info{
+	width: 120px;
+	background: $primary;
+	text-align: center;
+	padding: 1px 5px;
 }

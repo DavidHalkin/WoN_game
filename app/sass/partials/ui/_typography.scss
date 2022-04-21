@@ -15,6 +15,6 @@
 .text-white{
 	color: #fff;
 }
-.red{
-	color: red;
+.red,.text-danger{
+	color: $danger;
 }
