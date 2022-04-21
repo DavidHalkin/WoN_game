@@ -1,0 +1,15 @@
+#editor_controls {
+	--h-header:100px;
+	--h-footer:200px;
+	@include media(max, lg) {
+		--h-footer:170px;
+	}
+	width: 300px;
+	position: absolute;
+	z-index: 5;
+	top: 75px;
+	right: 5px;
+	.panel_holder{
+		max-height: 90vh;
+	}
+}
