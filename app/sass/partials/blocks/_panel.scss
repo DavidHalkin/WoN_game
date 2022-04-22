@@ -1,3 +1,7 @@
+// panel_holder = 23
+// md panel_holder = 17
+// sm panel_holder = 12
+
 .panel_holder{
 	display: flex;
 	flex-direction: column;
@@ -9,6 +13,7 @@
 	overflow-y: auto;
 	position: relative;
 	height: 100%;
+	padding: calc(var(--size_border_local) * 2.7);
 }
 .panel{
 	height: 100%;
@@ -48,7 +53,7 @@
 		background-repeat: repeat-y, repeat-y, repeat-x, repeat-x;
 		background-size:var(--size_border_local) auto, var(--size_border_local) auto, auto var(--size_border_local), auto var(--size_border_local);
 
-		padding: calc(var(--size_border_local) * 2.7);
+		// padding: calc(var(--size_border_local) * 2.7);
 	}
 	.corner{
 		pointer-events: none;
@@ -125,7 +130,10 @@
 			}
 		}
 	}
-	
+	.scrollbar{
+		height: calc(100% - var(--size_border_local) * 2.7 * 2);
+		top: calc(var(--size_border_local) * 2.7);
+	}
 }
 
 .panel_header{
@@ -136,7 +144,7 @@
 	background: var(--border_img_h) repeat-x 0 100%;
 	background-size: auto  var(--size_border_local);
 
-	margin: calc(var(--size_border_local) * -2.7) calc(var(--size_border_local) * -2.7) calc(var(--size_border_local) * 2);
+	// margin: calc(var(--size_border_local) * -2.7) calc(var(--size_border_local) * -2.7) calc(var(--size_border_local) * 2);
 }
 .title_panel{
 	position: relative;

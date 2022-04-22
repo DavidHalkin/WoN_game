@@ -157,7 +157,7 @@
 		}
 	}
 	.grid_column .panel_holder.scroll_js .panel_content .content_scroll{
-		padding-right: 40px;
+		padding-right: 30px;
 		.select &{
 			padding-right: 16px;
 		}
@@ -166,7 +166,8 @@
 		top: 10px;
 		bottom: 10px;
 		height: calc(100% - 20px);
-		right: 23px;
+		// right: 23px;
+		right: 12px;
 		.select & {
 			right: 0;
 		}

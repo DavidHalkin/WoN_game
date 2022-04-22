@@ -33,7 +33,7 @@
 			.content_scroll{
 				overflow-y: auto;
 				height: 100%;
-				padding-right: 30px;
+				padding-right:20px;
 			}
 		}
 	}
@@ -49,14 +49,15 @@
 	position: absolute;
 	top: 0;
 	bottom: 0;
-	right: 0;
+	right: 12px;
 	width: 16px;
 	height: 100%;
-	// background: red;
 	display: flex;
 	flex-direction: column;
 	display: none;
-	.scroll_js &{display: flex;}
+	.scroll_js &{
+		display: flex;
+	}
 	.btn_func{
 		// width: 100%;
 		width:var(--scroll_button_width);
