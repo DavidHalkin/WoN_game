@@ -1,0 +1,17 @@
+.grid_list{
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: repeat(auto-fill,minmax(70px,1fr));
+	.slot{
+		.figure_holder{
+			// width: 100%;
+		}
+	}
+}
+.army_column{
+	// height: 100vh;
+}
+.etc_info{
+	pointer-events: auto;
+	text-align: right;
+}

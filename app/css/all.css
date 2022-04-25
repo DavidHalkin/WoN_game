@@ -1042,6 +1042,8 @@ body { font: 16px/1.25 "Vollkorn", sans-serif; background: #180f0a; color: #b8af
 
 .col-auto { -webkit-box-flex: 0; -ms-flex: 0 0 auto; flex: 0 0 auto; width: auto; max-width: 100%; }
 
+.col-320 { max-width: 320px; -webkit-box-flex: 0; -ms-flex: 0 0 320px; flex: 0 0 320px; }
+
 .mt-auto { margin-top: auto !important; }
 
 .mx-auto { margin-left: auto !important; margin-right: auto !important; }
@@ -1806,6 +1808,10 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 .footer_area { position: absolute; bottom: 5px; left: 5px; right: 5px; z-index: 1; pointer-events: none; }
 
 .footer_area .panel { pointer-events: auto; }
+
+.grid_list { display: grid; grid-gap: 10px; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); }
+
+.etc_info { pointer-events: auto; text-align: right; }
 
 .dev_tabs { position: -webkit-sticky; position: sticky; top: 0; background-color: #180f0a; height: auto; padding: 10px; z-index: 100; }
 

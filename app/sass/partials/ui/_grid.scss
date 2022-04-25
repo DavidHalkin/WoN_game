@@ -69,6 +69,10 @@
 	width: auto;
 	max-width: 100%;
 }
+.col-320{
+	max-width: 320px;
+	flex:0 0 320px;
+}
 // margin
 .mt-auto{
 	margin-top: auto !important;
