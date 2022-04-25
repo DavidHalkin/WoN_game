@@ -1186,9 +1186,9 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 @media only screen and (min-width: 1600px) { .circle.size_xl_0, .mini_info .item_ico.size_xl_0 { --size_circle:var(--size_0); } }
 
-.circle.emblem, .mini_info .item_ico.emblem { background: none; padding: 1px; }
+.circle.emblem, .mini_info .item_ico.emblem { background: none; padding: 1px; -webkit-border-radius: 50%; border-radius: 50%; overflow: hidden; }
 
-.circle.emblem img, .mini_info .item_ico.emblem img { position: static; -webkit-transform: none; -ms-transform: none; transform: none; max-width: none; max-height: none; display: block; height: auto; max-width: 100%; -webkit-border-radius: 50%; border-radius: 50%; }
+.circle.emblem img, .mini_info .item_ico.emblem img { position: static; -webkit-transform: none; -ms-transform: none; transform: none; max-width: none; max-height: none; display: block; height: auto; max-width: 100%; }
 
 .circle.emblem:after, .mini_info .item_ico.emblem:after { content: ""; width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: url(/images/map/circles/circle_empty_shadow.png) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; }
 
