@@ -150,16 +150,26 @@
 			}
 		}
 	}
+	.grid_column .panel_holder .panel_content{
+		.etc_drop {
+			.select &{
+				padding: 0 !important;
+			}
+		}
+		.select &{
+			padding:calc(var(--size_border_local)) 0 !important;
+		}
+	}
 	.grid_column .panel_holder.scroll_js .panel_content{
 		padding: 10px 0 !important;
 		.select &{
-			padding: 0 !important;
+			padding:calc(var(--size_border_local))  0 !important;
 		}
 	}
 	.grid_column .panel_holder.scroll_js .panel_content .content_scroll{
 		padding-right: 30px;
 		.select &{
-			padding-right: 16px;
+			padding-right: 20px;
 		}
 	}
 	.scrollbar{
@@ -169,7 +179,7 @@
 		// right: 23px;
 		right: 12px;
 		.select & {
-			right: 0;
+			right: 10px;
 		}
 	}
 }

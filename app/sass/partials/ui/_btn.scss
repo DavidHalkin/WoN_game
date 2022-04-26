@@ -7,6 +7,13 @@ a,.hovered_item{
 		transition: var(--animation_hovered);
 	}
 }
+.btn-block{
+	width: 100%;
+	text-align: center;
+	span{
+		justify-content: center;
+	}
+}
 .btn{
 	--px:20px;
 	--py:17px;

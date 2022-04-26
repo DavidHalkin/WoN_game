@@ -10,8 +10,10 @@
 			flex-direction: row;
 			align-items: center;
 			position: relative;
-			padding-right: 38px;
-			padding-left: 16px;
+			height: auto  !important;
+			// padding-right: 38px;
+			// padding-left: 16px;
+			padding: 11px 38px 11px 16px;
 			span{
 				@include  text-truncate;
 			}
