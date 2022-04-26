@@ -3,10 +3,13 @@ body{
 	// font: 16px/1.25 Arial !important;
 	background: $primary;
 	color: $light;
-	min-width: 1024px;
+	min-width:$body_min_width;
+	min-height: 100vh;
+	position: relative;
 }
 .field_map{
 	width: 100%;
+	min-width:$body_min_width;
 	height: 100vh;
 	position: absolute;
 	overflow: hidden;

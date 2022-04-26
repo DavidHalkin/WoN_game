@@ -1,10 +1,18 @@
 .header_area{
+	
+	// left: 5px;
+	// right: 5px;
+	
 	position: absolute;
 	top: 5px;
-	left: 5px;
-	right: 5px;
+	left: 0;
+	min-width:$body_min_width;
+	padding-left: 5px;
+	padding-right: 5px;
+	width: 100%;
 	z-index: 11;
 	pointer-events: none;
+
 	.panel{
 		pointer-events:auto;
 	}

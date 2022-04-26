@@ -3,12 +3,23 @@
 	display: inline-block;
 	display: block;
 	width: var(--size_circle);
+	max-width: var(--size_circle);
+	flex:0 0 var(--size_circle);
 	height: var(--size_circle);
 	background: var(--circle_img) no-repeat 0 0;
 	background-size: cover;
 	position: relative;
 	padding: 0;
 	border: 0;
+	text-align: center;
+	.txt{
+		font-style: normal;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform:translate(-50%,-50%);
+		color: $muted;
+	}
 	img{
 		// @include centered_img(80,80);
 		position: absolute;
