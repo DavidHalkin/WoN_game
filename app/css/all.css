@@ -68,7 +68,7 @@ textarea { overflow: auto; resize: vertical; }
 
 fieldset { min-width: 0; padding: 0; margin: 0; border: 0; }
 
-:root { --border_img_h: url(/images/map/panel/h_border.png); --border_img_h_bottom: url(/images/map/panel/h_border_bottom.png); --border_img_v: url(/images/map/panel/v_border.png); --border_img_v_right: url(/images/map/panel/v_border_right.png); --size_border: 17px; --size_corner: 68px; --corner_img: url(/images/map/panel/corner.png); /*tabs corners and decorate*/ --tab_img_active: url(/images/map/tab/corner_tab.png); --tab_size_active:58px; --tab_img_boder: url(/images/map/tab/corner_border.png); --tab_size_boder: 60px; --decorate_img: url(/images/map/panel/decorate.png); --size_w:76px; --size_h:77px; --width_decor:82px; --height_decor:43px; --animation_static: all 0.15s ease; --animation_hovered: all 0.3s ease; --indent:4px; --scroll_bar_img:url(/images/map/scroll/bar.png); --scroll_bar_size:31px; --scroll_button_img:url(/images/map/scroll/button.png); --scroll_button_w:34px; --scroll_button_h:30px; --scroll_handler_img:url(/images/map/scroll/handler.png); --scroll_handler_w:20px; --scroll_handler_h:45px; --slider_bar_img:url(/images/map/slider/bar.png); --slider_bar_size:21px; --slider_button_img:url(/images/map/slider/decor.png); --slider_button_w:39px; --slider_button_h:29px; --slider_handler_img:url(/images/map/slider/handler.png); --slider_handler_w:43px; --slider_handler_h:75px; --square_img:url(/images/map/square/square.png); --circle_img:url(/images/map/circles/circle.png); --size:110px; --checkbox_mark_img:url(/images/map/icons/check_mark.png); --checkbox_mark_w:34px; --checkbox_mark_h:32px; }
+:root { --texture_panel:url(/images/map/panel/panel_texture.png); --border_img_h: url(/images/map/panel/h_border.png); --border_img_h_bottom: url(/images/map/panel/h_border_bottom.png); --border_img_v: url(/images/map/panel/v_border.png); --border_img_v_right: url(/images/map/panel/v_border_right.png); --size_border: 17px; --size_corner: 68px; --corner_img: url(/images/map/panel/corner.png); /*tabs corners and decorate*/ --tab_img_active: url(/images/map/tab/corner_tab.png); --tab_size_active:58px; --tab_img_boder: url(/images/map/tab/corner_border.png); --tab_size_boder: 60px; --decorate_img: url(/images/map/panel/decorate.png); --size_w:76px; --size_h:77px; --width_decor:82px; --height_decor:43px; --animation_static: all 0.15s ease; --animation_hovered: all 0.3s ease; --indent:4px; --scroll_bar_img:url(/images/map/scroll/bar.png); --scroll_bar_size:31px; --scroll_button_img:url(/images/map/scroll/button.png); --scroll_button_w:34px; --scroll_button_h:30px; --scroll_handler_img:url(/images/map/scroll/handler.png); --scroll_handler_w:20px; --scroll_handler_h:45px; --slider_bar_img:url(/images/map/slider/bar.png); --slider_bar_size:21px; --slider_button_img:url(/images/map/slider/decor.png); --slider_button_w:39px; --slider_button_h:29px; --slider_handler_img:url(/images/map/slider/handler.png); --slider_handler_w:43px; --slider_handler_h:75px; --square_img:url(/images/map/square/square.png); --circle_img:url(/images/map/circles/circle.png); --size:110px; --checkbox_mark_img:url(/images/map/icons/check_mark.png); --checkbox_mark_w:34px; --checkbox_mark_h:32px; --body_texture:url(/images/map/ui/body_texture.png); }
 
 .mt-0 { margin-top: 0px !important; }
 
@@ -984,7 +984,7 @@ fieldset { min-width: 0; padding: 0; margin: 0; border: 0; }
 
 .p-30 { padding: 30px !important; }
 
-body { font: 16px/1.25 "Vollkorn", sans-serif; background: #180f0a; color: #b8afaa; min-width: 1024px; min-height: 100vh; position: relative; }
+body { font: 16px/1.25 "Vollkorn", sans-serif; background-color: #180f0a; background-image: var(--body_texture); background-repeat: repeat; color: #b8afaa; min-width: 1024px; min-height: 100vh; position: relative; }
 
 .field_map { width: 100%; min-width: 1024px; height: 100vh; position: absolute; overflow: hidden; top: 0; left: 0; }
 
@@ -1100,13 +1100,15 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .panel_content { -webkit-box-flex: 1; -ms-flex: 1 1 auto; flex: 1 1 auto; overflow-y: auto; position: relative; height: 100%; padding: calc(var(--size_border_local) * 2.7); }
 
-.panel { height: 100%; background-color: #180f0a; background-position: 100% 100% !important; background-repeat: no-repeat !important; position: relative; -webkit-border-radius: calc(var(--indent) + 2px); border-radius: calc(var(--indent) + 2px); --size_border_local: calc(var(--size_border) / 2); --size_corner_local: calc(var(--size_corner) / 2); --width_decor_local: calc(var(--width_decor) / 2); --height_decor_local:calc(var(--height_decor) / 2); }
+.panel { height: 100%; background: #180f0a var(--texture_panel); position: relative; -webkit-border-radius: calc(var(--indent) + 2px); border-radius: calc(var(--indent) + 2px); --size_border_local: calc(var(--size_border) / 2); --size_corner_local: calc(var(--size_corner) / 2); --width_decor_local: calc(var(--width_decor) / 2); --height_decor_local:calc(var(--height_decor) / 2); }
 
 .panel.md { --size_border_local: calc(var(--size_border) / 2 * 0.75); --size_corner_local: calc(var(--size_corner) / 2 * 0.75); --width_decor_local: calc(var(--width_decor) / 2 * 0.75); --height_decor_local:calc(var(--height_decor) / 2 * 0.75); -webkit-border-radius: calc(var(--indent) + 1px); border-radius: calc(var(--indent) + 1px); }
 
 .panel.sm { --size_border_local: calc(var(--size_border) / 2 * 0.5); --size_corner_local: calc(var(--size_corner) / 2 * 0.5); --width_decor_local: calc(var(--width_decor) / 2 * 0.5); --height_decor_local:calc(var(--height_decor) / 2 * 0.5); -webkit-border-radius: var(--indent); border-radius: var(--indent); }
 
 .panel.selected { -webkit-box-shadow: inset 0 0 15px 4px #FFE600; box-shadow: inset 0 0 15px 4px #FFE600; }
+
+.panel .bg_image_panel { position: absolute; top: var(--size_border_local); left: var(--size_border_local); width: calc(100% - var(--size_border_local) * 2); height: calc(100% - var(--size_border_local) * 2); background-repeat: no-repeat; background-position: 100% 100%; }
 
 .panel .panel_holder { background-color: green; -webkit-border-radius: calc(var(--indent) + 2px); border-radius: calc(var(--indent) + 2px); background: var(--border_img_v), var(--border_img_v_right), var(--border_img_h), var(--border_img_h_bottom); background-position: 0 0, 100% 0, 0 0, 0 100%; background-repeat: repeat-y, repeat-y, repeat-x, repeat-x; -webkit-background-size: var(--size_border_local) auto, var(--size_border_local) auto, auto var(--size_border_local), auto var(--size_border_local); background-size: var(--size_border_local) auto, var(--size_border_local) auto, auto var(--size_border_local), auto var(--size_border_local); }
 

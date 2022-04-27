@@ -1,4 +1,5 @@
 :root{
+	--texture_panel:url(/images/map/panel/panel_texture.png);
 	// border-bg of panel
 	--border_img_h: url(/images/map/panel/h_border.png);
 	--border_img_h_bottom: url(/images/map/panel/h_border_bottom.png);
@@ -62,6 +63,9 @@
 	--checkbox_mark_img:url(/images/map/icons/check_mark.png);
 	--checkbox_mark_w:34px;
 	--checkbox_mark_h:32px;
+
+	//body texture
+	--body_texture:url(/images/map/ui/body_texture.png);
 }
 $primary :#180f0a;
 $light :#b8afaa;

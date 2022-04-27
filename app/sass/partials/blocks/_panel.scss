@@ -17,9 +17,10 @@
 }
 .panel{
 	height: 100%;
-	background-color: $primary;
-	background-position: 100% 100% !important;
-	background-repeat: no-repeat !important;
+	// background-color: $primary;
+	// background-position: 100% 100% !important;
+	// background-repeat: no-repeat !important;
+	background:$primary var(--texture_panel);
 	position: relative;
 	border-radius: calc(var(--indent) + 2px);
 	--size_border_local: calc(var(--size_border) / 2);
@@ -44,6 +45,16 @@
 	}
 	&.selected{
 		box-shadow: inset 0 0 15px 4px #FFE600;
+	}
+	.bg_image_panel{
+		position: absolute;
+		top:var(--size_border_local);
+		left: var(--size_border_local);
+		width: calc(100% - var(--size_border_local) * 2);
+		height: calc(100% - var(--size_border_local) * 2);
+		background-repeat: no-repeat;
+		// background-color: red;
+		background-position: 100% 100%;
 	}
 	.panel_holder{
 		background-color: green;

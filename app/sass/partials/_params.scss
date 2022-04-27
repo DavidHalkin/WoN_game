@@ -1,7 +1,9 @@
 body{
 	font: 16px/1.25 "Vollkorn", sans-serif;
 	// font: 16px/1.25 Arial !important;
-	background: $primary;
+	background-color: $primary;
+	background-image: var(--body_texture);
+	background-repeat: repeat;
 	color: $light;
 	min-width:$body_min_width;
 	min-height: 100vh;
