@@ -65,8 +65,14 @@
 	// max-width: 100%;
 	.item_ico{
 		z-index: 2;
+		margin-right: -10px;
 		+ .mini_holder{
-			margin-left: -10px;
+			// margin-left: -10px;
+		}
+	}
+	&.no_item_ico{
+		.item_ico{
+			display: none !important;
 		}
 	}
 	label{
@@ -74,10 +80,8 @@
 		// padding-right: 20px;
 		margin: 0;
 		display: none;
-		~ .mini_holder{
-			// margin-left: 0;
-		}
 	}
+
 	&.label{
 		label{
 			display: block;

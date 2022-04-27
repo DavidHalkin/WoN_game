@@ -1192,7 +1192,9 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .circle.emblem, .mini_info .item_ico.emblem { background: none; padding: 1px; -webkit-border-radius: 50%; border-radius: 50%; overflow: hidden; }
 
-.circle.emblem img, .mini_info .item_ico.emblem img { position: static; -webkit-transform: none; -ms-transform: none; transform: none; max-width: none; max-height: none; display: block; height: auto; max-width: 100%; }
+.circle.emblem img, .mini_info .item_ico.emblem img { max-height: calc(100% - 5px); max-width: calc(100% - 5px); }
+
+.circle.emblem.top_center_img img, .mini_info .item_ico.emblem.top_center_img img { top: 0; left: 50%; -webkit-transform: translate(-50%, 0) !important; -ms-transform: translate(-50%, 0) !important; transform: translate(-50%, 0) !important; max-height: none; max-width: none; width: calc(100% - 3px); }
 
 .circle.emblem:after, .mini_info .item_ico.emblem:after { content: ""; width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: url(/images/map/circles/circle_empty_shadow.png) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; }
 
@@ -1487,6 +1489,8 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .scrollbar .bar .handler { background: var(--scroll_handler_img) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; width: var(--scroll_handler_width); height: var(--scroll_handler_height); position: absolute; left: 50%; -webkit-transform: translate(-50%); -ms-transform: translate(-50%); transform: translate(-50%); display: block; }
 
+.slider { padding-bottom: 20px; }
+
 .slider .mini_info { display: none; }
 
 .slider.has_mini_info .mini_info { display: -webkit-box; display: -ms-flexbox; display: flex; }
@@ -1555,9 +1559,9 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .mini_info { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
 
-.mini_info .item_ico { z-index: 2; }
+.mini_info .item_ico { z-index: 2; margin-right: -10px; }
 
-.mini_info .item_ico + .mini_holder { margin-left: -10px; }
+.mini_info.no_item_ico .item_ico { display: none !important; }
 
 .mini_info label { padding-right: 10px; margin: 0; display: none; }
 
@@ -1819,9 +1823,24 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .etc_info { pointer-events: auto; text-align: right; }
 
+.army_template { position: absolute; left: 0; bottom: 5px; min-width: 1024px; padding-left: 5px; padding-right: 5px; width: 100%; z-index: 1; pointer-events: none; }
+
+.army_template .panel { pointer-events: auto; }
+
+@media only screen and (max-width: 1299.98px) { .army_template .col-320 { max-width: 300px; -webkit-box-flex: 0; -ms-flex: 0 0 300px; flex: 0 0 300px; }
+  .army_template .col-320 .slot .sub_info { font-size: 14px; width: 110px; } }
+
+.army_template .col_army .title_panel { max-width: 300px; -webkit-box-flex: 0; -ms-flex: 0 0 300px; flex: 0 0 300px; text-align: center; }
+
+.army_template .col_army .title_panel .panel_holder span { overflow: hidden; -o-text-overflow: ellipsis; text-overflow: ellipsis; white-space: nowrap; }
+
 .army_template .col_army .army_block .panel_holder { height: calc(100vh - 160px); }
 
 @media only screen and (max-width: 1599.98px) { .army_template .col_army .army_block .panel_holder { height: calc(100vh - 132px); } }
+
+.army_template .col_army .army_block .panel_holder .panel_content { padding-bottom: 8px; }
+
+.army_template .col_army .army_block .panel_holder .panel_content:after { content: ""; width: 100%; height: 30px; background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.5))); background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%); background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%); background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%); position: absolute; bottom: 0; left: 0; z-index: 10; pointer-events: none; }
 
 .army_template .col_left .panel > .panel_holder { height: calc(100vh - 121px); }
 
