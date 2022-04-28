@@ -710,3 +710,10 @@ function $(selector) {
 function $$(selector) {
   return document.querySelectorAll(selector);
 }
+
+
+
+document.querySelector(".range--progress").addEventListener("input", (event) => {
+  event.target.style.setProperty('--val', event.target.value);
+  document.querySelector(".info").value = event.target.value;
+})
