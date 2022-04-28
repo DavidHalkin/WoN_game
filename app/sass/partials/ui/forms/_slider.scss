@@ -90,3 +90,116 @@
 		transform:translate(50% , 45%);
 	}
 }
+
+
+$range__track-width: 14.5em;
+:root {
+	// go full width until max
+	--track-width: 100%;
+	--max-track-width: 20.5em;
+}
+
+$range__track-height: 0.25em;
+$range__thumb-diameter: 1.5em;
+$range__track-colour: #033 !default;
+$range__fill-colour: #0b6 !default;
+$range__thumb-colour: #099 !default;
+
+@mixin track() {
+	box-sizing: border-box;
+	border: none;
+	width: $range__track-width;
+	width: var(--track-width);
+	max-width: var(--max-track-width);
+	height: $range__track-height;
+	background: $range__track-colour;
+}
+
+@mixin fill() {
+	height: $range__track-height;
+}
+
+@mixin progress-fill() {
+	background: $range__fill-colour;
+}
+
+@mixin thumb() {
+	box-sizing: border-box;
+	border: none;
+	width: $range__thumb-diameter;
+	height: $range__thumb-diameter;
+	border-radius: 50%;
+	background: $range__thumb-colour;
+}
+
+[type="range"] {
+    --range: calc(var(--max) - var(--min));
+		--ratio: calc((var(--val) - var(--min)) / var(--range));
+		--sx: calc(0.5 * #{$range__thumb-diameter} + var(--ratio) * (100% - #{$range__thumb-diameter}));
+
+		margin: 0;
+		padding: 0;
+		width: $range__track-width;
+		width: var(--track-width);
+		max-width: var(--max-track-width);
+		height: $range__thumb-diameter;
+		background: transparent;
+		font: 1em/1 arial, sans-serif;
+    
+		&,
+		&::-webkit-slider-thumb {
+			-webkit-appearance: none;
+		}
+
+		&::-webkit-slider-runnable-track {
+			@include track;
+		}
+
+		&.range--progress::-webkit-slider-runnable-track {
+			background: linear-gradient($range__fill-colour, $range__fill-colour) 0 / var(--sx) 100% no-repeat $range__track-colour;
+		}
+
+		&::-moz-range-track {
+			@include track;
+		}
+
+		&::-ms-track {
+			@include track;
+		}
+
+		&::-moz-range-progress {
+			@include fill;
+		}
+
+		&.range--progress::-moz-range-progress {
+			@include progress-fill;
+		}
+
+		&::-ms-fill-lower {
+			@include fill;
+		}
+
+		&.range--progress::-ms-fill-lower {
+			@include progress-fill;
+		}
+
+		&::-webkit-slider-thumb {
+			@include thumb;
+
+			margin-top: 0.5 * ($range__track-height - $range__thumb-diameter);
+		}
+
+		&::-moz-range-thumb {
+			@include thumb;
+		}
+
+		&::-ms-thumb {
+			@include thumb;
+
+			margin-top: 0;
+		}
+
+		&::-ms-tooltip {
+			display: none;
+		}
+	}

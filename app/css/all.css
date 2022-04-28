@@ -1515,6 +1515,36 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .slider_holder .handler { width: var(--slider_handler_width); height: var(--slider_handler_height); background: var(--slider_handler_img) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; position: absolute; z-index: 2; right: 0; bottom: 0; -webkit-transform: translate(50%, 45%); -ms-transform: translate(50%, 45%); transform: translate(50%, 45%); }
 
+:root { --track-width: 100%; --max-track-width: 20.5em; }
+
+[type="range"] { --range: calc(var(--max) - var(--min)); --ratio: calc((var(--val) - var(--min)) / var(--range)); --sx: calc(0.5 * 1.5em + var(--ratio) * (100% - 1.5em)); margin: 0; padding: 0; width: 14.5em; width: var(--track-width); max-width: var(--max-track-width); height: 1.5em; background: transparent; font: 1em/1 arial, sans-serif; }
+
+[type="range"], [type="range"]::-webkit-slider-thumb { -webkit-appearance: none; }
+
+[type="range"]::-webkit-slider-runnable-track { -webkit-box-sizing: border-box; box-sizing: border-box; border: none; width: 14.5em; width: var(--track-width); max-width: var(--max-track-width); height: 0.25em; background: #033; }
+
+[type="range"].range--progress::-webkit-slider-runnable-track { background: -webkit-gradient(linear, left top, left bottom, from(#0b6), to(#0b6)) 0/var(--sx) 100% no-repeat #033; background: -webkit-linear-gradient(#0b6, #0b6) 0/var(--sx) 100% no-repeat #033; background: linear-gradient(#0b6, #0b6) 0/var(--sx) 100% no-repeat #033; }
+
+[type="range"]::-moz-range-track { box-sizing: border-box; border: none; width: 14.5em; width: var(--track-width); max-width: var(--max-track-width); height: 0.25em; background: #033; }
+
+[type="range"]::-ms-track { box-sizing: border-box; border: none; width: 14.5em; width: var(--track-width); max-width: var(--max-track-width); height: 0.25em; background: #033; }
+
+[type="range"]::-moz-range-progress { height: 0.25em; }
+
+[type="range"].range--progress::-moz-range-progress { background: #0b6; }
+
+[type="range"]::-ms-fill-lower { height: 0.25em; }
+
+[type="range"].range--progress::-ms-fill-lower { background: #0b6; }
+
+[type="range"]::-webkit-slider-thumb { -webkit-box-sizing: border-box; box-sizing: border-box; border: none; width: 1.5em; height: 1.5em; -webkit-border-radius: 50%; border-radius: 50%; background: #099; margin-top: -0.625em; }
+
+[type="range"]::-moz-range-thumb { box-sizing: border-box; border: none; width: 1.5em; height: 1.5em; border-radius: 50%; background: #099; }
+
+[type="range"]::-ms-thumb { box-sizing: border-box; border: none; width: 1.5em; height: 1.5em; border-radius: 50%; background: #099; margin-top: 0; }
+
+[type="range"]::-ms-tooltip { display: none; }
+
 .checkbox { line-height: 0; }
 
 .checkbox.checkbox_no_label label .checkbox_label { display: none; }
