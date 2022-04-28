@@ -7,6 +7,7 @@ window.ui.bottom = new Bottom('.panel_army');
 new CustomScroll();
 new CustomAccordion();
 new Tabs();
+new Slider('.test');
 
 let cityClickJson, cityBuildJson, cityInfoJson;
 
@@ -704,16 +705,31 @@ function Tabs(element) {
     });
   }
 }
+function Slider(selector) {
+
+    const sliders = $$(selector);
+    if (sliders.length > 0) initSliders();
+
+    function initSliders() {
+
+        sliders.forEach(slider => {
+
+            const input = slider.querySelector('input[type="range"]');
+            const info = slider.querySelector('.info');
+
+            input.addEventListener('input', () => {
+                input.style.setProperty('--val', input.value);
+                info.value = input.value;
+            });
+
+        });
+
+    }
+
+}
 function $(selector) {
   return document.querySelector(selector);
 }
 function $$(selector) {
   return document.querySelectorAll(selector);
 }
-
-
-
-document.querySelector(".range--progress").addEventListener("input", (event) => {
-  event.target.style.setProperty('--val', event.target.value);
-  document.querySelector(".info").value = event.target.value;
-})
