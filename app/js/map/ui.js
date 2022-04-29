@@ -1,3 +1,10 @@
+// const input = document.querySelector('input[type="range"]');
+// const filler = document.querySelector('.filled');
+
+// input.oninput = () => {
+//   filler.style.setProperty('width', `calc(${input.value}% - 6px)`);
+// }
+
 window.ui = {};
 window.ui.modes = new Modes('.panel_game_modes');
 window.ui.city = new City('.panel_town');
