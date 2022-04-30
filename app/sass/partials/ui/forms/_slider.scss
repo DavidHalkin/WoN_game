@@ -143,6 +143,7 @@ $range__thumb_colour: var(--slider_handler_img) !default;
 	background-color: #FFF;
 	mix-blend-mode: overlay;
 	pointer-events: none;
+    border-bottom-right-radius: 10px;
 }
 .range_slider{
 	position: relative;
