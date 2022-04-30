@@ -1,10 +1,3 @@
-// const input = document.querySelector('input[type="range"]');
-// const filler = document.querySelector('.filled');
-
-// input.oninput = () => {
-//   filler.style.setProperty('width', `calc(${input.value}% - 6px)`);
-// }
-
 window.ui = {};
 window.ui.modes = new Modes('.panel_game_modes');
 window.ui.city = new City('.panel_town');
@@ -14,7 +7,7 @@ window.ui.bottom = new Bottom('.panel_army');
 new CustomScroll();
 new CustomAccordion();
 new Tabs();
-new Slider('.test');
+new Slider('.slider');
 
 let cityClickJson, cityBuildJson, cityInfoJson;
 
@@ -721,13 +714,27 @@ function Slider(selector) {
 
         sliders.forEach(slider => {
 
-            const input = slider.querySelector('input[type="range"]');
-            const info = slider.querySelector('.info');
+            const input = slider.querySelector('[type="range"]');
+            const fill = slider.querySelector('.filled');
+            const mini_info = slider.querySelector('.mini_info');
 
-            input.addEventListener('input', () => {
-                input.style.setProperty('--val', input.value);
-                info.value = input.value;
-            });
+            input.oninput = update;
+            update();
+
+            function update(e) {
+
+                const TRACK_GAPS = 5;
+                const HANDLER_SHIFT = 4;
+                const value = input.value;
+                const percent = value / input.max * 100;
+                const ratio = 50 - percent;
+                const extremumShift = Math.round(ratio / TRACK_GAPS) - HANDLER_SHIFT;
+
+                fill.style.setProperty('width', `calc(${percent}% + ${extremumShift}px)`);
+
+                if (mini_info) mini_info.querySelector('input').value = value;
+
+            }
 
         });
 
