@@ -4,7 +4,9 @@
   "description": "markup",
   "main": "index.js",
   "scripts": {
-    "start": "harp ./app"
+    "start": "concurrently \"npm:harp\" \"npm:sync\"",
+    "harp": "harp ./app",
+    "sync": "browser-sync start --proxy localhost:9000 --files ./app/**/* --no-ui"
   },
   "repository": {
     "type": "git",
