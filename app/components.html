@@ -942,7 +942,8 @@
             <hr>
             <h1>tabs</h1>
             <ul>
-                <li>табы</li>
+                <li>добавить на родителя(<kbd>tabs </kbd>) <kbd>.tab_nav_big</kbd>и сами табы станут больше</li>
+                <li>в дланный момент табы <i class="red">НЕ</i> адаптивные(когда то шёл разговор про появляющийся дроп если табов много) и не адаптивен под текст(сами табы это грубо говоря квадрат)</li>
             </ul>
             <pre>
                 <code>
@@ -973,7 +974,7 @@
                 <!-- close btn start-->
                 <a href="#" class="close_btn position-absolute"></a>
                 <!-- close btn end-->
-                <div class="panel_holder scroll_js">
+                <div class="panel_holder">
                     <!-- style="max-height:500px;" -->
                     <div class="panel_header py-10">
                         <div class="d-flex align-items-center">
@@ -1017,9 +1018,35 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="tab_content">
+                                <div class="panel_holder" style="max-height:300px;">
+                                    <div class="panel_content">
+                                        <div class="content_scroll">
+                                            <div class="tab_content">
+                                                <div class="tab_pane" id="t11">
+                                                    tab_11
+                                                </div>
+                                                <div class="tab_pane active" id="t22">
+                                                    <p style="background:red">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum sequi hic nam expedita soluta mollitia reiciendis vitae doloribus necessitatibus non voluptas, eligendi voluptates quasi impedit praesentium cupiditate totam! Neque, impedit.</p>
+                                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum sequi hic nam expedita soluta mollitia reiciendis vitae doloribus necessitatibus non voluptas, eligendi voluptates quasi impedit praesentium cupiditate totam! Neque, impedit.</p>
+                                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum sequi hic nam expedita soluta mollitia reiciendis vitae doloribus necessitatibus non voluptas, eligendi voluptates quasi impedit praesentium cupiditate totam! Neque, impedit.</p>
+                                                </div>
+                                                <div class="tab_pane" id="t33">
+                                                    tab_33
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="scrollbar">
+                                            <div class="btn_func arrow_prev"></div>
+                                            <div class="bar">
+                                                <div class="handler" style=" top:10%;"></div>
+                                            </div>
+                                            <div class="btn_func arrow_next"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="tab_content">
                                     <div class="tab_pane" id="t11">
-                                        <!-- tab_11 -->
+                                        tab_11
                                     </div>
                                     <div class="tab_pane active" id="t22">
                                         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum sequi hic nam expedita soluta mollitia reiciendis vitae doloribus necessitatibus non voluptas, eligendi voluptates quasi impedit praesentium cupiditate totam! Neque, impedit.</p>
@@ -1027,9 +1054,9 @@
                                         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum sequi hic nam expedita soluta mollitia reiciendis vitae doloribus necessitatibus non voluptas, eligendi voluptates quasi impedit praesentium cupiditate totam! Neque, impedit.</p>
                                     </div>
                                     <div class="tab_pane" id="t33">
-                                        <!-- tab_33 -->
+                                        tab_33
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="scrollbar">
@@ -1097,7 +1124,10 @@
             <hr>
             <h1>icon_list</h1>
             <ul>
-                <li>по-умолчанию блоки <kbd>col_item</kbd> авто, тоесть по наполнению.. как таковой сетки нету строгой(нет %)</li>
+                <li>по-умолчанию блоки <kbd>col_item</kbd> авто(на родителе только класс .icon_list), тоесть по наполнению.. как таковой сетки нету строгой(нет %)</li>
+                <li>класс <kbd>.col_1</kbd> на родителя <kbd>icon_list</kbd> делает <i class="red">1</i> строки</li>
+                <li>класс <kbd>.col_2</kbd> на родителя <kbd>icon_list</kbd> делает <i class="red">2</i> строки</li>
+                <li>класс <kbd>.col_3</kbd> на родителя <kbd>icon_list</kbd> делает <i class="red">3</i> строки</li>
                 <li>отступы по-умолчанию 6 пикселей между элементами</li>
                 <li><span class="red">что бы делать иначе сетку и отступы - надо апдейтить и придумывать модификаторы</span></li>
             </ul>
@@ -1110,7 +1140,7 @@
                 </code>
             </pre>
             <div class="py-30">
-                <div class="icon_list">
+                <div class="icon_list col_3">
                     <div class="col_item">
                         <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
                     </div>
@@ -1122,6 +1152,41 @@
                     </div>
                     <div class="col_item">
                         <a href="#" class="circle size_4 size_xl_5"><img src="images/map/circles/example.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="icon_list col_1">
+                    <div class="col_item">
+                        <div class="mini_info label mb-20">
+                            <label>Рабы</label>
+                            <a href="#" class="item_ico size_1">
+                                <img src="/images/map/circles/example.png" alt="">
+                            </a>
+                            <div class="mini_holder">
+                                <input type="text" value="1223">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col_item">
+                        <div class="mini_info label mb-20">
+                            <label>Рабы</label>
+                            <a href="#" class="item_ico size_1">
+                                <img src="/images/map/circles/example.png" alt="">
+                            </a>
+                            <div class="mini_holder">
+                                <input type="text" value="1223">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col_item">
+                        <div class="mini_info label mb-20">
+                            <label>Рабы</label>
+                            <a href="#" class="item_ico size_1">
+                                <img src="/images/map/circles/example.png" alt="">
+                            </a>
+                            <div class="mini_holder">
+                                <input type="text" value="1223">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

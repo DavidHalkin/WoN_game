@@ -9,4 +9,22 @@
 		max-width: 100%;
 		padding: 0 3px 6px;
 	}
+	&.col_1{
+		.col_item{
+			max-width: 100%;
+			flex:0 0 100%;
+		}
+	}
+	&.col_2{
+		.col_item{
+			max-width: 50%;
+			flex:0 0 50%;
+		}
+	}
+	&.col_3{
+		.col_item{
+			max-width: 33.333%;
+			flex:0 0 33.333%;
+		}
+	}
 }

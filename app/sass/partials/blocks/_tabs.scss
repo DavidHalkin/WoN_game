@@ -10,6 +10,22 @@
 			}
 		}
 	}
+	.panel_holder {
+		background: none;
+		// margin: 0 calc(var(--size_border_local) * -2.7);
+		// padding: 0 calc(var(--size_border_local) * 2.7);
+		&.scroll_js{
+			margin-right: calc(var(--size_border_local) * -1);
+		}
+		.panel_content{
+			padding: 0;
+			.scrollbar{
+				right: 0;
+				top: 0;
+				height: 100%;
+			}
+		}
+	}
 }
 .tab_nav{
 	// active corners
@@ -33,7 +49,6 @@
 		--width_local:calc(var(--size_w) / 2.8 * 0.5);
 		--height_local:calc(var(--size_h) / 2.8 * 0.5);
 	}
-
 	position: relative;
 	overflow: hidden;
 	margin:0 calc(var(--size_border_local) * -2.7);

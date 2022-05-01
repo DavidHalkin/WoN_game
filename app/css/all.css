@@ -1367,6 +1367,14 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .tabs.tab_nav_big .tab_nav .link_holder { height: 80px; }
 
+.tabs .panel_holder { background: none; }
+
+.tabs .panel_holder.scroll_js { margin-right: calc(var(--size_border_local) * -1); }
+
+.tabs .panel_holder .panel_content { padding: 0; }
+
+.tabs .panel_holder .panel_content .scrollbar { right: 0; top: 0; height: 100%; }
+
 .tab_nav { --tab_size_active_local: calc(var(--tab_size_active) / 2); --tab_size_boder_local: calc(var(--tab_size_boder) / 2); --width_local:calc(var(--size_w) / 2.8); --height_local:calc(var(--size_h) / 2.8); position: relative; overflow: hidden; margin: 0 calc(var(--size_border_local) * -2.7); padding: 0 calc(var(--size_border_local) * 2.7) var(--tab_size_boder_local); }
 
 .md .tab_nav { --tab_size_active_local: calc(var(--tab_size_active) / 2 * 0.75); --tab_size_boder_local: calc(var(--tab_size_boder) / 2 * 0.75); --width_local:calc(var(--size_w) / 2.8 * 0.75); --height_local:calc(var(--size_h) / 2.8 * 0.75); }
@@ -1414,6 +1422,12 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 .icon_list { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; margin-left: -3px; margin-right: -3px; }
 
 .icon_list .col_item { -webkit-box-flex: 0; -ms-flex: 0 0 auto; flex: 0 0 auto; width: auto; max-width: 100%; padding: 0 3px 6px; }
+
+.icon_list.col_1 .col_item { max-width: 100%; -webkit-box-flex: 0; -ms-flex: 0 0 100%; flex: 0 0 100%; }
+
+.icon_list.col_2 .col_item { max-width: 50%; -webkit-box-flex: 0; -ms-flex: 0 0 50%; flex: 0 0 50%; }
+
+.icon_list.col_3 .col_item { max-width: 33.333%; -webkit-box-flex: 0; -ms-flex: 0 0 33.333%; flex: 0 0 33.333%; }
 
 .slot { --color_shadow:rgba(0,0,0,0.7); --size_corner_local:calc(var(--size_corner) / 2.7); }
 
@@ -1493,7 +1507,7 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .grid_column .panel_holder.scroll_js .content_scroll { overflow-y: auto; height: 100%; padding-right: 20px; }
 
-.scrollbar { --size_scroll_bar:calc(var(--scroll_bar_size) / 2); --scroll_button_width:calc(var(--scroll_button_w) / 2); --scroll_button_height:calc(var(--scroll_button_h) / 2); --scroll_handler_width:calc(var(--scroll_handler_w) / 2); --scroll_handler_height:calc(var(--scroll_handler_h) / 2); position: absolute; top: 0; bottom: 0; right: 12px; width: 16px; height: 100%; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; display: none; }
+.scrollbar { --size_scroll_bar:calc(var(--scroll_bar_size) / 2); --scroll_button_width:calc(var(--scroll_button_w) / 2); --scroll_button_height:calc(var(--scroll_button_h) / 2); --scroll_handler_width:calc(var(--scroll_handler_w) / 2); --scroll_handler_height:calc(var(--scroll_handler_h) / 2); position: absolute; top: 0; bottom: 0; right: 12px; width: 16px; height: 100%; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; z-index: 6; display: none; }
 
 .scroll_js .scrollbar { display: -webkit-box; display: -ms-flexbox; display: flex; }
 
@@ -1892,7 +1906,7 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .army_template .col_army .army_block .panel_holder .panel_content { padding-bottom: 8px; }
 
-.army_template .col_army .army_block .panel_holder .panel_content:after { content: ""; width: 100%; height: 30px; background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.5))); background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%); background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%); background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%); position: absolute; bottom: 0; left: 0; z-index: 10; pointer-events: none; }
+.army_template .col_army .army_block .panel_holder .panel_content:after { content: ""; height: 40px; background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), color-stop(90%, #1f130d)); background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, #1f130d 90%); background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, #1f130d 90%); background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #1f130d 90%); position: absolute; bottom: var(--size_border_local); left: var(--size_border_local); right: var(--size_border_local); z-index: 4; pointer-events: none; }
 
 .army_template .col_left .panel > .panel_holder { height: calc(100vh - 121px); }
 
