@@ -74,3 +74,19 @@ button.actions_item{
 		}
 	}
 }
+.nav_list{
+	>li{
+		&:hover{
+			> .circle,> .square {
+				@include hover;
+			}
+		}
+	}
+}
+.dropdown_item{
+	&:hover{
+		> .circle,> .square {
+			@include hover;
+		}
+	}
+}

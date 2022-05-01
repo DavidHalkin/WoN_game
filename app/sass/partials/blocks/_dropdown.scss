@@ -1,10 +1,33 @@
 .dropdown_item{
 	position: relative;
 	&:hover,li:hover{
-		> .drop_down{
-			// visibility: visible;
-			// opacity: 1;
+		> .drop_down, > .simple_drop{
 			display: block;
+		}
+	}
+	
+}
+.simple_drop{
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 10;
+	display: none;
+	.panel_content{
+		padding: var(--size_border_local) 0;
+	}
+	ul{
+		padding: var(--size_border_local) 0 0;
+		li{
+			// padding:7px var(--size_border_local) 10px;
+			padding:7px 10px 10px;
+			background-image: url(/images/map/ui/line_drop.png);
+			background-size: 100% 3px;
+			background-repeat: no-repeat;
+			background-position: 0 100%;
+			&:last-of-type{
+				background: none;
+			}
 		}
 	}
 }
@@ -115,7 +138,6 @@
 				}
 				margin: 0;
 				background-image: url(/images/map/ui/line_drop.png);
-				// background-size: 100% auto;
 				background-size: 100% 3px;
 				background-repeat: no-repeat;
 				background-position: 0 100%;

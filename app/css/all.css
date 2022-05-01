@@ -1096,6 +1096,10 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .mini_info .mini_holder input:focus { -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); -webkit-filter: saturate(2); filter: saturate(2); }
 
+.nav_list > li:hover > .circle, .nav_list > li:hover > .square { -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); -webkit-filter: saturate(2) brightness(1.5); filter: saturate(2) brightness(1.5); }
+
+.dropdown_item:hover > .circle, .dropdown_item:hover > .square { -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); -webkit-filter: saturate(2) brightness(1.5); filter: saturate(2) brightness(1.5); }
+
 .panel_holder { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; height: 100%; }
 
 .panel_content { -webkit-box-flex: 1; -ms-flex: 1 1 auto; flex: 1 1 auto; overflow-y: auto; position: relative; height: 100%; padding: calc(var(--size_border_local) * 2.7); }
@@ -1276,7 +1280,17 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .dropdown_item { position: relative; }
 
-.dropdown_item:hover > .drop_down, .dropdown_item li:hover > .drop_down { display: block; }
+.dropdown_item:hover > .drop_down, .dropdown_item:hover > .simple_drop, .dropdown_item li:hover > .drop_down, .dropdown_item li:hover > .simple_drop { display: block; }
+
+.simple_drop { position: absolute; top: 100%; left: 0; z-index: 10; display: none; }
+
+.simple_drop .panel_content { padding: var(--size_border_local) 0; }
+
+.simple_drop ul { padding: var(--size_border_local) 0 0; }
+
+.simple_drop ul li { padding: 7px 10px 10px; background-image: url(/images/map/ui/line_drop.png); -webkit-background-size: 100% 3px; background-size: 100% 3px; background-repeat: no-repeat; background-position: 0 100%; }
+
+.simple_drop ul li:last-of-type { background: none; }
 
 .drop_down { position: absolute; top: 100%; left: 0; z-index: 10; display: none; }
 
@@ -1515,7 +1529,7 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .slider_holder .handler { width: var(--slider_handler_width); height: var(--slider_handler_height); background: var(--slider_handler_img) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; position: absolute; z-index: 2; right: 0; bottom: 0; -webkit-transform: translate(50%, 45%); -ms-transform: translate(50%, 45%); transform: translate(50%, 45%); }
 
-.filled { position: absolute; top: 50%; left: 0; -webkit-transform: translateY(calc(-50% - 3px)); -ms-transform: translateY(calc(-50% - 3px)); transform: translateY(calc(-50% - 3px)); height: var(--size_slider_bar); background-color: #FFF; mix-blend-mode: overlay; pointer-events: none; }
+.filled { position: absolute; top: 50%; left: 0; -webkit-transform: translateY(calc(-50% - 3px)); -ms-transform: translateY(calc(-50% - 3px)); transform: translateY(calc(-50% - 3px)); height: var(--size_slider_bar); background-color: #FFF; mix-blend-mode: overlay; pointer-events: none; -webkit-border-bottom-right-radius: 10px; border-bottom-right-radius: 10px; }
 
 .range_slider { position: relative; margin: 0 calc(var(--slider_button_width) - 8px); }
 
@@ -1749,9 +1763,9 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 @media only screen and (max-width: 1599.98px) { .panel_town { --w_panel:330px; } }
 
-.panel_town .dropdown_item { padding-bottom: 15px; margin: 15px 20px 0 8px; }
+.panel_town .dropdown_item { padding: 0 20px 0 8px; }
 
-@media only screen and (max-width: 1599.98px) { .panel_town .dropdown_item { margin-left: 15px; } }
+@media only screen and (max-width: 1599.98px) { .panel_town .dropdown_item { margin-left: 5px; } }
 
 .panel_town .dropdown_item > .drop_down { width: 100%; padding: 0; }
 
@@ -1801,9 +1815,9 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 @media only screen and (max-width: 1599.98px) { .panel_user .panel_holder { padding: 10px 20px; } }
 
-.panel_progress .circle { margin-left: 20px; margin-right: 20px; }
+.panel_progress .dropdown_item { margin-left: 20px; margin-right: 20px; }
 
-@media only screen and (max-width: 1599.98px) { .panel_progress .circle { margin-left: 10px; margin-right: 10px; } }
+@media only screen and (max-width: 1599.98px) { .panel_progress .dropdown_item { margin-left: 10px; margin-right: 10px; } }
 
 .panel_progress .txt_inf { padding-right: 20px; }
 

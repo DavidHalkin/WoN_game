@@ -10,10 +10,12 @@
 		--w_panel:330px;
 	}
 	.dropdown_item{
-		padding-bottom: 15px;
-		margin: 15px 20px 0 8px;
+		// padding-bottom: 15px;
+		// margin: 15px 20px 0 8px;
+		padding: 0 20px 0 8px;
 		@include media(max, xl) {
-			margin-left: 15px;
+			// margin-left: 15px;
+			margin-left: 5px;
 		}
 		> .drop_down{
 			width: 100%;
