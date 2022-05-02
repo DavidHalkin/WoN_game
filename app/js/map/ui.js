@@ -8,6 +8,7 @@ new CustomScroll();
 new CustomAccordion();
 new Tabs();
 new Slider('.slider');
+new ToolTips();
 
 let cityClickJson, cityBuildJson, cityInfoJson;
 
@@ -739,6 +740,116 @@ function Slider(selector) {
         });
 
     }
+
+}
+function ToolTips() {
+
+        const TIP_WINDOW_WIDTH = 320;
+        const TIP_WINDOW_MARGIN = 10;
+        const tipWindow = document.querySelector('.tooltip');
+        const container = tipWindow.firstElementChild;
+        const svg = tipWindow.lastElementChild;
+        const tipElements = findTips('[data-tooltip]');
+
+        svg.onclick = hide;
+        tipWindow.onmouseleave = hide;
+
+        initTips();
+
+        function findTips(selector) {
+
+            let arr = [];
+            arr = document.querySelectorAll(selector);
+            return arr;
+
+        }
+        function initTips() {
+
+            tipElements.forEach(elem => {
+
+                let mouseOver = false;
+
+                elem.onmouseenter = () => {
+                    mouseOver = true;
+                    setTimeout(makeTip, 300);
+                };
+                elem.onmouseleave = () => {
+                    mouseOver = false;
+                };
+
+                function makeTip() {
+
+                    if (mouseOver) {
+
+                        let thisTipData = elem.dataset.tooltip;
+
+                        if (!thisTipData) {
+                            thisTipData = 'Error: there is no text for this tooltip. Please, notify us.';
+                        }
+
+                        container.innerHTML = thisTipData;
+                        positionTip(elem);
+                        revealTip();
+
+                    }
+
+                }
+
+            });
+
+        }
+        function positionTip(tipDotElement) {
+
+            const position = getCoordinates(tipDotElement);
+            const tipDot = tipDotElement.getBoundingClientRect();
+
+            const pageWidth = document.body.clientWidth;
+            const top = position.top + tipDot.width / 2;
+            const left = position.left + tipDot.height / 2;
+            const spaceForTip = pageWidth - left;
+            let containerShiftTop = 0;
+            let containerShiftLeft = 0;
+
+            tipFitsWindow = true;
+
+            if (spaceForTip < TIP_WINDOW_WIDTH) {
+                tipFitsWindow = false;
+                containerShiftTop = 10;
+                containerShiftLeft = -(TIP_WINDOW_WIDTH - spaceForTip + TIP_WINDOW_MARGIN);
+            }
+
+            tipWindow.style.top = top + 'px';
+            tipWindow.style.left = left + 'px';
+
+            container.style.top = containerShiftTop + 'px';
+            container.style.left = containerShiftLeft + 'px';
+            container.style.transformOrigin = -containerShiftLeft + 'px 0';
+
+        }
+        function revealTip() {
+
+            tipWindow.style.opacity = 1;
+            tipWindow.style.visibility = 'visible';
+
+        }
+        function hide() {
+
+            tipWindow.style.opacity = 0;
+            tipWindow.style.visibility = 'hidden';
+
+        }
+
+    };
+function getCoordinates(element) {
+
+    const target = element.getBoundingClientRect();
+    const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    const top = scrollTop + target.top;
+    const left = scrollLeft + target.left;
+
+    return { top: Math.round(top), left: Math.round(left) };
 
 }
 function $(selector) {
