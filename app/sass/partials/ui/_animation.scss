@@ -43,6 +43,12 @@ a.square,button.square{
 	&.active{
 		@include hover;
 	}
+	&.selected{
+		&:hover{
+			transition: var(--animation_hovered);
+			filter: none;
+		}
+	}
 }
 button.actions_item{
 	img{

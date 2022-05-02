@@ -16,12 +16,12 @@
 }
 .grid_column{
 	height: auto !important;
-	.panel_holder{
+	> .panel_holder{
 		display: grid;
 	  	grid-template-rows: min-content 1fr;
 	  	// max-height: 400px;
 	  	// height: auto !important;
-		.panel_content{
+		> .panel_content{
 			grid-row: span 2;
 			// overflow: hidden;
 			overflow: visible;
