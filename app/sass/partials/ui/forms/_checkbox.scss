@@ -73,9 +73,10 @@
 	    		}
 	    		~ .checkbox_label{
 					position: relative;
-					margin: 2px 0 0 10px;
+					// margin: 2px 0 0 10px;
+					margin: 2px 0 2px 10px;
 					user-select: none;
-					color: $light;
+					color: $muted;
 					font-size: 16px;
 					line-height: 1.5;
 	    		}
@@ -83,6 +84,9 @@
 			&:checked{
 				~ .checkbox_item img{
 					opacity: 1;
+				}
+				~ .checkbox_label{
+					color: $light;
 				}
 				~ .checkbox_item{
 					&:after{

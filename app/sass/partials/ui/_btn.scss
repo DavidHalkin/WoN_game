@@ -1,9 +1,10 @@
 a,.hovered_item{
-	color: $light;
+	color: $muted;
 	transition: var(--animation_static);
 	&:hover{
 		color: #fff;
 		text-decoration: none;
+		text-shadow: 0px 0px 4px rgba(255, 255, 255, 0.25),0 0 1px $muted;
 		transition: var(--animation_hovered);
 	}
 }
@@ -30,13 +31,14 @@ a,.hovered_item{
 	border: 0;
 	color: $light;
 	position: relative;
+	text-align: center;
 	font-size: var(--font_size_local);
 	&.md{
 		--size_corner_local:calc(var(--size_corner) / 2.7 * 0.75);
 
-		--font_size_local:calc(16px * 0.75);
+		--font_size_local:14px;
 
-		--paddings_local: calc(var(--py) * 0.75) calc(var(--px) * 0.75);
+		--paddings_local: calc(var(--py) * 0.75 - 0.5px) calc(var(--px) * 0.75);
 		border-radius: calc(var(--indent) + 1px);
 	}
 	&.sm{
@@ -50,6 +52,7 @@ a,.hovered_item{
 	> span{
 		display: flex;
 		align-items:center;
+		justify-content: center;
 		padding: var(--paddings_local);
 		&:before,&:after{
 			content: "";

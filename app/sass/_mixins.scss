@@ -43,6 +43,13 @@ $sizes: ("xs":1, "md":1024, "lg":1300,"xl":1600);
 	max-width:$width * 1%;
 	max-height:$height * 1%;
 }
+@mixin placeholder {
+  &::-webkit-input-placeholder { @content; }
+  &:-moz-placeholder           { @content; }
+  &::-moz-placeholder          { @content; }
+  &:-ms-input-placeholder      { @content; }  
+  &:placeholder          { @content; }  
+}
 @mixin hover_drop{
   content: "";
   // width: calc(100% - 10px);
