@@ -12,20 +12,23 @@
     padding-bottom: 20px;
 
     .mini_info {
+        margin: 0 0.25em;
         display: none;
     }
+    .info > label {
+        display: none;
+        margin: 0 0.25em 0.5em;
+    }
 
-    &.has_mini_info {
+    &.show_info {
+        .info > label {
+            display: inline-block;
+        }
         .mini_info {
-            display: flex;
-
-            label {
-                display: block;
-            }
+            display: inline-block;
 
             .mini_holder {
-                max-width: 80px;
-                flex: 0 0 80px;
+                width: 80px;
             }
         }
     }
@@ -96,7 +99,7 @@
         transform: translate(50%, 45%);
     }
 }
-// 
+//
 $range__track_height: var(--size_slider_bar);
 $range__thumb_width: var(--slider_handler_width);
 $range__thumb_height: var(--slider_handler_height);
