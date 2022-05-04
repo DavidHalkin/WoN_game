@@ -3,7 +3,7 @@
 	filter: saturate(2) brightness(1.5);
 }
 
-.btn,.close_btn,.switcher{
+.btn,.close_btn,.back_btn,.switcher{
 	transition: var(--animation_static);
 	&:hover{
 		@include hover;

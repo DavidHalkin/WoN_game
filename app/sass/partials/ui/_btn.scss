@@ -33,6 +33,10 @@ a,.hovered_item{
 	position: relative;
 	text-align: center;
 	font-size: var(--font_size_local);
+	&.disabled,&:disabled{
+		opacity: 0.5;
+		pointer-events: none;
+	}
 	&.md{
 		--size_corner_local:calc(var(--size_corner) / 2.7 * 0.75);
 
@@ -171,7 +175,7 @@ a,.hovered_item{
 		}
 	}
 }
-.close_btn{
+.close_btn,.back_btn{
 	border: 0;
 	padding: 0;
 	border-radius: 6px;
@@ -184,6 +188,11 @@ a,.hovered_item{
 	top:3px;
 	right: 3px;
 	z-index: 2;
+}
+.back_btn{
+	--s:calc(58px / 2);
+	background: url(/images/map/btns/back.png) no-repeat 0 0;
+	background-size: cover;
 }
 .mob_btn{
 	.panel_holder{

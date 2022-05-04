@@ -1066,9 +1066,9 @@ body { font: 16px/1.25 "Vollkorn", sans-serif; background-color: #180f0a; backgr
 
 .arrow { --w:calc( 21px / 2); --h:calc( 34px / 2); width: var(--w); width: var(--w); max-width: var(--w); -webkit-box-flex: 0; -ms-flex: 0 0 var(--w); flex: 0 0 var(--w); height: var(--h); background: url(/images/map/icons/arrow.png) 0 0 no-repeat; -webkit-background-size: cover; background-size: cover; }
 
-.btn, .close_btn, .switcher { -webkit-transition: var(--animation_static); -o-transition: var(--animation_static); transition: var(--animation_static); }
+.btn, .close_btn, .back_btn, .switcher { -webkit-transition: var(--animation_static); -o-transition: var(--animation_static); transition: var(--animation_static); }
 
-.btn:hover, .close_btn:hover, .switcher:hover { -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); -webkit-filter: saturate(2) brightness(1.5); filter: saturate(2) brightness(1.5); }
+.btn:hover, .close_btn:hover, .back_btn:hover, .switcher:hover { -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); -webkit-filter: saturate(2) brightness(1.5); filter: saturate(2) brightness(1.5); }
 
 .slot a.figure img, .slot button.figure img { -webkit-transition: var(--animation_static); -o-transition: var(--animation_static); transition: var(--animation_static); }
 
@@ -2028,7 +2028,21 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .map_animation { position: absolute; top: 0; bottom: 0; left: 0; right: 0; background: rgba(255, 0, 0, 0.4); z-index: -1; }
 
-.form_enter { --form_enter_width_local: calc(var(--form_enter_width) / 2); --form_enter_height_local: calc(var(--form_enter_height) / 2); width: var(--form_enter_width_local); height: var(--form_enter_height_local); background: var(--form_enter_bg) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; padding: 160px 3% 0; position: relative; }
+.form_enter { --form_enter_width_local: calc(var(--form_enter_width) / 2); --form_enter_height_local: calc(var(--form_enter_height) / 2); width: var(--form_enter_width_local); height: var(--form_enter_height_local); background: var(--form_enter_bg) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; padding: 121px 3% 0; position: relative; }
+
+.form_enter .alert_block { height: 50px; overflow: hidden; padding: 5px; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; text-align: center; visibility: hidden; }
+
+.form_enter .alert_block.active { visibility: visible; }
+
+.form_enter .alert_block p { margin: 0; font-size: 15px; }
+
+.form_enter .back_btn { right: auto; left: 27px; top: 113px; }
+
+.form_enter .area_form { display: none; }
+
+.form_enter .area_form.active { display: block; }
+
+.form_enter .area_form .result_message { padding: 10px; height: 270px; }
 
 .dev_tabs { position: -webkit-sticky; position: sticky; top: 0; background-color: #180f0a; height: auto; padding: 10px; z-index: 100; }
 
@@ -2062,6 +2076,8 @@ a:hover, .hovered_item:hover { color: #fff; text-decoration: none; text-shadow: 
 .btn-block span { -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
 
 .btn { --px:20px; --py:17px; --size_corner_local:calc(var(--size_corner) / 2.7); --paddings_local:var(--py)  var(--px); --font_size_local:16px; text-align: center; vertical-align: middle; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; display: inline-block; background: #180f0a; -webkit-border-radius: calc(var(--indent) + 2px); border-radius: calc(var(--indent) + 2px); overflow: hidden; border: 0; color: #b8afaa; position: relative; text-align: center; font-size: var(--font_size_local); }
+
+.btn.disabled, .btn:disabled { opacity: 0.5; pointer-events: none; }
 
 .btn.md { --size_corner_local:calc(var(--size_corner) / 2.7 * 0.75); --font_size_local:14px; --paddings_local: calc(var(--py) * 0.75 - 0.5px) calc(var(--px) * 0.75); -webkit-border-radius: calc(var(--indent) + 1px); border-radius: calc(var(--indent) + 1px); }
 
@@ -2109,7 +2125,9 @@ a:hover, .hovered_item:hover { color: #fff; text-decoration: none; text-shadow: 
 
 .panel_army.slide_at_right.closed .switcher_slider { -webkit-transform: translate(-50%, -50%) scale(-1, 1); -ms-transform: translate(-50%, -50%) scale(-1, 1); transform: translate(-50%, -50%) scale(-1, 1); }
 
-.close_btn { border: 0; padding: 0; -webkit-border-radius: 6px; border-radius: 6px; --s:calc(56px / 2); width: var(--s); height: var(--s); background: url(/images/map/btns/close.png) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; display: block; top: 3px; right: 3px; z-index: 2; }
+.close_btn, .back_btn { border: 0; padding: 0; -webkit-border-radius: 6px; border-radius: 6px; --s:calc(56px / 2); width: var(--s); height: var(--s); background: url(/images/map/btns/close.png) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; display: block; top: 3px; right: 3px; z-index: 2; }
+
+.back_btn { --s:calc(58px / 2); background: url(/images/map/btns/back.png) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; }
 
 .mob_btn .panel_holder { width: 65px; height: 65px; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
 

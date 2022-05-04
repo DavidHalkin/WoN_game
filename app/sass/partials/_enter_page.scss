@@ -37,6 +37,41 @@
 	background: var(--form_enter_bg) no-repeat 0 0;
 	background-size: cover;
 	// padding: 8.5% 3% 0;
-	padding: 160px 3% 0;
+	// padding: 160px 3% 0;
+	padding: 121px 3% 0;
 	position: relative;
+	.alert_block{
+		height: 50px;
+		overflow: hidden;
+		padding: 5px;
+		display: flex;
+		align-items:center;
+		justify-content:center;
+		text-align: center;
+		visibility: hidden;
+		&.active{
+			visibility: visible;
+		}
+		p{
+			margin: 0;
+			font-size: 15px;
+		}
+	}
+	.back_btn {
+		right: auto;
+		left: 27px;
+		top: 113px;
+	}
+	.area_form{
+		display: none;
+		// position: relative;
+		&.active{
+			display: block;
+		}
+		.result_message{
+			padding: 10px;
+			height: 270px;
+			// background: rgba(red,.3);
+		}
+	}
 }
