@@ -51,11 +51,13 @@
 			li{
 				&.active{
 					background: none;
-					>a {
+					>a,>.select_item {
+						
 						background-color: #2f1405;
 					}
 				}
-				> a{
+				> a,> .select_item{
+					font-weight: normal;
 					padding: 6px 12px 9px;
 					display: flex;
 					align-items:center;

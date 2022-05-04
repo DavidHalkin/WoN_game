@@ -75,7 +75,7 @@
 					content: none;
 				}
 			}
-			a{
+			a,.select_item{
 				padding: 4px 7px;
 				margin: 0 5px var(--size_border_local);
 				color: $light;
@@ -110,7 +110,7 @@
 				}
 			}
 			&.has_drop{
-				> a{
+				> a, > .select_item{
 					padding-right: 20px;
 					&:before{
 						content: "";
@@ -131,7 +131,7 @@
 
 			padding-top: 0;
 			padding-bottom: 0;
-			> a{
+			> a,>.select_item{
 				padding: 0 5px 0 48px;
 				@include media(max, xl) {
 					padding: 0 5px 0 30px;
@@ -166,7 +166,7 @@
 				content: none;
 			}
 			&:last-of-type{
-				>a{
+				>a,> .select_item{
 					background-image: none;
 				}
 			}
