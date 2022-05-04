@@ -11,7 +11,24 @@
 <body class="enter_page">
     <div class="map_animation">
     </div>
-    <div class="form_enter">
+    <div class="map_prev">
+        <div class="panel horizontal ">
+            <!-- close btn start-->
+            <a href="#" class="close_btn position-absolute"></a>
+            <!-- close btn end-->
+            <div class="circle size_0 position-absolute"><em class="txt">i</em></div>
+            <div class="panel_holder">
+                <img src="https://picsum.photos/2000/1000" alt="">
+            </div>
+            <div class="decor">
+                <span class="corner"></span>
+                <span class="corner right_top"></span>
+                <span class="corner right_bottom"></span>
+                <span class="corner left_bottom"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form_enter" style="display:none;">
         <div class="area_form active">
             <div class="alert_block active">
                 <p class="text-danger">The entered login / e-mail is not valid or this user is not in the database</p>
@@ -85,7 +102,7 @@
             <div class="mx-auto" style="max-width:320px">
                 <h3 class="fz_25 font-weight-normal text-center">Forgot your password?</h3>
                 <label class="fz_20 mb-10" for="test">Access recovery:</label>
-                <div class="input_control has_ico mb-20 mx-auto" >
+                <div class="input_control has_ico mb-20 mx-auto">
                     <div class="input_bg">
                         <input type="text" class="" placeholder="Email" id="test">
                         <span class="input_ico">

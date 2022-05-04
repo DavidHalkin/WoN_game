@@ -28,6 +28,7 @@
 	right: 0;
 	background: rgba(red,.4);
 	z-index: -1;
+	min-width: $body_min_width;
 }
 .form_enter{
 	--form_enter_width_local: calc(var(--form_enter_width) / 2);
@@ -73,5 +74,29 @@
 			height: 270px;
 			// background: rgba(red,.3);
 		}
+	}
+}
+.map_prev{
+		// padding: 200px;
+		// max-width: 90vw;
+		// max-height: 90vh;
+		// overflow: hidden;
+		// max-width: 1000px;
+	.panel_holder{
+		padding: calc(var(--size_border_local));
+		// max-width: 90vw;
+		max-width: 1000px;
+		max-height: 90vh;
+		overflow: hidden;
+		img{
+			width: 100%;
+			height: 100%;
+			object-fit:cover;
+		}
+	}
+	.circle{
+		bottom: 20px;
+		right: 20px;
+		z-index: 2;
 	}
 }
