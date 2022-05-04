@@ -114,6 +114,17 @@
 					}
 				}
 			}
+			+ .input_ico{
+				&:before,&:after{
+					content: "";
+					width: 1px;
+					height: 2px;
+					top: 35%;
+				}
+				&:after{
+					top: 60%;
+				}
+			}
 		}
 		&:focus{
 			background-color: #2D1406;

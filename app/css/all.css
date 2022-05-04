@@ -1759,6 +1759,10 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .input_control input:not(:placeholder-shown) + span svg path { fill: #C4BAB5 !important; }
 
+.input_control input:not(:placeholder-shown) + .input_ico:before, .input_control input:not(:placeholder-shown) + .input_ico:after { content: ""; width: 1px; height: 2px; top: 35%; }
+
+.input_control input:not(:placeholder-shown) + .input_ico:after { top: 60%; }
+
 .input_control input:focus { background-color: #2D1406; }
 
 .input_control input:focus + .input_ico:before, .input_control input:focus + .input_ico:after { content: ""; width: 1px; height: 2px; top: 35%; }
