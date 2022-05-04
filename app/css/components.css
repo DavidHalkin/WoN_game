@@ -21,3 +21,6 @@ section.big_gap {
 #slider .slider {
     max-width: 300px;
 }
+#select .select {
+    max-width: 400px;
+}

@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/components.css">
     <title>UI</title>
     <style>
         p {
@@ -294,12 +295,12 @@
                 </code>
             </pre>
             <div class="py-30">
-                <div class="select opened">
+                <div class="select opened" data-url="/123" data-value="-1">
                     <div class="select_header">
                         <div class="panel sm centered_corners_none">
                             <button class="panel_holder">
                                 <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-                                <span>add <i style="color:red;">.opened</i> to parent <i style="color:red;">.select</i> Lorem ipsum dolor sit amet consectetur adipisicing, elit. Consequatur eius corrupti voluptate provident aliquid ipsa, voluptatem autem quasi, nulla, debitis quae vitae temporibus vel. Neque non, eveniet? Voluptatibus, dignissimos recusandae!</span>
+                                <span>Выберите что-то из списка...</span>
                             </button>
                             <div class="decor ">
                                 <span class="corner"></span>
@@ -315,51 +316,45 @@
                                 <div class="panel_content ">
                                     <div class="content_scroll">
                                         <ul class="etc_drop list-unstyled m-0">
-                                            <li>
+                                            <li data-value="-1">
+                                                <strong class="select_item">
+                                                    <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                    <span>Выберите что-то из списка...</span>
+                                                </strong>
+                                            </li>
+                                            <li data-value="1">
                                                 <strong class="select_item">
                                                     <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
                                                     <span>lorem</span>
                                                 </strong>
                                             </li>
-                                            <li>
+                                            <li data-value="2">
                                                 <strong class="select_item">
                                                     <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                    <span>Lorem ipsum dolor sit 1</span>
+                                                </strong>
+                                            </li>
+                                            <li data-value="3" class="active">
+                                                <strong class="select_item">
                                                     <span>Lorem ipsum dolor sit</span>
                                                 </strong>
                                             </li>
-                                            <li class="active">
-                                                <strong class="select_item">
-                                                    <span>Lorem ipsum dolor sit</span>
-                                                </strong>
-                                            </li>
-                                            <li>
+                                            <li data-value="4">
                                                 <strong class="select_item">
                                                     <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-                                                    <span>Lorem ipsum dolor sit</span>
+                                                    <span>Lorem ipsum dolor sit 2</span>
                                                 </strong>
                                             </li>
-                                            <li>
+                                            <li data-value="5">
                                                 <strong class="select_item">
                                                     <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-                                                    <span>Lorem ipsum dolor sit</span>
+                                                    <span>Lorem ipsum dolor sit 3</span>
                                                 </strong>
                                             </li>
-                                            <li>
+                                            <li data-value="6">
                                                 <strong class="select_item">
                                                     <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-                                                    <span>Lorem ipsum dolor sit</span>
-                                                </strong>
-                                            </li>
-                                            <li>
-                                                <strong class="select_item">
-                                                    <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-                                                    <span>Lorem ipsum dolor sit</span>
-                                                </strong>
-                                            </li>
-                                            <li>
-                                                <strong class="select_item">
-                                                    <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-                                                    <span>Lorem ipsum dolor sit</span>
+                                                    <span>Lorem ipsum dolor sit 4</span>
                                                 </strong>
                                             </li>
                                         </ul>
@@ -384,13 +379,14 @@
                 </div>
             </div>
             <br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br><br> <br><br> <br><br> <br>
-            <br> <br><br> <br><br> <br><br>
+            <br> <br><br>
             <div class="py-30">
-                <div class="select opened select_drop_up" style="max-width:300px;">
+                <div class="select opened select_drop_up" data-url="/123" data-value="-1">
                     <div class="select_header">
                         <div class="panel sm centered_corners_none">
                             <button class="panel_holder">
-                                <span>Lorem ipsum <i style="color:red;">.select_drop_up</i>dolor sit amet consectetur adipisicing elit. Aliquid alias iure repudiandae numquam qui fugiat itaque incidunt, maxime omnis provident sint minus rerum, quidem veniam illo laudantium sunt. Hic, quaerat.</span>
+                                <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                <span>Выберите что-то из списка...</span>
                             </button>
                             <div class="decor ">
                                 <span class="corner"></span>
@@ -402,55 +398,37 @@
                     </div>
                     <div class="drop_down">
                         <div class="panel grid_column sm centered_corners_none">
-                            <div class="panel_holder p-0 scroll_js" style="max-height: 200px;">
+                            <div class="panel_holder p-0">
                                 <div class="panel_content ">
                                     <div class="content_scroll">
                                         <ul class="etc_drop list-unstyled m-0">
-                                            <li>
+                                            <li data-value="-1">
                                                 <strong class="select_item">
                                                     <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                    <span>Выберите что-то из списка...</span>
+                                                </strong>
+                                            </li>
+                                            <li data-value="1">
+                                                <strong class="select_item">
+                                                    <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                    <span>lorem</span>
+                                                </strong>
+                                            </li>
+                                            <li data-value="2">
+                                                <strong class="select_item">
+                                                    <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                    <span>Lorem ipsum dolor sit 1</span>
+                                                </strong>
+                                            </li>
+                                            <li data-value="3" class="active">
+                                                <strong class="select_item">
                                                     <span>Lorem ipsum dolor sit</span>
                                                 </strong>
                                             </li>
-                                            <li>
+                                            <li data-value="4">
                                                 <strong class="select_item">
                                                     <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-                                                    <span>Lorem ipsum dolor sit</span>
-                                                </strong>
-                                            </li>
-                                            <li>
-                                                <strong class="select_item">
-                                                    <span>Lorem ipsum dolor sit</span>
-                                                </strong>
-                                            </li>
-                                            <li>
-                                                <strong class="select_item">
-                                                    <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-                                                    <span>Lorem ipsum dolor sit</span>
-                                                </strong>
-                                            </li>
-                                            <li>
-                                                <strong class="select_item">
-                                                    <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-                                                    <span>Lorem ipsum dolor sit</span>
-                                                </strong>
-                                            </li>
-                                            <li>
-                                                <strong class="select_item">
-                                                    <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-                                                    <span>Lorem ipsum dolor sit</span>
-                                                </strong>
-                                            </li>
-                                            <li>
-                                                <strong class="select_item">
-                                                    <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-                                                    <span>Lorem ipsum dolor sit</span>
-                                                </strong>
-                                            </li>
-                                            <li>
-                                                <strong class="select_item">
-                                                    <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-                                                    <span>Lorem ipsum dolor sit</span>
+                                                    <span>Lorem ipsum dolor sit 2</span>
                                                 </strong>
                                             </li>
                                         </ul>
@@ -474,13 +452,13 @@
                     </div>
                 </div>
             </div>
-            <br> <br><br> <br><br>
             <div class="py-30">
-                <div class="select select_100p opened" style="max-width:300px;">
+                <div class="select opened select_100p" data-url="/123" data-value="-1">
                     <div class="select_header">
                         <div class="panel sm centered_corners_none">
                             <button class="panel_holder">
-                                <span>Lorem ipsum <i style="color:red;">.select_100p</i></span>
+                                <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                <span>Выберите что-то из списка...</span>
                             </button>
                             <div class="decor ">
                                 <span class="corner"></span>
@@ -492,56 +470,61 @@
                     </div>
                     <div class="drop_down">
                         <div class="panel grid_column sm centered_corners_none">
-                            <div class="panel_holder p-0 scroll_js" style="max-height: 200px;">
+                            <div class="panel_holder p-0">
                                 <div class="panel_content ">
                                     <div class="content_scroll">
                                         <ul class="etc_drop list-unstyled m-0">
-                                            <li>
+                                            <li data-value="-1">
                                                 <strong class="select_item">
                                                     <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                    <span>Выберите что-то из списка...</span>
+                                                </strong>
+                                            </li>
+                                            <li data-value="1">
+                                                <strong class="select_item">
+                                                    <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                    <span>lorem</span>
+                                                </strong>
+                                            </li>
+                                            <li data-value="2">
+                                                <strong class="select_item">
+                                                    <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
+                                                    <span>Lorem ipsum dolor sit 1</span>
+                                                </strong>
+                                            </li>
+                                            <li data-value="3" class="active">
+                                                <strong class="select_item">
                                                     <span>Lorem ipsum dolor sit</span>
                                                 </strong>
                                             </li>
-                                            <li>
+                                            <li data-value="4">
                                                 <strong class="select_item">
                                                     <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-                                                    <span>Lorem ipsum dolor sit</span>
+                                                    <span>Lorem ipsum dolor sit 2</span>
                                                 </strong>
                                             </li>
-                                            <li>
+                                            <li data-value="5">
                                                 <strong class="select_item">
                                                     <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-                                                    <span>Lorem ipsum dolor sit</span>
+                                                    <span>Lorem ipsum dolor sit 3</span>
                                                 </strong>
                                             </li>
-                                            <li>
+                                            <li data-value="6">
                                                 <strong class="select_item">
                                                     <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-                                                    <span>Lorem ipsum dolor sit</span>
+                                                    <span>Lorem ipsum dolor sit 4</span>
                                                 </strong>
                                             </li>
-                                            <li>
+                                            <li data-value="7">
                                                 <strong class="select_item">
                                                     <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-                                                    <span>Lorem ipsum dolor sit</span>
+                                                    <span>Lorem ipsum dolor sit 5</span>
                                                 </strong>
                                             </li>
-                                            <li>
+                                            <li data-value="8">
                                                 <strong class="select_item">
                                                     <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-                                                    <span>Lorem ipsum dolor sit</span>
-                                                </strong>
-                                            </li>
-                                            <li>
-                                                <strong class="select_item">
-                                                    <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-                                                    <span>Lorem ipsum dolor sit</span>
-                                                </strong>
-                                            </li>
-                                            <li>
-                                                <strong class="select_item">
-                                                    <i class="ico"><img src="https://picsum.photos/18" alt=""></i>
-                                                    <span>Lorem ipsum dolor sit</span>
+                                                    <span>Lorem ipsum dolor sit 6</span>
                                                 </strong>
                                             </li>
                                         </ul>

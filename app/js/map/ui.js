@@ -9,6 +9,7 @@ new CustomAccordion();
 new Tabs();
 new Slider('.slider');
 new ToolTips();
+initSelectElements();
 
 let cityClickJson, cityBuildJson, cityInfoJson;
 
@@ -839,7 +840,103 @@ function ToolTips() {
 
         }
 
-    };
+    }
+function Select(elem) {
+
+    const header = elem.querySelector('.select_header');
+    const dropdown = elem.querySelector('.drop_down');
+    const url = elem.dataset.url;
+
+    const _ = this;
+    this.value = elem.dataset.value;
+    this.toggle = toggle;
+
+    header.onclick = toggle;
+    setValue();
+    initClicks();
+
+    function setValue() {
+
+        const title = header.querySelector('.panel_holder span');
+        const selectedLi = dropdown.querySelector(`li[data-value="${_.value}"]`);
+
+        title.innerHTML = selectedLi.querySelector('span').innerHTML;
+        showActive(_.value);
+
+    }
+    function showActive(value) {
+
+        dropdown.querySelectorAll('li').forEach(li => {
+            if (li.dataset.value === '' + value) {
+                li.classList.add('active');
+            } else {
+                li.classList.remove('active');
+            }
+        });
+
+    }
+    function toggle() {
+
+        dropdown.style.display = 'block';
+        const dropdownHeight = dropdown.getBoundingClientRect().height;
+        dropdown.style.cssText = '';
+
+        const bottomGap = window.innerHeight - header.getBoundingClientRect().bottom;
+        if (bottomGap < dropdownHeight) {
+            elem.classList.add('select_drop_up');
+        } else {
+            elem.classList.remove('select_drop_up');
+        }
+
+        elem.classList.toggle('opened');
+
+    }
+    function initClicks() {
+
+        const liElements = dropdown.querySelectorAll('li');
+        liElements.forEach(li => {
+            li.onclick = e => {
+                e.preventDefault();
+                const value = e.target.closest('li').dataset.value;
+                _.value = value;
+                elem.dataset.value = value;
+                setValue();
+                toggle(value);
+                if (url) ajax(value);
+            }
+        });
+
+    }
+    function ajax(value) {
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ value })
+        })
+            .then(res => {
+                if (res.ok) {
+                    res.json().then(res => {
+
+                    });
+                } else {
+                    res.json().then(res => {
+
+                    });
+                }
+            });
+
+    }
+}
+function initSelectElements() {
+
+    let sel = [];
+    const selects = $$('.select');
+    selects.forEach(select => sel.push(new Select(select)));
+
+}
 function getCoordinates(element) {
 
     const target = element.getBoundingClientRect();
