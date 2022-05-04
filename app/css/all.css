@@ -1739,6 +1739,14 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .input_control.has_ico input { padding-left: 54px; }
 
+.input_control .show_pass { display: none; }
+
+.input_control .show_pass .opened { display: none; }
+
+.input_control.password_active .show_pass .opened { display: block; }
+
+.input_control.password_active .show_pass .locked { display: none; }
+
 .input_control .input_bg { height: 100%; position: relative; padding: var(--size_border_local); }
 
 .input_control .input_bg:before, .input_control .input_bg:after { content: ""; pointer-events: none; position: absolute; bottom: 0; left: 0; background: var(--corner_img) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; width: var(--size_corner_local); height: var(--size_corner_local); -webkit-border-radius: calc(var(--indent) + 2px) 0 0 0; border-radius: calc(var(--indent) + 2px) 0 0 0; -webkit-transform: scale(1, -1); -ms-transform: scale(1, -1); transform: scale(1, -1); }
@@ -1746,6 +1754,8 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 .input_control .input_bg:after { left: auto; right: 0; -webkit-transform: scale(-1, -1); -ms-transform: scale(-1, -1); transform: scale(-1, -1); }
 
 .input_control input { padding: 7px 15px; background: none; background-color: #180f0a; border: 0; margin: 0; outline: none; width: 100%; color: #C4BAB5; height: 100%; -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); }
+
+.input_control input[type="password"] { padding-right: 30px; }
 
 .input_control input::-webkit-input-placeholder { color: #5f5653; opacity: 1; }
 
@@ -1757,17 +1767,23 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .input_control input:placeholder { color: #5f5653; opacity: 1; }
 
-.input_control input:not(:placeholder-shown) + span svg path { fill: #C4BAB5 !important; }
+.input_control input:not(:placeholder-shown) ~ span svg path { fill: #C4BAB5 !important; }
 
-.input_control input:not(:placeholder-shown) + .input_ico:before, .input_control input:not(:placeholder-shown) + .input_ico:after { content: ""; width: 1px; height: 2px; top: 35%; }
+.input_control input:not(:placeholder-shown) ~ .input_ico:before, .input_control input:not(:placeholder-shown) ~ .input_ico:after { content: ""; width: 1px; height: 2px; top: 35%; }
 
-.input_control input:not(:placeholder-shown) + .input_ico:after { top: 60%; }
+.input_control input:not(:placeholder-shown) ~ .input_ico:after { top: 60%; }
+
+.input_control input:not(:placeholder-shown) ~ .show_pass { width: 30px; height: 100%; position: absolute; top: 0; right: 0; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; z-index: 2; padding: var(--size_border_local); }
+
+.input_control input:not(:placeholder-shown) ~ .show_pass svg path { -webkit-transition: var(--animation_static); -o-transition: var(--animation_static); transition: var(--animation_static); }
+
+.input_control input:not(:placeholder-shown) ~ .show_pass:hover svg path { fill: #C4BAB5 !important; -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); }
 
 .input_control input:focus { background-color: #2D1406; }
 
-.input_control input:focus + .input_ico:before, .input_control input:focus + .input_ico:after { content: ""; width: 1px; height: 2px; top: 35%; }
+.input_control input:focus ~ .input_ico:before, .input_control input:focus ~ .input_ico:after { content: ""; width: 1px; height: 2px; top: 35%; }
 
-.input_control input:focus + .input_ico:after { top: 60%; }
+.input_control input:focus ~ .input_ico:after { top: 60%; }
 
 .actions_panel { pointer-events: auto; --h:calc(322px / 2); --w:calc(427px / 2); background-color: #180f0a; background-position: 100% 100% !important; background-repeat: no-repeat !important; -webkit-border-radius: calc(var(--indent) + 2px); border-radius: calc(var(--indent) + 2px); }
 

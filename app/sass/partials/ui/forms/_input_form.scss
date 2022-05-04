@@ -13,9 +13,9 @@
 	background-position: 0 0, 100% 0, 0 0, 0 100%;
 	background-repeat: repeat-y, repeat-y, repeat-x, repeat-x;
 	background-size:var(--size_border_local) auto, var(--size_border_local) auto, auto var(--size_border_local), auto var(--size_border_local);
-	
 	position: relative;
 	height: 42px;
+
 	&:before,&:after{
 		content: "";
 		pointer-events: none;
@@ -66,6 +66,24 @@
 		input{
 			padding-left: 54px;
 		}
+
+	}
+	
+	.show_pass{
+		display: none;
+		.opened{
+			display: none;
+		}
+	}
+	&.password_active{
+		.show_pass{
+			.opened{
+				display: block;
+			}
+			.locked{
+				display: none;
+			}
+		}
 	}
 	.input_bg{
 		height: 100%;
@@ -92,6 +110,9 @@
 		}
 	}
 	input{
+		&[type="password"]{
+			padding-right: 30px;
+		}
 		padding: 7px 15px;
 		background: none;
 		background-color: $primary;
@@ -107,14 +128,14 @@
 			opacity: 1;
 		}
 		&:not(:placeholder-shown){
-			+ span{
+			~ span{
 				svg{
 					path{
 						fill:#C4BAB5 !important;
 					}
 				}
 			}
-			+ .input_ico{
+			~ .input_ico{
 				&:before,&:after{
 					content: "";
 					width: 1px;
@@ -125,10 +146,37 @@
 					top: 60%;
 				}
 			}
+			~ .show_pass{
+				width: 30px;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				right: 0;
+				display: flex;
+				align-items:center;
+				justify-content: center;
+				z-index: 2;
+				padding: var(--size_border_local);
+				
+				svg{
+					path{
+						transition: var(--animation_static);
+					}
+				}
+				&:hover{
+					svg{
+						path{
+							fill:#C4BAB5 !important;
+							transition: var(--animation_hovered);
+						}
+					}
+				}
+				
+			}
 		}
 		&:focus{
 			background-color: #2D1406;
-			+ .input_ico{
+			~ .input_ico{
 				&:before,&:after{
 					content: "";
 					width: 1px;
