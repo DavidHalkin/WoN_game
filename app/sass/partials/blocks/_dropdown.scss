@@ -174,23 +174,23 @@
 	}
 	.grid_column .panel_holder .panel_content{
 		.etc_drop {
-			.select &{
+			.select &,.live_search &{
 				padding: 0 !important;
 			}
 		}
-		.select &{
+		.select &,.live_search &{
 			padding:calc(var(--size_border_local)) 0 !important;
 		}
 	}
 	.grid_column .panel_holder.scroll_js .panel_content{
 		padding: 10px 0 !important;
-		.select &{
+		.select &,.live_search &{
 			padding:calc(var(--size_border_local))  0 !important;
 		}
 	}
 	.grid_column .panel_holder.scroll_js .panel_content .content_scroll{
 		padding-right: 30px;
-		.select &{
+		.select &,.live_search &{
 			padding-right: 20px;
 		}
 	}
@@ -200,7 +200,7 @@
 		height: calc(100% - 20px);
 		// right: 23px;
 		right: 12px;
-		.select & {
+		.select &,.live_search & {
 			right: 10px;
 		}
 	}

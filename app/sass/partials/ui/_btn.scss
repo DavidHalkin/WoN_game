@@ -33,6 +33,7 @@ a,.hovered_item{
 	position: relative;
 	text-align: center;
 	font-size: var(--font_size_local);
+	padding: 0;
 	&.disabled,&:disabled{
 		opacity: 0.5;
 		pointer-events: none;
