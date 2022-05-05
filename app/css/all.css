@@ -1513,11 +1513,9 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .sub_info { width: 120px; background: #180f0a; text-align: center; padding: 1px 5px; }
 
-.tooltip { display: block; position: absolute; top: 200px; left: 300px; width: 364px; padding: 22px; -webkit-transform: translate(-22px, -22px); -ms-transform: translate(-22px, -22px); transform: translate(-22px, -22px); color: #ABB2BF; line-height: 1.3; visibility: hidden; opacity: 0; -webkit-transition: opacity 0.3s; -o-transition: opacity 0.3s; transition: opacity 0.3s; }
+.tooltip { display: block; position: absolute; top: 0; left: 0; width: 364px; padding: 22px; -webkit-transform: translate(-22px, -22px); -ms-transform: translate(-22px, -22px); transform: translate(-22px, -22px); color: #ABB2BF; line-height: 1.3; -webkit-transition: opacity 0.3s; -o-transition: opacity 0.3s; transition: opacity 0.3s; visibility: visible !important; opacity: 1 !important; }
 
 .tooltip .container { padding: 1.25em; -webkit-transform-origin: top left; -ms-transform-origin: top left; transform-origin: top left; width: 320px; -webkit-border-radius: 8px; border-radius: 8px; background-color: #484e5b; -webkit-box-shadow: 0 10px 80px rgba(6, 11, 19, 0.66); box-shadow: 0 10px 80px rgba(6, 11, 19, 0.66); overflow: hidden; position: relative; }
-
-.tooltip .tip_icon { position: absolute; width: 44px; height: 44px; top: 22px; left: 22px; -webkit-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); -webkit-box-shadow: 0 3px 20px rgba(9, 15, 27, 0.38); box-shadow: 0 3px 20px rgba(9, 15, 27, 0.38); -webkit-border-radius: 50%; border-radius: 50%; cursor: pointer; }
 
 .scroll_js .content_scroll { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -2051,14 +2049,6 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 .map_prev .panel_holder img { width: 100%; height: 100%; -o-object-fit: cover; object-fit: cover; }
 
 .map_prev .circle { bottom: 20px; right: 20px; z-index: 2; }
-
-.dev_tabs { position: -webkit-sticky; position: sticky; top: 0; background-color: #180f0a; height: auto; padding: 10px; z-index: 100; }
-
-.dev_tabs a { display: inline-block; padding: 0.25em 0.5em; background-color: #2b1912; border: thin solid #a86148; -webkit-border-radius: 5px; border-radius: 5px; cursor: pointer; }
-
-section.big_gap { padding: 100px 0 200px; }
-
-#slider .slider { max-width: 300px; }
 
 #editor_controls { --h-header:100px; --h-footer:200px; width: 300px; position: absolute; z-index: 5; top: 75px; right: 5px; }
 
