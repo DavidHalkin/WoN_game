@@ -38,6 +38,16 @@
 		}
 	}
 }
+.table{
+	.scroll_js{
+		.content_scroll{
+			padding-right: 12px !important;
+		}
+		.scrollbar{
+			right: 5px;
+		}
+	}
+}
 .scrollbar{
 	--size_scroll_bar:calc(var(--scroll_bar_size) / 2);
 
