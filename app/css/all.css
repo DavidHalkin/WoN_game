@@ -1128,7 +1128,7 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .panel .label_right_bottom { position: absolute; bottom: 0; right: 0; }
 
-.panel .part_top { position: relative; z-index: 1; }
+.panel .part_top { position: relative; z-index: 5; }
 
 .panel .panel_holder { -webkit-border-radius: calc(var(--indent) + 2px); border-radius: calc(var(--indent) + 2px); background: var(--border_img_v), var(--border_img_v_right), var(--border_img_h), var(--border_img_h_bottom); background-position: 0 0, 100% 0, 0 0, 0 100%; background-repeat: repeat-y, repeat-y, repeat-x, repeat-x; -webkit-background-size: var(--size_border_local) auto, var(--size_border_local) auto, auto var(--size_border_local), auto var(--size_border_local); background-size: var(--size_border_local) auto, var(--size_border_local) auto, auto var(--size_border_local), auto var(--size_border_local); }
 
