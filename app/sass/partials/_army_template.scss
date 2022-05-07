@@ -8,6 +8,9 @@
         }
     }
 }
+.list_filters{
+	grid-template-columns: repeat(auto-fill, minmax(33px, 1fr));
+}
 .title_row {
     pointer-events: auto;
 }
