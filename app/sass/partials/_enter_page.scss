@@ -104,7 +104,6 @@
 	left:50%;
 	transform:translateX(-50%);
 	overflow: hidden;
-	background: rgba(red,.4);
 	z-index: -1;
 	user-select: none;
 	min-width: $body_min_width;
@@ -139,7 +138,6 @@
 		bottom: 24%;
 		// left: 15%;
 		left: 13%;
-		background: green;
 		// width: 32%;
 		width: 37%;
 		height: 37%;
@@ -152,7 +150,6 @@
 		top: 26%;
 		// right: 17%;
 		right: 13%;
-		background: red;
 		background:url(/images/map/enter_page/right_mask.png) no-repeat;
 		// width: 30.5%;
 		width: 35%;
