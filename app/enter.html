@@ -11,8 +11,18 @@
 <body class="enter_page">
     <div class="map_animation">
         <img class="bg" src="images/map/enter_page/bg_book.jpg" alt="">
-        <div class="left_mask"></div>
-        <div class="right_mask"></div>
+        <div class="left_mask">
+            <video class="smoke aside" autoplay muted loop playsinline>
+                <!-- <source src="video/smoke-aside_v1.mov" type="video/quicktime"> -->
+                <source src="video/Sequence-01.webm" type="video/webm">
+            </video>
+        </div>
+        <div class="right_mask">
+            <video class="smoke aside" autoplay muted loop playsinline>
+                <!-- <source src="video/smoke-aside_v1.mov" type="video/quicktime"> -->
+                <source src="video/Sequence-01.webm" type="video/webm">
+            </video>
+        </div>
     </div>
     <div class="map_prev" style="display:none;">
         <div class="panel horizontal ">
@@ -238,7 +248,7 @@
             </div>
         </div>
     </div>
-    <div class="form_enter">
+    <div class="form_enter" style="display:none;">
         <div class="area_form active">
             <div class="alert_block active">
                 <p class="text-danger">The entered login / e-mail is not valid or this user is not in the database</p>

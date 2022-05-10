@@ -2162,15 +2162,17 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .live_search { position: relative; }
 
-.map_animation { position: absolute; bottom: 0; left: 50%; -webkit-transform: translateX(-50%); -ms-transform: translateX(-50%); transform: translateX(-50%); overflow: hidden; background: rgba(255, 0, 0, 0.4); z-index: -1; min-width: 1024px; height: calc(100vw * 0.56); }
+.map_animation { position: absolute; bottom: 0; left: 50%; -webkit-transform: translateX(-50%); -ms-transform: translateX(-50%); transform: translateX(-50%); overflow: hidden; background: rgba(255, 0, 0, 0.4); z-index: -1; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; min-width: 1024px; height: calc(100vw * 0.56); }
 
 @media (max-aspect-ratio: 16 / 9) { .map_animation { height: 100vh; width: calc(100vh * 1.777); } }
 
 .map_animation .bg { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; }
 
-.map_animation .left_mask { position: absolute; top: 43%; left: 15%; background: green; width: 30%; height: 30%; }
+.map_animation .left_mask img, .map_animation .left_mask video, .map_animation .right_mask img, .map_animation .right_mask video { width: 100%; height: 100%; -o-object-fit: cover; object-fit: cover; position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }
 
-.map_animation .right_mask { position: absolute; top: 30%; right: 17%; background: url(/images/map/enter_page/right_mask.png) no-repeat; width: 30%; height: 30%; }
+.map_animation .left_mask { position: absolute; bottom: 24%; left: 13%; background: green; width: 37%; height: 37%; -webkit-mask: url(/images/map/enter_page/left_mask.png) 0 0 no-repeat; mask: url(/images/map/enter_page/left_mask.png) 0 0 no-repeat; -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }
+
+.map_animation .right_mask { position: absolute; top: 26%; right: 13%; background: red; background: url(/images/map/enter_page/right_mask.png) no-repeat; width: 35%; height: 37%; -webkit-mask: url(/images/map/enter_page/right_mask.png) 0 0 no-repeat; mask: url(/images/map/enter_page/right_mask.png) 0 0 no-repeat; -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }
 
 #editor_controls { --h-header:100px; --h-footer:200px; width: 300px; position: absolute; z-index: 5; top: 75px; right: 5px; }
 

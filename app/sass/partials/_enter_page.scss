@@ -106,7 +106,7 @@
 	overflow: hidden;
 	background: rgba(red,.4);
 	z-index: -1;
-
+	user-select: none;
 	min-width: $body_min_width;
 	height: calc(100vw * 0.56);
 	@media (max-aspect-ratio: 16/9) {
@@ -120,21 +120,44 @@
 		width: 100%;
 		height: 100%;
 	}
+	.left_mask,.right_mask{
+		img,video{
+			// max-width: 100%;
+			// display: block;
+			// height: auto;
+			width: 100%;
+			height: 100%;
+			object-fit:cover;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform:translate(-50%,-50%);
+		}
+	}
 	.left_mask{
 		position: absolute;
-		top: 43%;
-		left: 15%;
+		bottom: 24%;
+		// left: 15%;
+		left: 13%;
 		background: green;
-		width: 30%;
-		height: 30%;
+		// width: 32%;
+		width: 37%;
+		height: 37%;
+		mask: url(/images/map/enter_page/left_mask.png)  0 0  no-repeat;
+		mask-size: 100% 100%;
 	}
 	.right_mask{
 		position: absolute;
-		top: 30%;
-		right: 17%;
-		// background: red;
+		// top: 30%;
+		top: 26%;
+		// right: 17%;
+		right: 13%;
+		background: red;
 		background:url(/images/map/enter_page/right_mask.png) no-repeat;
-		width: 30%;
-		height: 30%;
+		// width: 30.5%;
+		width: 35%;
+		height: 37%;
+		mask: url(/images/map/enter_page/right_mask.png)  0 0  no-repeat;
+		mask-size: 100% 100%;
 	}
 }
