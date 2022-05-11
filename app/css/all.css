@@ -1459,13 +1459,13 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .tabs.tab_nav_big .tab_nav .link_holder { height: 80px; }
 
-.tabs .panel_holder { background: none; }
+.tabs .inner_height { background: none; }
 
-.tabs .panel_holder.scroll_js { margin-right: calc(var(--size_border_local) * -1); }
+.tabs .inner_height.scroll_js { margin-right: calc(var(--size_border_local) * -1); }
 
-.tabs .panel_holder .panel_content { padding: 0; }
+.tabs .inner_height .panel_content { padding: 0; }
 
-.tabs .panel_holder .panel_content .scrollbar { right: 0; top: 0; height: 100%; }
+.tabs .inner_height .panel_content .scrollbar { right: 0; top: 0; height: 100%; }
 
 .tab_nav { --tab_size_active_local: calc(var(--tab_size_active) / 2); --tab_size_boder_local: calc(var(--tab_size_boder) / 2); --width_local:calc(var(--size_w) / 2.8); --height_local:calc(var(--size_h) / 2.8); position: relative; overflow: hidden; margin: 0 calc(var(--size_border_local) * -2.7); padding: 0 calc(var(--size_border_local) * 2.7) var(--tab_size_boder_local); }
 
@@ -2134,9 +2134,11 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .market_area .panel { pointer-events: auto; }
 
-.market_area .col_right { height: calc(100vh - 80px) !important; border: 1px solid red; }
+.market_area .col_right .inner_height { height: calc(100vh - 215px) !important; }
 
-.market_area .col_right > .panel { height: 100% !important; }
+.market_area .col_left .inner_height { height: calc(100vh - 255px) !important; }
+
+.market_area .grid_list { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
 
 .enter_page { overflow: hidden; height: 100vh; }
 

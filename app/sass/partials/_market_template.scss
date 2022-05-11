@@ -15,10 +15,16 @@
 		// height: calc(100vh - 254px);
 	}
 	.col_right {
-		height: calc(100vh - 80px) !important;
-		border: 1px solid red;
-		> .panel{
-			height: 100% !important;
+		.inner_height{
+			height: calc(100vh - 215px) !important;
 		}
+	}
+	.col_left {
+		.inner_height{
+			height: calc(100vh - 255px) !important;
+		}
+	}
+	.grid_list{
+		grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
 	}
 }

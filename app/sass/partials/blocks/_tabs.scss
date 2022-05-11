@@ -10,10 +10,8 @@
 			}
 		}
 	}
-	.panel_holder {
+	.inner_height {
 		background: none;
-		// margin: 0 calc(var(--size_border_local) * -2.7);
-		// padding: 0 calc(var(--size_border_local) * 2.7);
 		&.scroll_js{
 			margin-right: calc(var(--size_border_local) * -1);
 		}
