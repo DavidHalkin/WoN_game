@@ -58,6 +58,7 @@
 			&:checked,&:not(:checked){
 				position: absolute;
 	    		left: -9999px;
+	    		display: none;
 	    		~ .checkbox_item{
 	    			@include checkbox_item;
 	    			position: relative;

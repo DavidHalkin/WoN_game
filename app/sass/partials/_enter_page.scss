@@ -1,25 +1,34 @@
 .enter_page{
-	position: relative;
 	overflow: hidden;
-	display: flex;
-	align-items:center;
-	justify-content: center;
-	.soc_icons{
-		position: absolute;
-		width: 100%;
-		bottom: 7.5%;
-		left: 0;
+	height: 100vh;
+	body{
+		position: relative;
 		display: flex;
-		justify-content:center;
-		.circle {
-			margin: 0 4%;
+		align-items:center;
+		justify-content: center;
+
+		width: 100vw;
+		height: 100vh;
+		overflow: hidden;
+
+		.soc_icons{
+			position: absolute;
+			width: 100%;
+			bottom: 7.5%;
+			left: 0;
+			display: flex;
+			justify-content:center;
+			.circle {
+				margin: 0 4%;
+			}
 		}
 	}
 }
-.enter_page,.map_animation{
-	width: 100vw;
-	height: 100vh;
-}
+// .enter_page body,.map_animation{
+// 	width: 100vw;
+// 	height: 100vh;
+// 	overflow: hidden;
+// }
 .form_enter{
 	--form_enter_width_local: calc(var(--form_enter_width) / 2);
 	--form_enter_height_local: calc(var(--form_enter_height) / 2);
@@ -67,11 +76,6 @@
 	}
 }
 .map_prev{
-		// padding: 200px;
-		// max-width: 90vw;
-		// max-height: 90vh;
-		// overflow: hidden;
-		// max-width: 1000px;
 	.panel_holder{
 		padding: calc(var(--size_border_local));
 		// max-width: 90vw;
@@ -98,15 +102,17 @@
 	position: relative;
 }
 // anim
+
 .map_animation{
-	position: absolute;
-	bottom: 0;
-	left:50%;
-	transform:translateX(-50%);
 	overflow: hidden;
+	position: absolute;
+	top: 50%;
+	left:50%;
+	transform:translate(-50%,-50%);
 	z-index: -1;
 	user-select: none;
 	min-width: $body_min_width;
+	width: 100%;
 	height: calc(100vw * 0.56);
 	@media (max-aspect-ratio: 16/9) {
 		height: 100vh;

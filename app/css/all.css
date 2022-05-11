@@ -1725,7 +1725,7 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .checkbox label [type="checkbox"]:disabled ~ .checkbox_label, .checkbox label [type="checkbox"]:disabled ~ .checkbox_item { opacity: .5; }
 
-.checkbox label [type="checkbox"]:checked, .checkbox label [type="checkbox"]:not(:checked) { position: absolute; left: -9999px; }
+.checkbox label [type="checkbox"]:checked, .checkbox label [type="checkbox"]:not(:checked) { position: absolute; left: -9999px; display: none; }
 
 .checkbox label [type="checkbox"]:checked ~ .checkbox_item, .checkbox label [type="checkbox"]:not(:checked) ~ .checkbox_item { display: -webkit-inline-box; display: -ms-inline-flexbox; display: inline-flex; width: var(--square_size); max-width: var(--square_size); -webkit-box-flex: 0; -ms-flex: 0 0 var(--square_size); flex: 0 0 var(--square_size); height: var(--square_size); background: var(--square_img) no-repeat 0 0; -webkit-border-radius: 3px; border-radius: 3px; -webkit-background-size: cover; background-size: cover; position: relative; }
 
@@ -2138,13 +2138,13 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .market_area .col_right > .panel { height: 100% !important; }
 
-.enter_page { position: relative; overflow: hidden; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+.enter_page { overflow: hidden; height: 100vh; }
 
-.enter_page .soc_icons { position: absolute; width: 100%; bottom: 7.5%; left: 0; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+.enter_page body { position: relative; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; width: 100vw; height: 100vh; overflow: hidden; }
 
-.enter_page .soc_icons .circle { margin: 0 4%; }
+.enter_page body .soc_icons { position: absolute; width: 100%; bottom: 7.5%; left: 0; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
 
-.enter_page, .map_animation { width: 100vw; height: 100vh; }
+.enter_page body .soc_icons .circle { margin: 0 4%; }
 
 .form_enter { --form_enter_width_local: calc(var(--form_enter_width) / 2); --form_enter_height_local: calc(var(--form_enter_height) / 2); width: var(--form_enter_width_local); height: var(--form_enter_height_local); background: var(--form_enter_bg) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; padding: 121px 3% 0; position: relative; }
 
@@ -2172,7 +2172,7 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .live_search { position: relative; }
 
-.map_animation { position: absolute; bottom: 0; left: 50%; -webkit-transform: translateX(-50%); -ms-transform: translateX(-50%); transform: translateX(-50%); overflow: hidden; z-index: -1; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; min-width: 1024px; height: calc(100vw * 0.56); }
+.map_animation { overflow: hidden; position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); z-index: -1; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; min-width: 1024px; width: 100%; height: calc(100vw * 0.56); }
 
 @media (max-aspect-ratio: 16 / 9) { .map_animation { height: 100vh; width: calc(100vh * 1.777); } }
 
