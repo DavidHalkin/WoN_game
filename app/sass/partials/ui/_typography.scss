@@ -21,6 +21,9 @@
 .red,.text-danger{
 	color: $danger;
 }
+.green,.text-success{
+	color: $success;
+}
 ul,ol{
 	&.list_info{
 		padding: 10px 0 0 0;

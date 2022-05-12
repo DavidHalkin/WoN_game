@@ -12,13 +12,13 @@
 	}
 	.inner_height {
 		background: none;
-		&.scroll_js{
-			margin-right: calc(var(--size_border_local) * -1);
-		}
+		// &.scroll_js{
+		// 	margin-right: calc(var(--size_border_local) * -1);
+		// }
 		.panel_content{
 			padding: 0;
 			.scrollbar{
-				right: 0;
+				// right: 0;
 				top: 0;
 				height: 100%;
 			}
@@ -49,7 +49,7 @@
 	}
 	position: relative;
 	overflow: hidden;
-	margin:0 calc(var(--size_border_local) * -2.7);
+	// margin:0 calc(var(--size_border_local) * -2.7);
 	padding: 0 calc(var(--size_border_local) * 2.7) var(--tab_size_boder_local);
 	&:after,&:before{
 		content: "";
@@ -171,6 +171,7 @@
 	}
 }
 .tab_content{
+	padding: 0 calc(var(--size_border_local) * 2.7);
 	&.scroll_js{
 		position: relative;
 		overflow: hidden;
