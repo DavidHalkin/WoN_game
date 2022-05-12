@@ -8,6 +8,9 @@
       }
 	}
 }
+.content_scroll{
+	padding:0 calc(var(--size_border_local) * 2.7);
+}
 .grid_column{
 	height: auto !important;
 	> .panel_holder{
@@ -24,7 +27,8 @@
 			.content_scroll{
 				overflow-y: auto;
 				height: 100%;
-				// padding-right:20px;
+				padding-right:calc(var(--size_border_local) * 3.7);
+				
 			}
 		}
 	}

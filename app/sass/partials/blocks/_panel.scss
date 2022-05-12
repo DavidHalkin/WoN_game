@@ -15,6 +15,7 @@
 	position: relative;
 	height: 100%;
 	// padding: calc(var(--size_border_local) * 2.7);
+	padding:var(--size_border_local) 0;
 	&.has_shadow{
 		&.has_shadow_top{
     		&:before{
@@ -49,6 +50,9 @@
 	    		right: var(--size_border_local);
 	    		z-index: 4;
 	    		pointer-events:none;
+	    		.tabs &{
+	    			bottom: 0;
+	    		}
 	    		.table &{
 	    			bottom: 0;
 	    			left: 0;
@@ -207,6 +211,7 @@
 			transform:translateX(-50%);
 			background: url(/images/map/panel/centered_corner.png) no-repeat 0 0;
 			background-size: cover;
+			z-index: 5;
 		}
 		&:after{
 			top: auto;

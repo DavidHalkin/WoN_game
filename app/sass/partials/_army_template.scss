@@ -38,6 +38,15 @@
 			}
 		}
 	}
+	// hardcode!!!
+	.army_block,.col_left,.col_right {
+		.panel_content{
+			padding-top: calc(var(--size_border_local) * 2.7);
+		}
+	}
+	.part_top {
+		padding-bottom: 10px;
+	}
     .col_army {
     	.title_panel{
     		// max-width: 357px;
