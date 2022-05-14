@@ -18,6 +18,10 @@
 		.inner_height{
 			height: calc(100vh - 195px) !important;
 		}
+		@include media(max, xl) {
+			max-width: 470px;
+			flex:0 0 470px;
+		}
 	}
 	.col_left {
 		.inner_height{
@@ -26,5 +30,12 @@
 	}
 	.grid_list{
 		grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+	}
+}
+.graph_block{
+	.circle{
+		right: 10px;
+		top: 10px;
+		z-index: 5;
 	}
 }

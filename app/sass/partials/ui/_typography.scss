@@ -24,6 +24,16 @@
 .green,.text-success{
 	color: $success;
 }
+.svg-success{
+	path,rect{
+		fill:$success;
+	}
+}
+.svg-danger{
+	path,rect{
+		fill:$danger;
+	}
+}
 ul,ol{
 	&.list_info{
 		padding: 10px 0 0 0;

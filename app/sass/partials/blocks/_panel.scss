@@ -177,7 +177,7 @@
 			transform:scale(1,-1);
 		}
 	}
-	&.decor_2{
+	&.decor_2,&.decor_3{
 		.corner{
 			width: var(--corner_img_1_size_local);
 			height: var(--corner_img_1_size_local);
@@ -196,6 +196,17 @@
 			}
 			&.right_bottom{
 				transform:scale(-1,1);
+			}
+		}
+	}
+	&.decor_3{
+		.corner{
+			&.right_bottom,&.left_bottom{
+				width: var(--corner_img_1_size_local);
+				height: var(--corner_img_1_size_local);
+				background: var(--corner_img_1) no-repeat 0 0;
+				background-size: cover;
+				z-index: 5;
 			}
 		}
 	}

@@ -61,7 +61,7 @@
 	flex-direction: column;
 	z-index: 6;
 	display: none;
-	.scroll_js &{
+	.scroll_js > .panel_content > &{
 		display: flex;
 	}
 	.btn_func{

@@ -37,6 +37,20 @@
 		--checkbox_mark_width:calc(var(--checkbox_mark_w) / 2);
 		--checkbox_mark_height:calc(var(--checkbox_mark_h) / 2);
 		display: inline-flex;
+		.checkbox_item{
+			transition: var(--animation_static);
+		}
+		&:hover{
+			.checkbox_item{
+				transition: var(--animation_hovered);
+				filter: saturate(2) brightness(1.5);
+			}
+			// [type="checkbox"]{
+			// 	&:disabled{
+					
+			// 	}
+			// }
+		}
 		img{
 			position: absolute;
 			top: 0;

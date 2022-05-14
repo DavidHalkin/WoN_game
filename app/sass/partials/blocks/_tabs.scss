@@ -1,9 +1,42 @@
 .tabs{
+	.hidden_part{
+		display: none;
+	}
+	&.tabs_responsive{
+		> .tab_nav {
+			// padding-bottom:50px;
+			> ul{
+				display: none !important;
+			}
+		}
+		.hidden_part{
+			display: flex;
+			align-items:center;
+			padding: 0 calc(var(--size_border_local) * 2.7 - var(--size_border_local)) var(--tab_size_boder_local);
+			// height: calc(var(--size_border_local) * 10);
+			background: var(--border_img_h_bottom) repeat-x;
+			background-size: auto var(--size_border_local);
+			background-position: 0 100%;
+			padding-bottom: calc(var(--size_border_local) * 2);
+			margin-bottom: var(--tab_size_boder_local);
+			height: 60px;
+		}
+		.tab_nav::after, .tab_nav::before{
+			bottom: calc(var(--tab_size_boder_local) * -1 + var(--size_border_local));
+		}
+		&.tab_nav_big{
+			.hidden_part{
+				height: 80px;
+			}
+		}
+	}
 	&.tab_nav_big{
 		.tab_nav{
-			li{
-				max-width: 80px;
-				flex:0 0 80px;
+			> ul{
+				> li{
+					max-width: 80px;
+					flex:0 0 80px;
+				}
 			}
 			.link_holder{
 				height: 80px;
@@ -48,9 +81,13 @@
 		--height_local:calc(var(--size_h) / 2.8 * 0.5);
 	}
 	position: relative;
-	overflow: hidden;
+	// overflow: hidden;
 	margin-top: calc(var(--size_border_local) * 2.7);
-	padding: 0 calc(var(--size_border_local) * 2.7) var(--tab_size_boder_local);
+
+	margin-left: var(--size_border_local);
+	margin-right: var(--size_border_local);
+
+	
 
 	// margin-left: var(--indent);
 	// margin-right: var(--indent);
@@ -62,7 +99,7 @@
 		height: var(--tab_size_boder_local);
 		position: absolute;
 		// left:calc(var(--indent) * -1);
-		left: 0;
+		left: calc(var(--size_border_local) * -1);
 		bottom: calc(var(--size_border_local) + 1px);
 		// top: calc(100% - var(--size_border_local) - 1px);
 		transform:scale(1,-1);
@@ -71,12 +108,13 @@
 	&:before{
 		left: auto;
 		// right: calc(var(--indent) * -1);
-		right: 0;
+		right: calc(var(--size_border_local) * -1);
 		transform:scale(-1,-1);
 	}
-	ul{
-		// padding: 0 30px;
-		li{
+	> ul{
+		overflow: hidden;
+		padding: 0 calc(var(--size_border_local) * 2.7 - var(--size_border_local)) var(--tab_size_boder_local);
+		> li{
 			max-width: 65px;
 			flex:0 0 65px;
 			text-align: center;
