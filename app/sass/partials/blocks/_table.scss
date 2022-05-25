@@ -2,8 +2,6 @@
 	width: 100%;
 	.panel_holder {
 		background: none;
-		// margin: 0 calc(var(--size_border_local) * -2.7);
-		// padding: 0 calc(var(--size_border_local) * 2.7);
 		&.scroll_js{
 			// padding-right: 20px;
 		}
@@ -12,7 +10,6 @@
 			.scrollbar{
 				// right: 0;
 				top: 0;
-
 				height:calc( 100% - var(--size_border_local));
 			}
 		}

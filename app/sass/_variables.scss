@@ -19,9 +19,17 @@
 
 	/*tabs corners and decorate*/
 	--tab_img_active: url(/images/map/tab/corner_tab.png);
+	--tab_img_active_etc: url(/images/map/tab/tab_active.png);
+	--tab_size_active_etc_w:108px;
+	--tab_size_active_etc_h:30px;
 	--tab_size_active:58px;
+
 	--tab_img_boder: url(/images/map/tab/corner_border.png);
 	--tab_size_boder: 60px;
+
+	--tab_img_cap:url(/images/map/tab/tab_cap.png);
+	--tab_size_cap_w:30px;
+	--tab_size_cap_h:54px;
 
 	// decorate corner in title army etc
 	--decorate_img: url(/images/map/panel/decorate.png);
