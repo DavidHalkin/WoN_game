@@ -130,6 +130,16 @@
 		background-position: 100% 100%;
 		pointer-events: none;
 	}
+	&.empty_panel{
+		.content_scroll{
+			// background: #000;
+			height: 100%;
+			display: flex;
+			align-items:center;
+			justify-content: center;
+			text-align: center;
+		}
+	}
 	.label_right_bottom{
 		position: absolute;
 		bottom: 0;

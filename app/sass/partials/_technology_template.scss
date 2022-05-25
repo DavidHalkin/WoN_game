@@ -1,0 +1,29 @@
+.technology_area{
+	position: absolute;
+	left: 0;
+	bottom: 5px;
+	min-width: 1024px;
+	padding-left: 5px;
+	padding-right: 5px;
+	width: 100%;
+	z-index: 1;
+	pointer-events: none;
+	.panel{
+		pointer-events: auto;
+	}
+	.col-225{
+		.inner_height{
+			height: calc(100vh - 80px);
+		}
+		&.col_left{
+			.inner_height{
+				height: calc(100vh - 95px);
+			}
+		}
+	}
+	.col_center{
+		.inner_height{
+			height: calc(100vh - 236px);
+		}
+	}
+}
