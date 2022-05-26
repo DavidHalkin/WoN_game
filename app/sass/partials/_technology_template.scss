@@ -27,3 +27,34 @@
 		}
 	}
 }
+.teh_list{
+	.teh{
+		margin-bottom: 12px;
+	}
+}
+.teh_columns{
+	justify-content:center;
+	// transform: translate3d(-100px, -30px, 50px);
+	.teh_title{
+		height: 50px;
+		display: flex;
+		align-items:center;
+		justify-content:center;
+		text-align: center;
+		padding: 5px;
+		overflow: hidden;
+	}
+	.column{
+		--p:9px;
+		padding: 0 var(--p);
+		max-width:calc(146px + var(--p) * 2);
+		.item{
+			margin-top: 12px;
+			height: 225px;
+			display: flex;
+			align-items:center;
+			justify-content:center;
+			text-align: center;
+		}
+	}
+}

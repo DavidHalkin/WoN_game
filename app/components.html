@@ -1473,7 +1473,14 @@
             <hr>
             <h1>teh</h1>
             <ul>
-                <li>sadas</li>
+                <li class="pb-10"><kbd>.has_alert</kbd>добавляет текст в теге Р</li>
+                <li class="pb-10"><kbd>.has_btn</kbd>добавлеяет кнопку </li>
+                <li class="pb-10"><kbd>.has_checkbox</kbd>добавляет чекбокс</li>
+                <li class="pb-10"><kbd>.has_timer</kbd>добавляет таймер</li>
+                <li class="pb-10"><kbd>.has_select</kbd>добавляет select</li>
+                <li class="pb-10">colors:</li>
+                <li class="pb-10"><kbd>color_1</kbd> <kbd>color_2</kbd> <kbd>color_3</kbd> <kbd>color_4</kbd> на .teh (ПОКА НЕ СТАВИТЬ НИКАКИХ ЁЛОК В БГ ПОВЕРХ)</li>
+                <li class="pb-10"><kbd>.has_locked</kbd> блокирует картинку</li>
             </ul>
             <pre>
                 <code>
@@ -1482,9 +1489,9 @@
                     }
                 </code>
             </pre>
-            <div class="teh">
+            <div class="teh has_select has_locked color_1">
                 <div class="panel md decor_2 centered_corners_none">
-                    <div class="bg_image_panel" style="background-image: url(/images/map/panel/bg/aside.png);"></div>
+                    <!-- <div class="bg_image_panel" style="background-image: url(/images/map/panel/bg/aside.png);"></div> -->
                     <div class="panel_holder">
                         <div class="top_part mt-8">
                             <div class="holder_img">
@@ -1496,6 +1503,7 @@
                                     <span class="square_img_cont">
                                         <img src="https://picsum.photos/200" alt="" class="img-fluid">
                                     </span>
+                                    <div class="lock"><img src="/images/map/icons/lock.svg" alt="" class=""></div>
                                 </div>
                             </div>
                             <div class="frame_title md">
@@ -1503,15 +1511,93 @@
                             </div>
                         </div>
                         <div class="bottom_part px-10 py-5">
-                            <a href="#" class="btn sm btn-block d-block"><span>В очередь</span></a>
-                            <div class="checkbox my-10">
+                            <a href="#" class="btn my-5 sm btn-block"><span>В очередь</span></a>
+                            <div class="checkbox my-3">
                                 <label>
                                     <input type="checkbox">
                                     <i class="checkbox_item"></i>
                                     <span class="checkbox_label fz_14">Бумага</span>
                                 </label>
                             </div>
-                        </div> 
+                            <p class="m-0 text-muted">Изучите предыдущее</p>
+                            <div class="timer text-danger my-5">20:50:54</div>
+                            <div class="select my-5 select_100p" data-url="/123" data-value="-1" style="width: 80px;">
+                                <div class="select_header">
+                                    <div class="panel sm centered_corners_none">
+                                        <button class="panel_holder">
+                                            <!-- <i class="ico"><img src="https://picsum.photos/18" alt=""></i> -->
+                                            <span>1</span>
+                                        </button>
+                                        <div class="decor ">
+                                            <span class="corner"></span>
+                                            <span class="corner right_top"></span>
+                                            <span class="corner right_bottom"></span>
+                                            <span class="corner left_bottom"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="drop_down">
+                                    <div class="panel grid_column sm centered_corners_none">
+                                        <div class="panel_holder p-0" style="max-height: 100px;">
+                                            <div class="panel_content ">
+                                                <div class="content_scroll">
+                                                    <ul class="etc_drop list-unstyled m-0">
+                                                        <li data-value="1">
+                                                            <strong class="select_item">
+                                                                <!-- <i class="ico"><img src="https://picsum.photos/18" alt=""></i> -->
+                                                                <span>1</span>
+                                                            </strong>
+                                                        </li>
+                                                        <li data-value="2">
+                                                            <strong class="select_item">
+                                                                <!-- <i class="ico"><img src="https://picsum.photos/18" alt=""></i> -->
+                                                                <span>1221</span>
+                                                            </strong>
+                                                        </li>
+                                                        <li data-value="3" class="active">
+                                                            <strong class="select_item">
+                                                                <span>1221</span>
+                                                            </strong>
+                                                        </li>
+                                                        <li data-value="4">
+                                                            <strong class="select_item">
+                                                                <!-- <i class="ico"><img src="https://picsum.photos/18" alt=""></i> -->
+                                                                <span>1221</span>
+                                                            </strong>
+                                                        </li>
+                                                        <li data-value="5">
+                                                            <strong class="select_item">
+                                                                <!-- <i class="ico"><img src="https://picsum.photos/18" alt=""></i> -->
+                                                                <span>1221</span>
+                                                            </strong>
+                                                        </li>
+                                                        <li data-value="6">
+                                                            <strong class="select_item">
+                                                                <!-- <i class="ico"><img src="https://picsum.photos/18" alt=""></i> -->
+                                                                <span>1221</span>
+                                                            </strong>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="scrollbar">
+                                                    <div class="btn_func arrow_prev"></div>
+                                                    <div class="bar">
+                                                        <div class="handler"></div>
+                                                    </div>
+                                                    <div class="btn_func arrow_next"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="decor">
+                                            <span class="corner"></span>
+                                            <span class="corner right_top"></span>
+                                            <span class="corner right_bottom"></span>
+                                            <span class="corner left_bottom"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="decor">
                         <span class="corner"></span>
@@ -1521,14 +1607,12 @@
                     </div>
                 </div>
             </div>
-            
         </section>
     </div>
     <div class="tooltip">
         <div class="panel sm">
             <div class="panel_holder">
                 <div class="container">
-
                 </div>
             </div>
             <div class="decor ">
