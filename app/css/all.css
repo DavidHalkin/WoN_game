@@ -2274,6 +2274,10 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .form_enter { --form_enter_width_local: calc(var(--form_enter_width) / 2); --form_enter_height_local: calc(var(--form_enter_height) / 2); width: var(--form_enter_width_local); height: var(--form_enter_height_local); background: var(--form_enter_bg) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; padding: 121px 3% 0; position: relative; }
 
+.form_enter .grid_column > .scroll_js .content_scroll { padding-right: 25px; }
+
+.form_enter .grid_column > .scroll_js .scrollbar { right: 0; }
+
 .form_enter .alert_block { height: 50px; overflow: hidden; padding: 5px; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; text-align: center; visibility: hidden; }
 
 .form_enter .alert_block.active { visibility: visible; }

@@ -40,6 +40,16 @@
 	// padding: 160px 3% 0;
 	padding: 121px 3% 0;
 	position: relative;
+	.grid_column {
+		> .scroll_js{
+			.content_scroll {
+				padding-right: 25px;
+			}
+			.scrollbar{
+				right: 0;
+			}
+		}
+	}
 	.alert_block{
 		height: 50px;
 		overflow: hidden;
