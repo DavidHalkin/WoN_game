@@ -1068,6 +1068,10 @@ body { font: 16px/1.25 "Vollkorn", sans-serif; background-color: #180f0a; backgr
 
 .text-truncate { overflow: hidden; -o-text-overflow: ellipsis; text-overflow: ellipsis; white-space: nowrap; }
 
+body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+
+body kbd, body code { -webkit-user-select: text; -moz-user-select: text; -ms-user-select: text; user-select: text; }
+
 .justify-content-center { -webkit-box-pack: center !important; -ms-flex-pack: center !important; justify-content: center !important; }
 
 .justify-content-end { -webkit-box-pack: end !important; -ms-flex-pack: end !important; justify-content: flex-end !important; }

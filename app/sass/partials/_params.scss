@@ -64,3 +64,9 @@ body {
 .text-truncate {
     @include text-truncate;
 }
+body{
+    user-select: none;
+    kbd,code{
+        user-select: text;
+    }
+}
