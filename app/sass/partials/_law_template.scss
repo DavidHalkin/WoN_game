@@ -4,17 +4,36 @@
 			height: calc(100vh - 236px);
 		}
 	}
+	.col_right{
+		.inner_height{
+			height: calc(100vh - 78px);
+		}
+	}
 }
 .law_list{
 	columns: 3 auto;
+	@include media(max, xl) {
+		columns: 2 auto;
+	}
+	@include media(max, lg) {
+		columns: 1 auto;
+	}
 	.item{
 		padding: 0 25px;
-		break-inside: avoid-column;
+		// break-inside: avoid-column;
+
+		// page-break-inside: avoid;
+		// break-inside: avoid;
+		// display: inline-block;
+		// width: 100%;
 	}
 }
 .item_law{
 	padding-bottom: 22px;
-	border: 1px solid red;
+	// border: 1px solid red;
+	// background: #000;
+	width: 100%;
+	overflow: hidden;
 	.alert{
 		display: none;
 	}

@@ -305,3 +305,13 @@
 		transform:scale(1,-1);
 	}
 }
+.part_footer{
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	z-index: 7;
+	pointer-events: none;
+	a,button{
+		pointer-events: auto;
+	}
+}

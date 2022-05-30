@@ -895,6 +895,8 @@
                 <li>какие-то эмблемы(круги. логика другая. сверху набрасывается как бы маска поверх картинки) добавить класс <kbd>emblem</kbd>. картинки должны быть квадраты!!!!! <br>с размерами - те же классы модификаторы. <br><strong class="red">по умолчанию емблемы с внутренней тенью!!!!!</strong> <br> <strong>Эмблемы молгут быть без тени - <kbd>no_shadow </kbd></strong> <br>эмблемы работают только для <kbd>circle</kbd></li>
                 <li>адаптивные классы на круги и квадраты- всё как у бутстрапа модификаторы <kbd>size_0 size_md_3 size_lg_4 size_xl_5</kbd>в самом <span class="red">мелком</span> разрешени <kbd>size_0</kbd> , в <span class="red">xl и до бесконечности</span> <kbd>size_xl_5</kbd></li>
                 <li>если добавить класс <kbd>.active</kbd> на круг или квадрат, то будет подсвечивание</li>
+                <li><kbd>.danger</kbd> - красная тень <br> <kbd>.success</kbd> - зелёная тень</li>
+                <li>у квадратов есть понятие выделения (жёлтая обводка) <kbd>.selected</kbd></li>
             </ul>
             <pre>
                 <code>
@@ -949,8 +951,8 @@
             <br>
             <br>
             <h4>Адаптив</h4>
-            <a href="#" class="circle size_1 size_md_3 size_lg_4 size_xl_5"></a>
-            <a href="#" class="square  size_md_3 size_lg_4 size_xl_1"></a>
+            <a href="#" class="circle size_1 size_md_3 size_lg_4 size_xl_5 danger"></a>
+            <a href="#" class="square  size_md_3 size_lg_4 size_xl_1 success"></a>
         </section>
         <section class="big_gap" id="tabs">
             <hr>
@@ -1145,7 +1147,11 @@
                 <li>класс <kbd>.col_2</kbd> на родителя <kbd>icon_list</kbd> делает <i class="red">2</i> строки</li>
                 <li>класс <kbd>.col_3</kbd> на родителя <kbd>icon_list</kbd> делает <i class="red">3</i> строки</li>
                 <li>отступы по-умолчанию 6 пикселей между элементами</li>
-                <li><span class="red">что бы делать иначе сетку и отступы - надо апдейтить и придумывать модификаторы</span></li>
+                <li class="text-success">пока тестовый вариант. добавить на <kbd>.icon_list</kbd> новые классы <kbd>d-grid gap-10</kbd> И <kbd>size_2   </kbd> и тд <br>
+                     (гридовая модель где от <span class="text-danger">gap-1</span> до <span class="text-danger">gap-30</span> это отступы между квадратами или кругами, а класс <span class="text-danger">size_0</span> до <span class="text-danger">size_5</span> автоматом задаёт размеры кругам или квадратам. САМИ РАЗМЕРЫ НА КРУГАХ ИЛИ КВАДРАТАХ <span class="text-danger">НЕ ИМЕТЬ</span>)
+                     <br>
+                     <p class="fz_20">юзать только  для "свободного наполения" (не сеточного как у  .col_1 , .col_2 и .col_3) .</p>
+                </li>
             </ul>
             <pre>
                 <code>
@@ -1246,6 +1252,15 @@
                                 <input type="text" value="1223">
                             </div>
                         </div>
+                    </div>
+                </div>
+                <p>на гридах</p>
+                <div class="d-grid gap-10 icon_list size_5">
+                    <div class="col_item">
+                        <div class="square"><em class="txt text-light">1</em></div>
+                    </div>
+                    <div class="col_item">
+                        <div class="circle"><em class="txt text-light">1</em></div>
                     </div>
                 </div>
             </div>

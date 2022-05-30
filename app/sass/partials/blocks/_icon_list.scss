@@ -27,4 +27,61 @@
 			flex:0 0 33.333%;
 		}
 	}
+	&.d-grid{
+		--size_circle:calc(var(--size) / 2);
+		margin-left: 0;
+		margin-right: 0;
+		--size_5:calc(var(--size) / 2);
+		--size_4:calc(var(--size) / 2 - 5px);
+		--size_3:calc(var(--size) / 2* 0.819);
+		--size_2:calc(var(--size) / 2* 0.7);
+		--size_1:calc(var(--size) / 2* 0.6);
+		--size_0:calc(var(--size) / 2* 0.435);
+
+		&.size_5{
+			--size_circle:var(--size_5);
+			.square,.circle{
+				--size_circle:var(--size_5);
+			}
+		}
+		&.size_4{
+			--size_circle:var(--size_4);
+			.square,.circle{
+				--size_circle:var(--size_4);
+			}
+		}
+		&.size_3{
+			--size_circle:var(--size_3);
+			.square,.circle{
+				--size_circle:var(--size_3);
+			}
+		}
+		&.size_2{
+			--size_circle:var(--size_2);
+			.square,.circle{
+				--size_circle:var(--size_2);
+			}
+		}
+		&.size_1{
+			--size_circle:var(--size_1);
+			.square,.circle{
+				--size_circle:var(--size_1);
+			}
+		}
+		&.size_0{
+			--size_circle:var(--size_0);
+			.square,.circle{
+				--size_circle:var(--size_0);
+			}
+		}
+		grid-template-columns: repeat(auto-fill, minmax(var(--size_circle), 1fr));
+		.square,.circle{
+			width: var(--size_circle);
+			max-width: var(--size_circle);
+			height: var(--size_circle);
+		}
+		.col_item{
+			padding: 0;
+		}
+	}
 }

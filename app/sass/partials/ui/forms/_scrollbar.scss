@@ -19,6 +19,8 @@
 		> .panel_content{
 			grid-row: span 2;
 			overflow: visible;
+			// !!!!
+			min-width: 0;
 		}
 		&.scroll_js{
 			.panel_content{

@@ -150,7 +150,7 @@ a,.hovered_item{
 		height: var(--h);
 		background: url(/images/map/btns/arrow.png) no-repeat 0 0;
 		background-size: cover;
-		z-index: 5;
+		z-index: 6;
 		pointer-events:auto;
 		.slide_at_left &{
 			transform:translateX(-50%) scale(-1,1);
