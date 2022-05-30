@@ -9,6 +9,9 @@
 .font-weight-normal{
 	font-weight: normal;
 }
+.font-weight-bold{
+	font-weight: 700;
+}
 .font-italic{
 	font-style: italic;
 }
@@ -22,7 +25,14 @@
 	color: $danger;
 }
 .green,.text-success{
-	color: $success;
+	color: $success !important;
+	fill:$success !important;
+	path{
+		fill:$success !important;
+	}
+}
+.text-light{
+	color: $light !important;
 }
 .svg-success{
 	path,rect{

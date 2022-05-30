@@ -1,0 +1,44 @@
+.law_area{
+	.col_left{
+		.inner_height{
+			height: calc(100vh - 236px);
+		}
+	}
+}
+.law_list{
+	columns: 3 auto;
+	.item{
+		padding: 0 25px;
+		break-inside: avoid-column;
+	}
+}
+.item_law{
+	padding-bottom: 22px;
+	border: 1px solid red;
+	.alert{
+		display: none;
+	}
+	&.item_law_disabled{
+		.alert{
+			display: block;
+		}
+		color: $muted;
+		.item_law_footer{
+			opacity: 0.5;
+			.btn{
+				pointer-events: none;
+			}
+		}
+	}
+	> .square{
+		.txt{
+			font-size: 20px;
+			color: rgba($light,.65);
+		}
+	}
+	.item_law_footer{
+		.btn{
+			max-width: 180px;
+		}
+	}
+}
