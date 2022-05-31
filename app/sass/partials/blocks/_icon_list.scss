@@ -82,6 +82,9 @@
 		}
 		.col_item{
 			padding: 0;
+			width: var(--size_circle);
+			max-width: var(--size_circle);
+			height: var(--size_circle);
 		}
 	}
 }

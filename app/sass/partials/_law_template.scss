@@ -8,6 +8,11 @@
 		.inner_height{
 			height: calc(100vh - 78px);
 		}
+		.title {
+			> p{
+				line-height: 1;
+			}
+		}
 	}
 }
 .law_list{

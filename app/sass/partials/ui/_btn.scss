@@ -16,16 +16,7 @@ a,.hovered_item{
 		justify-content: center;
 	}
 }
-.btn-link{
-	// padding: 0;
-	margin: 0;
-	border: 0;
-	background: none;
-	color: $light;
-	padding: 5px;
-	display: inline-flex;
-	align-items:center;
-}
+
 .btn{
 	--px:20px;
 	--py:17px;
@@ -224,5 +215,23 @@ a,.hovered_item{
 		--width:calc(var(--size_w) / 2);
 		--height:calc(var(--size_h) / 2);
 		// border-radius: 0;
+	}
+}
+.btn-link{
+	// padding: 0;
+	margin: 0;
+	border: 0;
+	background: none;
+	color: $light;
+	padding: 5px;
+	display: inline-flex;
+	align-items:center;
+	&:after,&:before{
+		content: none;
+	}
+	&.btn-reset{
+		&:not(.disabled){
+			color: $danger;
+		}
 	}
 }
