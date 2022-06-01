@@ -41,6 +41,12 @@
 			top: auto;
 		}
 	}
+	&.select_drop_right{
+		.drop_down{
+			left: auto;
+			right: 0;
+		}
+	}
 	&.select_100p{
 		.drop_down{
 			width: 100%;

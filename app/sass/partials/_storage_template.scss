@@ -1,0 +1,37 @@
+.storage_area{
+	.col_left{
+		.inner_height{
+			height: calc(100vh - 320px);
+		}
+	}
+	.col_right{
+		.inner_height{
+			height: calc(100vh - 281px);
+		}
+	}
+	.geo_point {
+		max-width: 250px;
+		flex:0 0 250px;
+		.mini_info .mini_holder input{
+			padding-left: 5px;
+			padding-right: 5px;
+		}
+	}
+}
+.panel_footer{
+	.panel_holder {
+		height: 80px;
+	}
+	h3{
+		@include media(max, lg) {
+			font-size: 15px !important;
+			text-align: right;
+		}
+	}
+	@include media(max, lg) {
+		.px-25{
+			padding-left: 10px !important;
+			padding-right: 10px !important;
+		}
+	}
+}

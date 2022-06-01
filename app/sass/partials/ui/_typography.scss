@@ -24,6 +24,9 @@
 .text-right{
 	text-align: right !important;
 }
+.text-left{
+	text-align: left !important;
+}
 .red,.text-danger{
 	color: $danger;
 }
@@ -33,6 +36,9 @@
 	path{
 		fill:$success !important;
 	}
+}
+.yellow,.text-warning{
+	color: $warning;
 }
 .text-light{
 	color: $light !important;
