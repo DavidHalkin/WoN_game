@@ -1118,6 +1118,10 @@ body kbd, body code { -webkit-user-select: text; -moz-user-select: text; -ms-use
 
 .col-auto { -webkit-box-flex: 0; -ms-flex: 0 0 auto; flex: 0 0 auto; width: auto; max-width: 100%; }
 
+.col-225 { max-width: 225px; -webkit-box-flex: 0; -ms-flex: 0 0 225px; flex: 0 0 225px; }
+
+.col-280 { max-width: 280px; -webkit-box-flex: 0; -ms-flex: 0 0 280px; flex: 0 0 280px; }
+
 .col-320 { max-width: 320px; -webkit-box-flex: 0; -ms-flex: 0 0 320px; flex: 0 0 320px; }
 
 .col-380 { max-width: 380px; -webkit-box-flex: 0; -ms-flex: 0 0 380px; flex: 0 0 380px; }
@@ -1125,8 +1129,6 @@ body kbd, body code { -webkit-user-select: text; -moz-user-select: text; -ms-use
 .col-480 { max-width: 480px; -webkit-box-flex: 0; -ms-flex: 0 0 480px; flex: 0 0 480px; }
 
 .col-590 { max-width: 590px; -webkit-box-flex: 0; -ms-flex: 0 0 590px; flex: 0 0 590px; }
-
-.col-225 { max-width: 225px; -webkit-box-flex: 0; -ms-flex: 0 0 225px; flex: 0 0 225px; }
 
 .col-4 { max-width: 33.33%; -webkit-box-flex: 0; -ms-flex: 0 0 33.33%; flex: 0 0 33.33%; }
 
@@ -1814,6 +1816,14 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 .frame_title:after { content: ""; width: var(--frame_w_local); height: var(--frame_h_local); background: var(--frame_bg) no-repeat; -webkit-background-size: cover; background-size: cover; position: absolute; bottom: -3px; left: 50%; -webkit-transform: translateX(-50%); -ms-transform: translateX(-50%); transform: translateX(-50%); pointer-events: none; z-index: -1; }
 
 .frame_title.md { --frame_w_local:calc(var(--frame_w) / 2.51); --frame_h_local:calc(var(--frame_h) / 2.51); height: 37px; }
+
+.modal { max-width: 480px; width: 100%; }
+
+.modal_container { --indent_y:40px; --indent_x:15px; position: fixed; top: 0; bottom: 0; left: 0; right: 0; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; z-index: 100; overflow: hidden; pointer-events: none; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; padding: var(--indent_y) var(--indent_x); }
+
+.modal_container .modal { pointer-events: auto; -webkit-box-flex: 1; -ms-flex: 1 1 auto; flex: 1 1 auto; min-height: 0; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
+
+.modal_container .modal > .panel > .panel_holder { max-height: calc(100vh - var(--indent_y) * 2); }
 
 .scroll_js .content_scroll { -ms-overflow-style: none; scrollbar-width: none; }
 

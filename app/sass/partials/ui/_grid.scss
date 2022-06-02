@@ -66,6 +66,14 @@
 	width: auto;
 	max-width: 100%;
 }
+.col-225{
+	max-width: 225px;
+	flex:0 0 225px;
+}
+.col-280{
+	max-width: 280px;
+	flex:0 0 280px
+}
 .col-320{
 	max-width: 320px;
 	flex:0 0 320px;
@@ -82,10 +90,7 @@
 	max-width: 590px;
 	flex:0 0 590px;
 }
-.col-225{
-	max-width: 225px;
-	flex:0 0 225px;
-}
+
 .col-4{
 	max-width: 33.33%;
 	flex:0 0 33.33%;
