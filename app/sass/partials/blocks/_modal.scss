@@ -25,6 +25,7 @@
 		display: flex;
 		align-items:center;
 		> .panel{
+			width: 100%;
 			> .panel_holder{
 				max-height: calc(100vh - var(--indent_y) * 2);
 			}

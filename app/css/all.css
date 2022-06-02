@@ -1823,6 +1823,8 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .modal_container .modal { pointer-events: auto; -webkit-box-flex: 1; -ms-flex: 1 1 auto; flex: 1 1 auto; min-height: 0; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
 
+.modal_container .modal > .panel { width: 100%; }
+
 .modal_container .modal > .panel > .panel_holder { max-height: calc(100vh - var(--indent_y) * 2); }
 
 .scroll_js .content_scroll { -ms-overflow-style: none; scrollbar-width: none; }
