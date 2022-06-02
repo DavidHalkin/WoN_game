@@ -4,16 +4,33 @@ window.ui.city = new City('.panel_town');
 window.ui.aside = new Aside('.panel_sidebar');
 window.ui.bottom = new Bottom('.panel_army');
 
+new Cursor();
 new CustomScroll();
 new CustomAccordion();
+new Slider();
 new Tabs();
-new Slider('.slider');
 new ToolTips();
 initSelectElements();
 
 let cityClickJson, cityBuildJson, cityInfoJson;
 
+if (location.hostname == 'localhost') {
+    const assets = [
+        fetch('/js/map/examples/city_click.json'),
+        fetch('/js/map/examples/city_info.json'),
+        fetch('/js/map/examples/city_build.json'),
+    ];
 
+    Promise.all(assets).then((results) => {
+        results.forEach((res) => {
+            res.json().then((data) => {
+                if (data.city_header) cityClickJson = data;
+                if (data.info) cityInfoJson = data;
+                if (data.buildings) cityBuildJson = data;
+            });
+        });
+    });
+}
 
 function Modes(selector) {
     const elem = $(selector);
@@ -132,24 +149,49 @@ function Aside(selector) {
 
     function mapClickSolver(event) {
         const elemStyles = window.getComputedStyle(elem);
-        if (elem.style.display == 'none' || elemStyles.getPropertyValue('display')) {
+        if (
+            elem.style.display == 'none' ||
+            elemStyles.getPropertyValue('display')
+        ) {
             open();
         }
         asideHistory.clear();
         // cityClickJson, cityBuildJson, cityInfoJson;
         // console.log(JSON.parse(event.detail).info);
         // buildAsideDom(cityInfoJson.info);
-        buildAsideDom(JSON.parse(event.detail).info);
+        if (location.hostname == 'localhost') {
+            buildAsideDom(cityClickJson);
+        } else {
+            buildAsideDom(JSON.parse(event.detail));
+        }
     }
 
-    function buildAsideDom(structure, isPushHistory = true) {
+    function buildAsideDom(structureJson, isPushHistory = true) {
+        console.log('structure', structureJson);
+        const asideBody = structureJson.info;
+        const asideHeader = structureJson['city_header'];
+
+        // Add Structure to History
+        if (isPushHistory) asideHistory.addRecord(structureJson);
+
+        // Build Aside Header
+        _buildAsideHeader(asideHeader);
+
+        // Build Aside Body
+        if (Array.isArray(asideBody) && asideBody.length) {
+            _buildAsideBody(asideBody);
+        } else {
+            console.log('BodyStructure: isArray - false');
+        }
+    }
+
+    function _buildAsideBody(structure) {
         const asideContinerEl = document.querySelector(
             '.panel_sidebar .content_scroll'
         );
 
-        if (isPushHistory) asideHistory.addRecord(structure);
-
         asideContinerEl.innerHTML = '';
+
         for (let rootEl of structure) {
             asideContinerEl.insertAdjacentElement(
                 'beforeend',
@@ -158,21 +200,48 @@ function Aside(selector) {
         }
     }
 
+    function _buildAsideHeader(structure) {
+        let sidebarlHeaderEl = document.querySelector(
+            '.panel_sidebar .panel_header'
+        );
+
+        if (sidebarlHeaderEl) sidebarlHeaderEl.remove();
+
+        if (!structure) {
+            console.log('Aside header has not been found');
+            return false;
+        }
+
+        const { flag, character } = structure;
+
+        sidebarlHeaderEl = `
+      <div class="panel_header py-10">
+        <div class="d-flex align-items-center">
+          <div class="pr-25">
+            <a href="${character.url}" class="circle emblem size_2 size_xl_4 d-block my-4"><img src="${character.image}" alt=""></a>
+            <a href="${flag.url}" class="circle emblem size_2 size_xl_4 d-block my-4"><img src="${flag.image}" alt=""></a>
+          </div>
+            <h3 class="mb-0 fz_25 font-weight-normal">${structure['city_name']}</h3>
+          </div>
+          <div class="decor">
+            <span class="corner"></span>
+            <span class="corner right_top"></span>
+            <span class="corner right_bottom"></span>
+            <span class="corner left_bottom"></span>
+          </div>
+        </div>
+      </div>
+    `;
+
+        document
+            .querySelector('.panel_sidebar .panel_holder')
+            .insertAdjacentHTML('afterbegin', sidebarlHeaderEl);
+    }
+
     function _getComponentDom(component) {
-        let debug = true;
         let el = document.createElement('div');
         let childs = [];
         let parentForChildsEl = el;
-
-        if (debug) {
-            if (component.icon && !component.icon.includes('https')) {
-                component.icon = 'https://game.wealthofnations.uk' + component.icon;
-            }
-
-            if (component.url && !component.url != 'https://') {
-                component.url = 'https://game.wealthofnations.uk' + component.url;
-            }
-        }
 
         // Component DOM
         switch (component.type) {
@@ -335,19 +404,16 @@ function Aside(selector) {
           <div class="mini_info mb-20">
             <label>${component.label}</label>
             <div class="mini_holder">
-              <input type="text" name='${component.name}' value="${component.value}">
+                <input type="text" name='${component.name}' value="${component.value}" class="info">
             </div>
           </div>
-          <div class="slider_holder">
-            <div class="decor_slider slider_prev"></div>
-            <div class="slider_bar">
-              <div class="slider_progress" style="width:50%;">
-                <div class="handler"></div>
-              </div>
-            </div>
-            <div class="decor_slider slider_next"></div>
+          <div class="range_slider">
+            <input type="range" name="styled-range" min="${component.min}" max="${component.max}" value="${component.value}" step="5" list="styled-range-list" class="range--progress" style="--min: ${component.min}; --max: ${component.max}; --val: 75">
+            <div class="filled" style="width: calc(42.7704% + -3px);"></div>
           </div>
         `;
+
+                new Slider(el);
 
                 break;
 
@@ -401,6 +467,11 @@ function Aside(selector) {
 
                 break;
 
+            case 'icon_list':
+                childs = component.components;
+                el.classList.add('icon_list');
+
+                break;
             default:
                 el.classList.add(component.type);
                 break;
@@ -419,12 +490,16 @@ function Aside(selector) {
         if (component.url && component.ajax) {
             el.addEventListener('click', async function(e) {
                 e.preventDefault();
-                let data = cityInfoJson.info;
+                let data;
 
                 if (location.hostname !== 'localhost') {
                     const res = await fetch(component.url);
                     data = await res.json();
-                    console.log(data);
+                    console.log('ajax response:', data);
+                } else if (cityInfoJson) {
+                    data = cityInfoJson;
+                } else {
+                    console.log('Something wrong: incorect data');
                 }
 
                 buildAsideDom(data);
@@ -464,6 +539,66 @@ DomHistory.prototype.removeRecord = function() {
 DomHistory.prototype.clear = function() {
     this.history = [];
 };
+function Cursor() {
+
+    const elem = document.createElement('div');
+    elem.id = 'cursor';
+    elem.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 40px;
+        width: 40px;
+        background-image: url(/images/map/cursor.webp);
+        background-size: contain;
+        background-repeat: no-repeat;
+        pointer-events: none;
+        z-index: 1000;
+    `;
+    document.body.insertAdjacentElement('beforeend', elem);
+    window.addEventListener('mousemove', solveMove);
+
+    hideDefaultCursor();
+
+    const c = this;
+    this.use = use;
+    this.down = down;
+    this.up = up;
+    this.coords = {
+        x: null,
+        y: null
+    };
+    this.location = {
+        col: null,
+        row: null
+    };
+
+    function use(name) {
+
+        container.style.cursor = name;
+
+    }
+    function down() {
+        elem.style.width = '32px';
+    }
+    function up() {
+        elem.style.width = '40px';
+    }
+    function solveMove(e) {
+
+        c.coords.x = e.clientX;
+        c.coords.y = e.clientY;
+
+        elem.style.transform = `translate3d(${c.coords.x}px, ${c.coords.y}px, 0)`;
+
+    }
+    function hideDefaultCursor() {
+
+        const styles = `<style media="screen">* {cursor: none;}</style>`;
+        document.head.insertAdjacentHTML('beforeend', styles);
+    }
+
+}
 function CustomScroll() {
     const scrolls = document.querySelectorAll('.panel_holder');
 
@@ -676,6 +811,39 @@ function enableRenaming(element) {
         });
     }
 }
+function Slider(el) {
+    if (el) {
+        initSlider(el);
+    } else {
+        const sliders = $$('.slider');
+        if (!sliders.length) return false;
+        sliders.forEach((sliderEl) => {
+            initSlider(sliderEl);
+        });
+    }
+
+    function initSlider(slider) {
+        const input = slider.querySelector('[type="range"]');
+        const fill = slider.querySelector('.filled');
+        const mini_info = slider.querySelector('.mini_info');
+
+        input.oninput = update;
+        update();
+
+        function update(e) {
+            const TRACK_GAPS = 5;
+            const HANDLER_SHIFT = 4;
+            const value = input.value;
+            const percent = (value / input.max) * 100;
+            const ratio = 50 - percent;
+            const extremumShift = Math.round(ratio / TRACK_GAPS) - HANDLER_SHIFT;
+
+            fill.style.setProperty('width', `calc(${percent}% + ${extremumShift}px)`);
+
+            if (mini_info) mini_info.querySelector('input').value = value;
+        }
+    }
+}
 function Tabs(element) {
     if (element) {
         new Tab(element);
@@ -688,7 +856,7 @@ function Tabs(element) {
 
     function Tab(elem) {
         const navTabs = elem.children[0].firstElementChild.children;
-        const content = elem.children[1];
+        const content = elem.children[1].querySelector('.panel_content > div > .tab_content');
 
         [...navTabs].forEach((tab) => {
             tab.onclick = (ev) => {
@@ -707,48 +875,14 @@ function Tabs(element) {
         });
     }
 }
-function Slider(selector) {
-
-    const sliders = $$(selector);
-    if (sliders.length > 0) initSliders();
-
-    function initSliders() {
-
-        sliders.forEach(slider => {
-
-            const input = slider.querySelector('[type="range"]');
-            const fill = slider.querySelector('.filled');
-            const mini_info = slider.querySelector('.mini_info');
-
-            input.oninput = update;
-            update();
-
-            function update(e) {
-
-                const TRACK_GAPS = 5;
-                const HANDLER_SHIFT = 4;
-                const value = input.value;
-                const percent = value / input.max * 100;
-                const ratio = 50 - percent;
-                const extremumShift = Math.round(ratio / TRACK_GAPS) - HANDLER_SHIFT;
-
-                fill.style.setProperty('width', `calc(${percent}% + ${extremumShift}px)`);
-
-                if (mini_info) mini_info.querySelector('input').value = value;
-
-            }
-
-        });
-
-    }
-
-}
 function ToolTips() {
 
     const TIP_WINDOW_WIDTH = 320;
-    const TIP_WINDOW_MARGIN = 10;
+    const TIP_WINDOW_MARGIN = 0;
     const tipWindow = document.querySelector('.tooltip');
-    const container = tipWindow.firstElementChild;
+    if (!tipWindow) return;
+
+    const container = tipWindow.querySelector('.container');
     const svg = tipWindow.lastElementChild;
     const tipElements = findTips('[data-tooltip]');
 
@@ -774,8 +908,13 @@ function ToolTips() {
                 mouseOver = true;
                 setTimeout(makeTip, 300);
             };
-            elem.onmouseleave = () => {
+            elem.onmouseleave = e => {
+
+                const hoveredElem = document.elementFromPoint(e.clientX, e.clientY);
+                if (hoveredElem && hoveredElem.closest('.tooltip')) return;
+
                 mouseOver = false;
+                hide();
             };
 
             function makeTip() {
@@ -799,14 +938,14 @@ function ToolTips() {
         });
 
     }
-    function positionTip(tipDotElement) {
+    function positionTip(elem) {
 
-        const position = getCoordinates(tipDotElement);
-        const tipDot = tipDotElement.getBoundingClientRect();
+        const position = getCoordinates(elem);
+        const elemBox = elem.getBoundingClientRect();
 
         const pageWidth = document.body.clientWidth;
-        const top = position.top + tipDot.width / 2;
-        const left = position.left + tipDot.height / 2;
+        const top = position.top + elemBox.height;
+        const left = position.left;
         const spaceForTip = pageWidth - left;
         let containerShiftTop = 0;
         let containerShiftLeft = 0;
@@ -815,15 +954,15 @@ function ToolTips() {
 
         if (spaceForTip < TIP_WINDOW_WIDTH) {
             tipFitsWindow = false;
-            containerShiftTop = 10;
+            containerShiftTop = 0;
             containerShiftLeft = -(TIP_WINDOW_WIDTH - spaceForTip + TIP_WINDOW_MARGIN);
         }
 
         tipWindow.style.top = top + 'px';
         tipWindow.style.left = left + 'px';
 
-        container.style.top = containerShiftTop + 'px';
-        container.style.left = containerShiftLeft + 'px';
+        container.style.top = 0 + 'px';
+        container.style.left = 0 + 'px';
         container.style.transformOrigin = -containerShiftLeft + 'px 0';
 
     }
@@ -845,20 +984,31 @@ function Select(elem) {
 
     const header = elem.querySelector('.select_header');
     const dropdown = elem.querySelector('.drop_down');
-    const url = elem.dataset.url;
 
     const _ = this;
+    this.elem = elem;
     this.value = elem.dataset.value;
+    this.set_value = setValue;
     this.toggle = toggle;
 
     header.onclick = toggle;
     setValue();
     initClicks();
+    observeMutation();
 
-    function setValue() {
+    function setValue(val) {
+
+        if (val) {
+            _.value = val;
+            elem.dataset.value = val;
+        } else {
+            _.value = elem.dataset.value;
+        }
 
         const title = header.querySelector('.panel_holder span');
-        const selectedLi = dropdown.querySelector(`li[data-value="${_.value}"]`);
+        let selectedLi = dropdown.querySelector(`li[data-value="${_.value}"]`);
+        if (!selectedLi) selectedLi = dropdown.querySelector('li:first-child');
+        if (!selectedLi) return;
 
         title.innerHTML = selectedLi.querySelector('span').innerHTML;
         showActive(_.value);
@@ -899,17 +1049,15 @@ function Select(elem) {
                 e.preventDefault();
                 const value = e.target.closest('li').dataset.value;
                 _.value = value;
-                elem.dataset.value = value;
-                setValue();
+                setValue(value);
                 toggle(value);
-                if (url) ajax(value);
             }
         });
 
     }
     function ajax(value) {
 
-        fetch(url, {
+        fetch(elem.dataset.url, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
@@ -927,6 +1075,29 @@ function Select(elem) {
                     });
                 }
             });
+
+    }
+    function observeMutation() {
+
+        const callback = function(mutationsList, observer) {
+            for (const mutation of mutationsList) {
+                if (mutation.attributeName === 'data-value') {
+                    setValue();
+                    if (elem ?.dataset ?.url) ajax(_.value);
+                    generateEvent(_.value);
+                }
+            }
+        };
+
+        const observer = new MutationObserver(callback);
+        observer.observe(elem, { attributes: true });
+
+    }
+    function generateEvent(value) {
+
+        elem.dispatchEvent(new CustomEvent('select:update', {
+            detail: { value }
+        }));
 
     }
 }
