@@ -8,7 +8,6 @@
     .blazon {
         content: '';
         display: block;
-        background-color: $primary;
         position: absolute;
         top: 0;
         left: 0;
@@ -19,9 +18,23 @@
         overflow: hidden;
         z-index: 1;
 
-        img {
-            width: 100%;
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
             height: 100%;
+            width: 100%;
+            background-image: url(/images/map/circles/circle_empty_shadow.png);
+            background-size: 100% 100%;
+            background-position: center;
+        }
+        img {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 80%;
+            height: 80%;
         }
     }
     .mask {
