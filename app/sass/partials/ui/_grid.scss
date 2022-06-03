@@ -74,6 +74,10 @@
 	max-width: 280px;
 	flex:0 0 280px
 }
+.col-300{
+	max-width: 300px;
+	flex:0 0 300px;
+}
 .col-320{
 	max-width: 320px;
 	flex:0 0 320px;
@@ -152,6 +156,22 @@
 }
 .grid_list_custom{
 	grid-template-columns: repeat(auto-fill, minmax(var(--element), 1fr));
+	.col_item{
+		position: relative;
+		&.selected{
+			&:before{
+				content: "";
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				display: block;
+				box-shadow: inset 0px 0px 12px 4px #FFE600;
+				pointer-events: none;
+			}
+		}
+	}
 }
 .center_left{
 	top: 50%;

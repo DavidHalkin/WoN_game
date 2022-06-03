@@ -1,0 +1,29 @@
+.wallet_area{
+	.col_right{
+		.inner_height{
+			height: calc(100vh - 80px);
+		}
+	}
+	.col_center{
+		> .panel{
+			height: calc(100vh - 118px) !important;
+			>.panel_holder{
+				> .panel_content{
+					>.content_scroll {
+						height: 100%;
+						overflow: hidden;
+					}
+				}
+			}
+			.tabs {
+				display: grid;
+				grid-template-rows: min-content 1fr;
+				height: 100% !important;
+				overflow: hidden;
+				.inner_height{
+					grid-row: span 2;
+				}
+			}
+		}
+	}
+}

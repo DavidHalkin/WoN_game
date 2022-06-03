@@ -3,11 +3,14 @@
 		display: none;
 	}
 	&.tabs_responsive{
-		> .tab_nav {
-			> ul{
-				display: none !important;
+		> .header_tab{
+			.tab_nav {
+				> ul{
+					display: none !important;
+				}
 			}
 		}
+		 
 		.hidden_part{
 			display: flex;
 			align-items:center;
@@ -42,6 +45,59 @@
 				height: calc(100% - var(--size_border_local) * 1.5);
 			}
 		}
+	}
+}
+.line{
+	// --size_border_local: calc(var(--size_border) / 2);
+	--tab_size_cap_w_local: calc(var(--tab_size_cap_w) / 2);
+	--tab_size_cap_h_local: calc(var(--tab_size_cap_h) / 2);
+	&.md{
+		// --size_border_local: calc(var(--size_border) / 2 * 0.75);
+		// left-right part
+		--tab_size_cap_w_local: calc(var(--tab_size_cap_w) / 2 * 0.75);
+		--tab_size_cap_h_local: calc(var(--tab_size_cap_h) / 2 * 0.75);
+	}
+	&.sm{
+		// --size_border_local: calc(var(--size_border) / 2 * 0.5);
+		// left-right part
+		--tab_size_cap_w_local: calc(var(--tab_size_cap_w) / 2 * 0.5);
+		--tab_size_cap_h_local: calc(var(--tab_size_cap_h) / 2 * 0.5);
+	}
+	position: relative;
+	display: flex;
+	// width: 100%;
+	height: var(--size_border_local);
+	align-items:center;
+	margin:0 var(--size_border_local);
+	// padding-bottom: var(--size_border_local);
+	padding-right: calc(var(--size_border_local) * 2.7 - var(--size_border_local));
+	background: var(--border_img_h_bottom);
+	background-position: 0 100%;
+	background-repeat: repeat-x;
+	background-size: auto var(--size_border_local);
+	&:before,&:after{
+		content: "";
+		width: var(--tab_size_cap_w_local);
+		height: var(--tab_size_cap_h_local);
+		background: var(--tab_img_cap) no-repeat;
+		background-size: cover;
+		position: absolute;
+		bottom: 4px;
+		left: 0;
+		transform:translateY(50%);
+	}
+	&:after{
+		left: auto;
+		right: 0;
+		transform:translateY(50%) scaleX(-1);
+	}
+}
+.header_tab{
+	margin-bottom: calc(var(--size_border_local) * 2.7);
+}
+.tab_info{
+	.tab_info_content{
+		padding: 0 calc(var(--size_border_local) * 2.7);
 	}
 }
 .tab_nav{
@@ -87,7 +143,8 @@
 	position: relative;
 	display: flex;
 	align-items:center;
-	margin: calc(var(--size_border_local) * 2.7) var(--size_border_local);
+	// margin: calc(var(--size_border_local) * 2.7) var(--size_border_local);
+	margin: 0 var(--size_border_local);
 	padding-bottom: var(--size_border_local);
 	padding-right: calc(var(--size_border_local) * 2.7 - var(--size_border_local));
 	background: var(--border_img_h_bottom);
@@ -198,6 +255,7 @@
 	}
 
 }
+
 .tab_pane{
 	display: none;
 	&.active{

@@ -795,7 +795,7 @@ function Tabs(element) {
     allTabs.forEach((tab) => new Tab(tab));
 
     function Tab(elem) {
-        const navTabs = elem.children[0].firstElementChild.children;
+        const navTabs = elem.children[0].firstElementChild.firstElementChild.children;
         const content = elem.children[1].querySelector('.panel_content > div > .tab_content');
 
         [...navTabs].forEach((tab) => {
