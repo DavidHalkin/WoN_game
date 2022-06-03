@@ -76,11 +76,17 @@
 	--corner_img_2_width_local:calc(var(--corner_img_2_width) / 2);
 	--corner_img_2_height_local:calc(var(--corner_img_2_height) / 2);
 
+	//left\right cap
+	--tab_size_cap_w_local: calc(var(--tab_size_cap_w) / 2);
+	--tab_size_cap_h_local: calc(var(--tab_size_cap_h) / 2);
 	&.md{
 		--size_border_local: calc(var(--size_border) / 2 * 0.75);
 		--size_corner_local: calc(var(--size_corner) / 2 * 0.75);
 		--width_decor_local: calc(var(--width_decor) / 2 * 0.75);
 		--height_decor_local:calc(var(--height_decor) / 2 * 0.75);
+		//left\right cap
+		--tab_size_cap_w_local: calc(var(--tab_size_cap_w) / 2 * 0.75);
+		--tab_size_cap_h_local: calc(var(--tab_size_cap_h) / 2 * 0.75);
 
 		border-radius: calc(var(--indent) + 1px);
 		// decor_2
@@ -93,6 +99,9 @@
 		--size_corner_local: calc(var(--size_corner) / 2 * 0.5);
 		--width_decor_local: calc(var(--width_decor) / 2 * 0.5);
 		--height_decor_local:calc(var(--height_decor) / 2 * 0.5);
+		//left\right cap
+		--tab_size_cap_w_local: calc(var(--tab_size_cap_w) / 2 * 0.5);
+		--tab_size_cap_h_local: calc(var(--tab_size_cap_h) / 2 * 0.5);
 
 		border-radius: var(--indent);
 
@@ -313,14 +322,32 @@
 }
 
 .panel_header{
+	
 	flex: 0 0 auto;
 	background: rgba(red,.2);
-	padding: calc(var(--size_border_local) * 2.7);
+	padding: calc(var(--size_border_local) * 2.7 - var(--size_border_local));
 	position: relative;
 	background: var(--border_img_h) repeat-x 0 100%;
 	background-size: auto  var(--size_border_local);
-
+	margin-left: var(--size_border_local);
+	margin-right: var(--size_border_local);
 	// margin: calc(var(--size_border_local) * -2.7) calc(var(--size_border_local) * -2.7) calc(var(--size_border_local) * 2);
+	&:before,&:after{
+		content: "";
+		width: var(--tab_size_cap_w_local);
+		height: var(--tab_size_cap_h_local);
+		background: var(--tab_img_cap) no-repeat;
+		background-size: cover;
+		position: absolute;
+		bottom: 4px;
+		left: 0;
+		transform: translateY(50%);
+	}
+	&:after{
+		left: auto;
+		right: 0;
+		transform: translateY(50%) scaleX(-1);
+	}
 }
 .title_panel{
 	position: relative;

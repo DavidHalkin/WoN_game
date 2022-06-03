@@ -1,0 +1,35 @@
+.quest_area{
+	> .col{
+		> .panel{
+			height: calc(100vh - 118px) !important;
+			>.panel_holder{
+				> .panel_content{
+					>.content_scroll {
+						height: 100%;
+						// overflow: hidden;
+					}
+				}
+			}
+			// .tabs {
+			// 	display: grid;
+			// 	grid-template-rows: min-content 1fr;
+			// 	height: 100% !important;
+			// 	overflow: hidden;
+			// 	.inner_height{
+			// 		grid-row: span 2;
+			// 	}
+			// }
+		}
+	}
+}
+.quest_item{
+	display: flex;
+	.img_part{
+		max-width: 76px;
+		flex:0 0 76px;
+		.square_img_cont{
+			width: 76px;
+			height: 76px;
+		}
+	}
+}
