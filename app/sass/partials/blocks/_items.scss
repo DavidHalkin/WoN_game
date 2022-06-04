@@ -2,6 +2,8 @@
 .square,.mini_info.mini_info_square .item_ico{
 	--square_size:calc(var(--size) / 2);
 	width: var(--square_size);
+	max-width: var(--square_size);
+	flex:0 0 var(--square_size);
 	height: var(--square_size);
 	background: var(--square_img) no-repeat 0 0;
 	background-size: cover;
