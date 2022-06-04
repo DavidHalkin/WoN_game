@@ -2,6 +2,15 @@
 
 .select,.live_search{
 	position: relative;
+	.content_scroll{
+		padding-right: 0 !important;
+	}
+	.scroll_js{
+		
+		.content_scroll{
+			padding-right:calc(var(--size_border_local) * 3.7) !important;
+		}
+	}
 	.select_header{
 		.panel_holder{
 			width: 100%;

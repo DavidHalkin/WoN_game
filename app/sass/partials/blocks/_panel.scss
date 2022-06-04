@@ -172,6 +172,9 @@
 			}
 		}
 	}
+	&.part_chat{
+		background: rgba($primary,.9);
+	}
 	.bg_image_panel{
 		position: absolute;
 		top:var(--size_border_local);

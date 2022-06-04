@@ -30,6 +30,12 @@
 .red,.text-danger{
 	color: $danger;
 }
+.blue,.text-info{
+	color: $info;
+}
+.bg-info{
+	background: $info;
+}
 .text-secondary{
 	color: $secondary;
 }
