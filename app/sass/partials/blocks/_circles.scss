@@ -1,21 +1,4 @@
-.holder_ico{
-	position: relative;
-	.status{
-		display: none;
-		width: 8px;
-		height: 8px;
-		position: absolute;
-		top: 0;
-		right: 0;
-		z-index: 3;
-		border-radius: 50%;
-		background: $info;
-		z-index: 5;
-	}
-	&.active,&.online{
-		.status{display: block;}
-	}
-}
+
 .circle,.mini_info .item_ico{
 	--size_circle:calc(var(--size) / 2);
 	display: inline-block;

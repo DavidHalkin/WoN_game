@@ -2,7 +2,14 @@
 	transition: var(--animation_hovered);
 	filter: saturate(2) brightness(1.5);
 }
-
+.etc_list{
+	li{
+		transition: var(--animation_static);
+		&:hover{
+			transition: var(--animation_hovered);
+		}
+	}
+}
 .btn,.close_btn,.back_btn,.switcher{
 	transition: var(--animation_static);
 	&:hover{

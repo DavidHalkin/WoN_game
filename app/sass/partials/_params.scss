@@ -60,13 +60,7 @@ body {
 .text-danger {
     color: red;
 }
-.bottom_switch{
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: rotate(-90deg) translateY(-50%) !important;
-    transform-origin: center;
-}
+
 .text-truncate {
     @include text-truncate;
 }
