@@ -17,16 +17,17 @@
         transition: visility 0s linear;
     }
     .content {
-        padding: 1em;
+        padding: 0.5em;
 
         p {
-            margin-bottom: 1em;
+            margin: 0;
             text-align: center;
         }
         .controls {
             display: flex;
             gap: 10px;
             justify-content: center;
+            margin-top: 1em;
 
             button {
                 color: #E9D2B2;
