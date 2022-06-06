@@ -12,6 +12,7 @@ new Slider();
 new Tabs();
 new ToolTips();
 new Draggables();
+new Timer();
 initSelectElements();
 
 let cityClickJson, cityBuildJson, cityInfoJson, cityData;
@@ -1244,6 +1245,39 @@ function Draggables() {
         }
 
     });
+
+}
+function Timer() {
+
+    $$('.timer').forEach(timer => init(timer));
+
+    function init(elem) {
+
+        const countDownDate = new Date(elem.dataset.end).getTime();
+        if (isNaN(countDownDate)) return;
+        const metronome = setInterval(updateCountdown, 1000);
+
+        function updateCountdown() {
+
+    		const now = new Date().getTime();
+    		const interval = countDownDate - now;
+
+    		if (interval < 0) {
+    			clearInterval(metronome);
+    			timer.style.visibility = 'hidden';
+    			return;
+    		}
+
+    		const days = Math.floor(interval / (1000 * 60 * 60 * 24));
+    		const hours = Math.floor((interval % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    		const minutes = Math.floor((interval % (1000 * 60 * 60)) / (1000 * 60));
+    		const seconds = Math.floor((interval % (1000 * 60)) / 1000);
+
+    		elem.innerHTML = `${days}д ${hours}ч ${minutes}м ${seconds}с`;
+
+    	}
+
+    }
 
 }
 
