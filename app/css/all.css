@@ -1164,6 +1164,8 @@ body kbd, body code { -webkit-user-select: text; -moz-user-select: text; -ms-use
 
 .align-items-end { -webkit-box-align: end !important; -ms-flex-align: end !important; align-items: flex-end !important; }
 
+.align-self-end { -ms-flex-item-align: end; align-self: flex-end; }
+
 .align-items-start { -webkit-box-align: start !important; -ms-flex-align: start !important; align-items: flex-start !important; }
 
 .d-inline-block { display: inline-block !important; }
@@ -2674,6 +2676,32 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 .quest_item .img_part { max-width: 76px; -webkit-box-flex: 0; -ms-flex: 0 0 76px; flex: 0 0 76px; }
 
 .quest_item .img_part .square_img_cont { width: 76px; height: 76px; }
+
+.finance_area .col_left > .panel { height: calc(100vh - 118px) !important; }
+
+.finance_area .col_left > .panel > .panel_holder > .panel_content > .content_scroll { height: 100%; }
+
+.finance_area .col_left > .panel .table { display: grid; grid-template-rows: -webkit-min-content 1fr; grid-template-rows: min-content 1fr; height: 100% !important; overflow: hidden; }
+
+.finance_area .col_left > .panel .table .inner_height { grid-row: span 2; }
+
+.finance_area .col_right > .panel { height: calc(100vh - 78px) !important; }
+
+.finance_area .col_right > .panel > .panel_holder > .panel_content > .content_scroll { height: 100%; }
+
+@media only screen and (max-width: 1599.98px) { .finance_area .col_right > .panel .list_sliders h3 { font-size: 16px !important; } }
+
+.finance_area .list_sliders { --indent:25px; margin-right: calc(var(--indent) * -1); margin-left: calc(var(--indent) * -1); }
+
+.finance_area .list_sliders > .col { padding-left: var(--indent); padding-right: var(--indent); }
+
+@media only screen and (max-width: 1599.98px) { .finance_area .list_sliders { --indent:10px; } }
+
+.panel_header .col_sum { max-width: 100px; -webkit-box-flex: 0; -ms-flex: 0 0 100px; flex: 0 0 100px; }
+
+@media only screen and (max-width: 1599.98px) { .panel_header .col_sum { font-size: 16px !important; } }
+
+.col_sum { max-width: 80px; -webkit-box-flex: 0; -ms-flex: 0 0 80px; flex: 0 0 80px; text-align: right; word-wrap: break-word; }
 
 #editor_controls { --h-header:100px; --h-footer:200px; width: 300px; position: absolute; z-index: 5; top: 75px; right: 5px; }
 

@@ -321,6 +321,7 @@
 	.scrollbar{
 		height: calc(100% - var(--size_border_local) * 2.7 * 2);
 		top: calc(var(--size_border_local) * 2.7);
+		// top: calc(var(--size_border_local) * 4);
 	}
 }
 
