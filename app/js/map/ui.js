@@ -1,3 +1,5 @@
+const mapType = $('#field_map') ?.dataset ?.map;
+
 window.ui = {};
 window.ui.modes = new Modes('.panel_game_modes');
 window.ui.city = new City('.panel_town');
@@ -11,13 +13,14 @@ new Tabs();
 new ToolTips();
 initSelectElements();
 
-let cityClickJson, cityBuildJson, cityInfoJson;
+let cityClickJson, cityBuildJson, cityInfoJson, cityData;
 
 if (location.hostname == 'localhost') {
     const assets = [
         fetch('/js/map/examples/city_click.json'),
         fetch('/js/map/examples/city_info.json'),
         fetch('/js/map/examples/city_build.json'),
+        fetch('/js/map/examples/city.json')
     ];
 
     Promise.all(assets).then((results) => {
@@ -26,6 +29,10 @@ if (location.hostname == 'localhost') {
                 if (data.city_header) cityClickJson = data;
                 if (data.info) cityInfoJson = data;
                 if (data.buildings) cityBuildJson = data;
+                if (data.map === 'city') {
+                    cityData = data;
+                    if (mapType === 'city') ui.aside.load_city(cityData);
+                }
             });
         });
     });
@@ -124,12 +131,16 @@ function Aside(selector) {
     const asideHistory = new DomHistory();
     const closeBtn = elem.querySelector('.close_btn');
     const container = $('div#field_map');
+    let mapData;
 
     if (closeBtn) closeBtn.onclick = close;
 
     container.addEventListener('map:click:left:response', mapClickSolver);
 
+    if (mapType === 'city' && location.hostname !== 'localhost') loadCity();
+
     this.close = close;
+    this.load_city = loadCity;
 
     function close() {
         asideHistory.removeRecord();
@@ -145,7 +156,32 @@ function Aside(selector) {
     function open() {
         elem.style.display = 'block';
     }
+    function loadCity(cityData) {
 
+        if (cityData) {
+
+            mapClickSolver();
+
+        } else {
+
+            // if ()
+
+            fetch(`/ajax?do=city_info&c=city&city_id=745`)
+                .then(res => {
+                    if (res.ok) {
+                        res.json().then(res => {
+                            mapData = res;
+                            console.log(mapData);
+                            mapClickSolver();
+                        });
+                    } else {
+                        res.json().then(res => console.log(res));
+                    }
+                });
+
+        }
+
+    }
     function mapClickSolver(event) {
         const elemStyles = window.getComputedStyle(elem);
         if (
@@ -159,12 +195,23 @@ function Aside(selector) {
         // console.log(JSON.parse(event.detail).info);
         // buildAsideDom(cityInfoJson.info);
         if (location.hostname == 'localhost') {
-            buildAsideDom(cityClickJson);
+            switch (mapType) {
+                case 'city':
+                    buildAsideDom(cityData);
+                    break;
+                default:
+                    buildAsideDom(cityClickJson);
+            }
         } else {
-            buildAsideDom(JSON.parse(event.detail));
+            switch (mapType) {
+                case 'city':
+                    buildAsideDom(mapData);
+                    break;
+                default:
+                    buildAsideDom(JSON.parse(event.detail));
+            }
         }
     }
-
     function buildAsideDom(structureJson, isPushHistory = true) {
         console.log('structure', structureJson);
         const asideBody = structureJson.info;
@@ -183,7 +230,6 @@ function Aside(selector) {
             console.log('BodyStructure: isArray - false');
         }
     }
-
     function _buildAsideBody(structure) {
         const asideContinerEl = document.querySelector(
             '.panel_sidebar .content_scroll'
@@ -198,7 +244,6 @@ function Aside(selector) {
             );
         }
     }
-
     function _buildAsideHeader(structure) {
         let sidebarlHeaderEl = document.querySelector(
             '.panel_sidebar .panel_header'
@@ -236,7 +281,6 @@ function Aside(selector) {
             .querySelector('.panel_sidebar .panel_holder')
             .insertAdjacentHTML('afterbegin', sidebarlHeaderEl);
     }
-
     function _getComponentDom(component) {
         let el = document.createElement('div');
         let childs = [];
@@ -507,7 +551,6 @@ function Aside(selector) {
 
         return el;
     }
-
     function _recursiveBuildDom(parent, childs) {
         for (let childComponent of childs) {
             parent.insertAdjacentElement(
