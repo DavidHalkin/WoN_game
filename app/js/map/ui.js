@@ -11,6 +11,7 @@ new CustomAccordion();
 new Slider();
 new Tabs();
 new ToolTips();
+new Draggables();
 initSelectElements();
 
 let cityClickJson, cityBuildJson, cityInfoJson, cityData;
@@ -139,6 +140,7 @@ function Aside(selector) {
 
     if (mapType === 'city' && location.hostname !== 'localhost') loadCity();
 
+    this.elem = elem;
     this.close = close;
     this.load_city = loadCity;
 
@@ -259,23 +261,21 @@ function Aside(selector) {
         const { flag, character } = structure;
 
         sidebarlHeaderEl = `
-      <div class="panel_header py-10">
-        <div class="d-flex align-items-center">
-          <div class="pr-25">
-            <a href="${character.url}" class="circle emblem size_2 size_xl_4 d-block my-4"><img src="${character.image}" alt=""></a>
-            <a href="${flag.url}" class="circle emblem size_2 size_xl_4 d-block my-4"><img src="${flag.image}" alt=""></a>
-          </div>
-            <h3 class="mb-0 fz_25 font-weight-normal">${structure['city_name']}</h3>
-          </div>
-          <div class="decor">
-            <span class="corner"></span>
-            <span class="corner right_top"></span>
-            <span class="corner right_bottom"></span>
-            <span class="corner left_bottom"></span>
-          </div>
-        </div>
-      </div>
-    `;
+            <div class="panel_header py-10">
+                <div class="d-flex align-items-center">
+                    <div class="pr-25">
+                        <a href="${character.url}" class="circle emblem size_2 size_xl_4 d-block my-4"><img src="${character.image}" alt=""></a>
+                        <a href="${flag.url}" class="circle emblem size_2 size_xl_4 d-block my-4"><img src="${flag.image}" alt=""></a>
+                    </div>
+                    <h3 class="mb-0 fz_25 font-weight-normal">Lorem ipsum dolor sit, amet consectetur</h3>
+                </div>
+                <div class="decor">
+                    <span class="corner"></span>
+                    <span class="corner right_top"></span>
+                    <span class="corner right_bottom"></span>
+                    <span class="corner left_bottom"></span>
+                </div>
+            </div>`;
 
         document
             .querySelector('.panel_sidebar .panel_holder')
@@ -289,24 +289,45 @@ function Aside(selector) {
         // Component DOM
         switch (component.type) {
             case 'tabs':
-                el.classList.add('tabs');
+                el.classList.add('tabs', 'grid_column');
+                addClasses(el, component.classNames);
 
                 el.innerHTML = `
-          <div class="tab_nav">
-            <ul class="list-unstyled d-flex"></ul>
-          </div>
-          <div class="tab_content"></div>
-        `;
+                    <div class="header_tab">
+                        <div class="tab_nav">
+                            <ul class="tab_nav_list list-unstyled d-flex"></ul>
+                            <span></span>
+                        </div>
+                        <div class="tab_info" style="display:none">
+                            <div class="tab_info_content py-6 d-flex justify-content-center align-items-center flex-wrap">
+                                <p class="mb-0 py-10"></p>
+                            </div>
+                            <div class="line"></div>
+                        </div>
+                    </div>
+                    <div class="panel_holder inner_height">
+                        <div class="panel_content">
+                            <div class="content_scroll">
+                                <div class="tab_content"></div>
+                            </div>
+                            <div class="scrollbar">
+                                <div class="btn_func arrow_prev"></div>
+                                <div class="bar">
+                                    <div class="handler" style="top:0%;"></div>
+                                </div>
+                                <div class="btn_func arrow_next"></div>
+                            </div>
+                        </div>
+                    </div>`;
 
                 for (let [index, tab] of component.tabs.entries()) {
                     const navEl = document.createElement('li');
                     if (index == 0) navEl.classList.add('active');
 
                     navEl.innerHTML = `
-            <a href="#t${index}">
-              <span class="link_holder">${tab.name}</span>
-            </a>
-          `;
+                        <a href="#t${index}">
+                            <span class="link_holder">${tab.name}</span>
+                        </a>`;
 
                     if (tab.icon && tab.icon != 'https://') {
                         navEl.querySelector(
@@ -329,15 +350,36 @@ function Aside(selector) {
                         'beforeend',
                         tabEl
                     );
+
+                    setTimeout(() => {
+                        new CustomScroll('.panel_sidebar');
+                    }, 16);
                 }
 
                 new Tabs(el);
+
+                setTimeout(() => {
+
+                    const panel = $('.panel_sidebar > .panel_holder > .panel_content');
+                    const panelHeight = panel.getBoundingClientRect().height;
+
+                    const panelStyles = window.getComputedStyle(panel);
+                    const paddingTop = panelStyles.getPropertyValue('padding-top');
+                    const paddingTopNumber = parseFloat(paddingTop);
+
+                    const tabsPanelHolder = el.querySelector('.panel_holder');
+                    const tabNavHeight = tabsPanelHolder.offsetTop;
+                    const contentHeight = panelHeight - tabNavHeight - paddingTopNumber;
+                    tabsPanelHolder.style.maxHeight = contentHeight + 'px';
+
+                }, 16);
 
                 break;
 
             case 'tab':
                 childs = component.content;
                 el.classList.add('tab');
+                addClasses(el, component.classNames);
                 el.innerHTML = component.name;
 
                 if (component.icon && component.icon != 'https://') {
@@ -355,6 +397,7 @@ function Aside(selector) {
                     'align-items-start',
                     'closed'
                 );
+                addClasses(el, component.classNames);
 
                 el.innerHTML = `
           <div class="col accordion_hidden_part"></div>
@@ -380,21 +423,26 @@ function Aside(selector) {
                 const classList = ['mini_info', 'mb-20'];
                 if (component.label) classList.push('label');
 
-                el.classList.add(...classList);
+                el.classList.add('col_item');
 
                 el.innerHTML = `
-          <label>${component.label}</label>
-          <a href="${
+                    <div>
+                        <label>${component.label}</label>
+                        <a href="${
                     component.url ? component.url : '#'
                     }" class="item_ico size_1"><img src="${component.icon}" alt=""></a>
-          <div class="mini_holder">
-            <input type="text" name='${component.name}' value="${
+                        <div class="mini_holder">
+                          <input type="text" name='${component.name}' value="${
                     component.value
                     }" ${!component.editable ? 'disabled' : ''}>
-          </div>
-        `;
+                        </div>
+                    </div>
+                    `;
 
-                if (!component.icon) {
+                el.firstElementChild.classList.add(...classList);
+                addClasses(el.firstElementChild, component.classNames);
+
+                if (!component.icon && el.querySelector('.item_icon')) {
                     el.querySelector('.item_icon').remove();
                 }
 
@@ -403,6 +451,7 @@ function Aside(selector) {
             case 'property':
                 childs = component.production ? component.production : [];
                 el.classList.add('property', 'fold_js');
+                addClasses(el, component.classNames);
 
                 el.innerHTML = `
           <div class="property_head d-flex align-items-center">
@@ -439,6 +488,7 @@ function Aside(selector) {
 
             case 'slider':
                 el.classList.add('slider', 'my-30');
+                addClasses(el, component.classNames);
 
                 if (component.label || component.value)
                     el.classList.add('has_mini_info');
@@ -462,6 +512,7 @@ function Aside(selector) {
 
             case 'checkbox':
                 el.classList.add('checkbox', 'py-10');
+                addClasses(el, component.classNames);
 
                 if (!component.label) el.classList.add('checkbox_no_label');
 
@@ -486,6 +537,7 @@ function Aside(selector) {
                 }
 
                 el.classList.add('size_5', component.round ? 'circle' : 'square');
+                addClasses(el, component.classNames);
 
                 el.innerHTML = `
           <img src="${component.icon}" alt="">
@@ -496,6 +548,7 @@ function Aside(selector) {
             case 'button':
                 el = document.createElement('a');
                 el.classList.add('btn');
+                addClasses(el, component.classNames);
                 el.href = component.url;
 
                 el.innerHTML = `
@@ -506,6 +559,7 @@ function Aside(selector) {
 
             case 'text':
                 el.classList.add('py-10');
+                addClasses(el, component.classNames);
                 el.innerHTML = component.content;
 
                 break;
@@ -513,6 +567,13 @@ function Aside(selector) {
             case 'icon_list':
                 childs = component.components;
                 el.classList.add('icon_list');
+                addClasses(el, component.classNames);
+
+                break;
+
+            case 'color':
+                addClasses(el, ['color_picker']);
+                el.innerHTML = `<input type="color">`;
 
                 break;
             default:
@@ -535,10 +596,15 @@ function Aside(selector) {
                 e.preventDefault();
                 let data;
 
+                const url = component.url;
+                if (component.redirect) return window.location.replace(url);
+
                 if (location.hostname !== 'localhost') {
-                    const res = await fetch(component.url);
+
+                    const res = await fetch();
                     data = await res.json();
                     console.log('ajax response:', data);
+
                 } else if (cityInfoJson) {
                     data = cityInfoJson;
                 } else {
@@ -558,6 +624,11 @@ function Aside(selector) {
                 _getComponentDom(childComponent)
             );
         }
+    }
+    function addClasses(elem, array) {
+
+        if (array) elem.classList.add(...array);
+
     }
 }
 function Bottom(selector) {
@@ -582,8 +653,50 @@ DomHistory.prototype.clear = function() {
     this.history = [];
 };
 
-function CustomScroll() {
-    const scrolls = document.querySelectorAll('.panel_holder');
+function CustomScroll(target) {
+
+    let targetElement = document;
+
+    if (typeof target === 'string' && $(target)) {
+        targetElement = $(target);
+    } else if (typeof target === 'object' && target.isConnected) {
+        targetElement = target;
+    }
+
+    const scrolls = targetElement.querySelectorAll('.panel_holder');
+
+    const resizeObserver = new ResizeObserver(entries => {
+        for (const element of entries) {
+            const elem = element.target;
+            const panel_holder = elem.closest('.panel_holder');
+
+            if (elem.classList.contains('content_scroll')) {
+                if (elem.scrollHeight > elem.parentElement.offsetHeight) {
+                    start(panel_holder);
+                } else {
+                    panel_holder.classList.remove('scroll_js');
+                }
+            } else if (elem.classList.contains('panel_content')) {
+                if (elem.offsetHeight < elem.querySelector('.content_scroll').scrollHeight) {
+                    start(panel_holder);
+                } else {
+                    panel_holder.classList.remove('scroll_js');
+                }
+            }
+        }
+    });
+
+    scrolls.forEach(scroll => {
+        const panel_content = scroll.querySelector(':scope > .panel_content');
+
+        if (panel_content) {
+            const content_scroll = scroll.querySelector('.content_scroll');
+            if (!content_scroll) return;
+
+            resizeObserver.observe(content_scroll);
+            resizeObserver.observe(panel_content);
+        }
+    });
 
     function start(scroll) {
 
@@ -671,38 +784,6 @@ function CustomScroll() {
         }
     }
 
-    const resizeObserver = new ResizeObserver(entries => {
-        for (const element of entries) {
-            const elem = element.target;
-            const panel_holder = elem.closest('.panel_holder');
-
-            if (elem.classList.contains('content_scroll')) {
-                if (elem.scrollHeight > elem.parentElement.offsetHeight) {
-                    start(panel_holder);
-                } else {
-                    panel_holder.classList.remove('scroll_js');
-                }
-            } else if (elem.classList.contains('panel_content')) {
-                if (elem.offsetHeight < elem.querySelector('.content_scroll').scrollHeight) {
-                    start(panel_holder);
-                } else {
-                    panel_holder.classList.remove('scroll_js');
-                }
-            }
-        }
-    });
-
-    scrolls.forEach(scroll => {
-        const panel_content = scroll.querySelector(':scope > .panel_content');
-
-        if (panel_content) {
-            const content_scroll = scroll.querySelector('.content_scroll');
-            if (!content_scroll) return;
-
-            resizeObserver.observe(content_scroll);
-            resizeObserver.observe(panel_content);
-        }
-    });
 }
 function CustomAccordion(element) {
     if (element) {
@@ -827,7 +908,7 @@ function Tabs(element) {
         const navTabs = elem.children[0].firstElementChild.firstElementChild.children;
         const content = elem.children[1].querySelector('.panel_content > div > .tab_content');
 
-        [...navTabs].forEach((tab) => {
+        [...navTabs].forEach(tab => {
             tab.onclick = (ev) => {
                 ev.preventDefault();
                 const tabID = tab.firstElementChild.getAttribute('href');
@@ -1070,6 +1151,102 @@ function Select(elem) {
 
     }
 }
+function Draggables() {
+
+    const SCALE_STEP = 0.1;
+    const MAX_SCALE = 1.5;
+    const MIN_SCALE = 0.25;
+
+    const draggableEls = $$('.draggable');
+    let mouseDownCoord, x, y;
+
+    [...draggableEls].forEach(elem => {
+
+        elem.transforms = {
+            x: 0,
+            y: 0,
+            s: 1
+        };
+
+        elem.addEventListener('mousedown', startDrag);
+        window.addEventListener('mouseup', stopDrag);
+        window.addEventListener('mousewheel', handleScroll);
+
+        function startDrag(ev) {
+
+            mouseDownCoord = {
+                x: ev.clientX,
+                y: ev.clientY
+            };
+
+            window.addEventListener('mousemove', handleDragging);
+        }
+        function stopDrag(ev) {
+
+            elem.transforms.x = x;
+            elem.transforms.y = y;
+            window.removeEventListener('mousemove', handleDragging);
+
+        }
+        function handleDragging(ev) {
+
+            const distanceX = Math.round(ev.clientX - mouseDownCoord.x);
+            const distanceY = Math.round(ev.clientY - mouseDownCoord.y);
+
+            x = elem.transforms.x + distanceX / elem.transforms.s;
+            y = elem.transforms.y + distanceY / elem.transforms.s;
+
+            updateTransform();
+
+        }
+        function handleScroll(ev) {
+
+            if (ev.target.closest('.draggable') === elem) {
+
+                const previousScale = elem.transforms.s;
+
+                let direction = 1;
+                if (ev.deltaY > 0) direction = -1;
+
+                elem.transforms.s += SCALE_STEP * direction;
+
+                if (elem.transforms.s > MAX_SCALE) {
+                    elem.transforms.s = MAX_SCALE;
+                } else if (elem.transforms.s < MIN_SCALE) {
+                    elem.transforms.s = MIN_SCALE;
+                }
+
+                const actualZoomRatio = elem.transforms.s / previousScale;
+                if (actualZoomRatio === 1) return;
+
+                const shiftRatio = 1 - actualZoomRatio;
+                const parent = elem.closest('.content_scroll').getBoundingClientRect();
+
+                const cursorDeviationX = ev.clientX - parent.width / 2;
+                const cursorDeviationY = ev.clientY - parent.height / 2;
+
+                x = x + cursorDeviationX * shiftRatio;
+                y = y + cursorDeviationY * shiftRatio;
+
+                updateTransform();
+
+            }
+
+        }
+        function updateTransform() {
+
+            if (x && y) {
+                elem.style.transform = `scale3d(${elem.transforms.s}, ${elem.transforms.s}, 1) translate3d(${x}px, ${y}px, 0)`;
+            } else {
+                elem.style.transform = `scale3d(${elem.transforms.s}, ${elem.transforms.s}, 1)`;
+            }
+
+        }
+
+    });
+
+}
+
 function initSelectElements() {
 
     let sel = [];
