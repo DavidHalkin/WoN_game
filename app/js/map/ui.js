@@ -6,14 +6,7 @@ window.ui.city = new City('.panel_town');
 window.ui.aside = new Aside('.panel_sidebar');
 window.ui.bottom = new Bottom('.panel_army');
 
-new CustomScroll();
-new CustomAccordion();
-new Slider();
-new Tabs();
-new ToolTips();
-new Draggables();
-new Timer();
-initSelectElements();
+initAll();
 
 let cityClickJson, cityBuildJson, cityInfoJson, cityData;
 
@@ -38,6 +31,19 @@ if (location.hostname == 'localhost') {
             });
         });
     });
+}
+
+function initAll() {
+
+    new CustomScroll();
+    new CustomAccordion();
+    new Slider();
+    new Tabs();
+    new ToolTips();
+    new Draggables();
+    new Timer();
+    initSelectElements();
+
 }
 
 function Modes(selector) {
