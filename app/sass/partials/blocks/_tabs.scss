@@ -251,6 +251,18 @@
 					}
 				}
 			}
+			&.small_img{
+				a{
+					img{
+						// max-width: 30px;
+						// flex:0 0 30px;
+						// height: auto;
+						// display: block;
+						// object-fit:none;
+						padding: 10px;
+					}
+				}
+			}
 		}
 	}
 

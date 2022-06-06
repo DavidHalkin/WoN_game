@@ -960,8 +960,10 @@
             <h1>tabs</h1>
             <ul>
                 <li>добавить на родителя(<kbd>tabs </kbd>) <kbd>.tab_nav_big</kbd>и сами табы станут больше</li>
-                <li>в дланный момент табы <i class="red">НЕ</i> адаптивные(когда то шёл разговор про появляющийся дроп если табов много) и не адаптивен под текст(сами табы это грубо говоря квадрат)</li>
-                <li>добавьте класс <kbd>.tabs_responsive</kbd> что бы превратился в селект. яко бы адаптив</li>
+                <li>добавьте класс <kbd>.tabs_responsive</kbd> что бы превратился в селект. яко бы адаптив(яркий пример страница market.html)</li>
+                <li>по-умолчанию, картинки в <kbd>tab_nav_list </kbd> растягиваються на 100%, что бы заполнить весь таб. <br>
+                    что бы отцентрировать и уменьшить картинку,надо на нужный таб(li) добавить <kbd>small_img</kbd>
+                </li>
             </ul>
             <pre>
                 <code>
@@ -1035,6 +1037,13 @@
                                                     </span>
                                                 </a>
                                             </li>
+                                            <li class="small_img">
+                                                <a href="#t44">
+                                                    <span class="link_holder">
+                                                        <img src="https://picsum.photos/200" alt="">
+                                                    </span>
+                                                </a>
+                                            </li>
                                         </ul>
                                         <span>123</span>
                                     </div>
@@ -1058,6 +1067,9 @@
                                                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum sequi hic nam expedita soluta mollitia reiciendis vitae doloribus necessitatibus non voluptas, eligendi voluptates quasi impedit praesentium cupiditate totam! Neque, impedit.</p>
                                                 </div>
                                                 <div class="tab_pane" id="t33">
+                                                    <p>tab_33</p>
+                                                </div>
+                                                <div class="tab_pane" id="t44">
                                                     <p>tab_33</p>
                                                 </div>
                                             </div>

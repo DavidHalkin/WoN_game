@@ -1701,6 +1701,8 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .tab_nav > .tab_nav_list > li a .link_holder img { -o-object-fit: cover; object-fit: cover; width: 100%; height: 100%; }
 
+.tab_nav > .tab_nav_list > li.small_img a img { padding: 10px; }
+
 .tab_pane { display: none; }
 
 .tab_pane.active { display: block; }
