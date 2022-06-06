@@ -2703,6 +2703,10 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .col_sum { max-width: 80px; -webkit-box-flex: 0; -ms-flex: 0 0 80px; flex: 0 0 80px; text-align: right; word-wrap: break-word; }
 
+.diplomacy_area .col_left > .panel { height: calc(100vh - 118px) !important; }
+
+.diplomacy_area .col_right > .panel { height: calc(100vh - 78px) !important; }
+
 #editor_controls { --h-header:100px; --h-footer:200px; width: 300px; position: absolute; z-index: 5; top: 75px; right: 5px; }
 
 @media only screen and (max-width: 1299.98px) { #editor_controls { --h-footer:170px; } }
