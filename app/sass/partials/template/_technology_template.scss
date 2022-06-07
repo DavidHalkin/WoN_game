@@ -22,8 +22,11 @@
 		}
 	}
 	.col_center{
+		.header_tab{
+			margin-bottom: 0;
+		}
 		.inner_height{
-			height: calc(100vh - 236px);
+			height: calc(100vh - 213px);
 		}
 	}
 }

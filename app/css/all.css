@@ -2601,7 +2601,9 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .technology_area .col-225.col_left .inner_height { height: calc(100vh - 95px); }
 
-.technology_area .col_center .inner_height { height: calc(100vh - 236px); }
+.technology_area .col_center .header_tab { margin-bottom: 0; }
+
+.technology_area .col_center .inner_height { height: calc(100vh - 213px); }
 
 .teh_list .teh { margin-bottom: 12px; }
 
