@@ -1,0 +1,77 @@
+.person{
+	--person_w_local:calc(var(--person_w) / 2);
+	--person_h_local:calc(var(--person_h) / 2);
+	--bg_local:var(--person_neutral);
+	position: relative;
+
+	&.silver{
+		--bg_local:var(--person_silver);
+	}
+	&.gold{
+		--bg_local:var(--person_gold);
+		--gold_h:calc(238px / 2);
+	}
+	&.bronze{
+		--bg_local:var(--person_bronze);
+	}
+	&.wood{
+		--bg_local:var(--person_wood);
+	}
+	&.prison{
+		.img_person{
+			&:after{
+				content: "";
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background: var(--prison) no-repeat;
+				background-size: cover;
+				z-index: 2;
+
+			}
+		}
+	}
+	.img_person{
+		width: var(--person_w_local);
+		height: var(--person_h_local);
+		position: relative;
+		// overflow: hidden;
+		> img{
+			position: absolute;
+			bottom: 5px;
+			left: 50%;
+			transform:translateX(-50%);
+			width:  calc(100% - 10px);
+			height: calc(100% - 10px);
+			object-fit:cover;
+		}
+		&:before{
+			content: "";
+			width: 100%;
+			height: 100%;
+			display: block;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			z-index: 1;
+			background: var(--bg_local) no-repeat;
+			background-size: cover;
+		}
+	}
+	.info_ico{
+		position: absolute;
+		top: -10px;
+		bottom: -10px;
+		justify-content:space-between;
+		right: 0;
+		transform:translateX(50%);
+		z-index: 3;
+		// margin-top: -5px;
+		.circle{
+			margin-top: 3px;
+			margin-bottom: 3px;
+		}
+	}
+}

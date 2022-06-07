@@ -146,11 +146,18 @@
 .h-auto{
 	height: auto !important;
 }
+.w-100{
+	width: 100%;
+}
 .l-0{
 	left: 0 !important;
 }
 .t-0{
 	top: 0 !important;
+}
+.col-180{
+	max-width: 180px;
+	flex:0 0 180px;
 }
 .right_top{
 	top: 0;
@@ -176,6 +183,7 @@
 		}
 	}
 }
+
 .center_left{
 	top: 50%;
 	left: 0;

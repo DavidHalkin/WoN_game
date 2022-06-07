@@ -10,7 +10,7 @@
 		}
 	}
 }
-.btn,.close_btn,.back_btn,.switcher{
+.btn,.close_btn,.back_btn,.switcher,.btn_panel .panel{
 	transition: var(--animation_static);
 	&:hover{
 		@include hover;

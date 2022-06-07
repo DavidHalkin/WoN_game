@@ -16,7 +16,12 @@ a,.hovered_item{
 		justify-content: center;
 	}
 }
-
+.go_top{
+	position: absolute;
+	bottom:22px;
+	right: 30px;
+	z-index: 10;
+}
 .btn{
 	--px:20px;
 	--py:17px;
@@ -232,6 +237,33 @@ a,.hovered_item{
 	&.btn-reset{
 		&:not(.disabled){
 			color: $danger;
+		}
+	}
+}
+.btn_panel{
+	position: relative;
+	.close_btn {
+		right: 0;
+		top: 0;
+	}
+	.panel{
+		// background: none;
+		border: 0;
+		padding: 0;
+		margin: 0;
+		color: $light;
+		outline: none;
+		width: 100%;
+	}
+	&.disabled,&:disabled{
+		
+		.panel{
+			opacity: 0.5;
+			pointer-events: none;
+		}
+		
+		&:hover{
+			filter:none;
 		}
 	}
 }

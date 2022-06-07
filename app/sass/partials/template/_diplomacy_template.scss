@@ -44,3 +44,22 @@
 		}
 	}
 }
+.col_graph{
+	overflow: hidden;
+	height: 180px;
+}
+.town_list{
+	li{
+		.town_img{
+			max-width: 76px;
+			flex:0 0 76px;
+			position: relative;
+			.square_img_cont{
+				height: 76px;
+			}
+		}
+		.circle{
+			z-index: 2;
+		}
+	}
+}
