@@ -42,7 +42,9 @@ function initAll() {
     new ToolTips();
     new Draggables();
     new Timer();
+
     initSelectElements();
+    enableRenaming();
 
 }
 
@@ -83,7 +85,6 @@ function City(selector) {
 
     cityList.onclick = handleCityListClick;
 
-    enableRenaming(currentCityName);
     watchTextSize();
 
     function watchTextSize() {
@@ -642,8 +643,6 @@ function Bottom(selector) {
     const elem = $(selector);
     if (!elem) return;
     const panelname = elem.querySelector('#paneltitle');
-
-    enableRenaming(panelname);
 }
 
 /* Utilities ------------------------------------------- */
@@ -809,64 +808,72 @@ function CustomAccordion(element) {
         });
     }
 }
-function enableRenaming(element) {
+function enableRenaming() {
+
     const MAX_LENGTH = 32;
 
-    let object = element.dataset.object;
-    let id = element.dataset.id;
-    let text = element.innerText;
+    $$('[data-rename]').forEach(elem => init(elem));
 
-    element.contentEditable = true;
-    element.addEventListener('keydown', handleUpdate);
-    element.addEventListener('keyup', handleUpdate);
-    element.addEventListener('blur', handleUpdate);
+    function init(elem) {
 
-    function handleUpdate(e) {
-        if (e.code === 'Enter' || e.code === 'NumpadEnter' || e.type === 'blur') {
-            e.preventDefault();
-            const newText = element.innerText;
+        let object = elem.dataset.rename;
+        let id = elem.dataset.id;
+        let text = elem.innerText;
 
-            if (newText === '') {
-                element.innerText = text;
-                return;
+        elem.contentEditable = true;
+        elem.addEventListener('keydown', handleUpdate);
+        elem.addEventListener('keyup', handleUpdate);
+        elem.addEventListener('blur', handleUpdate);
+
+        function handleUpdate(e) {
+            if (e.code === 'Enter' || e.code === 'NumpadEnter' || e.type === 'blur') {
+                e.preventDefault();
+                const newText = elem.innerText;
+
+                if (newText === '') {
+                    elem.innerText = text;
+                    return;
+                }
+                if (newText === text) return;
+
+                if (textValid(newText)) {
+                    sendNewText(newText);
+                    text = newText;
+                }
+            } else if (elem.innerText.length > MAX_LENGTH) {
+                e.preventDefault();
+                elem.innerText = elem.innerText.slice(0, MAX_LENGTH);
+                document.execCommand('selectAll', false, null);
+                document.getSelection().collapseToEnd();
             }
-            if (newText === text) return;
-
-            if (textValid(newText)) {
-                sendNewText(newText);
-                text = newText;
-            }
-        } else if (element.innerText.length > MAX_LENGTH) {
-            e.preventDefault();
-            element.innerText = element.innerText.slice(0, MAX_LENGTH);
-            document.execCommand('selectAll', false, null);
-            document.getSelection().collapseToEnd();
         }
-    }
-    function textValid(string) {
-        const regex = /[^\p{L}\p{N} -]+/gu;
+        function textValid(string) {
+            const regex = /[^\p{L}\p{N} -]+/gu;
 
-        if (!string.match(regex)) return true;
-        return false;
+            if (!string.match(regex)) return true;
+            return false;
+        }
+        function sendNewText(string) {
+            fetch(`/ajax?do=rename&c=map&id=${id}&o=${object}&name=${string}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }).then((res) => {
+                if (res.ok) {
+                    res.json().then((res) => {
+                        console.log(res);
+                    });
+                } else {
+                    res.json().then((res) => {
+                        console.log(res);
+                    });
+                }
+            });
+        }
+
     }
-    function sendNewText(string) {
-        fetch(`/ajax?do=rename&c=map&id=${id}&o=${object}&name=${string}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        }).then((res) => {
-            if (res.ok) {
-                res.json().then((res) => {
-                    console.log(res);
-                });
-            } else {
-                res.json().then((res) => {
-                    console.log(res);
-                });
-            }
-        });
-    }
+
 }
 function Slider(el) {
     if (el) {
