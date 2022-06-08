@@ -2681,7 +2681,7 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .law_list .item { padding: 0 25px; }
 
-.item_law { padding-bottom: 22px; width: 100%; overflow: hidden; }
+.item_law { padding-bottom: 22px; width: 100%; display: -webkit-inline-box !important; display: -ms-inline-flexbox !important; display: inline-flex !important; }
 
 .item_law .alert { display: none; }
 
