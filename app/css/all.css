@@ -68,7 +68,7 @@ textarea { overflow: auto; resize: vertical; }
 
 fieldset { min-width: 0; padding: 0; margin: 0; border: 0; }
 
-:root { --texture_panel:url(/images/map/panel/panel_texture.png); --border_img_h: url(/images/map/panel/h_border.png); --border_img_h_bottom: url(/images/map/panel/h_border_bottom.png); --border_img_v: url(/images/map/panel/v_border.png); --border_img_v_right: url(/images/map/panel/v_border_right.png); --size_border: 17px; --size_corner: 68px; --corner_img: url(/images/map/panel/corner.png); --corner_img_1: url(/images/map/panel/corner_trigger_construction_one.png); --corner_img_1_size:96px; --corner_img_2: url(/images/map/panel/corner_trigger_construction_two.png); --corner_img_2_width:136px; --corner_img_2_height:86px; /*tabs corners and decorate*/ --tab_img_active: url(/images/map/tab/corner_tab.png); --tab_img_active_etc: url(/images/map/tab/tab_active.png); --tab_size_active_etc_w:108px; --tab_size_active_etc_h:30px; --tab_size_active:58px; --tab_img_boder: url(/images/map/tab/corner_border.png); --tab_size_boder: 60px; --tab_img_cap:url(/images/map/tab/tab_cap.png); --tab_size_cap_w:30px; --tab_size_cap_h:54px; --decorate_img: url(/images/map/panel/decorate.png); --size_w:76px; --size_h:77px; --width_decor:82px; --height_decor:43px; --animation_static: all 0.15s ease; --animation_hovered: all 0.3s ease; --indent:4px; --scroll_bar_img:url(/images/map/scroll/bar.png); --scroll_bar_size:31px; --scroll_button_img:url(/images/map/scroll/button.png); --scroll_button_w:34px; --scroll_button_h:30px; --scroll_handler_img:url(/images/map/scroll/handler.png); --scroll_handler_w:20px; --scroll_handler_h:45px; --slider_bar_img:url(/images/map/slider/bar.png); --slider_bar_size:21px; --slider_button_img:url(/images/map/slider/decor.png); --slider_button_w:39px; --slider_button_h:29px; --slider_handler_img:url(/images/map/slider/handler.png); --slider_handler_w:43px; --slider_handler_h:75px; --square_img:url(/images/map/square/square.png); --circle_img:url(/images/map/circles/circle.png); --size:110px; --checkbox_mark_img:url(/images/map/icons/check_mark.png); --checkbox_mark_w:34px; --checkbox_mark_h:32px; --body_texture:url(/images/map/ui/body_texture.png); --form_enter_bg:url(/images/map/enter_page/frame_registration.png); --form_enter_width:1103px; --form_enter_height:994px; --frame_bg:url(/images/map/square/frame.png); --frame_w:388px; --frame_h:138px; --person_w:204px; --person_h:226px; --person_neutral:url(/images/map/person/person_neutral.png); --person_silver:url(/images/map/person/person_silver.png); --person_gold:url(/images/map/person/person_gold.png); --person_bronze:url(/images/map/person/person_bronze.png); --person_wood:url(/images/map/person/person_wood.png); --prison:url(/images/map/person/prison.png); }
+:root { --texture_panel:url(/images/map/panel/panel_texture.png); --border_img_h: url(/images/map/panel/h_border.png); --border_img_h_bottom: url(/images/map/panel/h_border_bottom.png); --border_img_v: url(/images/map/panel/v_border.png); --border_img_v_right: url(/images/map/panel/v_border_right.png); --size_border: 17px; --size_corner: 68px; --corner_img: url(/images/map/panel/corner.png); --corner_img_1: url(/images/map/panel/corner_trigger_construction_one.png); --corner_img_1_size:96px; --corner_img_2: url(/images/map/panel/corner_trigger_construction_two.png); --corner_img_2_width:136px; --corner_img_2_height:86px; /*tabs corners and decorate*/ --tab_img_active: url(/images/map/tab/corner_tab.png); --tab_img_active_etc: url(/images/map/tab/tab_active.png); --tab_size_active_etc_w:108px; --tab_size_active_etc_h:30px; --tab_size_active:58px; --tab_img_boder: url(/images/map/tab/corner_border.png); --tab_size_boder: 60px; --tab_img_cap:url(/images/map/tab/tab_cap.png); --tab_size_cap_w:30px; --tab_size_cap_h:54px; --decorate_img: url(/images/map/panel/decorate.png); --size_w:76px; --size_h:77px; --width_decor:82px; --height_decor:43px; --animation_static: all 0.15s ease; --animation_hovered: all 0.3s ease; --indent:4px; --scroll_bar_img:url(/images/map/scroll/bar.png); --scroll_bar_size:31px; --scroll_button_img:url(/images/map/scroll/button.png); --scroll_button_w:34px; --scroll_button_h:30px; --scroll_handler_img:url(/images/map/scroll/handler.png); --scroll_handler_w:20px; --scroll_handler_h:45px; --slider_bar_img:url(/images/map/slider/bar.png); --slider_bar_size:21px; --slider_button_img:url(/images/map/slider/decor.png); --slider_button_w:39px; --slider_button_h:29px; --slider_handler_img:url(/images/map/slider/handler.png); --slider_handler_w:43px; --slider_handler_h:75px; --square_img:url(/images/map/square/square.png); --circle_img:url(/images/map/circles/circle.png); --size:110px; --checkbox_mark_img:url(/images/map/icons/check_mark.png); --checkbox_mark_w:34px; --checkbox_mark_h:32px; --body_texture:url(/images/map/ui/body_texture.png); --form_enter_bg:url(/images/map/enter_page/frame_registration.png); --form_enter_width:1103px; --form_enter_height:994px; --frame_bg:url(/images/map/square/frame.png); --frame_w:388px; --frame_h:138px; --person_w:204px; --person_h:226px; --person_neutral:url(/images/map/person/person_neutral.png); --person_silver:url(/images/map/person/person_silver.png); --person_gold:url(/images/map/person/person_gold.png); --person_bronze:url(/images/map/person/person_bronze.png); --person_wood:url(/images/map/person/person_wood.png); --prison:url(/images/map/person/prison.png); --person_big_w:516px; --person_big_h:572px; }
 
 .mt-0 { margin-top: 0px !important; }
 
@@ -1925,13 +1925,13 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .modal_container { --indent_y:40px; --indent_x:15px; position: fixed; top: 0; bottom: 0; left: 0; right: 0; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; z-index: 100; overflow: hidden; pointer-events: none; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; padding: var(--indent_y) var(--indent_x); }
 
-.modal_container .modal { pointer-events: auto; -webkit-box-flex: 1; -ms-flex: 1 1 auto; flex: 1 1 auto; min-height: 0; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
+.modal_container .modal { -webkit-box-flex: 1; -ms-flex: 1 1 auto; flex: 1 1 auto; min-height: 0; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; pointer-events: none; }
 
-.modal_container .modal > .panel { width: 100%; }
+.modal_container .modal > .panel { pointer-events: auto; width: 100%; }
 
 .modal_container .modal > .panel > .panel_holder { max-height: calc(100vh - var(--indent_y) * 2); }
 
-.person { --person_w_local:calc(var(--person_w) / 2); --person_h_local:calc(var(--person_h) / 2); --bg_local:var(--person_neutral); position: relative; }
+.person { --person_w_local:calc(var(--person_w) / 2); --person_h_local:calc(var(--person_h) / 2); --bg_local:var(--person_neutral); position: relative; width: var(--person_w_local); height: var(--person_h_local); }
 
 .person.silver { --bg_local:var(--person_silver); }
 
@@ -1941,13 +1941,17 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .person.wood { --bg_local:var(--person_wood); }
 
-.person.prison .img_person:after { content: ""; width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: var(--prison) no-repeat; -webkit-background-size: cover; background-size: cover; z-index: 2; }
+.person.prison .img_person:after { content: ""; width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: var(--prison) no-repeat; -webkit-background-size: cover; background-size: cover; z-index: 2; pointer-events: none; }
 
-.person .img_person { width: var(--person_w_local); height: var(--person_h_local); position: relative; }
+.person.big { --person_w_local:calc(var(--person_big_w) / 2); --person_h_local:calc(var(--person_big_h) / 2); }
 
-.person .img_person > img { position: absolute; bottom: 5px; left: 50%; -webkit-transform: translateX(-50%); -ms-transform: translateX(-50%); transform: translateX(-50%); width: calc(100% - 10px); height: calc(100% - 10px); -o-object-fit: cover; object-fit: cover; }
+.person .img_person { width: 100%; height: 100%; }
 
-.person .img_person:before { content: ""; width: 100%; height: 100%; display: block; position: absolute; bottom: 0; left: 0; z-index: 1; background: var(--bg_local) no-repeat; -webkit-background-size: cover; background-size: cover; }
+.person .img_person .holder { position: relative; padding: 10px; display: block; width: 100%; height: 100%; background: #180f0a; border: 0; }
+
+.person .img_person .holder > img { position: absolute; bottom: 5px; left: 50%; -webkit-transform: translateX(-50%); -ms-transform: translateX(-50%); transform: translateX(-50%); width: calc(100% - 10px); height: calc(100% - 10px); -o-object-fit: cover; object-fit: cover; }
+
+.person .img_person:before { content: ""; width: 100%; height: 100%; display: block; position: absolute; bottom: 0; left: 0; z-index: 1; background: var(--bg_local) no-repeat; -webkit-background-size: cover; background-size: cover; pointer-events: none; }
 
 .person .info_ico { position: absolute; top: -10px; bottom: -10px; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; right: 0; -webkit-transform: translateX(50%); -ms-transform: translateX(50%); transform: translateX(50%); z-index: 3; }
 
@@ -2820,7 +2824,7 @@ a:hover, .hovered_item:hover { color: #fff; text-decoration: none; -webkit-trans
 
 .panel_army.slide_at_right.closed .switcher_slider { -webkit-transform: translate(-50%, -50%) scale(-1, 1); -ms-transform: translate(-50%, -50%) scale(-1, 1); transform: translate(-50%, -50%) scale(-1, 1); }
 
-.close_btn, .back_btn { border: 0; padding: 0; -webkit-border-radius: 6px; border-radius: 6px; --s:calc(56px / 2); width: var(--s); height: var(--s); background: url(/images/map/btns/close.png) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; display: block; top: 3px; right: 3px; z-index: 6; }
+.close_btn, .back_btn { border: 0; padding: 0; -webkit-border-radius: 6px; border-radius: 6px; --s:calc(56px / 2); width: var(--s); height: var(--s); background: url(/images/map/btns/close.png) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; display: block; top: 3px; right: 3px; z-index: 7; }
 
 .back_btn { --s:calc(58px / 2); background: url(/images/map/btns/back.png) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; }
 

@@ -3,7 +3,8 @@
 	--person_h_local:calc(var(--person_h) / 2);
 	--bg_local:var(--person_neutral);
 	position: relative;
-
+	width: var(--person_w_local);
+	height: var(--person_h_local);
 	&.silver{
 		--bg_local:var(--person_silver);
 	}
@@ -29,24 +30,37 @@
 				background: var(--prison) no-repeat;
 				background-size: cover;
 				z-index: 2;
-
+				pointer-events: none;
 			}
 		}
 	}
+	&.big{
+		--person_w_local:calc(var(--person_big_w) / 2);
+		--person_h_local:calc(var(--person_big_h) / 2);
+	}
 	.img_person{
-		width: var(--person_w_local);
-		height: var(--person_h_local);
-		position: relative;
+		width: 100%;
+		height: 100%;
 		// overflow: hidden;
-		> img{
-			position: absolute;
-			bottom: 5px;
-			left: 50%;
-			transform:translateX(-50%);
-			width:  calc(100% - 10px);
-			height: calc(100% - 10px);
-			object-fit:cover;
+		.holder{
+			position: relative;
+			padding: 10px;
+			display: block;
+			width: 100%;
+			height: 100%;
+			background: $primary;
+			border: 0;
+			> img{
+				position: absolute;
+				bottom: 5px;
+				left: 50%;
+				transform:translateX(-50%);
+				width:  calc(100% - 10px);
+				height: calc(100% - 10px);
+				object-fit:cover;
+			}
 		}
+		
 		&:before{
 			content: "";
 			width: 100%;
@@ -58,6 +72,7 @@
 			z-index: 1;
 			background: var(--bg_local) no-repeat;
 			background-size: cover;
+			pointer-events: none;
 		}
 	}
 	.info_ico{

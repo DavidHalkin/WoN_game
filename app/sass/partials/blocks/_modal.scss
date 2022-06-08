@@ -19,12 +19,14 @@
 	justify-content:center;
 	padding: var(--indent_y) var(--indent_x);
 	.modal{
-		pointer-events: auto;
+		
 		flex: 1 1 auto;
 		min-height: 0;
 		display: flex;
 		align-items:center;
+		pointer-events: none;
 		> .panel{
+			pointer-events: auto;
 			width: 100%;
 			> .panel_holder{
 				max-height: calc(100vh - var(--indent_y) * 2);
