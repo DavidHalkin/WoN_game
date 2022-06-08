@@ -1,8 +1,10 @@
 .modal{
 	max-width: 480px;
 	width: 100%;
+
 }
 .modal_container{
+	min-width: $body_min_width;
 	--indent_y:40px;
 	--indent_x:15px;
 	position: fixed;
