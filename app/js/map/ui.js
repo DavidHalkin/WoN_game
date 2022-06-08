@@ -42,6 +42,7 @@ function initAll() {
     new ToolTips();
     new Draggables();
     new Timer();
+    new Table();
 
     initSelectElements();
     enableRenaming();
@@ -1272,26 +1273,120 @@ function Timer() {
 
         function updateCountdown() {
 
-    		const now = new Date().getTime();
-    		const interval = countDownDate - now;
+            const now = new Date().getTime();
+            const interval = countDownDate - now;
 
-    		if (interval < 0) {
-    			clearInterval(metronome);
-    			timer.style.visibility = 'hidden';
-    			return;
-    		}
+            if (interval < 0) {
+                clearInterval(metronome);
+                timer.style.visibility = 'hidden';
+                return;
+            }
 
-    		const days = Math.floor(interval / (1000 * 60 * 60 * 24));
-    		const hours = Math.floor((interval % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    		const minutes = Math.floor((interval % (1000 * 60 * 60)) / (1000 * 60));
-    		const seconds = Math.floor((interval % (1000 * 60)) / 1000);
+            const days = Math.floor(interval / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((interval % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((interval % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((interval % (1000 * 60)) / 1000);
 
-    		elem.innerHTML = `${days}д ${hours}ч ${minutes}м ${seconds}с`;
+            elem.innerHTML = `${days}д ${hours}ч ${minutes}м ${seconds}с`;
 
-    	}
+        }
 
     }
 
+}
+function Table(target) {
+
+    if (typeof target === 'string' && $(target)) {
+        init($(target));
+    } else if (typeof target === 'object' && target.isConnected) {
+        init(target);
+    } else {
+        $$('.table').forEach(table => init(table));
+    }
+
+    function init(elem) {
+
+        const header = elem.querySelector('.table_header');
+        if (!header) return console.info(`${elem.tagName}.${elem.classList} — is not a table`);
+        const headerCols = [...header.firstElementChild.children];
+        const body = elem.querySelector('.table_body');
+
+        setTimeout(updateWidths, 16);
+        watchTableContent(body);
+        handleScroll();
+
+        body.parentElement.addEventListener('scroll', handleScroll);
+
+        function watchTableContent(body) {
+
+            const config = {
+                childList: true,
+                subtree: true,
+                characterData: true
+            };
+
+            const callback = (mutationsList, observer) => {
+                for (const mutation of mutationsList) {
+
+                    switch (mutation.type) {
+                        case 'childList':
+                        case 'characterData':
+                            return updateWidths();
+                    }
+
+                }
+            };
+
+            const observer = new MutationObserver(callback);
+            observer.observe(body, config);
+
+        }
+        function updateWidths() {
+
+            const row = body.querySelector('.tr');
+
+            let cols = [];
+
+            [...row.children].forEach(col => cols.push(col));
+
+            headerCols.forEach((title, i) => {
+
+                if (title.dataset.width) {
+                    const w = title.dataset.width;
+                    title.style.width = `${w}px`;
+                    cols[i].style.width = `${w}px`;
+                } else {
+                    title.style.width = cols[i].offsetWidth + 'px';
+                }
+
+            });
+
+            if (elem.children[1].classList.contains('scroll_js')) {
+                header.style.paddingRight = `12px`;
+                elem.classList.add('table_scroll_active');
+            }
+
+        }
+        function handleScroll(ev) {
+
+            const shadowsElem = body.closest('.panel_content');
+            const maxScroll = body.scrollHeight - shadowsElem.offsetHeight;
+            const shadowTreshold = 10; // px
+
+            if (body.parentElement.scrollTop < shadowTreshold) {
+                shadowsElem.classList.remove('has_shadow_top');
+            } else {
+                shadowsElem.classList.add('has_shadow_top');
+            }
+            
+            if (body.parentElement.scrollTop > maxScroll - shadowTreshold) {
+                shadowsElem.classList.remove('has_shadow_bottom');
+            } else {
+                shadowsElem.classList.add('has_shadow_bottom');
+            }
+
+        }
+    }
 }
 
 function initSelectElements() {
