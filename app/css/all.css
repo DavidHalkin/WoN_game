@@ -2765,6 +2765,26 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .town_list li .circle { z-index: 2; }
 
+.dynasty_page { overflow-y: hidden; }
+
+.dynasty_page .wrapper { height: 100vh; position: relative; }
+
+.dynasty_page .left_part { width: 600px; height: calc(100vh - 300px) !important; left: 5px; bottom: 5px; position: absolute; }
+
+.dynasty_page .left_part.closed { width: 240px; }
+
+.dynasty_page .left_part > .panel_holder > .panel_content > .content_scroll { height: 100%; }
+
+.dynasty_page .left_part .tabs { display: grid; grid-template-rows: -webkit-min-content 1fr; grid-template-rows: min-content 1fr; height: 100% !important; overflow: hidden; }
+
+.dynasty_page .left_part .tabs .inner_height { grid-row: span 2; }
+
+.dynasty_page .left_part .switcher_slider { position: absolute; right: -10px; top: 50%; }
+
+.dynasty_area { width: 100%; position: absolute; top: 0; left: 0; }
+
+.dynasty_area.grid_column { height: 100vh !important; }
+
 #editor_controls { --h-header:100px; --h-footer:200px; width: 300px; position: absolute; z-index: 5; top: 75px; right: 5px; }
 
 @media only screen and (max-width: 1299.98px) { #editor_controls { --h-footer:170px; } }

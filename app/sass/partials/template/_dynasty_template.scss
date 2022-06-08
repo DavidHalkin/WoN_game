@@ -1,0 +1,49 @@
+.dynasty_page{
+	overflow-y: hidden;
+	.wrapper{
+		height: 100vh;
+		position: relative;
+	}
+	.left_part{
+		width: 600px;
+		height: calc(100vh - 300px) !important;
+		left: 5px;
+		bottom: 5px;
+		position: absolute;
+		&.closed{
+			width: 240px;
+		}
+		>.panel_holder{
+			> .panel_content{
+				>.content_scroll {
+					height: 100%;
+					// overflow: hidden;
+				}
+			}
+		}
+		.tabs {
+			display: grid;
+			grid-template-rows: min-content 1fr;
+			height: 100% !important;
+			overflow: hidden;
+			.inner_height{
+				grid-row: span 2;
+			}
+		}
+		.switcher_slider{
+			position: absolute;
+			right: -10px;
+			top: 50%;
+		}
+
+	}
+}
+.dynasty_area{
+	&.grid_column{
+		height: 100vh !important;
+	}
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
