@@ -36,6 +36,7 @@
 	text-align: center;
 	justify-content:center;
 	overflow: hidden;
+	word-break: break-all;
 }
 .person{
 	--person_w_local:calc(var(--person_w) / 2);

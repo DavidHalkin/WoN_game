@@ -103,3 +103,13 @@
 		}
 	}
 }
+.column_person{
+	&.scroll_js {
+		.content_scroll{
+			padding-right: calc(var(--size_border_local) * 3.25) !important;
+		}
+		.scrollbar{
+			right: 0 !important;
+		}
+	}
+}

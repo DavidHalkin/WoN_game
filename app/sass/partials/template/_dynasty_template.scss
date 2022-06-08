@@ -4,39 +4,6 @@
 		height: 100vh;
 		position: relative;
 	}
-	.left_part{
-		width: 600px;
-		height: calc(100vh - 300px) !important;
-		left: 5px;
-		bottom: 5px;
-		position: absolute;
-		&.closed{
-			width: 240px;
-		}
-		>.panel_holder{
-			> .panel_content{
-				>.content_scroll {
-					height: 100%;
-					// overflow: hidden;
-				}
-			}
-		}
-		.tabs {
-			display: grid;
-			grid-template-rows: min-content 1fr;
-			height: 100% !important;
-			overflow: hidden;
-			.inner_height{
-				grid-row: span 2;
-			}
-		}
-		.switcher_slider{
-			position: absolute;
-			right: -10px;
-			top: 50%;
-		}
-
-	}
 }
 .dynasty_area{
 	&.grid_column{
@@ -46,4 +13,93 @@
 	position: absolute;
 	top: 0;
 	left: 0;
+}
+.left_tab{
+	width: 600px;
+	height: calc(100vh - 300px) !important;
+	left: 10px;
+	bottom: 10px;
+	position: absolute;
+	z-index: 2;
+	@include media(max, lg) {
+		width: 400px;
+	}
+	@media only screen and (max-height: 600px) {
+		height: calc(100vh - 100px) !important;
+	}
+	&.closed{
+		width: 200px;
+		.person {
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.holder_info {
+			display: none !important;
+		}
+		.tab_nav {
+			.title {
+				display: none !important;
+			}
+		}
+	}
+	>.panel_holder{
+		> .panel_content{
+			>.content_scroll {
+				height: 100%;
+				// overflow: hidden;
+			}
+		}
+	}
+	.tabs {
+		display: grid;
+		grid-template-rows: min-content 1fr;
+		height: 100% !important;
+		overflow: hidden;
+		.inner_height{
+			grid-row: span 2;
+		}
+	}
+	.switcher_slider{
+		position: absolute;
+		right: -17px !important;
+		top: 50%;
+		display: block;
+	}
+}
+.modal_person{
+	width: 620px;
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	height: calc(100vh - 83px) !important;
+	@include media(max, xl) {
+		width: 360px;
+		.item_person{
+			margin-left: 0;
+			margin-right: 0;
+		}
+		.columns_holder{
+			height: auto !important;
+			padding-left: 20px;
+		}
+		.holder_btns{
+			max-height: 200px;
+		}
+	}
+	.column_text{
+		@include media(max, xl) {
+			max-width: 100%;
+			flex:0 0 100%;
+			padding-left: 0 !important;
+			padding-right: 0 !important;
+		}
+	}
+}
+.column_person{
+	flex:0 0 258px ;
+	max-width: 258px ;
+	.panel_content{
+		min-height: 150px;
+	}
+	
 }
