@@ -1,0 +1,392 @@
+{
+    "background": "2",
+    "front": 5,
+    "city_id": "745",
+    "build_list": [
+        {
+            "id": "75629",
+            "x": "-5",
+            "y": "-5",
+            "name": "Рубка леса (Шадиград)",
+            "can_destroy": true,
+            "height": "2",
+            "widht": "2",
+            "img": "/game_files/img/zdan/1497077753_Lsrbkbtr_128.png"
+        },
+        {
+            "id": "75630",
+            "x": "-7",
+            "y": "-4",
+            "name": "Рубка леса (Шадиград)",
+            "can_destroy": true,
+            "height": "2",
+            "widht": "2",
+            "img": "/game_files/img/zdan/1497077753_Lsrbkbtr_128.png"
+        },
+        {
+            "id": "68005",
+            "x": "-1",
+            "y": "-4",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "68018",
+            "x": "0",
+            "y": "-4",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "67997",
+            "x": "2",
+            "y": "-4",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "68008",
+            "x": "3",
+            "y": "-4",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "76774",
+            "x": "-5",
+            "y": "-3",
+            "name": "Рубка леса (Шадиград)",
+            "can_destroy": true,
+            "height": "2",
+            "widht": "2",
+            "img": "/game_files/img/zdan/1497077753_Lsrbkbtr_128.png"
+        },
+        {
+            "id": "68000",
+            "x": "-1",
+            "y": "-3",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "67998",
+            "x": "0",
+            "y": "-3",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "68001",
+            "x": "2",
+            "y": "-3",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "68011",
+            "x": "3",
+            "y": "-3",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "68023",
+            "x": "6",
+            "y": "-3",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "75632",
+            "x": "-7",
+            "y": "-2",
+            "name": "Рубка леса (Шадиград)",
+            "can_destroy": true,
+            "height": "2",
+            "widht": "2",
+            "img": "/game_files/img/zdan/1497077753_Lsrbkbtr_128.png"
+        },
+        {
+            "id": "67999",
+            "x": "-1",
+            "y": "-2",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "67996",
+            "x": "0",
+            "y": "-2",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "68002",
+            "x": "2",
+            "y": "-2",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "68006",
+            "x": "3",
+            "y": "-2",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "68021",
+            "x": "5",
+            "y": "-2",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "68020",
+            "x": "6",
+            "y": "-2",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "75633",
+            "x": "-5",
+            "y": "-1",
+            "name": "Рубка леса (Шадиград)",
+            "can_destroy": true,
+            "height": "2",
+            "widht": "2",
+            "img": "/game_files/img/zdan/1497077753_Lsrbkbtr_128.png"
+        },
+        {
+            "id": "75631",
+            "x": "-7",
+            "y": "0",
+            "name": "Рубка леса (Шадиград)",
+            "can_destroy": true,
+            "height": "2",
+            "widht": "2",
+            "img": "/game_files/img/zdan/1497077753_Lsrbkbtr_128.png"
+        },
+        {
+            "id": "68014",
+            "x": "-1",
+            "y": "0",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "68013",
+            "x": "0",
+            "y": "0",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "68003",
+            "x": "2",
+            "y": "0",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "68004",
+            "x": "3",
+            "y": "0",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "68025",
+            "x": "5",
+            "y": "0",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "68022",
+            "x": "6",
+            "y": "0",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "68012",
+            "x": "-1",
+            "y": "1",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "68007",
+            "x": "0",
+            "y": "1",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "68010",
+            "x": "2",
+            "y": "1",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "68009",
+            "x": "3",
+            "y": "1",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "68024",
+            "x": "5",
+            "y": "1",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "75628",
+            "x": "-7",
+            "y": "2",
+            "name": "Рубка леса (Шадиград)",
+            "can_destroy": true,
+            "height": "2",
+            "widht": "2",
+            "img": "/game_files/img/zdan/1497077753_Lsrbkbtr_128.png"
+        },
+        {
+            "id": "77352",
+            "x": "-4",
+            "y": "2",
+            "name": "Рубка леса (Шадиград)",
+            "can_destroy": true,
+            "height": "2",
+            "widht": "2",
+            "img": "/game_files/img/zdan/1497077753_Lsrbkbtr_128.png"
+        },
+        {
+            "id": "68015",
+            "x": "-1",
+            "y": "3",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "68019",
+            "x": "0",
+            "y": "3",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "68017",
+            "x": "2",
+            "y": "3",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        },
+        {
+            "id": "68016",
+            "x": "3",
+            "y": "3",
+            "name": "Городской дом  (Шадиград)",
+            "can_destroy": true,
+            "height": "1",
+            "widht": "1",
+            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+        }
+    ],
+    "min_diametr": 19,
+    "max_diametr": 71,
+    "label_destroy": "Вы уверены что хотите снести здание?",
+    "label_yes": "Да",
+    "label_no": "Нет"
+}

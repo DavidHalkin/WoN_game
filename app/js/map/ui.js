@@ -12,10 +12,10 @@ let cityClickJson, cityBuildJson, cityInfoJson, cityData;
 
 if (location.hostname == 'localhost') {
     const assets = [
-        fetch('/js/map/examples/city_click.json'),
-        fetch('/js/map/examples/city_info.json'),
-        fetch('/js/map/examples/city_build.json'),
-        fetch('/js/map/examples/city.json')
+        fetch('/cache/map/clicksim/city_click.json'),
+        fetch('/cache/map/clicksim/city_info.json'),
+        fetch('/cache/map/clicksim/city_build.json'),
+        fetch('/cache/map/clicksim/city.json')
     ];
 
     Promise.all(assets).then((results) => {
@@ -56,6 +56,7 @@ function Modes(selector) {
     const buttons = Array.from(list.children);
 
     this.activate = activateButton;
+    this.buttons = list;
 
     buttons.forEach((btn) => {
         if (!btn.classList.contains('active')) {
@@ -1378,7 +1379,7 @@ function Table(target) {
             } else {
                 shadowsElem.classList.add('has_shadow_top');
             }
-            
+
             if (body.parentElement.scrollTop > maxScroll - shadowTreshold) {
                 shadowsElem.classList.remove('has_shadow_bottom');
             } else {

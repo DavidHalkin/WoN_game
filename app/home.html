@@ -10,7 +10,25 @@
 
 <body>
     <div class="wrapper">
-        <div id="field_map" class="field_map"></div>
+        <div id="field_map" class="field_map" style="background-color:#000">
+			<canvas id="mapcanvas"></canvas>
+			<div class="city_label" id="city_name_panel">
+				<div class="blazon"></div>
+				<div class="mask">
+					<div class="panel sm horizontal grid_column">
+						<div class="panel_holder">
+							<div class="panel_content"></div>
+						</div>
+						<div class="decor ">
+							<span class="corner"></span>
+							<span class="corner right_top"></span>
+							<span class="corner right_bottom"></span>
+							<span class="corner left_bottom"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
         <!-- <div id="field_map" class="field_map"><canvas id="map"></canvas></div> -->
         <!-- header_part strat -->
         <div class="header_area d-flex justify-content-between align-items-start">
@@ -503,7 +521,7 @@
         </div>
         <!-- header_part end -->
         <!-- right sidebar start -->
-        <div class="panel panel_sidebar grid_column" style=" display:block;">
+        <div class="panel panel_sidebar grid_column" style="display:none">
             <div class="bg_image_panel" style="background-image: url(/images/map/panel/bg/aside.png);"></div>
             <!-- close btn start-->
             <button type="button" class="close_btn position-absolute"></button>
@@ -714,13 +732,22 @@
                             <span class="corner left_bottom"></span>
                         </div>
                     </div>
-                    <a href="#" class="photo_block d-flex">
+                    <div class="panel md horizontal" id="minimap">
+						<div class="panel_holder px-7"></div>
+						<div class="decor ">
+							<span class="corner"></span>
+							<span class="corner right_top"></span>
+							<span class="corner right_bottom"></span>
+							<span class="corner left_bottom"></span>
+						</div>
+					</div>
+                    <!-- <a href="#" class="photo_block d-flex">
                         <img src="images/map/content/img.png" alt="" class="img-fluid">
-                    </a>
+                    </a> -->
                 </div>
             </div>
             <div class="col pl-10 right_aside d-flex justify-content-end align-items-end">
-                <div class="panel_army d-flex minw_0 justify-content-end slide_at_right">
+                <div class="panel_army closed d-flex minw_0 justify-content-end slide_at_right">
                     <!-- switcher panel btn -->
                     <button class="switcher switcher_slider" onclick="this.parentElement.classList.toggle('closed')"></button>
                     <!-- switcher panel btn END -->
@@ -998,7 +1025,7 @@
         </div>
         <!-- footer_area END -->
     </div>
-    <div class="panel_chat minimized">
+    <div class="panel_chat minimized" hidden>
         <div class="holder_chat d-flex ">
             <div class="panel bg-transparent grid_column">
                 <button type="button" class="close_btn position-absolute"></button>
@@ -1363,23 +1390,10 @@
             </div>
         </div>
     </div>
-    <script>
-    var map;
 
-    function initMap() {
-        map = new google.maps.Map(document.getElementById('field_map'), {
-            center: { lat: -34.397, lng: 150.644 },
-            zoom: 8
-        });
-    }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key= AIzaSyAY-nlxihSvoGM3MlB-RmLZNaVhFPoZra4&callback=initMap" async defer></script>
-    <style>
-    .gmnoprint {
-        display: none !important;
-    }
-    </style>
+    <script src="/js/map/msgpack.min.js"></script>
     <script src="js/map/ui.js"></script>
+    <script type="module" src="/js/map/world.js"></script>
 </body>
 
 </html>

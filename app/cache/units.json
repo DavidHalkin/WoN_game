@@ -1,0 +1,46 @@
+{
+    "U10": {
+        "side_cycle": 72,
+        "idle": {
+            "start": 1,
+            "duration": 1
+        },
+        "move": {
+            "start": {
+                "start": 2,
+                "duration": 10
+            },
+            "cycle": {
+                "start": 13,
+                "duration": 47
+            },
+            "end": {
+                "start": 61,
+                "duration": 11
+            }
+        }
+    },
+    "U7": {
+        "side_cycle": 100,
+        "idle": {
+            "start": 1,
+            "duration": 1
+        },
+        "turn": {
+            "start": {
+                "start": 2,
+                "duration": 79
+            }
+        },
+        "attack": {
+            "start": 81,
+            "duration": 35
+        },
+        "turn2": {
+            "start": {
+                "start": 117,
+                "duration": 83
+            }
+        }
+    }
+}

@@ -1,0 +1,370 @@
+{
+    "map": "city",
+    "info": [
+        {
+            "type": "tabs",
+            "tabs": [
+                {
+                    "type": "tab",
+                    "name": "Недра",
+                    "icon": "https://dev.wealthofnations.uk/images/panel/x2/webp/geo.webp",
+                    "content": [
+                        {
+                            "type": "icon_list",
+                            "classNames": [ "col_2", "grid-10" ],
+                            "components": [
+                                {
+                                    "type": "mini_info",
+                                    "name": "resurs_41",
+                                    "tooltip": [
+                                        {
+                                            "text": "-0 Порча"
+                                        }
+                                    ],
+                                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/41.webp",
+                                    "url": "https://google.com",
+                                    "redirect": true,
+                                    "ajax": true,
+                                    "value": "0mm (-367)",
+                                    "editable": false
+                                },
+                                {
+                                    "type": "mini_info",
+                                    "name": "resurs_13",
+                                    "tooltip": [
+                                        {
+                                            "text": "Глина"
+                                        }
+                                    ],
+                                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/13.webp",
+                                    "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=13",
+                                    "ajax": true,
+                                    "value": "336kk",
+                                    "editable": false
+                                },
+                                {
+                                    "type": "mini_info",
+                                    "name": "resurs_1",
+                                    "tooltip": [
+                                        {
+                                            "text": "-0 Порча"
+                                        }
+                                    ],
+                                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/1.webp",
+                                    "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=1",
+                                    "ajax": true,
+                                    "value": "1217k (+1014)",
+                                    "editable": false
+                                },
+                                {
+                                    "type": "mini_info",
+                                    "name": "resurs_40",
+                                    "tooltip": [
+                                        {
+                                            "text": "-0 Порча"
+                                        }
+                                    ],
+                                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/40.webp",
+                                    "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=40",
+                                    "ajax": true,
+                                    "value": "0mm (-568)",
+                                    "editable": false
+                                },
+                                {
+                                    "type": "mini_info",
+                                    "name": "resurs_168",
+                                    "tooltip": [
+                                        {
+                                            "text": "-0 Порча"
+                                        }
+                                    ],
+                                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/168.webp",
+                                    "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=168",
+                                    "ajax": true,
+                                    "value": "0mm (-2699)",
+                                    "editable": false
+                                },
+                                {
+                                    "type": "mini_info",
+                                    "name": "resurs_6",
+                                    "tooltip": [
+                                        {
+                                            "text": "Лошади"
+                                        }
+                                    ],
+                                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/6.webp",
+                                    "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=6",
+                                    "ajax": true,
+                                    "value": "12749969122445mm",
+                                    "editable": false
+                                },
+                                {
+                                    "type": "mini_info",
+                                    "name": "resurs_27",
+                                    "tooltip": [
+                                        {
+                                            "text": "Мрамор"
+                                        }
+                                    ],
+                                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/27.webp",
+                                    "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=27",
+                                    "ajax": true,
+                                    "value": "22kk",
+                                    "editable": false
+                                },
+                                {
+                                    "type": "mini_info",
+                                    "name": "resurs_43",
+                                    "tooltip": [
+                                        {
+                                            "text": "-0 Порча"
+                                        }
+                                    ],
+                                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/43.webp",
+                                    "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=43",
+                                    "ajax": true,
+                                    "value": "0mm (-440k)",
+                                    "editable": false
+                                },
+                                {
+                                    "type": "mini_info",
+                                    "name": "resurs_67",
+                                    "tooltip": [
+                                        {
+                                            "text": "Овцы"
+                                        }
+                                    ],
+                                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/67.webp",
+                                    "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=67",
+                                    "ajax": true,
+                                    "value": "12749969122445mm",
+                                    "editable": false
+                                },
+                                {
+                                    "type": "mini_info",
+                                    "name": "resurs_188",
+                                    "tooltip": [
+                                        {
+                                            "text": "Песок"
+                                        }
+                                    ],
+                                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/188.webp",
+                                    "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=188",
+                                    "ajax": true,
+                                    "value": "300mk",
+                                    "editable": false
+                                },
+                                {
+                                    "type": "mini_info",
+                                    "name": "resurs_58",
+                                    "tooltip": [
+                                        {
+                                            "text": "-0 Порча"
+                                        }
+                                    ],
+                                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/58.webp",
+                                    "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=58",
+                                    "ajax": true,
+                                    "value": "0mm (-883)",
+                                    "editable": false
+                                },
+                                {
+                                    "type": "mini_info",
+                                    "name": "resurs_178",
+                                    "tooltip": [
+                                        {
+                                            "text": "Птица"
+                                        }
+                                    ],
+                                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/178.webp",
+                                    "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=178",
+                                    "ajax": true,
+                                    "value": "12749969122445mm",
+                                    "editable": false
+                                },
+                                {
+                                    "type": "mini_info",
+                                    "name": "resurs_37",
+                                    "tooltip": [
+                                        {
+                                            "text": "-0 Порча"
+                                        }
+                                    ],
+                                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/37.webp",
+                                    "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=37",
+                                    "ajax": true,
+                                    "value": "1810976215406739456mm (+9158302959711289344mm)",
+                                    "editable": false
+                                },
+                                {
+                                    "type": "mini_info",
+                                    "name": "resurs_68",
+                                    "tooltip": [
+                                        {
+                                            "text": "Свиньи"
+                                        }
+                                    ],
+                                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/68.webp",
+                                    "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=68",
+                                    "ajax": true,
+                                    "value": "12749969122445mm",
+                                    "editable": false
+                                },
+                                {
+                                    "type": "mini_info",
+                                    "name": "resurs_179",
+                                    "tooltip": [
+                                        {
+                                            "text": "Скот"
+                                        }
+                                    ],
+                                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/179.webp",
+                                    "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=179",
+                                    "ajax": true,
+                                    "value": "12749969122445mm",
+                                    "editable": false
+                                },
+                                {
+                                    "type": "mini_info",
+                                    "name": "resurs_173",
+                                    "tooltip": [
+                                        {
+                                            "text": "-0 Порча"
+                                        }
+                                    ],
+                                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/173.webp",
+                                    "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=173",
+                                    "ajax": true,
+                                    "value": "3600k",
+                                    "editable": false
+                                },
+                                {
+                                    "type": "mini_info",
+                                    "name": "resurs_42",
+                                    "tooltip": [
+                                        {
+                                            "text": "-0 Порча"
+                                        }
+                                    ],
+                                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/42.webp",
+                                    "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=42",
+                                    "ajax": true,
+                                    "value": "0mm (-795k)",
+                                    "editable": false
+                                },
+                                {
+                                    "type": "mini_info",
+                                    "name": "resurs_51",
+                                    "tooltip": [
+                                        {
+                                            "text": "-0 Порча"
+                                        }
+                                    ],
+                                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/51.webp",
+                                    "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=51",
+                                    "ajax": true,
+                                    "value": "0mm (-2777)",
+                                    "editable": false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "tab",
+                    "name": "Здания",
+                    "icon": "https://dev.wealthofnations.uk/images/panel/x2/webp/builds.webp",
+                    "content": [
+                        {
+                            "type": "property",
+                            "name": "Городской дом ",
+                            "icon": "https://dev.wealthofnations.uk/system_files/img/builds/82_1_2_1_1_1.png",
+                            "amount": "30",
+                            "people": "0 / 300",
+                            "production": []
+                        },
+                        {
+                            "type": "property",
+                            "name": "Рубка леса",
+                            "icon": "https://dev.wealthofnations.uk/system_files/img/builds/35_1_2_1_1_1.png",
+                            "amount": "13",
+                            "people": "0 / 65",
+                            "production": [
+                                {
+                                    "type": "mini_info",
+                                    "name": "resurs_1",
+                                    "tooltip": [
+                                        {
+                                            "text": "-0 Порча"
+                                        }
+                                    ],
+                                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/1.webp",
+                                    "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=1",
+                                    "ajax": true,
+                                    "value": "0",
+                                    "editable": false
+                                },
+                                {
+                                    "type": "mini_info",
+                                    "name": "resurs_2",
+                                    "tooltip": [
+                                        {
+                                            "text": "Смола"
+                                        }
+                                    ],
+                                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/2.webp",
+                                    "url": "/ajax?do=production_list&c=city&city_id=745&resurs_id=2",
+                                    "ajax": true,
+                                    "value": "0",
+                                    "editable": false
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "tab",
+                    "name": "Население",
+                    "icon": "https://dev.wealthofnations.uk/images/panel/x2/webp/people.webp",
+                    "content": [
+                        {
+                            "type": "section",
+                            "name": "Знать 5264",
+                            "components": []
+                        },
+                        {
+                            "type": "section",
+                            "name": "Бедуины 1762",
+                            "components": []
+                        },
+                        {
+                            "type": "section",
+                            "name": "Феллахи 1780",
+                            "components": []
+                        },
+                        {
+                            "type": "section",
+                            "name": "Торговцы 1574",
+                            "components": []
+                        },
+                        {
+                            "type": "section",
+                            "name": "Духовенство 1598",
+                            "components": []
+                        },
+                        {
+                            "type": "section",
+                            "name": "Гулямы 1620",
+                            "components": []
+                        },
+                        {
+                            "type": "section",
+                            "name": "Ремесленники 1620",
+                            "components": []
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

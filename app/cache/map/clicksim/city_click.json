@@ -1,60 +1,35 @@
 {
+    "city_header": {
+        "city_name": "Киев-Град",
+        "character": {
+            "image": "https://dev.wealthofnations.uk/game_files/img/char/",
+            "url": "/character?id=0",
+            "tooltip": [
+                {
+                    "text": " "
+                }
+            ],
+            "ajax": false
+        },
+        "flag": {
+            "image": "https://dev.wealthofnations.uk/game_files/img/tribe/x2/webp/0.webp",
+            "url": "/state?id=218943",
+            "tooltip": [
+                {
+                    "text": "Разбойники"
+                }
+            ],
+            "ajax": false
+        }
+    },
     "info": [
         {
-            "type": "section",
-            "name": "Население",
-            "components": [
-                {
-                    "type": "icon",
-                    "icon": "/game_files/img/tribe/1442332748_.png",
-                    "tooltip": [
-                        {
-                            "text": "Арабы"
-                        }
-                    ],
-                    "round": false
-                },
-                {
-                    "type": "icon",
-                    "icon": "/game_files/img/relig/1442347977_.png",
-                    "tooltip": [
-                        {
-                            "text": "Шиизм"
-                        }
-                    ],
-                    "round": false
-                }
-            ]
-        },
-        {
-            "type": "section",
-            "name": "Производства",
-            "components": [
-                {
-                    "type": "button",
-                    "name": "Создать",
-                    "url": "/ajax?do=build_new&c=city&city_id=745",
-                    "ajax": true
-                },
-                {
-                    "type": "button",
-                    "name": "Управление",
-                    "url": "/ajax?do=city_info&c=city&city_id=745",
-                    "ajax": true
-                },
-                {
-                    "type": "text",
-                    "content": ""
-                }
-            ]
-        },
-        {
-            "type": "section",
+            "type": "icon_list",
             "name": "Ресурсы",
             "components": [
                 {
                     "type": "icon",
-                    "icon": "/game_files/img/resurs/derevo.png",
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/1.webp",
                     "tooltip": [
                         {
                             "text": "Дерево"
@@ -64,7 +39,7 @@
                 },
                 {
                     "type": "icon",
-                    "icon": "/game_files/img/resurs/koni.png",
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/6.webp",
                     "tooltip": [
                         {
                             "text": "Лошади"
@@ -74,7 +49,17 @@
                 },
                 {
                     "type": "icon",
-                    "icon": "/game_files/img/resurs/glina.png",
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/7.webp",
+                    "tooltip": [
+                        {
+                            "text": "Верблюды"
+                        }
+                    ],
+                    "round": true
+                },
+                {
+                    "type": "icon",
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/13.webp",
                     "tooltip": [
                         {
                             "text": "Глина"
@@ -84,7 +69,27 @@
                 },
                 {
                     "type": "icon",
-                    "icon": "/game_files/img/resurs/zlak.png",
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/33.webp",
+                    "tooltip": [
+                        {
+                            "text": "Виноград"
+                        }
+                    ],
+                    "round": true
+                },
+                {
+                    "type": "icon",
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/39.webp",
+                    "tooltip": [
+                        {
+                            "text": "Пшеница"
+                        }
+                    ],
+                    "round": true
+                },
+                {
+                    "type": "icon",
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/40.webp",
                     "tooltip": [
                         {
                             "text": "Злаки"
@@ -94,7 +99,7 @@
                 },
                 {
                     "type": "icon",
-                    "icon": "/game_files/img/resurs/boby.png",
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/41.webp",
                     "tooltip": [
                         {
                             "text": "Бобы"
@@ -104,7 +109,7 @@
                 },
                 {
                     "type": "icon",
-                    "icon": "/game_files/img/resurs/fruit.png",
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/42.webp",
                     "tooltip": [
                         {
                             "text": "Фрукты"
@@ -114,7 +119,7 @@
                 },
                 {
                     "type": "icon",
-                    "icon": "/game_files/img/resurs/ovosh.png",
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/43.webp",
                     "tooltip": [
                         {
                             "text": "Овощи"
@@ -124,7 +129,7 @@
                 },
                 {
                     "type": "icon",
-                    "icon": "/game_files/img/resurs/yagody.png",
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/51.webp",
                     "tooltip": [
                         {
                             "text": "Ягоды"
@@ -134,7 +139,7 @@
                 },
                 {
                     "type": "icon",
-                    "icon": "/game_files/img/resurs/pryanosti.png",
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/58.webp",
                     "tooltip": [
                         {
                             "text": "Пряности"
@@ -144,7 +149,7 @@
                 },
                 {
                     "type": "icon",
-                    "icon": "/game_files/img/resurs/ovechka.png",
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/67.webp",
                     "tooltip": [
                         {
                             "text": "Овцы"
@@ -154,7 +159,7 @@
                 },
                 {
                     "type": "icon",
-                    "icon": "/game_files/img/resurs/pig.png",
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/68.webp",
                     "tooltip": [
                         {
                             "text": "Свиньи"
@@ -164,7 +169,17 @@
                 },
                 {
                     "type": "icon",
-                    "icon": "/game_files/img/resurs/konoplya.png",
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/166.webp",
+                    "tooltip": [
+                        {
+                            "text": "Хлопок"
+                        }
+                    ],
+                    "round": true
+                },
+                {
+                    "type": "icon",
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/168.webp",
                     "tooltip": [
                         {
                             "text": "Конопля"
@@ -174,7 +189,17 @@
                 },
                 {
                     "type": "icon",
-                    "icon": "/game_files/img/resurs/",
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/173.webp",
+                    "tooltip": [
+                        {
+                            "text": "Соль"
+                        }
+                    ],
+                    "round": true
+                },
+                {
+                    "type": "icon",
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/178.webp",
                     "tooltip": [
                         {
                             "text": "Птица"
@@ -184,20 +209,10 @@
                 },
                 {
                     "type": "icon",
-                    "icon": "/game_files/img/resurs/",
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/179.webp",
                     "tooltip": [
                         {
                             "text": "Скот"
-                        }
-                    ],
-                    "round": true
-                },
-                {
-                    "type": "icon",
-                    "icon": "/game_files/img/resurs/",
-                    "tooltip": [
-                        {
-                            "text": "Песок"
                         }
                     ],
                     "round": true
@@ -205,55 +220,6 @@
             ]
         }
     ],
-    "city_header": {
-        "city_name": "Даст",
-        "character": {
-            "image": "/game_files/img/char/facema111312113311137211333253102734.png",
-            "url": "/character?id=613577",
-            "tooltip": [
-                {
-                    "text": "Мухаммед Арабы"
-                }
-            ],
-            "ajax": false
-        },
-        "flag": {
-            "image": "https://te.etnoera.ru/game_files/img/tribe/1442332748_.png",
-            "url": "/state?id=452160",
-            "tooltip": [
-                {
-                    "text": "Шадиград"
-                }
-            ],
-            "ajax": false
-        }
-    },
-    "commands": [
-        {
-            "type": "icon",
-            "tooltip": [
-                {
-                    "text": "Сжечь город"
-                }
-            ],
-            "confirm": true,
-            "icon": "/images/map/btns/commands/11.png",
-            "url": "/ajax?do=burn&c=map&city_id=745",
-            "ajax": true,
-            "round": false
-        },
-        {
-            "type": "icon",
-            "tooltip": [
-                {
-                    "text": "Отправить ресурсы"
-                }
-            ],
-            "icon": "/images/map/btns/commands/01.png",
-            "url": "/sending_resources?city=745",
-            "ajax": false,
-            "round": false
-        }
-    ],
+    "commands": [],
     "army": []
 }

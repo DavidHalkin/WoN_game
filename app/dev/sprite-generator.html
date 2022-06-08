@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Генераторй спрайт листов</title>
+        <link rel="stylesheet" href="css/master.css">
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="info" class="spritegen">
+                <div class="dropzone">
+                    <p>Закиньте сюда картинки</p>
+                    <input type="file" name="surface-tiles" multiple>
+                </div>
+                <textarea name="json"></textarea>
+                <a href="#" download></a>
+                <ul>
+                    <li><a href="/index.html">index</a></li>
+                    <li><a href="/home.html">карта</a></li>
+                </ul>
+            </div>
+            <div class="canvas_container">
+                <canvas id="map"></canvas>
+            </div>
+        </div>
+        <script src="/js/map/potpack.js"></script>
+        <script type="module" src="/js/map/sprite-gen.js"></script>
+    </body>
+</html>

@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="/css/all.css">
+		<title>Map Editor</title>
+		<meta name="env" content="editor">
+		<style media="screen">
+			.radio {
+				display: flex;
+				position: relative;
+				margin: .5em 0;
+			}
+			label {
+				display: block;
+				width: 100%;
+			}
+			input[type="radio"] {
+				margin-right: 0.7em;
+				width: 16px;
+				height: 16px;
+				opacity: 0.2;
+			}
+			input[type="radio"]:checked ~ div {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 16px;
+				height: 16px;
+				border-radius: 50%;
+				background-color: #D67821;
+			}
+			hr {
+				margin-bottom: 1.5em;
+				opacity: .5;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div id="field_map" class="field_map" style="background-color:#284A65">
+				<canvas id="mapcanvas"></canvas>
+			</div>
+			<!-- right sidebar start -->
+			<div id="editor_controls" class="panel grid_column" style="background-image: url(/images/map/panel/bg/aside.png); top: 5px">
+				<div class="panel_holder">
+					<div class="panel_content pb-10">
+						<div class="content_scroll">
+							<p>Левая кнопка мыши — рисование.<br>Правая — удаление.</p>
+							<div id="map_objects">
+								<div class="radio">
+									<input type="radio" name="nature" id="0">
+									<div></div>
+									<label for="0">Море</label>
+								</div>
+								<div class="radio">
+									<input type="radio" name="nature" id="-5">
+									<div></div>
+									<label for="-5">Трава (умеренный)</label>
+								</div>
+								<div class="radio">
+									<input type="radio" name="nature" id="-1">
+									<div></div>
+									<label for="-1">Трава (тропики)</label>
+								</div>
+								<div class="radio">
+									<input type="radio" name="nature" id="-2">
+									<div></div>
+									<label for="-2">Песок</label>
+								</div>
+								<div class="radio">
+									<input type="radio" name="nature" id="-3">
+									<div></div>
+									<label for="-3">Снег</label>
+								</div>
+								<hr>
+								<div class="toggle mountains_area">
+									<!-- <span class="left">Добавить</span> -->
+									<label>
+										<input type="checkbox">
+										<span class="switch"></span>
+									</label>
+									<span class="right">Показать зону занятую горами</span>
+								</div>
+								<small>Последовательно кликайте по клетке, чтобы вбрать вариант горы. Если гора не ставится, кликните по этому месту правой кнопкой.</small>
+								<div class="radio">
+									<input type="radio" name="nature" id="1">
+									<div></div>
+									<label for="1">Горы</label>
+								</div>
+								<div class="radio">
+									<input type="radio" name="nature" id="6">
+									<div></div>
+									<label for="6">Реки</label>
+								</div>
+								<div class="radio">
+									<input type="radio" name="nature" id="4">
+									<div></div>
+									<label for="4">Лес смешанный</label>
+								</div>
+								<div class="radio">
+									<input type="radio" name="nature" id="11">
+									<div></div>
+									<label for="11">Лес хвойный</label>
+								</div>
+								<div class="radio">
+									<input type="radio" name="nature" id="8">
+									<div></div>
+									<label for="8">Джунгли</label>
+								</div>
+
+							</div>
+
+						</div>
+						<div class="scrollbar">
+							<div class="btn_func arrow_prev"></div>
+							<div class="bar">
+								<div class="handler"></div>
+							</div>
+							<div class="btn_func arrow_next"></div>
+						</div>
+					</div>
+				</div>
+				<div class="decor ">
+					<span class="corner"></span>
+					<span class="corner right_top"></span>
+					<span class="corner right_bottom"></span>
+					<span class="corner left_bottom"></span>
+				</div>
+			</div>
+			<!-- right sidebar END -->
+			<div class="panel md horizontal" id="minimap" style="bottom: 70px; left: 0; position: fixed; top: calc(100vh - 270px); display:block">
+				<div class="panel_holder px-7">
+
+				</div>
+				<div class="decor ">
+					<span class="corner"></span>
+					<span class="corner right_top"></span>
+					<span class="corner right_bottom"></span>
+					<span class="corner left_bottom"></span>
+				</div>
+			</div>
+		</div>
+		<script src="/js/map/stats.js"></script>
+        <script src="/js/map/msgpack.min.js"></script>
+		<script type="module" src="js/map/editor_map.js?v=58"></script>
+		<script src="js/map/editor_ui.js?v=9"></script>
+	</body>
+</html>
