@@ -50,11 +50,11 @@
 		color: $muted;
 	}
 	img,svg{
-		// @include centered_img(80,80);
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform:translate(-50%,-50%);
+		@include centered_img(80,80);
+		// position: absolute;
+		// top: 50%;
+		// left: 50%;
+		// transform:translate(-50%,-50%);
 	}
 	--size_5:calc(var(--size) / 2);
 	--size_4:calc(var(--size) / 2 - 5px);

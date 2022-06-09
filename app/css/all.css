@@ -1402,7 +1402,7 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .circle .txt, .mini_info .item_ico .txt { font-style: normal; position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); color: #5f5653; }
 
-.circle img, .circle svg, .mini_info .item_ico img, .mini_info .item_ico svg { position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }
+.circle img, .circle svg, .mini_info .item_ico img, .mini_info .item_ico svg { position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); max-width: 80%; max-height: 80%; }
 
 @media only screen and (min-width: 1px) { .circle.size_5, .mini_info .item_ico.size_5 { --size_circle:var(--size_5); } }
 
@@ -1476,7 +1476,7 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .square .txt, .mini_info.mini_info_square .item_ico .txt { font-style: normal; position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); color: #5f5653; }
 
-.square img, .mini_info.mini_info_square .item_ico img { position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }
+.square img, .mini_info.mini_info_square .item_ico img { position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); max-width: 90%; max-height: 90%; }
 
 @media only screen and (min-width: 1px) { .square.size_5, .mini_info.mini_info_square .item_ico.size_5 { --square_size:var(--size_5); } }
 
