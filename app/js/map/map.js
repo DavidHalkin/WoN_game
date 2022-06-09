@@ -1,4 +1,4 @@
-import * as spriteMap from './sprite-maps.js?v=4';
+import * as spriteMap from './sprite-maps.js?v=5';
 export function Map() {
 
     const container = $('#field_map');

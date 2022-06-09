@@ -2213,8 +2213,9 @@ const small = [
 ];
 const city = [
     {
-        "class": "camp",
-        "culture": "0",
+        "class": "city",
+        "culture": "5",
+        "size": "3",
         "variations": [
             {
                 "w": 378,
@@ -2225,8 +2226,8 @@ const city = [
         ]
     },
     {
-        "class": "camp",
-        "culture": "1",
+        "class": "port",
+        "side": "0",
         "variations": [
             {
                 "w": 378,
@@ -2237,8 +2238,8 @@ const city = [
         ]
     },
     {
-        "class": "camp",
-        "culture": "3",
+        "class": "port",
+        "side": "1",
         "variations": [
             {
                 "w": 378,
@@ -2249,8 +2250,8 @@ const city = [
         ]
     },
     {
-        "class": "camp",
-        "culture": "5",
+        "class": "port",
+        "side": "2",
         "variations": [
             {
                 "w": 378,
@@ -2261,14 +2262,110 @@ const city = [
         ]
     },
     {
-        "class": "camp",
-        "culture": "6",
+        "class": "port",
+        "side": "3",
+        "variations": [
+            {
+                "w": 378,
+                "h": 360,
+                "x": 1520,
+                "y": 0
+            }
+        ]
+    },
+    {
+        "class": "port",
+        "side": "4",
         "variations": [
             {
                 "w": 378,
                 "h": 360,
                 "x": 0,
                 "y": 362
+            }
+        ]
+    },
+    {
+        "class": "port",
+        "side": "5",
+        "variations": [
+            {
+                "w": 378,
+                "h": 360,
+                "x": 380,
+                "y": 362
+            }
+        ]
+    },
+    {
+        "class": "camp",
+        "culture": "0",
+        "variations": [
+            {
+                "w": 378,
+                "h": 360,
+                "x": 760,
+                "y": 362
+            }
+        ]
+    },
+    {
+        "class": "camp",
+        "culture": "1",
+        "variations": [
+            {
+                "w": 378,
+                "h": 360,
+                "x": 1140,
+                "y": 362
+            }
+        ]
+    },
+    {
+        "class": "camp",
+        "culture": "2",
+        "variations": [
+            {
+                "w": 378,
+                "h": 360,
+                "x": 1520,
+                "y": 362
+            }
+        ]
+    },
+    {
+        "class": "camp",
+        "culture": "3",
+        "variations": [
+            {
+                "w": 378,
+                "h": 360,
+                "x": 0,
+                "y": 724
+            }
+        ]
+    },
+    {
+        "class": "camp",
+        "culture": "5",
+        "variations": [
+            {
+                "w": 378,
+                "h": 360,
+                "x": 380,
+                "y": 724
+            }
+        ]
+    },
+    {
+        "class": "camp",
+        "culture": "6",
+        "variations": [
+            {
+                "w": 378,
+                "h": 360,
+                "x": 760,
+                "y": 724
             }
         ]
     },
@@ -2280,8 +2377,21 @@ const city = [
             {
                 "w": 378,
                 "h": 360,
-                "x": 380,
-                "y": 362
+                "x": 1140,
+                "y": 724
+            }
+        ]
+    },
+    {
+        "class": "city",
+        "culture": "1",
+        "size": "2",
+        "variations": [
+            {
+                "w": 378,
+                "h": 360,
+                "x": 1520,
+                "y": 724
             }
         ]
     },
@@ -2293,8 +2403,8 @@ const city = [
             {
                 "w": 378,
                 "h": 360,
-                "x": 760,
-                "y": 362
+                "x": 0,
+                "y": 1086
             }
         ]
     },
@@ -2306,8 +2416,8 @@ const city = [
             {
                 "w": 378,
                 "h": 360,
-                "x": 1140,
-                "y": 362
+                "x": 380,
+                "y": 1086
             }
         ]
     },
@@ -2319,8 +2429,8 @@ const city = [
             {
                 "w": 378,
                 "h": 360,
-                "x": 0,
-                "y": 724
+                "x": 760,
+                "y": 1086
             }
         ]
     },
@@ -2332,8 +2442,8 @@ const city = [
             {
                 "w": 378,
                 "h": 360,
-                "x": 380,
-                "y": 724
+                "x": 1140,
+                "y": 1086
             }
         ]
     },
@@ -2345,8 +2455,8 @@ const city = [
             {
                 "w": 378,
                 "h": 360,
-                "x": 760,
-                "y": 724
+                "x": 1520,
+                "y": 1086
             }
         ]
     },
@@ -2358,8 +2468,8 @@ const city = [
             {
                 "w": 378,
                 "h": 360,
-                "x": 1140,
-                "y": 724
+                "x": 0,
+                "y": 1448
             }
         ]
     },
@@ -2371,8 +2481,8 @@ const city = [
             {
                 "w": 378,
                 "h": 360,
-                "x": 0,
-                "y": 1086
+                "x": 380,
+                "y": 1448
             }
         ]
     },
@@ -2384,79 +2494,33 @@ const city = [
             {
                 "w": 378,
                 "h": 360,
-                "x": 380,
-                "y": 1086
-            }
-        ]
-    },
-    {
-        "class": "port",
-        "side": "0",
-        "variations": [
-            {
-                "w": 378,
-                "h": 360,
-                "x": 760,
-                "y": 1086
-            }
-        ]
-    },
-    {
-        "class": "port",
-        "side": "1",
-        "variations": [
-            {
-                "w": 378,
-                "h": 360,
-                "x": 1140,
-                "y": 1086
-            }
-        ]
-    },
-    {
-        "class": "port",
-        "side": "2",
-        "variations": [
-            {
-                "w": 378,
-                "h": 360,
-                "x": 0,
-                "y": 1448
-            }
-        ]
-    },
-    {
-        "class": "port",
-        "side": "3",
-        "variations": [
-            {
-                "w": 378,
-                "h": 360,
-                "x": 380,
-                "y": 1448
-            }
-        ]
-    },
-    {
-        "class": "port",
-        "side": "4",
-        "variations": [
-            {
-                "w": 378,
-                "h": 360,
                 "x": 760,
                 "y": 1448
             }
         ]
     },
     {
-        "class": "port",
-        "side": "5",
+        "class": "city",
+        "culture": "5",
+        "size": "1",
         "variations": [
             {
                 "w": 378,
                 "h": 360,
                 "x": 1140,
+                "y": 1448
+            }
+        ]
+    },
+    {
+        "class": "city",
+        "culture": "5",
+        "size": "2",
+        "variations": [
+            {
+                "w": 378,
+                "h": 360,
+                "x": 1520,
                 "y": 1448
             }
         ]
