@@ -26,11 +26,13 @@
         {
             "type": "color",
             "label": "Выберите цвет",
-            "classNames": [ "mb-20", "something" ]
+            "classNames": [ "mb-20", "something" ],
+            "name": "color"
         },
         {
             "type": "select",
             "label": "Название",
+            "name": "relig",
             "url": "/url",
             "ajax": true,
             "value": 2,
@@ -54,6 +56,31 @@
             ]
         },
         {
+            "type": "slider",
+            "name": "tribe",
+            "label": "People",
+            "icon": "/url",
+            "editable": true,
+            "value": 5792,
+            "min": 0,
+            "max": 12512,
+            "url": "/",
+            "ajax": true
+        },
+        {
+            "type": "checkbox",
+            "label": "Название",
+            "url": "/url",
+            "value": true,
+            "editable": true
+        },
+        {
+            "type": "button",
+            "name": "Название кнопки",
+            "url": "/ajax?c=new_state&do=register&x=1015&y=704&color={color}&relig={relig}&tribe={tribe}",
+            "classNames": [ "md" ]
+        },
+        {
             "type": "icon_list",
             "name": "Ресурсы",
             "components": [
@@ -65,7 +92,9 @@
                             "text": "Дерево"
                         }
                     ],
-                    "round": true
+                    "round": true,
+                    "url": "/",
+                    "ajax": true
                 },
                 {
                     "type": "icon",
