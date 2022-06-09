@@ -295,12 +295,14 @@ function Aside(selector) {
         let el = document.createElement('div');
         let childs = [];
         let parentForChildsEl = el;
+        let classNames = [];
+        if (component?.classNames?.length) classNames = component.classNames;
 
         // Component DOM
         switch (component.type) {
             case 'tabs':
-                el.classList.add('tabs', 'grid_column');
-                addClasses(el, component.classNames);
+                classNames.push('tabs', 'grid_column');
+                addClasses(el, classNames);
 
                 el.innerHTML = `
                     <div class="header_tab">
@@ -388,8 +390,9 @@ function Aside(selector) {
 
             case 'tab':
                 childs = component.content;
-                el.classList.add('tab');
-                addClasses(el, component.classNames);
+                classNames.push('tab');
+                addClasses(el, classNames);
+
                 el.innerHTML = component.name;
 
                 if (component.icon && component.icon != 'https://') {
@@ -400,14 +403,14 @@ function Aside(selector) {
             case 'section':
                 childs = component.components;
 
-                el.classList.add(
+                classNames.push(
                     'section_accordion',
                     'd-flex',
                     'pt-10',
                     'align-items-start',
                     'closed'
                 );
-                addClasses(el, component.classNames);
+                addClasses(el, classNames);
 
                 el.innerHTML = `
           <div class="col accordion_hidden_part"></div>
@@ -430,8 +433,6 @@ function Aside(selector) {
                 break;
 
             case 'mini_info':
-                const classList = ['mini_info', 'mb-20'];
-                if (component.label) classList.push('label');
 
                 el.classList.add('col_item');
 
@@ -446,11 +447,11 @@ function Aside(selector) {
                     component.value
                     }" ${!component.editable ? 'disabled' : ''}>
                         </div>
-                    </div>
-                    `;
+                    </div>`;
 
-                el.firstElementChild.classList.add(...classList);
-                addClasses(el.firstElementChild, component.classNames);
+                classNames.push('mini_info', 'mb-20');
+                if (component.label) classNames.push('label');
+                addClasses(el.firstElementChild, classNames);
 
                 if (!component.icon && el.querySelector('.item_icon')) {
                     el.querySelector('.item_icon').remove();
@@ -460,8 +461,8 @@ function Aside(selector) {
 
             case 'property':
                 childs = component.production ? component.production : [];
-                el.classList.add('property', 'fold_js');
-                addClasses(el, component.classNames);
+                classNames.push('property', 'fold_js');
+                addClasses(el, classNames);
 
                 el.innerHTML = `
           <div class="property_head d-flex align-items-center">
@@ -497,32 +498,32 @@ function Aside(selector) {
                 break;
 
             case 'slider':
-                el.classList.add('slider', 'my-30');
-                addClasses(el, component.classNames);
+                classNames.push('slider', 'my-30');
+                addClasses(el, classNames);
 
                 if (component.label || component.value)
                     el.classList.add('has_mini_info');
 
                 el.innerHTML = `
-          <div class="mini_info mb-20">
-            <label>${component.label}</label>
-            <div class="mini_holder">
-                <input type="text" name='${component.name}' value="${component.value}" class="info">
-            </div>
-          </div>
-          <div class="range_slider">
-            <input type="range" name="styled-range" min="${component.min}" max="${component.max}" value="${component.value}" step="5" list="styled-range-list" class="range--progress" style="--min: ${component.min}; --max: ${component.max}; --val: 75">
-            <div class="filled" style="width: calc(42.7704% + -3px);"></div>
-          </div>
-        `;
+                  <div class="mini_info mb-20">
+                    <label>${component.label}</label>
+                    <div class="mini_holder">
+                        <input type="text" name='${component.name}' value="${component.value}" class="info">
+                    </div>
+                  </div>
+                  <div class="range_slider">
+                    <input type="range" name="styled-range" min="${component.min}" max="${component.max}" value="${component.value}" step="5" list="styled-range-list" class="range--progress" style="--min: ${component.min}; --max: ${component.max}; --val: 75">
+                    <div class="filled" style="width: calc(42.7704% + -3px);"></div>
+                  </div>
+                `;
 
                 new Slider(el);
 
                 break;
 
             case 'checkbox':
-                el.classList.add('checkbox', 'py-10');
-                addClasses(el, component.classNames);
+                classNames.push('checkbox', 'py-10');
+                addClasses(el, classNames);
 
                 if (!component.label) el.classList.add('checkbox_no_label');
 
@@ -546,8 +547,8 @@ function Aside(selector) {
                     el.href = component.url;
                 }
 
-                el.classList.add('size_5', component.round ? 'circle' : 'square');
-                addClasses(el, component.classNames);
+                classNames.push('size_5', component.round ? 'circle' : 'square');
+                addClasses(el, classNames);
 
                 el.innerHTML = `
           <img src="${component.icon}" alt="">
@@ -557,8 +558,8 @@ function Aside(selector) {
 
             case 'button':
                 el = document.createElement('a');
-                el.classList.add('btn');
-                addClasses(el, component.classNames);
+                classNames.push('btn');
+                addClasses(el, classNames);
                 el.href = component.url;
 
                 el.innerHTML = `
@@ -568,22 +569,25 @@ function Aside(selector) {
                 break;
 
             case 'text':
-                el.classList.add('py-10');
-                addClasses(el, component.classNames);
+                classNames.push('py-10');
+                addClasses(el, classNames);
                 el.innerHTML = component.content;
 
                 break;
 
             case 'icon_list':
+                classNames.push('icon_list');
+                addClasses(el, classNames);
                 childs = component.components;
-                el.classList.add('icon_list');
-                addClasses(el, component.classNames);
 
                 break;
 
             case 'color':
-                addClasses(el, ['color_picker']);
-                el.innerHTML = `<input type="color">`;
+                classNames.push('color_picker');
+                addClasses(el, classNames);
+                el.innerHTML = `
+                <label>${component.label}</label><br>
+                <input type="color">`;
 
                 break;
             default:
@@ -1058,13 +1062,17 @@ function Select(elem) {
     this.toggle = toggle;
 
     header.onclick = toggle;
-    setValue();
+    setValue(-1);
     initClicks();
     observeMutation();
 
     function setValue(val) {
 
-        if (val) {
+        if (val === -1) {
+            elem.dataset.value = dropdown.querySelector('ul').children[0].dataset.value;
+            _.value = elem.dataset.value;
+            showActive(_.value);
+        } else if (val) {
             _.value = val;
             elem.dataset.value = val;
         } else {
