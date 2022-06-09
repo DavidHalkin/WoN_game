@@ -2159,7 +2159,9 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .select .select_header .panel_holder span, .live_search .select_header .panel_holder span { overflow: hidden; -o-text-overflow: ellipsis; text-overflow: ellipsis; white-space: nowrap; }
 
-.select .select_header .panel_holder .ico, .live_search .select_header .panel_holder .ico { margin-right: 12px; }
+.select .select_header .panel_holder .ico, .live_search .select_header .panel_holder .ico { margin-right: 12px; max-width: 20px; -webkit-box-flex: 0; -ms-flex: 0 0 20px; flex: 0 0 20px; }
+
+.select .select_header .panel_holder .ico img, .live_search .select_header .panel_holder .ico img { max-width: 100%; display: block; height: auto; }
 
 .select .select_header .panel_holder:after, .live_search .select_header .panel_holder:after { content: ""; --w:calc( 21px / 2); --h:calc( 34px / 2); width: var(--w); width: var(--w); max-width: var(--w); -webkit-box-flex: 0; -ms-flex: 0 0 var(--w); flex: 0 0 var(--w); height: var(--h); background: url(/images/map/icons/arrow.png) 0 0 no-repeat; -webkit-background-size: cover; background-size: cover; position: absolute; top: 50%; right: 20px; -webkit-transform: translateY(-50%) rotate(90deg); -ms-transform: translateY(-50%) rotate(90deg); transform: translateY(-50%) rotate(90deg); z-index: 1; -webkit-transition: var(--animation_static); -o-transition: var(--animation_static); transition: var(--animation_static); }
 
