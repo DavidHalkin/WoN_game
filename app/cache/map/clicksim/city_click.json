@@ -24,6 +24,36 @@
     },
     "info": [
         {
+            "type": "color",
+            "label": "Выберите цвет",
+            "classNames": [ "mb-20", "something" ]
+        },
+        {
+            "type": "select",
+            "label": "Название",
+            "url": "/url",
+            "ajax": true,
+            "value": 2,
+            "editable": true,
+            "classNames": [ "mb-20" ],
+            "list": [
+                {
+                    "name": "Пункт списка 1",
+                    "value": 1,
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/relig/x1/webp/6.webp"
+                },
+                {
+                    "name": "Пункт списка 2",
+                    "value": true
+                },
+                {
+                    "name": "Пункт списка 3",
+                    "value": "hello",
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/relig/x1/webp/8.webp"
+                }
+            ]
+        },
+        {
             "type": "icon_list",
             "name": "Ресурсы",
             "components": [

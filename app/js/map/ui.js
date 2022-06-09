@@ -590,6 +590,78 @@ function Aside(selector) {
                 <input type="color">`;
 
                 break;
+
+            case 'select':
+
+                classNames.push('select');
+                addClasses(el, classNames);
+
+                if (component.url) el.dataset.url = component.url;
+
+                let value = -1;
+                if (component.value) value = component.value;
+                el.dataset.value = value;
+
+                el.innerHTML = `
+                    <div class="select_header">
+                        <div class="panel sm centered_corners_none">
+                            <button class="panel_holder"></button>
+                            <div class="decor ">
+                                <span class="corner"></span>
+                                <span class="corner right_top"></span>
+                                <span class="corner right_bottom"></span>
+                                <span class="corner left_bottom"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="drop_down">
+                        <div class="panel grid_column sm centered_corners_none">
+                            <div class="panel_holder p-0">
+                                <div class="panel_content ">
+                                    <div class="content_scroll">
+                                        <ul class="etc_drop list-unstyled m-0"></ul>
+                                    </div>
+                                    <div class="scrollbar">
+                                        <div class="btn_func arrow_prev"></div>
+                                        <div class="bar">
+                                            <div class="handler"></div>
+                                        </div>
+                                        <div class="btn_func arrow_next"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="decor">
+                                <span class="corner"></span>
+                                <span class="corner right_top"></span>
+                                <span class="corner right_bottom"></span>
+                                <span class="corner left_bottom"></span>
+                            </div>
+                        </div>
+                    </div>`;
+
+                let listItems = '';
+
+                for (const [i, item] of component.list.entries()) {
+
+                    let icon = '';
+                    if (item.icon) icon = `<i class="ico"><img src="${item.icon}" alt="${item.name}"></i>`;
+
+                    listItems += `
+                        <li data-value="${item.value}">
+                            <strong class="select_item">
+                                ${icon}
+                                <span>${item.name}</span>
+                            </strong>
+                        </li>
+                    `;
+
+                }
+
+                el.querySelector('.etc_drop').insertAdjacentHTML('afterbegin', listItems);
+
+                new Select(el);
+
+                break;
             default:
                 el.classList.add(component.type);
                 break;
@@ -605,7 +677,7 @@ function Aside(selector) {
         }
 
         // Add Ajax listener
-        if (component.url && component.ajax) {
+        if (component.url && component.ajax && component.type !== 'select') {
             el.addEventListener('click', async function(e) {
                 e.preventDefault();
                 let data;
@@ -1069,7 +1141,8 @@ function Select(elem) {
     function setValue(val) {
 
         if (val === -1) {
-            elem.dataset.value = dropdown.querySelector('ul').children[0].dataset.value;
+            const firstItem = dropdown.querySelector('ul').children[0];
+            if (firstItem) elem.dataset.value = firstItem.dataset.value;
             _.value = elem.dataset.value;
             showActive(_.value);
         } else if (val) {
@@ -1079,12 +1152,12 @@ function Select(elem) {
             _.value = elem.dataset.value;
         }
 
-        const title = header.querySelector('.panel_holder span');
+        const title = header.querySelector('.panel_holder');
         let selectedLi = dropdown.querySelector(`li[data-value="${_.value}"]`);
         if (!selectedLi) selectedLi = dropdown.querySelector('li:first-child');
         if (!selectedLi) return;
 
-        title.innerHTML = selectedLi.querySelector('span').innerHTML;
+        title.innerHTML = selectedLi.innerHTML;
         showActive(_.value);
 
     }
