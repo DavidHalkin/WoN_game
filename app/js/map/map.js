@@ -11,7 +11,7 @@ export function Map() {
     const BASE = '/ajax?c=map&do=';
     const CACHE = '/cache/map/ajax_get_map_';
     const API = {
-        updates: `https://dev.wealthofnations.uk${BASE}get_renews`,
+        updates: `${BASE}get_renews`,
         layers: {
             terrain: `${BASE}get_map_terrain`,
             nature: `${BASE}get_map_terra_objects`,
@@ -420,7 +420,7 @@ export function Map() {
         function loadUpdates() {
 
             let url = API.updates;
-            // if (dev) url = `/cache/map/renews.json`;
+            if (dev) url = `/cache/map/renews.json`;
 
             fetch(url)
                 .then(res => res.json())
