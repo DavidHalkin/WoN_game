@@ -1,0 +1,41 @@
+.religion_area{
+	.col_left{
+		> .panel{
+			height: calc(100vh - 118px) !important;
+			>.panel_holder{
+				> .panel_content{
+					>.content_scroll {
+						height: 100%;
+						// overflow: hidden;
+					}
+				}
+			}
+			.table {
+				display: grid;
+				grid-template-rows: min-content 1fr;
+				height: 100% !important;
+				overflow: hidden;
+				.inner_height{
+					grid-row: span 2;
+				}
+			}
+		}
+	}
+	.col_right{
+		@include media(max, xl) {
+			max-width: 350px;
+			flex:0 0 350px;
+		}
+		> .panel{
+			height: calc(100vh - 78px) !important;
+			>.panel_holder{
+				> .panel_content{
+					>.content_scroll {
+						height: 100%;
+						// overflow: hidden;
+					}
+				}
+			}
+		}
+	}
+}

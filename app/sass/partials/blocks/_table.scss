@@ -2,9 +2,6 @@
 	width: 100%;
 	.panel_holder {
 		background: none;
-		&.scroll_js{
-			// padding-right: 20px;
-		}
 		.panel_content{
 			padding: 0;
 			.scrollbar{
@@ -22,20 +19,27 @@
 	}
 	.tr{
 		display: table-row;
+		@include media(max, xl) {
+			font-size: 14px;
+		}
 	}
 	.th,.td{
 		display: table-cell;
 		text-align: center;
 		padding: 7px 11px;
 		overflow: hidden;
+		hyphens: auto;
+		.circle,.square {
+			display: inline-block;
+		}
 		&:first-child{
 			padding-left: 20px;
 		}
 		a{
-			color: $light;
-			&:hover{
-				color: #fff;
-			}
+			// color: $light;
+			// &:hover{
+			// 	color: #fff;
+			// }
 		}
 		&:first-of-type{
 			text-align: left;
@@ -44,6 +48,11 @@
 	.table_header,.table_body{
 		display: table;
 		width: 100%;
+		&.align-middle{
+			.th,.td{
+				vertical-align: middle;
+			}
+		}
 	}
 	.table_body{
 		.tr{
