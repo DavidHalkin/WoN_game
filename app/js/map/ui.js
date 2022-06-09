@@ -1058,13 +1058,17 @@ function Select(elem) {
     this.toggle = toggle;
 
     header.onclick = toggle;
-    setValue();
+    setValue(-1);
     initClicks();
     observeMutation();
 
     function setValue(val) {
 
-        if (val) {
+        if (val === -1) {
+            elem.dataset.value = dropdown.querySelector('ul').children[0].dataset.value;
+            _.value = elem.dataset.value;
+            showActive(_.value);
+        } else if (val) {
             _.value = val;
             elem.dataset.value = val;
         } else {
