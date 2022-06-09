@@ -139,6 +139,7 @@ function Aside(selector) {
     const elem = $(selector);
     if (!elem) return;
 
+    const htmlContainer = elem.querySelector(':scope > .panel_holder > .panel_content > .content_scroll');
     const asideHistory = new DomHistory();
     const closeBtn = elem.querySelector('.close_btn');
     const container = $('div#field_map');
@@ -243,14 +244,11 @@ function Aside(selector) {
         }
     }
     function _buildAsideBody(structure) {
-        const asideContinerEl = document.querySelector(
-            '.panel_sidebar .content_scroll'
-        );
 
-        asideContinerEl.innerHTML = '';
+        htmlContainer.innerHTML = '';
 
         for (let rootEl of structure) {
-            asideContinerEl.insertAdjacentElement(
+            htmlContainer.insertAdjacentElement(
                 'beforeend',
                 _getComponentDom(rootEl)
             );
@@ -293,10 +291,11 @@ function Aside(selector) {
     }
     function _getComponentDom(component) {
         let el = document.createElement('div');
+        let clickableElement = null;
         let childs = [];
         let parentForChildsEl = el;
         let classNames = [];
-        if (component?.classNames?.length) classNames = component.classNames;
+        if (component ?.classNames ?.length) classNames = component.classNames;
 
         // Component DOM
         switch (component.type) {
@@ -439,15 +438,20 @@ function Aside(selector) {
                 el.innerHTML = `
                     <div>
                         <label>${component.label}</label>
-                        <a href="${
-                    component.url ? component.url : '#'
-                    }" class="item_ico size_1"><img src="${component.icon}" alt=""></a>
+                        <a
+                            href="${component.url ? component.url : '#'}"
+                            class="item_ico size_1">
+                            <img src="${component.icon}" alt="">
+                        </a>
                         <div class="mini_holder">
-                          <input type="text" name='${component.name}' value="${
-                    component.value
-                    }" ${!component.editable ? 'disabled' : ''}>
+                            <input
+                                type="text"
+                                value="${component.value}" ${!component.editable ? 'disabled' : ''}>
                         </div>
                     </div>`;
+
+                const input = el.querySelector('input');
+                if (component.name) input.setAttribute('name', component.name);
 
                 classNames.push('mini_info', 'mb-20');
                 if (component.label) classNames.push('label');
@@ -457,6 +461,8 @@ function Aside(selector) {
                     el.querySelector('.item_icon').remove();
                 }
 
+                clickableElement = el.querySelector('a');
+
                 break;
 
             case 'property':
@@ -465,57 +471,73 @@ function Aside(selector) {
                 addClasses(el, classNames);
 
                 el.innerHTML = `
-          <div class="property_head d-flex align-items-center">
-            <div class="property_prev square size_4">
-              <img src="${component.icon}" alt="">
-            </div>
-            <div class="property_details col">
-              <h3>${component.name}</h3>
-              <div class="property_details_row">
-                <div class="column">
-                  <div class="mini_info mini_info_square">
-                    <label>.label in parent</label>
-                    <a href="#" class="item_ico size_1"><img src="/images/map/circles/example.png" alt=""></a>
-                    <div class="mini_holder">
-                      <input type="text" value="${component.amount}" disabled>
+                  <div class="property_head d-flex align-items-center">
+                    <div class="property_prev square size_4">
+                      <img src="${component.icon}" alt="">
+                    </div>
+                    <div class="property_details col">
+                      <h3>${component.name}</h3>
+                      <div class="property_details_row">
+                        <div class="column">
+                          <div class="mini_info mini_info_square">
+                            <label>.label in parent</label>
+                            <a href="#" class="item_ico size_1"><img src="/images/map/circles/example.png" alt=""></a>
+                            <div class="mini_holder">
+                              <input type="text" value="${component.amount}" disabled>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="column">
+                          <div class="mini_info mini_info_square">
+                            <label>.label in parent</label>
+                            <a href="#" class="item_ico size_1"><img src="/images/map/circles/example.png" alt=""></a>
+                            <div class="mini_holder">
+                              <input type="text" value="${component.people}" disabled>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="column">
-                  <div class="mini_info mini_info_square">
-                    <label>.label in parent</label>
-                    <a href="#" class="item_ico size_1"><img src="/images/map/circles/example.png" alt=""></a>
-                    <div class="mini_holder">
-                      <input type="text" value="${component.people}" disabled>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        `;
+                `;
 
                 break;
 
             case 'slider':
-                classNames.push('slider', 'my-30');
+                classNames.push('slider');
                 addClasses(el, classNames);
 
-                if (component.label || component.value)
-                    el.classList.add('has_mini_info');
+                if (component.label) el.classList.add('has_mini_info');
+                if (component.url) el.dataset.url = component.url;
 
                 el.innerHTML = `
-                  <div class="mini_info mb-20">
-                    <label>${component.label}</label>
-                    <div class="mini_holder">
-                        <input type="text" name='${component.name}' value="${component.value}" class="info">
+                    <div class="mini_info label">
+                        <label>${component.label}</label>
+                        <div class="mini_holder">
+                            <input
+                                type="number"
+                                min="${component.min}"
+                                max="${component.max}"
+                                value="${component.value}"
+                                step="1"
+                                class="info">
+                        </div>
                     </div>
-                  </div>
-                  <div class="range_slider">
-                    <input type="range" name="styled-range" min="${component.min}" max="${component.max}" value="${component.value}" step="5" list="styled-range-list" class="range--progress" style="--min: ${component.min}; --max: ${component.max}; --val: 75">
-                    <div class="filled" style="width: calc(42.7704% + -3px);"></div>
-                  </div>
+                    <div class="range_slider">
+                        <input
+                            type="range"
+                            min="${component.min}"
+                            max="${component.max}"
+                            value="${component.value}"
+                            step="1"
+                            list="styled-range-list"
+                            class="range--progress"
+                            style="--min: ${component.min}; --max: ${component.max}; --val: 75">
+                        <div class="filled" style="width: calc(24.3013% + 1px);"></div>
+                    </div>
                 `;
+
+                if (component.name) el.querySelector('.range_slider input').setAttribute('name', component.name);
 
                 new Slider(el);
 
@@ -526,33 +548,39 @@ function Aside(selector) {
                 addClasses(el, classNames);
 
                 if (!component.label) el.classList.add('checkbox_no_label');
+                if (component.url) el.dataset.url = component.url;
 
                 el.innerHTML = `
-          <label>
-            <input
-              type="checkbox"
-              ${component.value ? 'checked' : ''}
-              ${component.editable ? '' : 'disabled'}
-            >
-            <i class="checkbox_item"></i>
-            <span class="checkbox_label">${component.label}</span>
-          </label>
-        `;
+                  <label>
+                    <input
+                      type="checkbox"
+                      ${component.value ? 'checked' : ''}
+                      ${component.editable ? '' : 'disabled'}
+                    >
+                    <i class="checkbox_item"></i>
+                    <span class="checkbox_label">${component.label}</span>
+                  </label>
+                `;
+
+                if (component.name) el.querySelector('input').setAttribute('name', component.name);
+
+                new Checkbox(el);
 
                 break;
 
             case 'icon':
                 if (component.url) {
-                    el = document.createElement('a');
-                    el.href = component.url;
+                    el.dataset.url = component.url;
                 }
 
                 classNames.push('size_5', component.round ? 'circle' : 'square');
                 addClasses(el, classNames);
 
                 el.innerHTML = `
-          <img src="${component.icon}" alt="">
-        `;
+                    <img src="${component.icon}" alt="${component.type}">
+                `;
+
+                clickableElement = el;
 
                 break;
 
@@ -560,16 +588,24 @@ function Aside(selector) {
                 el = document.createElement('a');
                 classNames.push('btn');
                 addClasses(el, classNames);
-                el.href = component.url;
+                if (component.url) el.dataset.url = component.url;
+
+                let icon = '';
+                if (component.icon) icon = `
+                    <img src="${component.icon}" alt="${component.type}">`;
 
                 el.innerHTML = `
-          <span>${component.name}</span>
-        `;
+                    <span>
+                    ${icon}
+                    ${component.name}
+                    </span>
+                `;
+
+                clickableElement = el;
 
                 break;
 
             case 'text':
-                classNames.push('py-10');
                 addClasses(el, classNames);
                 el.innerHTML = component.content;
 
@@ -585,9 +621,15 @@ function Aside(selector) {
             case 'color':
                 classNames.push('color_picker');
                 addClasses(el, classNames);
+
+                if (component.url) el.dataset.url = component.url;
+
                 el.innerHTML = `
                 <label>${component.label}</label><br>
-                <input type="color">`;
+                <input type="color" value="#000000">`;
+
+                if (component.name) el.querySelector('input').setAttribute('name', component.name);
+                clickableElement = el.querySelector('input');
 
                 break;
 
@@ -601,6 +643,8 @@ function Aside(selector) {
                 let value = -1;
                 if (component.value) value = component.value;
                 el.dataset.value = value;
+
+                if (component.name) el.setAttribute('name', component.name);
 
                 el.innerHTML = `
                     <div class="select_header">
@@ -641,7 +685,7 @@ function Aside(selector) {
 
                 let listItems = '';
 
-                for (const [i, item] of component.list.entries()) {
+                for (const item of component.list) {
 
                     let icon = '';
                     if (item.icon) icon = `<i class="ico"><img src="${item.icon}" alt="${item.name}"></i>`;
@@ -676,29 +720,21 @@ function Aside(selector) {
             if (childs.length) _recursiveBuildDom(parentForChildsEl, childs);
         }
 
-        // Add Ajax listener
-        if (component.url && component.ajax && component.type !== 'select') {
-            el.addEventListener('click', async function(e) {
-                e.preventDefault();
-                let data;
+        if (clickableElement && component.url) {
 
-                const url = component.url;
-                if (component.redirect) return window.location.replace(url);
+            if (component.ajax) {
+                clickableElement.onclick = ev => {
+                    ev.preventDefault();
+                    const url = replaceVars(component.url);
+                    handleClick(url);
+                };
+            } else {
+                clickableElement.onclick = () => {
+                    const url = replaceVars(component.url);
+                    window.location.href = url;
+                };
+            }
 
-                if (location.hostname !== 'localhost') {
-
-                    const res = await fetch();
-                    data = await res.json();
-                    console.log('ajax response:', data);
-
-                } else if (cityInfoJson) {
-                    data = cityInfoJson;
-                } else {
-                    console.log('Something wrong: incorect data');
-                }
-
-                buildAsideDom(data);
-            });
         }
 
         return el;
@@ -714,6 +750,52 @@ function Aside(selector) {
     function addClasses(elem, array) {
 
         if (array) elem.classList.add(...array);
+
+    }
+    async function handleClick(url) {
+
+        let data;
+
+        if (location.hostname !== 'localhost') {
+            const res = await fetch(url);
+            data = await res.json();
+            console.log('ajax response:', data);
+
+            if (data.hasOwnProperty('info') ||
+                data.hasOwnProperty('commands') ||
+                data.hasOwnProperty('builds') ||
+                data.hasOwnProperty('army')) {
+                buildAsideDom(data);
+            } else if (data.redirect) {
+                window.location.href = data.redirect;
+            }
+
+        } else if (cityInfoJson) {
+            data = cityInfoJson;
+        } else {
+            console.log('Something wrong: incorect data');
+        }
+
+        buildAsideDom(data);
+
+    }
+    function replaceVars(string) {
+
+        const names = string.match(/[^{]+(?=})/g);
+        if (!names) return string;
+
+        let stringUpdated = string;
+
+        names.forEach(name => {
+            const elem = htmlContainer.querySelector(`[name="${name}"]`);
+            if (elem) {
+                let value = elem.value;
+                if (elem.classList.contains('select')) value = elem.dataset.value;
+                stringUpdated = stringUpdated.replace(`{${name}}`, value);
+            }
+        });
+
+        return stringUpdated;
 
     }
 }
@@ -968,8 +1050,19 @@ function Slider(el) {
         const input = slider.querySelector('[type="range"]');
         const fill = slider.querySelector('.filled');
         const mini_info = slider.querySelector('.mini_info');
+        const inputField = mini_info.querySelector('input');
 
         input.oninput = update;
+        inputField.onchange = () => {
+            input.value = inputField.value;
+            update();
+            if (slider.dataset.url) fetch(slider.dataset.url);
+        };
+
+        input.addEventListener('mouseup', ev => {
+            if (slider.dataset.url) fetch(slider.dataset.url);
+        });
+
         update();
 
         function update(e) {
@@ -1469,6 +1562,25 @@ function Table(target) {
 
         }
     }
+}
+function Checkbox(el) {
+
+    if (el) {
+        initComponent(el);
+    } else {
+        const els = $$('.checkbox');
+        if (!els.length) return false;
+        els.forEach(el => initComponent(el));
+    }
+
+    function initComponent(el) {
+
+        el.querySelector('input').onchange = ev => {
+            if (el.dataset.url) fetch(el.dataset.url);
+        }
+
+    }
+
 }
 
 function initSelectElements() {
