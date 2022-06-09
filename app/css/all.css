@@ -1923,6 +1923,8 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .frame_title.md { --frame_w_local:calc(var(--frame_w) / 2.51); --frame_h_local:calc(var(--frame_h) / 2.51); height: 37px; }
 
+.frame_title span { overflow: hidden; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; padding: 5px; width: calc(100% - 20px); height: calc(100% - 10px); }
+
 .modal { max-width: 480px; width: 100%; }
 
 .modal_container { min-width: 1024px; --indent_y:40px; --indent_x:15px; position: fixed; top: 0; bottom: 0; left: 0; right: 0; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; z-index: 100; overflow: hidden; pointer-events: none; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; padding: var(--indent_y) var(--indent_x); }
@@ -1953,19 +1955,23 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .person.wood { --bg_local:var(--person_wood); }
 
+.person.disabled { opacity: .4; -webkit-filter: saturate(0.1); filter: saturate(0.1); pointer-events: none; }
+
 .person.prison .img_person:after { content: ""; width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: var(--prison) no-repeat; -webkit-background-size: cover; background-size: cover; z-index: 2; pointer-events: none; }
 
 .person.big { --person_w_local:calc(var(--person_big_w) / 2); --person_h_local:calc(var(--person_big_h) / 2); }
 
-.person .img_person { width: 100%; height: 100%; }
+.person.woman .img_person .holder { background: #163225; }
 
-.person .img_person .holder { position: relative; padding: 10px; display: block; width: 100%; height: 100%; background: #180f0a; border: 0; color: #b8afaa; -webkit-transition: var(--animation_static); -o-transition: var(--animation_static); transition: var(--animation_static); }
+.person .img_person { width: 100%; height: 100%; padding: 10px; }
+
+.person .img_person .holder { position: relative; display: block; width: 100%; height: 100%; background: #180f0a; border: 0; color: #b8afaa; -webkit-transition: var(--animation_static); -o-transition: var(--animation_static); transition: var(--animation_static); }
 
 .person .img_person .holder:hover { -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); -webkit-filter: saturate(2) brightness(1.5); filter: saturate(2) brightness(1.5); }
 
 .person .img_person .holder .empty_holder { position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); text-align: center; padding: 10px; display: block; }
 
-.person .img_person .holder > img { position: absolute; bottom: 5px; left: 50%; -webkit-transform: translateX(-50%); -ms-transform: translateX(-50%); transform: translateX(-50%); width: calc(100% - 10px); height: calc(100% - 10px); -o-object-fit: cover; object-fit: cover; }
+.person .img_person .holder > img { position: absolute; bottom: 0; left: 50%; -webkit-transform: translateX(-50%); -ms-transform: translateX(-50%); transform: translateX(-50%); width: 100%; height: 100%; -o-object-fit: cover; object-fit: cover; }
 
 .person .img_person:before { content: ""; width: 100%; height: 100%; display: block; position: absolute; bottom: 0; left: 0; z-index: 1; background: var(--bg_local) no-repeat; -webkit-background-size: cover; background-size: cover; pointer-events: none; }
 
@@ -2823,6 +2829,44 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 .fly_drop.opened .arr_down { -webkit-transform: translate(-50%, -50%) rotate(90deg) scaleX(-1); -ms-transform: translate(-50%, -50%) rotate(90deg) scaleX(-1); transform: translate(-50%, -50%) rotate(90deg) scaleX(-1); margin-top: 0; }
 
 .fly_drop.opened .panel_drop { display: block; }
+
+.person_block { --arm:25px; padding: var(--arm); position: relative; overflow: hidden; }
+
+.person_block .person { margin-left: auto; margin-right: auto; }
+
+.person_block .frame_title { width: var(--frame_w_local); font-weight: normal; }
+
+.person_block .line_decor { background: #d83030; display: block; -webkit-box-shadow: 0px 0px 4px #D83030; box-shadow: 0px 0px 4px #D83030; display: none; }
+
+.person_block .line_decor.half_line_left, .person_block .line_decor.half_line_right { width: 50%; height: 2px; bottom: 0; position: absolute; }
+
+.person_block .line_decor.half_line_left { left: 0; }
+
+.person_block .line_decor.half_line_right { right: 0; }
+
+.person_block .line_decor.left_line, .person_block .line_decor.right_line { height: 2px; width: var(--arm); position: absolute; bottom: calc(var(--arm) + 20px); }
+
+.person_block .line_decor.left_line { left: 0; }
+
+.person_block .line_decor.right_line { right: 0; }
+
+.person_block .line_decor.bottom_line, .person_block .line_decor.top_line { width: 2px; height: var(--arm); position: absolute; left: 50%; margin-left: -1px; }
+
+.person_block .line_decor.top_line { top: 0; }
+
+.person_block .line_decor.bottom_line { bottom: 0; }
+
+.person_block.bottom .bottom_line { display: block; }
+
+.person_block.top .top_line { display: block; }
+
+.person_block.left .left_line { display: block; }
+
+.person_block.right .right_line { display: block; }
+
+.person_block.half_right .half_line_right { display: block; }
+
+.person_block.half_left .half_line_left { display: block; }
 
 #editor_controls { --h-header:100px; --h-footer:200px; width: 300px; position: absolute; z-index: 5; top: 75px; right: 5px; }
 

@@ -178,5 +178,13 @@
 		--frame_h_local:calc(var(--frame_h) / 2.51);
 		height: 37px;
 	}
-	
+	span{
+		overflow: hidden;
+		display: flex;
+		align-items:center;
+		justify-content: center;
+		padding: 5px;
+		width: calc(100% - 20px);
+		height: calc(100% - 10px);
+	}
 }

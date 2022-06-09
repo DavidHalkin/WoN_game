@@ -60,6 +60,11 @@
 	&.wood{
 		--bg_local:var(--person_wood);
 	}
+	&.disabled{
+		opacity: .4;
+		filter: saturate(0.1);
+		pointer-events: none;
+	}
 	&.prison{
 		.img_person{
 			&:after{
@@ -80,13 +85,20 @@
 		--person_w_local:calc(var(--person_big_w) / 2);
 		--person_h_local:calc(var(--person_big_h) / 2);
 	}
+	&.woman{
+		.img_person{
+			.holder{
+				background: #163225;
+			}
+		}
+	}
 	.img_person{
 		width: 100%;
 		height: 100%;
-		// overflow: hidden;
+		padding: 10px;
 		.holder{
 			position: relative;
-			padding: 10px;
+			// padding: 10px;
 			display: block;
 			width: 100%;
 			height: 100%;
@@ -108,11 +120,11 @@
 			}
 			> img{
 				position: absolute;
-				bottom: 5px;
+				bottom: 0;
 				left: 50%;
 				transform:translateX(-50%);
-				width:  calc(100% - 10px);
-				height: calc(100% - 10px);
+				width:  100%;
+				height: 100%;
 				object-fit:cover;
 			}
 		}
