@@ -1224,6 +1224,8 @@ body kbd, body code { -webkit-user-select: text; -moz-user-select: text; -ms-use
 
 .h-auto { height: auto !important; }
 
+.rotate_45 { -webkit-transform: rotate(90deg) !important; -ms-transform: rotate(90deg) !important; transform: rotate(90deg) !important; }
+
 .w-100 { width: 100%; }
 
 .l-0 { left: 0 !important; }
@@ -2811,6 +2813,16 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 .column_person { -webkit-box-flex: 0; -ms-flex: 0 0 258px; flex: 0 0 258px; max-width: 258px; }
 
 .column_person .panel_content { min-height: 150px; }
+
+.fly_drop { width: 435px; position: absolute; z-index: 8; }
+
+.fly_drop .arr_down { -webkit-transition: var(--animation_hovered); -o-transition: var(--animation_hovered); transition: var(--animation_hovered); -webkit-transform: translate(-50%, -50%) rotate(90deg); -ms-transform: translate(-50%, -50%) rotate(90deg); transform: translate(-50%, -50%) rotate(90deg); width: 11px; height: 18px; margin-top: 2px; }
+
+.fly_drop .panel_drop { display: none; }
+
+.fly_drop.opened .arr_down { -webkit-transform: translate(-50%, -50%) rotate(90deg) scaleX(-1); -ms-transform: translate(-50%, -50%) rotate(90deg) scaleX(-1); transform: translate(-50%, -50%) rotate(90deg) scaleX(-1); margin-top: 0; }
+
+.fly_drop.opened .panel_drop { display: block; }
 
 #editor_controls { --h-header:100px; --h-footer:200px; width: 300px; position: absolute; z-index: 5; top: 75px; right: 5px; }
 

@@ -103,3 +103,29 @@
 	}
 	
 }
+.fly_drop{
+	width: 435px;
+	position: absolute;
+	// top: 110px;
+	// left: 460px;
+	z-index: 8;
+	.arr_down{
+		transition: var(--animation_hovered);
+		transform:translate(-50%,-50%) rotate(90deg);
+		width: 11px;
+		height: 18px;
+		margin-top: 2px;
+	}
+	.panel_drop{
+		display: none;
+	}
+	&.opened{
+		.arr_down{
+			transform:translate(-50%,-50%) rotate(90deg) scaleX(-1);
+			margin-top: 0;
+		}
+		.panel_drop{
+			display: block;
+		}
+	}
+}
