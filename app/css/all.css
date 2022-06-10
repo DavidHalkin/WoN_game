@@ -2923,15 +2923,15 @@ a:hover, .hovered_item:hover { color: #fff; text-decoration: none; -webkit-trans
 
 .go_top { position: absolute; bottom: 22px; right: 30px; z-index: 10; }
 
-.btn { --px:20px; --py:17px; --size_corner_local:calc(var(--size_corner) / 2.7); --paddings_local:var(--py)  var(--px); --font_size_local:16px; text-align: center; vertical-align: middle; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; display: inline-block; background: #180f0a; -webkit-border-radius: calc(var(--indent) + 2px); border-radius: calc(var(--indent) + 2px); overflow: hidden; border: 0; color: #b8afaa; position: relative; text-align: center; font-size: var(--font_size_local); padding: 0; }
+.btn { --px:20px; --py:5px; --size_corner_local:calc(var(--size_corner) / 2.7); --paddings_local:var(--py)  var(--px); --font_size_local:16px; --height: 54px; --ico_w:25px; text-align: center; vertical-align: middle; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; display: inline-block; background: #180f0a; -webkit-border-radius: calc(var(--indent) + 2px); border-radius: calc(var(--indent) + 2px); overflow: hidden; border: 0; color: #b8afaa; position: relative; text-align: center; font-size: var(--font_size_local); padding: 0; }
 
 .btn.disabled, .btn:disabled { opacity: 0.5; pointer-events: none; }
 
-.btn.md { --size_corner_local:calc(var(--size_corner) / 2.7 * 0.75); --font_size_local:14px; --paddings_local: calc(var(--py) * 0.75 - 0.5px) calc(var(--px) * 0.75); -webkit-border-radius: calc(var(--indent) + 1px); border-radius: calc(var(--indent) + 1px); }
+.btn.md { --size_corner_local:calc(var(--size_corner) / 2.7 * 0.75); --font_size_local:14px; --paddings_local: var(--py) calc(var(--px) * 0.75); -webkit-border-radius: calc(var(--indent) + 1px); border-radius: calc(var(--indent) + 1px); --height: 42px; --ico_w:20px; }
 
-.btn.sm { --size_corner_local:calc(var(--size_corner) / 2.7 * 0.5); --font_size_local:calc(16px * 0.65); --paddings_local: calc(var(--py) * 0.65) calc(var(--px) * 0.65); -webkit-border-radius: calc(var(--indent)); border-radius: calc(var(--indent)); }
+.btn.sm { --size_corner_local:calc(var(--size_corner) / 2.7 * 0.5); --font_size_local:13px; --paddings_local: var(--py) calc(var(--px) * 0.65); -webkit-border-radius: calc(var(--indent)); border-radius: calc(var(--indent)); --height: 35px; --ico_w:15px; }
 
-.btn > span { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; padding: var(--paddings_local); }
+.btn > span { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; min-height: var(--height); padding: var(--paddings_local); vertical-align: middle; }
 
 .btn > span:before, .btn > span:after { content: ""; position: absolute; bottom: 0; left: 0; width: var(--size_corner_local); height: var(--size_corner_local); background: var(--corner_img) no-repeat; -webkit-background-size: cover; background-size: cover; -webkit-transform: scale(1, -1); -ms-transform: scale(1, -1); transform: scale(1, -1); pointer-events: none; }
 
@@ -2944,6 +2944,10 @@ a:hover, .hovered_item:hover { color: #fff; text-decoration: none; -webkit-trans
 .btn:after { left: auto; right: 0; -webkit-transform: scale(-1, 1); -ms-transform: scale(-1, 1); transform: scale(-1, 1); }
 
 .btn:hover { color: #fff; text-decoration: none; }
+
+.btn i { font-style: normal; }
+
+.btn .ico { max-width: var(--ico_w); -webkit-box-flex: 0; -ms-flex: 0 0 var(--ico_w); flex: 0 0 var(--ico_w); height: var(--ico_w); margin-right: 10px; background: red; overflow: hidden; display: block; position: relative; }
 
 .switcher { --w:calc(37px / 2); --h:calc(49px / 2); width: var(--w); height: var(--h); background: url(/images/map/btns/arrow_short.png) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; display: inline-block; border: 0; outline: none; padding: 0; }
 
