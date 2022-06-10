@@ -122,9 +122,13 @@
 				border-radius: 0;
 				box-shadow: none;
 			}
-			&:focus{
-				// border-color: lighten(#6a5741,10%);
-
+			&[type=number]{
+				&::-webkit-outer-spin-button,
+				&::-webkit-inner-spin-button{
+					-webkit-appearance: none;
+					display: none;
+				}
+				-moz-appearance: textfield;
 			}
 		}
 	}

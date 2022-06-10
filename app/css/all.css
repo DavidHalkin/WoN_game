@@ -2155,6 +2155,10 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .mini_info .mini_holder input:disabled { opacity: 1; border-color: transparent; -webkit-border-radius: 0; border-radius: 0; -webkit-box-shadow: none; box-shadow: none; }
 
+.mini_info .mini_holder input[type=number] { -moz-appearance: textfield; }
+
+.mini_info .mini_holder input[type=number]::-webkit-outer-spin-button, .mini_info .mini_holder input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; display: none; }
+
 .mini_info.has_error .mini_holder input { border-color: red; }
 
 .select, .live_search { position: relative; }
