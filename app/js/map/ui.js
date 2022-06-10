@@ -791,6 +791,7 @@ function Aside(selector) {
             if (elem) {
                 let value = elem.value;
                 if (elem.classList.contains('select')) value = elem.dataset.value;
+                if(name === 'color') value = value.substring(1);
                 stringUpdated = stringUpdated.replace(`{${name}}`, value);
             }
         });
