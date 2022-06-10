@@ -624,9 +624,11 @@ function Aside(selector) {
 
                 if (component.url) el.dataset.url = component.url;
 
+                let value = component.value ? component.value : '#000000';
+
                 el.innerHTML = `
                 <label>${component.label}</label><br>
-                <input type="color" value="#000000">`;
+                <input type="color" value="${value}">`;
 
                 if (component.name) el.querySelector('input').setAttribute('name', component.name);
                 clickableElement = el.querySelector('input');
