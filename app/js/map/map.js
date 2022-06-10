@@ -342,6 +342,8 @@ export function Map() {
     if (location.hostname === 'localhost') dev = true;
     if ($('meta[content="editor"]')) editor = true;
 
+    const urlParams = new URLSearchParams(new URL(location).search);
+
     setCanvasSize();
 
     const viewport = new Viewport(0);
@@ -726,9 +728,7 @@ export function Map() {
                         if (Object.keys(map.mode[key]).length) {
                             ui.modes.activate(key);
 
-                            const params = new URLSearchParams(new URL(location).search);
-
-                            for (const p of params) {
+                            for (const p of urlParams) {
                                 if (p[0] === 'mode' && p[1] === key) {
                                     ui.modes.buttons.querySelector(`[name="${key}"]`).click();
                                 }
@@ -913,21 +913,37 @@ export function Map() {
         this.update = update;
         this.target = target;
 
+        initialViewortPosition();
         window.addEventListener('resize', resize);
 
-        const coordRecord = localStorage.getItem('wonmap_last_viewport_location');
-        let startX, startY;
+        function initialViewortPosition() {
 
-        if (coordRecord) {
-            const coord = JSON.parse(localStorage.getItem('wonmap_last_viewport_location'));
-            startX = coord.col;
-            startY = coord.row;
-        } else {
-            startX = map.updates.x;
-            startY = map.updates.y;
+            let loc = {};
+
+            if (urlParams) {
+                for (const p of urlParams) {
+                    if (p[0] === 'x' || p[0] === 'y') loc[p[0]] = p[1];
+                }
+            }
+
+            if (loc.hasOwnProperty('x') && loc.hasOwnProperty('y')) {
+                return goToHex(loc.x, loc.y);
+            }
+
+            const coordRecord = localStorage.getItem('wonmap_last_viewport_location');
+            let startX, startY;
+
+            if (coordRecord) {
+                const coord = JSON.parse(localStorage.getItem('wonmap_last_viewport_location'));
+                startX = coord.col;
+                startY = coord.row;
+            } else {
+                startX = map.updates.x;
+                startY = map.updates.y;
+            }
+            goToHex(startX, startY);
+
         }
-        goToHex(startX, startY);
-
         function update() {
             resize();
             goTo(viewport.position.x, viewport.position.y)
@@ -2958,20 +2974,20 @@ export function Map() {
                         case '1':
                         case 1:
                             cityClass = 'city';
-                            if (cityClass === sprite.class &&
-                                city.arh === sprite.culture &&
-                                city.size === +sprite.size) return true;
+                            if (cityClass == sprite.class &&
+                                city.arh == sprite.culture &&
+                                city.size == +sprite.size) return true;
                             break;
                         case '2':
                         case 2:
                             cityClass = 'camp';
-                            if (cityClass === sprite.class &&
-                                city.arh === sprite.culture) return true;
+                            if (cityClass == sprite.class &&
+                                city.arh == sprite.culture) return true;
                             break;
                         case '3':
                         case 3:
                             cityClass = 'port';
-                            if (cityClass === sprite.class) {
+                            if (cityClass == sprite.class) {
                                 const sides = findAdjacentTiles(col, row);
                                 sides.forEach((side, i) => {
 
@@ -3013,15 +3029,15 @@ export function Map() {
                     switch (city.type) {
                         case '1':
                         case 1:
-                            plainHex(tileX, tileY, '#D2203E', 1); // city
+                            plainHex(tileX, tileY, 'red', 0.5); // city
                             break;
                         case '2':
                         case 2:
-                            plainHex(tileX, tileY, 'deepskyblue', 1); // rogues
+                            plainHex(tileX, tileY, 'lime', 0.5); // rogues
                             break;
                         case '3':
                         case 3:
-                            plainHex(tileX, tileY, 'red', 0.5); // port
+                            plainHex(tileX, tileY, 'deepskyblue', 0.5); // port
                             break;
                         default:
 
