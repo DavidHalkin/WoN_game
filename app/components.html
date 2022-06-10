@@ -40,6 +40,7 @@
             <a href="#slot">slot</a>
             <a href="#teh">teh</a>
             <a href="#person">person</a>
+            <a href="#popup">popup</a>
         </nav>
         <section class="big_gap" id="mini_info">
             <div style="width:400px">
@@ -852,7 +853,9 @@
                 <li class="pb-5"><kbd>.m-10</kbd> <span class="green">margin: 10px;</span></li>
                 <li class="pb-5"><kbd>.my-10</kbd> <span class="green">margin-top: 10px;</span> + <span class="green">margin-bottom: 10px;</span> </li>
                 <li class="pb-5"><kbd>.mx-10</kbd> <span class="green">margin-left: 10px;</span> + <span class="green">margin-right: 10px;</span> </li>
-                <li class="pb-5"><h3>в гридовой модели  или флексовой есть и ещё отступы у элементов:</h3></li>
+                <li class="pb-5">
+                    <h3>в гридовой модели или флексовой есть и ещё отступы у элементов:</h3>
+                </li>
                 <li class="pb-5"><kbd>gap-10</kbd> (тоже от 0 до 30) это отступы между блоками слева/справа и снизу/сверху</li>
                 <li class="pb-5"><kbd>row-gap-10</kbd> (тоже от 0 до 30) это отступы между блоками сверху/снизу</li>
             </ul>
@@ -940,7 +943,7 @@
                     .size_2 ~ 38.5px
                     <div class="circle size_2"><img src="/images/map/circles/example.png" alt=""></div>
                 </div>
-                <div class="mx-10"> 
+                <div class="mx-10">
                     .size_1 = 33px
                     <div class="circle size_1"><img src="/images/map/circles/example.png" alt=""></div>
                 </div>
@@ -1179,10 +1182,10 @@
                 <li>класс <kbd>.col_2</kbd> на родителя <kbd>icon_list</kbd> делает <i class="red">2</i> строки</li>
                 <li>класс <kbd>.col_3</kbd> на родителя <kbd>icon_list</kbd> делает <i class="red">3</i> строки</li>
                 <li>отступы по-умолчанию 6 пикселей между элементами</li>
-                <li class="text-success">пока тестовый вариант. добавить на <kbd>.icon_list</kbd> новые классы <kbd>d-grid gap-10</kbd> И <kbd>size_2   </kbd> и тд <br>
-                     (гридовая модель где от <span class="text-danger">gap-1</span> до <span class="text-danger">gap-30</span> это отступы между квадратами или кругами, а класс <span class="text-danger">size_0</span> до <span class="text-danger">size_5</span> автоматом задаёт размеры кругам или квадратам. САМИ РАЗМЕРЫ НА КРУГАХ ИЛИ КВАДРАТАХ <span class="text-danger">НЕ ИМЕТЬ</span>)
-                     <br>
-                     <p class="fz_20">юзать только  для "свободного наполения" (не сеточного как у  .col_1 , .col_2 и .col_3) .</p>
+                <li class="text-success">пока тестовый вариант. добавить на <kbd>.icon_list</kbd> новые классы <kbd>d-grid gap-10</kbd> И <kbd>size_2 </kbd> и тд <br>
+                    (гридовая модель где от <span class="text-danger">gap-1</span> до <span class="text-danger">gap-30</span> это отступы между квадратами или кругами, а класс <span class="text-danger">size_0</span> до <span class="text-danger">size_5</span> автоматом задаёт размеры кругам или квадратам. САМИ РАЗМЕРЫ НА КРУГАХ ИЛИ КВАДРАТАХ <span class="text-danger">НЕ ИМЕТЬ</span>)
+                    <br>
+                    <p class="fz_20">юзать только для "свободного наполения" (не сеточного как у .col_1 , .col_2 и .col_3) .</p>
                 </li>
                 <li class="py-10"><kbd>.row-gap-15</kbd> отсупы между строками(горизонтальные)</li>
                 <li>есть очень хитрый класс<kbd>.grid_list_custom</kbd> мы будем юзать вместе с инлайновым стилем <kbd>--element:150px;</kbd> наполняет блок автоматически, а переменной мы задаём ширину каждого из детей</li>
@@ -1684,6 +1687,56 @@
                 </div>
             </div>
         </section>
+        <section class="big_gap" id="popup">
+            <hr>
+            <h1>popup</h1>
+            <ul>
+                <li class="pb-10"><kbd>.gold</kbd> <kbd>.silver</kbd> <kbd>.bronze</kbd> <kbd>.wood</kbd> добавляют рамки соответвсвующие. по-умолчанию <kbd>neutral</kbd></li>
+                <li class="pb-10"><kbd>prison</kbd> добавляет решётку</li>
+            </ul>
+            <pre>
+                <code>
+                    {
+                        "type": "popup"
+                    }
+                </code>
+            </pre>
+            <div class="popup" style="width: 210px;">
+                <div class="panel md horizontal">
+                    <div class="panel_holder">
+                        <div class="panel_content">
+                            <div class="content_scroll d-flex flex-column align-items-center justify-content-center text-center">
+                                <h3 class="mb-0 text-danger fz_16">Разрушить здание?</h3>
+                                <h3 class="mb-0 fz_16">Мастерская ремеслиников</h3>
+                            </div>
+                            <div class="scrollbar">
+                                <div class="btn_func arrow_prev"></div>
+                                <div class="bar">
+                                    <div class="handler" style="top:10%;"></div>
+                                </div>
+                                <div class="btn_func arrow_next"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="decor ">
+                        <span class="corner"></span>
+                        <span class="corner right_top"></span>
+                        <span class="corner right_bottom"></span>
+                        <span class="corner left_bottom"></span>
+                    </div>
+                </div>
+                <div class="popup_footer pt-8">
+                    <div class="d-flex justify-content-center align-items-center px-5 pb-5">
+                        <div class="col px-5"><a href="#" class="btn md btn-block"><span>Да</span></a></div>
+                        <div class="col px-5"><a href="#" class="btn md btn-block"><span>Нет</span></a></div>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center px-5">
+                        <button class="circle size_3 mx-10"><img src="/images/map/circles/example.png" alt=""></button>
+                        <button class="circle size_3 mx-10"><img src="/images/map/circles/example.png" alt=""></button>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
     <div class="tooltip">
         <div class="panel sm">
@@ -1702,4 +1755,5 @@
     </div>
     <script src="js/map/ui.js"></script>
 </body>
+
 </html>

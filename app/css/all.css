@@ -1985,6 +1985,8 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .person .info_ico_left { position: absolute; top: 0; left: 0; z-index: 3; }
 
+.popup .content_scroll { min-height: 70px; }
+
 .scroll_js .content_scroll { -ms-overflow-style: none; scrollbar-width: none; }
 
 .scroll_js .content_scroll::-webkit-scrollbar { width: 0; height: 0; }
