@@ -1,4 +1,6 @@
+const urlParams = new URLSearchParams(new URL(location).search);
 const mapType = $('#field_map') ?.dataset ?.map;
+const dev = location.hostname == 'localhost' ? true : false;
 
 window.ui = {};
 window.ui.modes = new Modes('.panel_game_modes');
@@ -8,29 +10,22 @@ window.ui.bottom = new Bottom('.panel_army');
 
 initAll();
 
-let cityClickJson, cityBuildJson, cityInfoJson, cityData;
+let pageData, cityClickJson, cityBuildJson, cityInfoJson, cityData;
 
-if (location.hostname == 'localhost') {
-    const assets = [
-        fetch('/cache/map/clicksim/city_click.json'),
-        fetch('/cache/map/clicksim/city_info.json'),
-        fetch('/cache/map/clicksim/city_build.json'),
-        fetch('/cache/map/clicksim/city.json')
-    ];
-
-    Promise.all(assets).then((results) => {
-        results.forEach((res) => {
-            res.json().then((data) => {
-                if (data.city_header) cityClickJson = data;
-                if (data.info) cityInfoJson = data;
-                if (data.buildings) cityBuildJson = data;
-                if (data.map === 'city') {
-                    cityData = data;
-                    if (mapType === 'city') ui.aside.load_city(cityData);
-                }
-            });
+switch (mapType) {
+    case 'world':
+        $('div#field_map').addEventListener('map:click:left:response', ev => {
+            if (typeof ev.detail === 'object') ui.aside.update(ev.detail);
         });
-    });
+        break;
+    case 'city':
+        loadCityInfo();
+        break;
+    case 'battle':
+
+        break;
+    default:
+
 }
 
 function initAll() {
@@ -48,7 +43,26 @@ function initAll() {
     enableRenaming();
 
 }
+/* Pages ------------------------------------------- */
+async function loadCityInfo() {
 
+    let idParam = '';
+
+    for (const p of urlParams) {
+        if (p[0] === 'id') id = `&city_id=${p[1]}`;
+    }
+
+    let url = `https://dev.wealthofnations.uk/ajax?do=city_info&c=city${idParam}`;
+    if (dev) url = '/cache/map/clicksim/city_info.json';
+
+    const res = await fetch(url);
+    const data = await res.json();
+
+    if (typeof data === 'object') ui.aside.update(data);
+
+}
+
+/* Panels ------------------------------------------- */
 function Modes(selector) {
     const elem = $(selector);
     if (!elem) return;
@@ -142,61 +156,30 @@ function Aside(selector) {
     const htmlContainer = elem.querySelector(':scope > .panel_holder > .panel_content > .content_scroll');
     const asideHistory = new DomHistory();
     const closeBtn = elem.querySelector('.close_btn');
-    const container = $('div#field_map');
-    let mapData;
 
     if (closeBtn) closeBtn.onclick = close;
 
-    container.addEventListener('map:click:left:response', mapClickSolver);
-
-    if (mapType === 'city' && location.hostname !== 'localhost') loadCity();
-
     this.elem = elem;
     this.close = close;
-    this.load_city = loadCity;
+    this.update = panelSolver;
 
     function close() {
         asideHistory.removeRecord();
         const { history } = asideHistory;
 
         if (history.length) {
-            buildAsideDom(history[history.length - 1], false);
+            buildPanelDOM(history[history.length - 1], false);
         } else {
             elem.style.display = 'none';
         }
     }
-
     function open() {
         elem.style.display = 'block';
     }
-    function loadCity(cityData) {
+    function panelSolver(data) {
 
-        if (cityData) {
-
-            mapClickSolver();
-
-        } else {
-
-            // if ()
-
-            fetch(`/ajax?do=city_info&c=city&city_id=745`)
-                .then(res => {
-                    if (res.ok) {
-                        res.json().then(res => {
-                            mapData = res;
-                            console.log(mapData);
-                            mapClickSolver();
-                        });
-                    } else {
-                        res.json().then(res => console.log(res));
-                    }
-                });
-
-        }
-
-    }
-    function mapClickSolver(event) {
         const elemStyles = window.getComputedStyle(elem);
+
         if (
             elem.style.display == 'none' ||
             elemStyles.getPropertyValue('display')
@@ -204,71 +187,50 @@ function Aside(selector) {
             open();
         }
         asideHistory.clear();
-        // cityClickJson, cityBuildJson, cityInfoJson;
-        // console.log(JSON.parse(event.detail).info);
-        // buildAsideDom(cityInfoJson.info);
-        if (location.hostname == 'localhost') {
-            switch (mapType) {
-                case 'city':
-                    buildAsideDom(cityData);
-                    break;
-                default:
-                    buildAsideDom(cityClickJson);
-            }
-        } else {
-            switch (mapType) {
-                case 'city':
-                    buildAsideDom(mapData);
-                    break;
-                default:
-                    buildAsideDom(JSON.parse(event.detail));
-            }
-        }
+        buildPanelDOM(data);
+
     }
-    function buildAsideDom(structureJson, isPushHistory = true) {
-        console.log('structure', structureJson);
-        const asideBody = structureJson.info;
-        const asideHeader = structureJson['city_header'];
+    function buildPanelDOM(structure, pushHistory = true) {
+
+        if (!structure) console.info('no data in responce');
 
         // Add Structure to History
-        if (isPushHistory) asideHistory.addRecord(structureJson);
+        if (pushHistory) asideHistory.addRecord(structure);
 
         // Build Aside Header
-        _buildAsideHeader(asideHeader);
+        _buildAsideHeader(structure.city_header);
 
         // Build Aside Body
-        if (Array.isArray(asideBody) && asideBody.length) {
-            _buildAsideBody(asideBody);
+        if (Array.isArray(structure.info) && structure.info.length) {
+            _buildAsideBody(structure.info);
         } else {
             console.log('BodyStructure: isArray - false');
         }
+
     }
     function _buildAsideBody(structure) {
 
         htmlContainer.innerHTML = '';
 
-        for (let rootEl of structure) {
-            htmlContainer.insertAdjacentElement(
-                'beforeend',
-                _getComponentDom(rootEl)
-            );
+        for (const rootEl of structure) {
+            htmlContainer.insertAdjacentElement('beforeend', _getComponentDom(rootEl));
+            console.log(_getComponentDom(rootEl));
         }
+
+        new Tabs();
+
     }
     function _buildAsideHeader(structure) {
-        let sidebarlHeaderEl = document.querySelector(
-            '.panel_sidebar .panel_header'
-        );
 
-        if (sidebarlHeaderEl) sidebarlHeaderEl.remove();
+        const headerContainer = elem.querySelector(':scope > .panel_holder');
+        let headerElem = headerContainer.querySelector('.panel_header');
 
-        if (!structure) {
-            console.log('Aside header has not been found');
-            return false;
-        }
+        if (headerElem) headerElem.remove();
+        if (!structure) return;
 
         const { flag, character } = structure;
 
-        sidebarlHeaderEl = `
+        headerElem = `
             <div class="panel_header py-10">
                 <div class="d-flex align-items-center">
                     <div class="pr-25">
@@ -285,9 +247,8 @@ function Aside(selector) {
                 </div>
             </div>`;
 
-        document
-            .querySelector('.panel_sidebar .panel_holder')
-            .insertAdjacentHTML('afterbegin', sidebarlHeaderEl);
+        headerContainer.insertAdjacentHTML('afterbegin', headerElem);
+
     }
     function _getComponentDom(component) {
         let el = document.createElement('div');
@@ -332,7 +293,9 @@ function Aside(selector) {
                     </div>`;
 
                 for (let [index, tab] of component.tabs.entries()) {
+
                     const navEl = document.createElement('li');
+                    navEl.classList.add('small_img');
                     if (index == 0) navEl.classList.add('active');
 
                     navEl.innerHTML = `
@@ -340,10 +303,9 @@ function Aside(selector) {
                             <span class="link_holder">${tab.name}</span>
                         </a>`;
 
-                    if (tab.icon && tab.icon != 'https://') {
-                        navEl.querySelector(
-                            '.link_holder'
-                        ).innerHTML = `<img src='${tab.icon}'>`;
+                    if (tab.icon) {
+                        navEl.querySelector('.link_holder').innerHTML = `
+                            <img src='${tab.icon}'>`;
                     }
 
                     const tabEl = document.createElement('div');
@@ -351,9 +313,10 @@ function Aside(selector) {
                     tabEl.id = 't' + index;
 
                     if (index == 0) tabEl.classList.add('active');
+
                     _recursiveBuildDom(tabEl, tab.content);
 
-                    el.querySelector('.list-unstyled').insertAdjacentElement(
+                    el.querySelector('.tab_nav_list').insertAdjacentElement(
                         'beforeend',
                         navEl
                     );
@@ -364,39 +327,10 @@ function Aside(selector) {
 
                     setTimeout(() => {
                         new CustomScroll('.panel_sidebar');
-                    }, 16);
+                    }, 160);
+
                 }
 
-                new Tabs(el);
-
-                setTimeout(() => {
-
-                    const panel = $('.panel_sidebar > .panel_holder > .panel_content');
-                    const panelHeight = panel.getBoundingClientRect().height;
-
-                    const panelStyles = window.getComputedStyle(panel);
-                    const paddingTop = panelStyles.getPropertyValue('padding-top');
-                    const paddingTopNumber = parseFloat(paddingTop);
-
-                    const tabsPanelHolder = el.querySelector('.panel_holder');
-                    const tabNavHeight = tabsPanelHolder.offsetTop;
-                    const contentHeight = panelHeight - tabNavHeight - paddingTopNumber;
-                    tabsPanelHolder.style.maxHeight = contentHeight + 'px';
-
-                }, 16);
-
-                break;
-
-            case 'tab':
-                childs = component.content;
-                classNames.push('tab');
-                addClasses(el, classNames);
-
-                el.innerHTML = component.name;
-
-                if (component.icon && component.icon != 'https://') {
-                    el.insertAdjacentHTML('afterbegin', `<img src='${component.icon}'>`);
-                }
                 break;
 
             case 'section':
@@ -435,6 +369,8 @@ function Aside(selector) {
 
                 el.classList.add('col_item');
 
+                let mini_info_inputType = component.input_type ? component.input_type : 'text';
+
                 el.innerHTML = `
                     <div>
                         <label>${component.label}</label>
@@ -445,7 +381,7 @@ function Aside(selector) {
                         </a>
                         <div class="mini_holder">
                             <input
-                                type="text"
+                                type="${mini_info_inputType}"
                                 value="${component.value}" ${!component.editable ? 'disabled' : ''}>
                         </div>
                     </div>`;
@@ -614,6 +550,7 @@ function Aside(selector) {
             case 'icon_list':
                 classNames.push('icon_list');
                 addClasses(el, classNames);
+
                 childs = component.components;
 
                 break;
@@ -624,11 +561,11 @@ function Aside(selector) {
 
                 if (component.url) el.dataset.url = component.url;
 
-                let value = component.value ? component.value : '#000000';
+                let colorValue = component.value ? component.value : '#000000';
 
                 el.innerHTML = `
                 <label>${component.label}</label><br>
-                <input type="color" value="${value}">`;
+                <input type="color" value="${colorValue}">`;
 
                 if (component.name) el.querySelector('input').setAttribute('name', component.name);
                 clickableElement = el.querySelector('input');
@@ -715,11 +652,14 @@ function Aside(selector) {
 
         // Build Childs Components
         if (childs) {
+
             if (!Array.isArray(childs)) {
                 childs = Object.entries(childs).map((item) => item[1]);
             }
 
-            if (childs.length) _recursiveBuildDom(parentForChildsEl, childs);
+            if (childs.length) {
+                _recursiveBuildDom(parentForChildsEl, childs);
+            }
         }
 
         if (clickableElement && component.url) {
@@ -743,10 +683,8 @@ function Aside(selector) {
     }
     function _recursiveBuildDom(parent, childs) {
         for (let childComponent of childs) {
-            parent.insertAdjacentElement(
-                'beforeend',
-                _getComponentDom(childComponent)
-            );
+            const elem = _getComponentDom(childComponent)
+            parent.insertAdjacentElement('beforeend', elem);
         }
     }
     function addClasses(elem, array) {
@@ -758,27 +696,30 @@ function Aside(selector) {
 
         let data;
 
-        if (location.hostname !== 'localhost') {
+        if (!dev) {
             const res = await fetch(url);
             data = await res.json();
             console.log('ajax response:', data);
 
-            if (data.hasOwnProperty('info') ||
-                data.hasOwnProperty('commands') ||
-                data.hasOwnProperty('builds') ||
-                data.hasOwnProperty('army')) {
-                buildAsideDom(data);
+            if (data.hasOwnProperty('info')) {
+                buildPanelDOM(data);
             } else if (data.redirect) {
                 window.location.href = data.redirect;
             }
 
-        } else if (cityInfoJson) {
-            data = cityInfoJson;
         } else {
-            console.log('Something wrong: incorect data');
+            fetch('/cache/map/clicksim/city_builds.json', {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+                .then(async (res) => {
+                    const data = await res.json();
+                    buildPanelDOM(data);
+                });
         }
 
-        buildAsideDom(data);
+
 
     }
     function replaceVars(string) {
@@ -793,7 +734,7 @@ function Aside(selector) {
             if (elem) {
                 let value = elem.value;
                 if (elem.classList.contains('select')) value = elem.dataset.value;
-                if(name === 'color') value = value.substring(1);
+                if (name === 'color') value = value.substring(1);
                 stringUpdated = stringUpdated.replace(`{${name}}`, value);
             }
         });
@@ -1093,8 +1034,12 @@ function Tabs(element) {
     allTabs.forEach((tab) => new Tab(tab));
 
     function Tab(elem) {
+        const panel = elem.closest('.panel_holder');
+        const panelContent = panel.querySelector(':scope > .panel_content');
+        const tabsContent = elem.querySelector(':scope > .panel_holder');
         const navTabs = elem.children[0].firstElementChild.firstElementChild.children;
         const content = elem.children[1].querySelector('.panel_content > div > .tab_content');
+        let maxContentHeight = null;
 
         [...navTabs].forEach(tab => {
             tab.onclick = (ev) => {
@@ -1107,11 +1052,48 @@ function Tabs(element) {
                 for (const tabBtn of navTabs) {
                     tabBtn.classList.remove('active');
                 }
+
                 tab.classList.add('active');
                 content.querySelector(tabID).classList.add('active');
+
+                setMaxComponentHeight(elem);
+
             };
         });
+
+        // const resizeObserver = new ResizeObserver(entries => {
+        //     for (const element of entries) {
+        //         if (element.target === panel) {
+        //             maxContentHeight = null;
+        //             setMaxComponentHeight(elem);
+        //         }
+        //     }
+        // });
+        //
+        // resizeObserver.observe(panel);
+
+        function setMaxComponentHeight(elem) {
+
+            tabsContent.style.maxHeight = 'none';
+
+            const style = window.getComputedStyle(panelContent);
+            const paddingBottom = style.getPropertyValue('padding-bottom');
+            const padding = parseFloat(paddingBottom);
+
+            const panelCoord = panel.getBoundingClientRect();
+            const tabsContentTop = tabsContent.getBoundingClientRect().top;
+            const height = panelCoord.bottom - tabsContentTop - padding;
+
+            if (maxContentHeight === null || height > maxContentHeight) {
+                maxContentHeight = height;
+            }
+
+            tabsContent.style.maxHeight = maxContentHeight + 'px';
+
+        }
+
     }
+
 }
 function ToolTips() {
 

@@ -1305,7 +1305,7 @@ export function Map() {
                         if (res.ok) {
                             res.json().then(res => {
                                 map.layer.info[index] = res;
-                                hey('map:click:left:response', JSON.stringify(res));
+                                hey('map:click:left:response', res);
                             });
                         } else {
                             res.json().then(res => {
@@ -1314,7 +1314,16 @@ export function Map() {
                         }
                     });
             } else {
-                hey('map:click:left:response', JSON.stringify({ message: 'No server response. Use dummy JSON.' }));
+
+                fetch('/cache/map/clicksim/map_click.json', {
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                    .then(async (res) => {
+                        const data = await res.json();
+                        hey('map:click:left:response', data);
+                    });
             }
 
             redraw();
