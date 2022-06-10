@@ -1519,7 +1519,6 @@ function Table(target) {
         function updateWidths() {
 
             const row = body.querySelector('.tr');
-
             let cols = [];
 
             [...row.children].forEach(col => cols.push(col));
@@ -1527,11 +1526,11 @@ function Table(target) {
             headerCols.forEach((title, i) => {
 
                 if (title.dataset.width) {
-                    const w = title.dataset.width;
-                    title.style.width = `${w}px`;
-                    cols[i].style.width = `${w}px`;
+                    const w = title.dataset.width / row.clientWidth * 100;
+                    title.style.width = `${w}%`;
+                    cols[i].style.width = `${w}%`;
                 } else {
-                    title.style.width = cols[i].offsetWidth + 'px';
+                    title.style.width = cols[i].offsetWidth / row.clientWidth * 100 + '%';
                 }
 
             });
