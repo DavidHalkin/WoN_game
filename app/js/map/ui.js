@@ -758,13 +758,13 @@ function Bottom(selector) {
     const _ = this;
     this.update = populateItems;
     this.deselect = deselectAll;
-    this.selected = null;
+    this.selected = [];
 
-    function populateItems(data) {
+    function populateItems(data, multiSelect) {
 
         itemsContainer.innerHTML = '';
 
-        for (const itemData of data) {
+        for (const [i, itemData] of data.entries()) {
 
             let { back, enabled, icon, id, name, tooltip, number, width, height } = itemData;
 
@@ -778,7 +778,7 @@ function Bottom(selector) {
             item.classList.add('slider_item', 'mx-7');
 
             item.innerHTML = `
-                <div data-id="${id}" class="slot ${enabled}  ${class_type}  ">
+                <div data-id="${id}" data-i="${i}" class="slot ${enabled}  ${class_type}  ">
                     <div class="figure_holder">
                         <button class="figure" type="button">
                             <div class="mask">
@@ -801,9 +801,19 @@ function Bottom(selector) {
 
             if (enabled !== 'type_disabled') {
                 item.onclick = () => {
-                    deselectAll();
-                    _.selected = itemData;
-                    item.firstElementChild.classList.add('type_active');
+
+                    const slot = item.firstElementChild;
+
+                    if (multiSelect) {
+                        slot.classList.toggle('type_active');
+                    }
+                    else {
+                        deselectAll();
+                        slot.classList.add('type_active');
+                    }
+
+                    updateSelected(data);
+
                     if (mapType === 'city') {
                         map.buildings.build({
                             id,
@@ -819,6 +829,16 @@ function Bottom(selector) {
             itemsContainer.insertAdjacentElement('beforeend', item);
 
         }
+    }
+    function updateSelected(array) {
+
+        _.selected = [];
+
+        const allSelected = itemsContainer.querySelectorAll('.type_active');
+        for (const elem of allSelected) {
+            _.selected.push(array[elem.dataset.i]);
+        }
+
     }
     function deselectAll() {
         itemsContainer.querySelector('.type_active') ?.classList.remove('type_active');
