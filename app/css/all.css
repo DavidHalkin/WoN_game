@@ -2937,7 +2937,7 @@ a:hover, .hovered_item:hover { color: #fff; text-decoration: none; -webkit-trans
 
 .btn > span:after { left: auto; right: 0; -webkit-transform: scale(-1, -1); -ms-transform: scale(-1, -1); transform: scale(-1, -1); }
 
-.btn svg { max-width: 16px; -webkit-box-flex: 0; -ms-flex: 0 0 16px; flex: 0 0 16px; margin-right: 5px; }
+.btn svg { width: 16px; max-width: 16px; -webkit-box-flex: 0; -ms-flex: 0 0 16px; flex: 0 0 16px; margin-right: 5px; }
 
 .btn:before, .btn:after { content: ""; position: absolute; top: 0; left: 0; width: var(--size_corner_local); height: var(--size_corner_local); background: var(--corner_img) no-repeat; -webkit-background-size: cover; background-size: cover; pointer-events: none; }
 
@@ -2947,7 +2947,9 @@ a:hover, .hovered_item:hover { color: #fff; text-decoration: none; -webkit-trans
 
 .btn i { font-style: normal; }
 
-.btn .ico { max-width: var(--ico_w); -webkit-box-flex: 0; -ms-flex: 0 0 var(--ico_w); flex: 0 0 var(--ico_w); height: var(--ico_w); margin-right: 10px; background: red; overflow: hidden; display: block; position: relative; }
+.btn .ico { width: var(--ico_w); max-width: var(--ico_w); -webkit-box-flex: 0; -ms-flex: 0 0 var(--ico_w); flex: 0 0 var(--ico_w); height: var(--ico_w); margin-right: 10px; overflow: hidden; position: relative; display: block; }
+
+.btn .ico img { width: 100%; height: 100%; -o-object-fit: contain; object-fit: contain; }
 
 .switcher { --w:calc(37px / 2); --h:calc(49px / 2); width: var(--w); height: var(--h); background: url(/images/map/btns/arrow_short.png) no-repeat 0 0; -webkit-background-size: cover; background-size: cover; display: inline-block; border: 0; outline: none; padding: 0; }
 
