@@ -48,35 +48,34 @@
             "enabled": false,
             "id": "3",
             "tooltip": [
-                [
-                    {
-                        "text": "<br>*Недостаточно ресурсов<br>"
-                    },
-                    {
-                        "type": "mini_info",
-                        "name": "Дерево",
-                        "label": "Дерево",
-                        "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/1.webp",
-                        "value": 9763,
-                        "editable": false
-                    },
-                    {
-                        "type": "mini_info",
-                        "name": "Глина",
-                        "label": "Глина",
-                        "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/13.webp",
-                        "value": "24k",
-                        "editable": false
-                    },
-                    {
-                        "type": "mini_info",
-                        "name": null,
-                        "label": null,
-                        "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/status.webp",
-                        "value": 0,
-                        "editable": false
-                    }
-                ]
+                {
+                    "type": "text",
+                    "content": "<br>*Недостаточно ресурсов<br>"
+                },
+                {
+                    "type": "mini_info",
+                    "name": "Дерево",
+                    "label": "Дерево",
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/1.webp",
+                    "value": 9763,
+                    "editable": false
+                },
+                {
+                    "type": "mini_info",
+                    "name": "Глина",
+                    "label": "Глина",
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/13.webp",
+                    "value": "24k",
+                    "editable": false
+                },
+                {
+                    "type": "mini_info",
+                    "name": null,
+                    "label": null,
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/status.webp",
+                    "value": 0,
+                    "editable": false
+                }
             ]
         },
         {
@@ -86,27 +85,26 @@
             "enabled": false,
             "id": "5",
             "tooltip": [
-                [
-                    {
-                        "text": " Может производить ресурсы: Лошадиное мясо, Верблюжье мясо, Оленина, Овечье мясо, Птичье мясо, Мясо свиней, Говядина, Китовое мясо, Мясо моржа<br> Модификаторы:<br><span class=t_red >+170</span> Загрязненность <br>*Недостаточно ресурсов<br>"
-                    },
-                    {
-                        "type": "mini_info",
-                        "name": "Дерево",
-                        "label": "Дерево",
-                        "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/1.webp",
-                        "value": "48k",
-                        "editable": false
-                    },
-                    {
-                        "type": "mini_info",
-                        "name": null,
-                        "label": null,
-                        "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/status.webp",
-                        "value": 0,
-                        "editable": false
-                    }
-                ]
+                {
+                    "type": "text",
+                    "content": " Может производить ресурсы: Лошадиное мясо, Верблюжье мясо, Оленина, Овечье мясо, Птичье мясо, Мясо свиней, Говядина, Китовое мясо, Мясо моржа<br> Модификаторы:<br><span class=t_red >+170</span> Загрязненность <br>*Недостаточно ресурсов<br>"
+                },
+                {
+                    "type": "mini_info",
+                    "name": "Дерево",
+                    "label": "Дерево",
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/1.webp",
+                    "value": "48k",
+                    "editable": false
+                },
+                {
+                    "type": "mini_info",
+                    "name": null,
+                    "label": null,
+                    "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/status.webp",
+                    "value": 0,
+                    "editable": false
+                }
             ]
         },
         {
@@ -611,7 +609,32 @@
                                     "name": "resurs_41",
                                     "tooltip": [
                                         {
-                                            "text": "-0 Порча"
+                                            "type": "text",
+                                            "content": "<br>*Недостаточно ресурсов<br>"
+                                        },
+                                        {
+                                            "type": "mini_info",
+                                            "name": "Дерево",
+                                            "label": "Дерево",
+                                            "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/1.webp",
+                                            "value": 9763,
+                                            "editable": false
+                                        },
+                                        {
+                                            "type": "mini_info",
+                                            "name": "Глина",
+                                            "label": "Глина",
+                                            "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/13.webp",
+                                            "value": "24k",
+                                            "editable": false
+                                        },
+                                        {
+                                            "type": "mini_info",
+                                            "name": null,
+                                            "label": null,
+                                            "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/status.webp",
+                                            "value": 0,
+                                            "editable": false
                                         }
                                     ],
                                     "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/41.webp",
@@ -625,7 +648,32 @@
                                     "name": "resurs_13",
                                     "tooltip": [
                                         {
-                                            "text": "Глина"
+                                            "type": "text",
+                                            "content": "<br>*Недостаточно ресурсов<br>"
+                                        },
+                                        {
+                                            "type": "mini_info",
+                                            "name": "Дерево",
+                                            "label": "Дерево",
+                                            "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/1.webp",
+                                            "value": 9763,
+                                            "editable": false
+                                        },
+                                        {
+                                            "type": "mini_info",
+                                            "name": "Глина",
+                                            "label": "Глина",
+                                            "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/13.webp",
+                                            "value": "24k",
+                                            "editable": false
+                                        },
+                                        {
+                                            "type": "mini_info",
+                                            "name": null,
+                                            "label": null,
+                                            "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/status.webp",
+                                            "value": 0,
+                                            "editable": false
                                         }
                                     ],
                                     "icon": "https://dev.wealthofnations.uk/game_files/img/resurs/x1/webp/13.webp",

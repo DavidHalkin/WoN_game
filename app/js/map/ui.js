@@ -8,6 +8,7 @@ window.ui.city = new City('.panel_town');
 window.ui.aside = new Aside('.panel_sidebar');
 window.ui.bottom = new Bottom('.panel_army');
 window.ui.actions = new Actions('.actions_panel');
+window.ui.tooltip = new ComponentsTip('.tooltip');
 
 initAll();
 
@@ -18,8 +19,8 @@ switch (mapType) {
         $('div#field_map').addEventListener('map:click:left:response', ev => {
             if (typeof ev.detail === 'object') {
                 ui.aside.init(ev.detail);
-                if (ev.detail?.army?.length) ui.bottom.update(ev.detail.army, true);
-                if (ev.detail?.buildings?.length) ui.bottom.update(ev.detail.buildings);
+                if (ev.detail ?.army ?.length) ui.bottom.update(ev.detail.army, true);
+                if (ev.detail ?.buildings ?.length) ui.bottom.update(ev.detail.buildings);
             }
         });
         break;
@@ -168,6 +169,16 @@ function Aside(selector) {
     const asideHistory = new DomHistory();
     const closeBtn = elem.querySelector('.close_btn');
 
+    DomHistory.prototype.addRecord = function(json) {
+        this.history.push(json);
+    };
+    DomHistory.prototype.removeRecord = function() {
+        this.history.pop();
+    };
+    DomHistory.prototype.clear = function() {
+        this.history = [];
+    };
+
     if (closeBtn) closeBtn.onclick = close;
 
     const _ = this;
@@ -176,6 +187,9 @@ function Aside(selector) {
     this.init = panelSolver;
     this.update = buildPanelDOM;
 
+    function DomHistory() {
+        this.history = [];
+    }
     function close() {
         asideHistory.removeRecord();
         const { history } = asideHistory;
@@ -324,6 +338,8 @@ function Bottom(selector) {
                     }
                 };
             }
+
+            if (tooltip) enableTooltip(item, tooltip);
 
             itemsContainer.insertAdjacentElement('beforeend', item);
 
@@ -817,7 +833,7 @@ function generateHTML(target, structure, panel) {
                 _recursiveBuildDom(parentForChildsEl, childs);
             }
         }
-
+        if (component.tooltip) enableTooltip(el, component.tooltip);
         if (clickableElement && component.url) {
 
             clickableElement.setAttribute('data-clickable', '');
@@ -902,19 +918,12 @@ function generateHTML(target, structure, panel) {
     }
 
 }
-function DomHistory() {
-    this.history = [];
-}
-DomHistory.prototype.addRecord = function(json) {
-    this.history.push(json);
-};
-DomHistory.prototype.removeRecord = function() {
-    this.history.pop();
-};
-DomHistory.prototype.clear = function() {
-    this.history = [];
-};
+function enableTooltip(el, data) {
 
+    el.addEventListener('mouseenter', () => ui.tooltip.show(el, data));
+    el.addEventListener('mouseleave', () => ui.tooltip.hide());
+
+}
 function CustomScroll(target) {
 
     let targetElement = document;
@@ -1346,6 +1355,63 @@ function ToolTips() {
 
         tipWindow.style.opacity = 0;
         tipWindow.style.visibility = 'hidden';
+
+    }
+
+}
+function ComponentsTip(selector) {
+
+    const elem = $(selector);
+    if (!elem) return;
+
+    const htmlContainer = elem.querySelector('.container');
+
+    this.show = show;
+    this.hide = hide;
+    this.update = update;
+
+    function show(component, data) {
+
+        update(data);
+        position(component);
+
+        elem.style.opacity = 1;
+        elem.style.visibility = 'visible';
+
+    }
+    function hide() {
+
+        elem.style.opacity = 0;
+        elem.style.visibility = 'hidden';
+        htmlContainer.innerHTML = '';
+
+    }
+    function position(el) {
+
+        const RIGHT_GAP = 10; // px
+
+        const component = el.getBoundingClientRect();
+        let x = component.left;
+        let y = component.bottom;
+
+        if (window.innerHeight - y < elem.offsetHeight) {
+            y = component.top - elem.offsetHeight;
+        }
+
+        if (window.innerWidth - x < elem.offsetWidth) {
+            x = window.innerWidth - elem.offsetWidth - RIGHT_GAP;
+        }
+
+        elem.style.cssText = `
+            position: fixed;
+            top: ${y}px;
+            left: ${x}px;
+        `;
+
+    }
+    function update(data) {
+
+        generateHTML(htmlContainer, data);
 
     }
 
