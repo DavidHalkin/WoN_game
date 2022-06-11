@@ -7,6 +7,7 @@ window.ui.modes = new Modes('.panel_game_modes');
 window.ui.city = new City('.panel_town');
 window.ui.aside = new Aside('.panel_sidebar');
 window.ui.bottom = new Bottom('.panel_army');
+window.ui.actions = new Actions('.actions_panel');
 
 initAll();
 
@@ -58,7 +59,11 @@ async function loadCityInfo() {
     const res = await fetch(url);
     const data = await res.json();
 
-    if (typeof data === 'object') ui.aside.update(data);
+    if (typeof data === 'object') {
+        ui.aside.update(data);
+        ui.bottom.update(data.buildings);
+        ui.actions.update(data.commands);
+    }
 
 }
 
@@ -214,7 +219,6 @@ function Aside(selector) {
 
         for (const rootEl of structure) {
             htmlContainer.insertAdjacentElement('beforeend', _getComponentDom(rootEl));
-            console.log(_getComponentDom(rootEl));
         }
 
         new Tabs();
@@ -746,7 +750,125 @@ function Aside(selector) {
 function Bottom(selector) {
     const elem = $(selector);
     if (!elem) return;
-    const panelname = elem.querySelector('#paneltitle');
+    const itemsContainer = elem.querySelector('.holder_slider_list');
+
+    const _ = this;
+    this.update = populateItems;
+    this.deselect = deselectAll;
+    this.selected = null;
+
+    function populateItems(data) {
+
+        itemsContainer.innerHTML = '';
+
+        for (const itemData of data) {
+
+            let { back, enabled, icon, id, name, tooltip, number } = itemData;
+
+            number = number ? number : '';
+            enabled = enabled ? '' : 'type_disabled';
+
+            const item = document.createElement('div');
+            item.classList.add('slider_item', 'mx-7');
+
+            item.innerHTML = `
+                <div data-id="${id}" class="slot ${enabled} type_danger has_close has_top_alert has_bottom_alert has_bottom_right_alert">
+                    <div class="figure_holder">
+                        <button class="figure" type="button">
+                            <div class="mask">
+                                <img src="${icon}" alt="${name}">
+                            </div>
+                        </button>
+                        <button type="button" class="close_btn"></button>
+                        <div class="square size_0 top_alert">
+                            <img src="/images/map/icons/lock.svg" alt="">
+                        </div>
+                        <div class="square bottom_alert size_0">
+                            <img src="/images/map/icons/alert.svg" alt="">
+                        </div>
+                        <a href="#" class="circle emblem bottom_right_alert size_0">
+                            <img src="images/map/circles/emblem.png" alt="">
+                        </a>
+                    </div>
+                    <div class="text_holder">${number}</div>
+                    <div class="sub_info">
+                        <span>123456</span> / <span class="text-danger">123456</span>
+                    </div>
+                </div>`;
+
+                if (enabled !== 'type_disabled') {
+                    item.onclick = () => {
+                        deselectAll();
+                        _.selected = itemData;
+                        item.firstElementChild.classList.add('type_active');
+                        if (mapType === 'city') {
+                            map.buildings.build({
+                                id,
+                                name,
+                                height: 2,
+                                widht: 2,
+                                img: icon
+                            });
+                        }
+                    };
+                }
+
+                itemsContainer.insertAdjacentElement('beforeend', item);
+
+        }
+    }
+    function deselectAll() {
+        itemsContainer.querySelector('.type_active')?.classList.remove('type_active');
+        _.selected = null;
+    }
+}
+function Actions(selector) {
+    const elem = $(selector);
+    if (!elem) return;
+
+    const btnsContainer = elem.querySelector('.actions_grid');
+
+    this.update = populateButtons;
+
+    function populateButtons(data) {
+
+        btnsContainer.innerHTML = '';
+
+        for (const command of data) {
+
+            let { ajax, label, list, name, type, url } = command;
+
+            const div = document.createElement('div');
+            div.classList.add('actions_col');
+
+            div.innerHTML = `<button type="button" class="actions_item">
+            </button>`;
+
+            div.firstElementChild.onclick = () => {
+
+                if (!ui.bottom.selected) return;
+
+                url = url.replace('{resurs_id}', ui.bottom.selected.id);
+                fetch(url, {
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                    .then(res => {
+                        if (res.ok) {
+                            res.json().then(res => console.log(res));
+                        } else {
+                            res.json().then(res => console.log(res));
+                        }
+                    });
+
+            }
+
+            btnsContainer.insertAdjacentElement('beforeend', div);
+
+        }
+
+    }
 }
 
 /* Utilities ------------------------------------------- */

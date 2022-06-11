@@ -122,16 +122,6 @@ function Map(data) {
         }
         redraw();
     }
-    $('button[name="build"]').onclick = () => {
-        buildings.build({
-            "id": "99999",
-            "name": "Рубка леса 2 (Шадиград)",
-            "can_destroy": true,
-            "height": "2",
-            "widht": "2",
-            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
-        });
-    }
 
     load.spritesheets(spriteMap);
 
@@ -420,6 +410,7 @@ function Map(data) {
             propagateBuildingAreas();
             buildings.moving = null;
             redraw();
+            ui.bottom.deselect();
 
         }
         function placeBuildingAndContinue(building) {
