@@ -264,7 +264,7 @@ function Map(data) {
                 position:absolute;
                 top: 0;
                 left: 0;
-                width: ${tiles.cell_width * building.widht}px;
+                width: ${tiles.cell_width * building.width}px;
                 height: auto;
                 opacity: 0.5;
                 pointer-events: none;
@@ -470,7 +470,7 @@ function Map(data) {
 
             buildings.list.find(building => {
                 if (+building.x === x && +building.y === y && !building.moving) {
-                    const buildingIndexes = getIndexArea(x, y, +building.widht, +building.height);
+                    const buildingIndexes = getIndexArea(x, y, +building.width, +building.height);
                     buildingIndexes.forEach(index => tiles.building_areas[index] = building.id);
                 }
             });
@@ -899,7 +899,7 @@ function Map(data) {
 
         if (building.image) {
             if (ghostBuildings) ctx.globalAlpha = 0.27;
-            const width = building.widht * tiles.cell_width;
+            const width = building.width * tiles.cell_width;
             const height = building.image.naturalHeight / building.image.naturalWidth * width;
             try {
                 ctx.drawImage(
@@ -1009,7 +1009,7 @@ function Map(data) {
             viewport.go_to_coord(mapShiftX, mapShiftY);
 
             if (buildings.moving) {
-                const width = tiles.cell_width * buildings.moving.building.widht;
+                const width = tiles.cell_width * buildings.moving.building.width;
                 buildings.moving.elem.style.width = width + 'px';
             }
 
