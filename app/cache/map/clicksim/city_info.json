@@ -43,7 +43,7 @@
     "buildings": [
         {
             "name": "Баня",
-            "icon": "https://dev.wealthofnations.uk/system_files/img/builds/3_1_1_1_1_1.png",
+            "icon": "/images/city/buildings41_2_1_1_1_1.webp",
             "back": "opacity",
             "enabled": false,
             "id": "3",
@@ -81,7 +81,7 @@
         },
         {
             "name": "Бойня",
-            "icon": "https://dev.wealthofnations.uk/system_files/img/builds/5_1_1_1_1_1.png",
+            "icon": "/images/city/buildings41_2_1_1_1_1.webp",
             "back": "opacity",
             "enabled": false,
             "id": "5",
@@ -111,7 +111,7 @@
         },
         {
             "name": "Городской дом",
-            "icon": "https://dev.wealthofnations.uk/system_files/img/builds/12_1_1_1_1_1.png",
+            "icon": "/images/city/buildings/41_2_1_1_1_1.webp",
             "back": "opacity",
             "enabled": false,
             "id": "12",
@@ -141,7 +141,7 @@
         },
         {
             "name": "Государственный Институт",
-            "icon": "https://dev.wealthofnations.uk/system_files/img/builds/40_1_1_1_1_1.png",
+            "icon": "/images/city/buildings/41_2_1_1_1_1.webp",
             "back": "opacity",
             "enabled": false,
             "id": "40",
@@ -171,7 +171,7 @@
         },
         {
             "name": "Жилище знахаря",
-            "icon": "https://dev.wealthofnations.uk/system_files/img/builds/14_1_1_1_1_1.png",
+            "icon": "/images/city/buildings/41_2_1_1_1_1.webp",
             "back": "opacity",
             "enabled": false,
             "id": "14",
@@ -225,7 +225,7 @@
         },
         {
             "name": "Загон",
-            "icon": "https://dev.wealthofnations.uk/system_files/img/builds/355_1_1_1_1_1.png",
+            "icon": "/images/city/buildings/41_2_1_1_1_1.webp",
             "back": null,
             "enabled": true,
             "id": "355",
@@ -247,7 +247,7 @@
         },
         {
             "name": "Карьер",
-            "icon": "https://dev.wealthofnations.uk/system_files/img/builds/227_1_1_1_1_1.png",
+            "icon": "/images/city/buildings/41_2_1_1_1_1.webp",
             "back": "opacity",
             "enabled": false,
             "id": "227",
@@ -277,7 +277,7 @@
         },
         {
             "name": "Обработка сырья",
-            "icon": "https://dev.wealthofnations.uk/system_files/img/builds/305_1_1_1_1_1.png",
+            "icon": "/images/city/buildings/41_2_1_1_1_1.webp",
             "back": "opacity",
             "enabled": false,
             "id": "305",
@@ -315,7 +315,7 @@
         },
         {
             "name": "Поле",
-            "icon": "https://dev.wealthofnations.uk/system_files/img/builds/32_1_1_1_1_1.png",
+            "icon": "/images/city/buildings/41_2_1_1_1_1.webp",
             "back": "opacity",
             "enabled": false,
             "id": "32",
@@ -345,7 +345,7 @@
         },
         {
             "name": "Православный храм",
-            "icon": "https://dev.wealthofnations.uk/system_files/img/builds/523_1_1_1_1_1.png",
+            "icon": "/images/city/buildings/41_2_1_1_1_1.webp",
             "back": "opacity",
             "enabled": false,
             "id": "523",
@@ -415,7 +415,7 @@
         },
         {
             "name": "Рубка леса",
-            "icon": "https://dev.wealthofnations.uk/system_files/img/builds/35_1_1_1_1_1.png",
+            "icon": "/images/city/buildings/41_2_1_1_1_1.webp",
             "back": null,
             "enabled": true,
             "id": "35",
@@ -437,7 +437,7 @@
         },
         {
             "name": "Сад",
-            "icon": "https://dev.wealthofnations.uk/system_files/img/builds/38_1_1_1_1_1.png",
+            "icon": "/images/city/buildings/41_2_1_1_1_1.webp",
             "back": "opacity",
             "enabled": false,
             "id": "38",
@@ -467,7 +467,7 @@
         },
         {
             "name": "Склад ",
-            "icon": "https://dev.wealthofnations.uk/system_files/img/builds/169_1_1_1_1_1.png",
+            "icon": "/images/city/buildings/41_2_1_1_1_1.webp",
             "back": "opacity",
             "enabled": false,
             "id": "169",
@@ -497,7 +497,7 @@
         },
         {
             "name": "Хижина рыбака",
-            "icon": "https://dev.wealthofnations.uk/system_files/img/builds/43_1_1_1_1_1.png",
+            "icon": "/images/city/buildings/41_2_1_1_1_1.webp",
             "back": null,
             "enabled": true,
             "id": "43",
@@ -519,7 +519,7 @@
         },
         {
             "name": "Шиитская мечеть",
-            "icon": "https://dev.wealthofnations.uk/system_files/img/builds/527_1_1_1_1_1.png",
+            "icon": "/images/city/buildings/41_2_1_1_1_1.webp",
             "back": "opacity",
             "enabled": false,
             "id": "527",
