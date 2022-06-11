@@ -16,7 +16,7 @@ let pageData, cityClickJson, cityBuildJson, cityInfoJson, cityData;
 switch (mapType) {
     case 'world':
         $('div#field_map').addEventListener('map:click:left:response', ev => {
-            if (typeof ev.detail === 'object') ui.aside.update(ev.detail);
+            if (typeof ev.detail === 'object') ui.aside.init(ev.detail);
         });
         break;
     case 'city':
@@ -60,7 +60,7 @@ async function loadCityInfo() {
     const data = await res.json();
 
     if (typeof data === 'object') {
-        ui.aside.update(data);
+        ui.aside.init(data);
         ui.bottom.update(data.buildings);
         ui.actions.update(data.commands);
     }
@@ -166,9 +166,11 @@ function Aside(selector) {
 
     if (closeBtn) closeBtn.onclick = close;
 
+    const _ = this;
     this.elem = elem;
     this.close = close;
-    this.update = panelSolver;
+    this.init = panelSolver;
+    this.update = buildPanelDOM;
 
     function close() {
         asideHistory.removeRecord();
@@ -208,21 +210,7 @@ function Aside(selector) {
         _buildAsideHeader(structure.city_header);
 
         // Build Aside Body
-        if (Array.isArray(structure.info) && structure.info.length) {
-            _buildAsideBody(structure.info);
-        } else {
-            console.log('BodyStructure: isArray - false');
-        }
-
-    }
-    function _buildAsideBody(structure) {
-
-        htmlContainer.innerHTML = '';
-
-        for (const rootEl of structure) {
-            htmlContainer.insertAdjacentElement('beforeend', _getComponentDom(rootEl));
-        }
-
+        generateHTML(htmlContainer, structure.info, _);
         new Tabs();
 
     }
@@ -256,6 +244,138 @@ function Aside(selector) {
         headerContainer.insertAdjacentHTML('afterbegin', headerElem);
 
     }
+}
+function Bottom(selector) {
+    const elem = $(selector);
+    if (!elem) return;
+    const itemsContainer = elem.querySelector('.holder_slider_list');
+
+    const _ = this;
+    this.update = populateItems;
+    this.deselect = deselectAll;
+    this.selected = [];
+
+    function populateItems(data, multiSelect) {
+
+        itemsContainer.innerHTML = '';
+
+        for (const [i, itemData] of data.entries()) {
+
+            let { back, enabled, icon, id, name, tooltip, number, width, height } = itemData;
+
+            enabled = enabled ? '' : 'type_disabled';
+            if (back == 'opacity') class_type = 'type_disabled';
+            else if (back == 'gold') class_type = 'type_active';
+            else if (back == 'blue') class_type = 'type_primary';
+            else class_type = '';
+
+            const item = document.createElement('div');
+            item.classList.add('slider_item', 'mx-7');
+
+            item.innerHTML = `
+                <div data-id="${id}" data-i="${i}" class="slot ${enabled}  ${class_type}  ">
+                    <div class="figure_holder">
+                        <button class="figure" type="button">
+                            <div class="mask">
+                                <img src="${icon}" alt="${name}">
+                            </div>
+                        </button>
+                        <button type="button" class="close_btn"></button>
+                        <div class="square size_0 top_alert">
+                            <img src="/images/map/icons/lock.svg" alt="">
+                        </div>
+                        <div class="square bottom_alert size_0">
+                            <img src="/images/map/icons/alert.svg" alt="">
+                        </div>
+                        <a href="#" class="circle emblem bottom_right_alert size_0">
+                            <img src="images/map/circles/emblem.png" alt="">
+                        </a>
+                    </div>
+                    ${number ? `<div class="text_holder">${number}</div>` : ''}
+                </div>`;
+
+            if (enabled !== 'type_disabled') {
+                item.onclick = () => {
+
+                    const slot = item.firstElementChild;
+
+                    if (multiSelect) {
+                        slot.classList.toggle('type_active');
+                    }
+                    else {
+                        deselectAll();
+                        slot.classList.add('type_active');
+                    }
+
+                    updateSelected(data);
+
+                    if (mapType === 'city') {
+                        map.buildings.build({
+                            id,
+                            name,
+                            height: height,
+                            widht: width,
+                            img: icon
+                        });
+                    }
+                };
+            }
+
+            itemsContainer.insertAdjacentElement('beforeend', item);
+
+        }
+    }
+    function updateSelected(array) {
+
+        _.selected = [];
+
+        const allSelected = itemsContainer.querySelectorAll('.type_active');
+        for (const elem of allSelected) {
+            _.selected.push(array[elem.dataset.i]);
+        }
+
+    }
+    function deselectAll() {
+        itemsContainer.querySelector('.type_active') ?.classList.remove('type_active');
+        _.selected = null;
+    }
+}
+function Actions(selector) {
+    const elem = $(selector);
+    if (!elem) return;
+
+    const htmlContainer = elem.querySelector('.actions_panel_holder');
+
+    const _ = this;
+    this.update = updateHTML;
+
+    function updateHTML(data) {
+
+        generateHTML(htmlContainer, data, _);
+        reAssignClicks();
+
+    }
+    function reAssignClicks() {
+
+        // console.log(htmlContainer.querySelectorAll('[data-clickable]'));
+
+    }
+}
+
+/* Utilities ------------------------------------------- */
+function generateHTML(target, structure, panel) {
+
+    if (!Array.isArray(structure) || !structure.length) {
+        console.info('htmlGenerator: content structure is not an array or empty array');
+        return;
+    }
+
+    target.innerHTML = '';
+
+    for (const rootEl of structure) {
+        target.insertAdjacentElement('beforeend', _getComponentDom(rootEl));
+    }
+
     function _getComponentDom(component) {
         let el = document.createElement('div');
         let clickableElement = null;
@@ -671,6 +791,8 @@ function Aside(selector) {
 
         if (clickableElement && component.url) {
 
+            clickableElement.setAttribute('data-clickable', '');
+
             if (component.ajax) {
                 clickableElement.onclick = ev => {
                     ev.preventDefault();
@@ -699,7 +821,29 @@ function Aside(selector) {
         if (array) elem.classList.add(...array);
 
     }
+    function replaceVars(string) {
+
+        const names = string.match(/[^{]+(?=})/g);
+        if (!names) return string;
+
+        let stringUpdated = string;
+
+        names.forEach(name => {
+            const elem = target.querySelector(`[name="${name}"]`);
+            if (elem) {
+                let value = elem.value;
+                if (elem.classList.contains('select')) value = elem.dataset.value;
+                if (name === 'color') value = value.substring(1);
+                stringUpdated = stringUpdated.replace(`{${name}}`, value);
+            }
+        });
+
+        return stringUpdated;
+
+    }
     async function handleClick(url) {
+
+        console.log(url);
 
         let data;
 
@@ -709,7 +853,7 @@ function Aside(selector) {
             console.log('ajax response:', data);
 
             if (data.hasOwnProperty('info')) {
-                buildPanelDOM(data);
+                panel.update(data);
             } else if (data.redirect) {
                 window.location.href = data.redirect;
             }
@@ -722,179 +866,13 @@ function Aside(selector) {
             })
                 .then(async (res) => {
                     const data = await res.json();
-                    buildPanelDOM(data);
+                    panel.update(data);
                 });
         }
 
-
-
     }
-    function replaceVars(string) {
 
-        const names = string.match(/[^{]+(?=})/g);
-        if (!names) return string;
-
-        let stringUpdated = string;
-
-        names.forEach(name => {
-            const elem = htmlContainer.querySelector(`[name="${name}"]`);
-            if (elem) {
-                let value = elem.value;
-                if (elem.classList.contains('select')) value = elem.dataset.value;
-                if (name === 'color') value = value.substring(1);
-                stringUpdated = stringUpdated.replace(`{${name}}`, value);
-            }
-        });
-
-        return stringUpdated;
-
-    }
 }
-function Bottom(selector) {
-    const elem = $(selector);
-    if (!elem) return;
-    const itemsContainer = elem.querySelector('.holder_slider_list');
-
-    const _ = this;
-    this.update = populateItems;
-    this.deselect = deselectAll;
-    this.selected = [];
-
-    function populateItems(data, multiSelect) {
-
-        itemsContainer.innerHTML = '';
-
-        for (const [i, itemData] of data.entries()) {
-
-            let { back, enabled, icon, id, name, tooltip, number, width, height } = itemData;
-
-            enabled = enabled ? '' : 'type_disabled';
-            if (back == 'opacity') class_type = 'type_disabled';
-            else if (back == 'gold') class_type = 'type_active';
-            else if (back == 'blue') class_type = 'type_primary';
-            else class_type = '';
-
-            const item = document.createElement('div');
-            item.classList.add('slider_item', 'mx-7');
-
-            item.innerHTML = `
-                <div data-id="${id}" data-i="${i}" class="slot ${enabled}  ${class_type}  ">
-                    <div class="figure_holder">
-                        <button class="figure" type="button">
-                            <div class="mask">
-                                <img src="${icon}" alt="${name}">
-                            </div>
-                        </button>
-                        <button type="button" class="close_btn"></button>
-                        <div class="square size_0 top_alert">
-                            <img src="/images/map/icons/lock.svg" alt="">
-                        </div>
-                        <div class="square bottom_alert size_0">
-                            <img src="/images/map/icons/alert.svg" alt="">
-                        </div>
-                        <a href="#" class="circle emblem bottom_right_alert size_0">
-                            <img src="images/map/circles/emblem.png" alt="">
-                        </a>
-                    </div>
-                    ${number ? `<div class="text_holder">${number}</div>` : ''}
-                </div>`;
-
-            if (enabled !== 'type_disabled') {
-                item.onclick = () => {
-
-                    const slot = item.firstElementChild;
-
-                    if (multiSelect) {
-                        slot.classList.toggle('type_active');
-                    }
-                    else {
-                        deselectAll();
-                        slot.classList.add('type_active');
-                    }
-
-                    updateSelected(data);
-
-                    if (mapType === 'city') {
-                        map.buildings.build({
-                            id,
-                            name,
-                            height: height,
-                            widht: width,
-                            img: icon
-                        });
-                    }
-                };
-            }
-
-            itemsContainer.insertAdjacentElement('beforeend', item);
-
-        }
-    }
-    function updateSelected(array) {
-
-        _.selected = [];
-
-        const allSelected = itemsContainer.querySelectorAll('.type_active');
-        for (const elem of allSelected) {
-            _.selected.push(array[elem.dataset.i]);
-        }
-
-    }
-    function deselectAll() {
-        itemsContainer.querySelector('.type_active') ?.classList.remove('type_active');
-        _.selected = null;
-    }
-}
-function Actions(selector) {
-    const elem = $(selector);
-    if (!elem) return;
-
-    const btnsContainer = elem.querySelector('.actions_grid');
-
-    this.update = populateButtons;
-
-    function populateButtons(data) {
-
-        btnsContainer.innerHTML = '';
-
-        for (const command of data) {
-
-            let { ajax, label, list, name, type, url } = command;
-
-            const div = document.createElement('div');
-            div.classList.add('actions_col');
-
-            div.innerHTML = `<button type="button" class="actions_item">
-            </button>`;
-
-            div.firstElementChild.onclick = () => {
-
-                if (!ui.bottom.selected) return;
-
-                url = url.replace('{resurs_id}', ui.bottom.selected.id);
-                fetch(url, {
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                })
-                    .then(res => {
-                        if (res.ok) {
-                            res.json().then(res => console.log(res));
-                        } else {
-                            res.json().then(res => console.log(res));
-                        }
-                    });
-
-            }
-
-            btnsContainer.insertAdjacentElement('beforeend', div);
-
-        }
-
-    }
-}
-
-/* Utilities ------------------------------------------- */
 function DomHistory() {
     this.history = [];
 }
