@@ -53,7 +53,7 @@ async function loadCityInfo() {
         if (p[0] === 'id') id = `&city_id=${p[1]}`;
     }
 
-    let url = `https://dev.wealthofnations.uk/ajax?do=city_info&c=city${idParam}`;
+    let url = `/ajax?do=city_info&c=city${idParam}`;
     if (dev) url = '/cache/map/clicksim/city_info.json';
 
     const res = await fetch(url);
@@ -70,7 +70,7 @@ async function loadCityInfo() {
 /* Panels ------------------------------------------- */
 function Modes(selector) {
     const elem = $(selector);
-    if (!elem) return;
+    if (!elem || mapType=='city') return;
     const list = elem.querySelector('.panel_holder');
     const buttons = Array.from(list.children);
 
@@ -174,7 +174,7 @@ function Aside(selector) {
 
         if (history.length) {
             buildPanelDOM(history[history.length - 1], false);
-        } else {
+        } else if (mapType!='city') {
             elem.style.display = 'none';
         }
     }
@@ -232,7 +232,7 @@ function Aside(selector) {
         if (headerElem) headerElem.remove();
         if (!structure) return;
 
-        const { flag, character } = structure;
+        const { flag, character, city_name } = structure;
 
         headerElem = `
             <div class="panel_header py-10">
@@ -241,7 +241,7 @@ function Aside(selector) {
                         <a href="${character.url}" class="circle emblem size_2 size_xl_4 d-block my-4"><img src="${character.image}" alt=""></a>
                         <a href="${flag.url}" class="circle emblem size_2 size_xl_4 d-block my-4"><img src="${flag.image}" alt=""></a>
                     </div>
-                    <h3 class="mb-0 fz_25 font-weight-normal">Lorem ipsum dolor sit, amet consectetur</h3>
+                    <h3 class="mb-0 fz_25 font-weight-normal">${city_name}</h3>
                 </div>
                 <div class="decor">
                     <span class="corner"></span>
@@ -345,7 +345,7 @@ function Aside(selector) {
                     'd-flex',
                     'pt-10',
                     'align-items-start',
-                    'closed'
+                   // 'closed'
                 );
                 addClasses(el, classNames);
 
@@ -377,12 +377,13 @@ function Aside(selector) {
 
                 el.innerHTML = `
                     <div>
-                        <label>${component.label}</label>
+                      ${component.label ? `<label>${component.label}</label>` : ''}
+                        ${component.icon ? `
                         <a
                             href="${component.url ? component.url : '#'}"
                             class="item_ico size_1">
                             <img src="${component.icon}" alt="">
-                        </a>
+                        </a>` : ''}
                         <div class="mini_holder">
                             <input
                                 type="${mini_info_inputType}"
@@ -421,7 +422,7 @@ function Aside(selector) {
                         <div class="column">
                           <div class="mini_info mini_info_square">
                             <label>.label in parent</label>
-                            <a href="#" class="item_ico size_1"><img src="/images/map/circles/example.png" alt=""></a>
+                            <a href="#" class="item_ico size_1"><img src="/images/panel/x2/webp/build_count.webp" alt=""></a>
                             <div class="mini_holder">
                               <input type="text" value="${component.amount}" disabled>
                             </div>
@@ -430,7 +431,7 @@ function Aside(selector) {
                         <div class="column">
                           <div class="mini_info mini_info_square">
                             <label>.label in parent</label>
-                            <a href="#" class="item_ico size_1"><img src="/images/map/circles/example.png" alt=""></a>
+                            <a href="#" class="item_ico size_1"><img src="/images/panel/x2/webp/workers.webp" alt=""></a>
                             <div class="mini_holder">
                               <input type="text" value="${component.people}" disabled>
                             </div>
@@ -763,16 +764,19 @@ function Bottom(selector) {
 
         for (const itemData of data) {
 
-            let { back, enabled, icon, id, name, tooltip, number } = itemData;
+            let { back, enabled, icon, id, name, tooltip, number, width, height } = itemData;
 
-            number = number ? number : '';
-            enabled = enabled ? '' : 'type_disabled';
+            enabled = enabled  ? '' : 'type_disabled';
+            if (back=='opacity') class_type='type_disabled';
+            else if (back=='gold') class_type='type_active';
+            else if (back=='blue') class_type='type_primary';
+            else class_type='';
 
             const item = document.createElement('div');
             item.classList.add('slider_item', 'mx-7');
 
             item.innerHTML = `
-                <div data-id="${id}" class="slot ${enabled} type_danger has_close has_top_alert has_bottom_alert has_bottom_right_alert">
+                <div data-id="${id}" class="slot ${enabled}  ${class_type}  ">
                     <div class="figure_holder">
                         <button class="figure" type="button">
                             <div class="mask">
@@ -790,10 +794,7 @@ function Bottom(selector) {
                             <img src="images/map/circles/emblem.png" alt="">
                         </a>
                     </div>
-                    <div class="text_holder">${number}</div>
-                    <div class="sub_info">
-                        <span>123456</span> / <span class="text-danger">123456</span>
-                    </div>
+                    ${number ? `<div class="text_holder">${number}</div>` : ''}
                 </div>`;
 
                 if (enabled !== 'type_disabled') {
@@ -805,8 +806,8 @@ function Bottom(selector) {
                             map.buildings.build({
                                 id,
                                 name,
-                                height: 2,
-                                widht: 2,
+                                height: height,
+                                widht: width,
                                 img: icon
                             });
                         }
@@ -1265,13 +1266,11 @@ function ToolTips() {
 
                     let thisTipData = elem.dataset.tooltip;
 
-                    if (!thisTipData) {
-                        thisTipData = 'Error: there is no text for this tooltip. Please, notify us.';
+                    if (thisTipData.length>1) {
+                        container.innerHTML = thisTipData;
+                        positionTip(elem);
+                        revealTip();
                     }
-
-                    container.innerHTML = thisTipData;
-                    positionTip(elem);
-                    revealTip();
 
                 }
 
@@ -1450,9 +1449,9 @@ function Select(elem) {
 }
 function Draggables() {
 
-    const SCALE_STEP = 0.1;
+    const SCALE_STEP = 0.03;
     const MAX_SCALE = 1.5;
-    const MIN_SCALE = 0.25;
+    const MIN_SCALE = 0.7;
 
     const draggableEls = $$('.draggable');
     let mouseDownCoord, x, y;
@@ -1560,7 +1559,7 @@ function Timer() {
 
             if (interval < 0) {
                 clearInterval(metronome);
-                timer.style.visibility = 'hidden';
+                elem.style.visibility = 'hidden';
                 return;
             }
 
