@@ -345,6 +345,8 @@ function Map(data) {
         }
         function build(building) {
 
+            if (_.moving) resetMove();
+
             const img = new Image();
             img.src = building.img;
             building.image = img;
