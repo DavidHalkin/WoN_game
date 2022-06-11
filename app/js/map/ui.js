@@ -70,7 +70,7 @@ async function loadCityInfo() {
 /* Panels ------------------------------------------- */
 function Modes(selector) {
     const elem = $(selector);
-    if (!elem || mapType=='city') return;
+    if (!elem || mapType == 'city') return;
     const list = elem.querySelector('.panel_holder');
     const buttons = Array.from(list.children);
 
@@ -149,9 +149,11 @@ function City(selector) {
         }
     }
     function handleCityListClick(ev) {
+        const city = ev.target.closest('a');
+        const href = city.getAttribute('href');
+        if (href && href !== '#') return location.href = href;
         ev.preventDefault();
-        const city = ev.target.closest('a').dataset;
-        map.viewport.go_to_hex(city.x, city.y);
+        map.viewport.go_to_hex(city.dataset.x, city.dataset.y);
     }
 }
 function Aside(selector) {
@@ -174,7 +176,7 @@ function Aside(selector) {
 
         if (history.length) {
             buildPanelDOM(history[history.length - 1], false);
-        } else if (mapType!='city') {
+        } else if (mapType != 'city') {
             elem.style.display = 'none';
         }
     }
@@ -345,7 +347,7 @@ function Aside(selector) {
                     'd-flex',
                     'pt-10',
                     'align-items-start',
-                   // 'closed'
+                    // 'closed'
                 );
                 addClasses(el, classNames);
 
@@ -766,11 +768,11 @@ function Bottom(selector) {
 
             let { back, enabled, icon, id, name, tooltip, number, width, height } = itemData;
 
-            enabled = enabled  ? '' : 'type_disabled';
-            if (back=='opacity') class_type='type_disabled';
-            else if (back=='gold') class_type='type_active';
-            else if (back=='blue') class_type='type_primary';
-            else class_type='';
+            enabled = enabled ? '' : 'type_disabled';
+            if (back == 'opacity') class_type = 'type_disabled';
+            else if (back == 'gold') class_type = 'type_active';
+            else if (back == 'blue') class_type = 'type_primary';
+            else class_type = '';
 
             const item = document.createElement('div');
             item.classList.add('slider_item', 'mx-7');
@@ -797,29 +799,29 @@ function Bottom(selector) {
                     ${number ? `<div class="text_holder">${number}</div>` : ''}
                 </div>`;
 
-                if (enabled !== 'type_disabled') {
-                    item.onclick = () => {
-                        deselectAll();
-                        _.selected = itemData;
-                        item.firstElementChild.classList.add('type_active');
-                        if (mapType === 'city') {
-                            map.buildings.build({
-                                id,
-                                name,
-                                height: height,
-                                widht: width,
-                                img: icon
-                            });
-                        }
-                    };
-                }
+            if (enabled !== 'type_disabled') {
+                item.onclick = () => {
+                    deselectAll();
+                    _.selected = itemData;
+                    item.firstElementChild.classList.add('type_active');
+                    if (mapType === 'city') {
+                        map.buildings.build({
+                            id,
+                            name,
+                            height: height,
+                            widht: width,
+                            img: icon
+                        });
+                    }
+                };
+            }
 
-                itemsContainer.insertAdjacentElement('beforeend', item);
+            itemsContainer.insertAdjacentElement('beforeend', item);
 
         }
     }
     function deselectAll() {
-        itemsContainer.querySelector('.type_active')?.classList.remove('type_active');
+        itemsContainer.querySelector('.type_active') ?.classList.remove('type_active');
         _.selected = null;
     }
 }
@@ -1266,7 +1268,7 @@ function ToolTips() {
 
                     let thisTipData = elem.dataset.tooltip;
 
-                    if (thisTipData.length>1) {
+                    if (thisTipData.length > 1) {
                         container.innerHTML = thisTipData;
                         positionTip(elem);
                         revealTip();
