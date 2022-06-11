@@ -16,7 +16,11 @@ let pageData, cityClickJson, cityBuildJson, cityInfoJson, cityData;
 switch (mapType) {
     case 'world':
         $('div#field_map').addEventListener('map:click:left:response', ev => {
-            if (typeof ev.detail === 'object') ui.aside.init(ev.detail);
+            if (typeof ev.detail === 'object') {
+                ui.aside.init(ev.detail);
+                if (ev.detail?.army?.length) ui.bottom.update(ev.detail.army, true);
+                if (ev.detail?.buildings?.length) ui.bottom.update(ev.detail.buildings);
+            }
         });
         break;
     case 'city':
@@ -357,8 +361,33 @@ function Actions(selector) {
     }
     function reAssignClicks() {
 
-        // console.log(htmlContainer.querySelectorAll('[data-clickable]'));
+        const elems = htmlContainer.querySelectorAll('[data-clickable]');
 
+        for (const el of elems) {
+            el.onclick = () => {
+                fetch(el.dataset.url, {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(getSelectedIds())
+                })
+                    .then(async (res) => {
+                        const data = await res.json();
+                        console.log(data);
+                    });
+            }
+        }
+
+        function getSelectedIds() {
+
+            let array = [];
+
+            ui.bottom.selected.forEach(item => array.push({ id: item.id }));
+
+            return array;
+
+        }
     }
 }
 
