@@ -1127,10 +1127,18 @@ function Map(data) {
                         const coord = tiles.coordinates[buildingCoordIndex];
 
                         if (!buildingTip.visible) {
-                            buildingTip.show(building, coord.offX, coord.offY);
+                            buildingTip.show(building, coord.offX, coord.offY, {
+                                label_destroy: data.label_destroy,
+                                label_yes: data.label_yes,
+                                label_no: data.label_no
+                            });
                         } else {
                             if (hoveredTileChange(tile.x, tile.y)) {
-                                buildingTip.show(building, coord.offX, coord.offY);
+                                buildingTip.show(building, coord.offX, coord.offY, {
+                                    label_destroy: data.label_destroy,
+                                    label_yes: data.label_yes,
+                                    label_no: data.label_no
+                                });
                             }
                         }
 
@@ -1322,58 +1330,72 @@ function Map(data) {
 }
 function BuildingContextMenu() {
 
-    const elem = $('.city_building');
-    const content = elem.querySelector('.content');
-    const controls = content.querySelector('.controls');
-    const name = content.querySelector('p');
-    const btnDelete = content.querySelector('button[name="delete"]');
-    const btnMove = content.querySelector('button[name="move"]');
+    const elem = $('.popup');
+    const controls = elem.querySelector('.popup_footer').children[1];
+    const name = elem.querySelector('.content_scroll').children[1];
+    const question = elem.querySelector('.content_scroll').children[0];
+    const btnDelete = elem.querySelector('button[name="delete"]');
+    const btnMove = elem.querySelector('button[name="move"]');
     const confirm = elem.querySelector('.confirm');
-    const btnApproveDelete = confirm.querySelector('button[name="yes"]');
-    const btnCancel = confirm.querySelector('button[name="no"]');
+    const btnApproveDelete = confirm.querySelector('[data-action="yes"]');
+    const btnCancel = confirm.querySelector('[data-action="no"]');
 
     const _ = this;
     this.visible = false;
     this.show = show;
     this.hide = hide;
 
-    btnDelete.onclick = showConfirm;
-    btnApproveDelete.onclick = () => map.buildings.destroy(elem.dataset.id);
-    btnCancel.onclick = hideConfirm;
-    btnMove.onclick = () => map.buildings.move(elem.dataset.id);
+    function show(building, x, y, naming) {
 
-    function show(building, x, y) {
-
-        controls.style.display = 'none';
-        if (building.can_destroy) controls.style.display = 'flex';
+        if (naming) {
+            question.innerText = naming.label_destroy;
+            btnApproveDelete.firstElementChild.innerText = naming.label_yes;
+            btnCancel.firstElementChild.innerText = naming.label_no;
+        }
 
         name.innerHTML = building.name;
         elem.dataset.id = building.id;
+
+        name.classList.remove('d-none');
+        controls.classList.remove('d-none');
+        question.classList.add('d-none');
+        confirm.classList.add('d-none');
 
         elem.style.top = y + map.tiles.cell_height + 'px';
         elem.style.left = x + map.tiles.cell_width / 2 + 'px';
         elem.style.transform = `translate(-50%, -${map.tiles.cell_height / 2}px)`;
         elem.style.paddingTop = `${map.tiles.cell_height / 2}px`;
-        elem.classList.remove('hidden');
+        elem.style.display = 'block';
         hideConfirm();
         _.visible = true;
+
+        btnDelete.onclick = showConfirm;
+        btnApproveDelete.onclick = () => map.buildings.destroy(elem.dataset.id);
+        btnCancel.onclick = hideConfirm;
+        btnMove.onclick = () => map.buildings.move(elem.dataset.id);
 
     }
     function hide() {
 
         hideConfirm();
-        elem.classList.add('hidden');
+        elem.style.display = 'none';
+        name.classList.add('d-none');
+        controls.classList.add('d-none');
+        confirm.classList.add('d-none');
+        question.classList.add('d-none');
         _.visible = false;
 
     }
     function showConfirm() {
 
-        confirm.style.display = 'grid';
+        confirm.classList.remove('d-none');
+        question.classList.remove('d-none');
 
     }
     function hideConfirm() {
 
-        confirm.style.display = 'none';
+        confirm.classList.add('d-none');
+        question.classList.add('d-none');
 
     }
 

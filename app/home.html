@@ -1405,6 +1405,41 @@
             <div class="tip_icon"></div>
         </div>
     </div>
+    <div class="popup" style="width: 210px; display: none; position: fixed">
+        <div class="panel md horizontal">
+            <div class="panel_holder">
+                <div class="panel_content">
+                    <div class="content_scroll d-flex flex-column align-items-center justify-content-center text-center">
+                        <h3 class="mb-0 text-danger fz_16">Are you sure?</h3>
+                        <h3 class="mb-0 fz_16"></h3>
+                    </div>
+                    <div class="scrollbar">
+                        <div class="btn_func arrow_prev"></div>
+                        <div class="bar">
+                            <div class="handler" style="top:10%;"></div>
+                        </div>
+                        <div class="btn_func arrow_next"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="decor ">
+                <span class="corner"></span>
+                <span class="corner right_top"></span>
+                <span class="corner right_bottom"></span>
+                <span class="corner left_bottom"></span>
+            </div>
+        </div>
+        <div class="popup_footer pt-8">
+            <div class="confirm d-flex justify-content-center align-items-center px-5 pb-5">
+                <div class="col px-5"><a data-action="yes" href="#" class="btn md btn-block"><span>Yes</span></a></div>
+                <div class="col px-5"><a data-action="no" href="#" class="btn md btn-block"><span>No</span></a></div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center px-5">
+                <button name="move" class="circle size_3 mx-10"><img src="/images/map/circles/example.png" alt=""></button>
+                <button name="delete" class="circle size_3 mx-10"><img src="/images/map/circles/example.png" alt=""></button>
+            </div>
+        </div>
+    </div>
 
     <script src="/js/map/msgpack.min.js"></script>
     <script src="js/map/ui.js"></script>

@@ -9,6 +9,7 @@ window.ui.aside = new Aside('.panel_sidebar');
 window.ui.bottom = new Bottom('.panel_army');
 window.ui.actions = new Actions('.actions_panel');
 window.ui.tooltip = new ComponentsTip('.tooltip');
+window.ui.confirm = new Confirm('.popup');
 
 initAll();
 
@@ -22,8 +23,8 @@ switch (mapType) {
                 if (ev.detail ?.army ) ui.bottom.update(ev.detail.army, true);
                 if (ev.detail ?.buildings ) ui.bottom.update(ev.detail.buildings);
                 if (ev.detail ?.commands) ui.actions.update(ev.detail.commands);
-                if (ev.detail ?.commands_hide_back) $('.actions_panel_holder').style="background: none;";
-                else $('.actions_panel_holder').style="";
+                if (ev.detail ?.commands_hide_back) $('.actions_panel_holder').style = "background: none;";
+                else $('.actions_panel_holder').style = "";
             }
         });
         break;
@@ -36,6 +37,7 @@ switch (mapType) {
     default:
 
 }
+
 
 function initAll() {
 
@@ -72,8 +74,8 @@ async function loadCityInfo() {
         if (data.info) ui.aside.init(data);
         if (data.buildings) ui.bottom.update(data.buildings);
         if (data.commands) ui.actions.update(data.commands);
-        if (data.commands_hide_back) $('.actions_panel_holder').style="background: none;";
-        else $('.actions_panel_holder').style="";
+        if (data.commands_hide_back) $('.actions_panel_holder').style = "background: none;";
+        else $('.actions_panel_holder').style = "";
     }
 
 }
@@ -285,15 +287,14 @@ function Bottom(selector) {
     function populateItems(data, multiSelect) {
 
         if (mapType === 'world') {
-            const armyName = map.selection?.unit?.name;
+            const armyName = map.selection ?.unit ?.name;
             if (armyName) $('#paneltitle').innerText = armyName;
         }
 
         itemsContainer.innerHTML = '';
         if (data ?.length )
             $('.panel_army').classList.remove('d-none');
-        else
-        {
+        else {
             $('.panel_army').classList.add('d-none');
             return;
         }
@@ -396,8 +397,7 @@ function Actions(selector) {
 
         if (data ?.length )
             $('.actions_panel').classList.remove('d-none');
-        else
-        {
+        else {
             $('.actions_panel').classList.add('d-none');
             return;
         }
@@ -433,6 +433,60 @@ function Actions(selector) {
         }
     }
 }
+function Confirm(selector) {
+    const elem = $(selector);
+    if (!elem) return;
+
+    const questionEl = elem.querySelector('.content_scroll').children[0];
+    const confirmEl = elem.querySelector('.confirm');
+    const btnConfirm = confirmEl.querySelector('[data-action="yes"]');
+    const btnCancel = confirmEl.querySelector('[data-action="no"]');
+    const controls = elem.querySelector('.popup_footer').children[1];
+    const name = elem.querySelector('.content_scroll').children[1];
+
+    this.ask = show;
+
+    function show(naming, callback) {
+
+        if (!naming) return console.info('no text for popup');
+
+        const { question, confirm, cancel } = naming;
+
+        questionEl.innerText = question;
+        btnConfirm.firstElementChild.innerText = confirm;
+        btnCancel.firstElementChild.innerText = cancel;
+
+        elem.style.left = '50%';
+        elem.style.top = '50%';
+        elem.style.transform = 'translate(-50%, -50%)';
+
+        name.classList.add('d-none');
+        controls.classList.add('d-none');
+        questionEl.classList.remove('d-none');
+        confirmEl.classList.remove('d-none');
+        elem.style.display = 'block';
+
+        btnConfirm.onclick = () => {
+            callback(true);
+            hide();
+        }
+        btnCancel.onclick = () => {
+            callback(false);
+            hide();
+        }
+
+    }
+    function hide() {
+
+        name.classList.add('d-none');
+        controls.classList.add('d-none');
+        questionEl.classList.add('d-none');
+        confirmEl.classList.add('d-none');
+        elem.style.display = 'none';
+
+    }
+
+}
 
 /* Utilities ------------------------------------------- */
 function generateHTML(target, structure, panel) {
@@ -455,7 +509,7 @@ function generateHTML(target, structure, panel) {
         let parentForChildsEl = el;
         let classNames = [];
         if (component ?.classNames ?.length) classNames = component.classNames;
-        if (!component.type)    component.type='text';
+        if (!component.type) component.type = 'text';
         // Component DOM
         switch (component.type) {
             case 'tabs':
@@ -1111,8 +1165,8 @@ function enableArmyname() {
     function init(elem) {
         if (!elem.dataset.army_id) return false;
         var paneltitle = $('#paneltitle');
-        paneltitle.innerHTML=elem.dataset.armyname;
-        paneltitle.dataset.id=elem.dataset.army_id;
+        paneltitle.innerHTML = elem.dataset.armyname;
+        paneltitle.dataset.id = elem.dataset.army_id;
         return true;
     }
 
