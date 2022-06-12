@@ -278,6 +278,9 @@ function Bottom(selector) {
 
     function populateItems(data, multiSelect) {
 
+        const armyName = map.selection?.unit?.name;
+        if (armyName) $('#paneltitle').innerText = armyName;
+
         itemsContainer.innerHTML = '';
         $('.panel_army').classList.remove('d-none');
 
