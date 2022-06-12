@@ -43,7 +43,7 @@
     "buildings": [
         {
             "name": "Баня",
-            "icon": "/images/city/buildings41_2_1_1_1_1.webp",
+            "icon": "/images/city/buildings/41_2_1_1_1_1.webp",
             "back": "opacity",
             "enabled": false,
             "id": "3",
@@ -80,7 +80,7 @@
         },
         {
             "name": "Бойня",
-            "icon": "/images/city/buildings41_2_1_1_1_1.webp",
+            "icon": "/images/city/buildings/41_2_1_1_1_1.webp",
             "back": "opacity",
             "enabled": false,
             "id": "5",
