@@ -1261,7 +1261,7 @@ function ToolTips() {
     const TIP_WINDOW_WIDTH = 320;
     const TIP_WINDOW_MARGIN = 0;
     const tipWindow = document.querySelector('.tooltip');
-    if (!tipWindow) return;
+    if (!tipWindow) return console.log('tooltip element not found on the page');
 
     const container = tipWindow.querySelector('.container');
     const svg = tipWindow.lastElementChild;
