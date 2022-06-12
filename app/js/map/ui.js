@@ -403,11 +403,7 @@ function Actions(selector) {
 
         function getSelectedIds() {
 
-            let array = [];
-
-            ui.bottom.selected.forEach(item => array.push({ id: item.id }));
-
-            return array;
+            return ui.bottom.selected.map(item => +item.id);
 
         }
     }
