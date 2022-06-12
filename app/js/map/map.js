@@ -418,6 +418,7 @@ export function Map() {
     this.redraw = redraw;
     this.props = map;
     this.container = container;
+    this.selection = selection;
     this.toggle_mountains_area = toggleMountainsArea;
 
     setMapDimensions();
