@@ -41,7 +41,6 @@ export function Map() {
     let spritesheets = {};
     let img_assets = {};
     let unit_animations = {};
-    let countryColor = hex2rgb('#b80e3e');
 
     const HEX_WIDTH = 300;
     const HEX_HEIGHT = 255;
@@ -133,22 +132,29 @@ export function Map() {
             const TEMPL_RATIO_W = 1.167;
             const TEMPL_RATIO_H = 1.196;
             const TEMPL_RATIO = 0.87;
+            const DEFAULT_FACING_SIDE = 1;
 
             let compositing;
 
+            this.moving = false;
             this.variation = null;
+            this.facing_side = DEFAULT_FACING_SIDE;
+            this.turn = turn;
+            this.stop = stop;
+            this.start = start;
             this.animation = getAnimation(VARIATIONS);
             this.id = object.id;
             this.x = +object.x;
             this.y = +object.y;
+            this.color = hex2rgb(object.color);
             this.route = object.route;
             this.can_selected = object.can_selected;
+            this.blazon = object.blazon;
             this.video = addVideoElement();
             this.elem = addCanvasElement();
             this.show = show;
             this.change_look = changeLook;
             this.position = position;
-            this.turn = turn;
             this.asure_route_list = () => {
                 if (!this ?.route ?.list) this.route = { list: [] };
             }
@@ -217,11 +223,7 @@ export function Map() {
             }
             function turn(side) {
 
-                if (_.variation === 'U7') {
-                    _.video.currentTime = f(side + 1);
-                } else {
-                    _.video.currentTime = f(72 * side + 1);
-                }
+                _.facing_side = side;
 
             }
             function getAnimation(array) {
@@ -237,8 +239,12 @@ export function Map() {
             }
             function show() {
 
-                _.variation = VARIATIONS[0];
                 const index = +object.y * map.columns + +object.x;
+                const natureID = map.layer.nature[index];
+                if (String(natureID).slice(0, 2) === '10') return; // if mountains
+
+                _.variation = VARIATIONS[0];
+
                 if (map.layer.terrain[index]) {
                     _.change_look(_.variation);
                 } else if (map.layer.terrain[index] === 0) {
@@ -259,10 +265,101 @@ export function Map() {
             }
             function changeLook(variation) {
 
-                let side = 1;
-                let moving = false;
+                const side = getFacingSide();
+                if (side) _.facing_side = side;
+
+                _.video.currentTime = f(_.facing_side + 1 * _.animation[_.variation].idle.start);
+
+                _.video.src = `/video/${variation}.mp4`;
+                _.video.addEventListener('loadeddata', () => {
+                    setTimeout(() => {
+                        compositing = new Compositing(_.video, _.elem, _.color);
+                        if (_.moving) animate();
+                    }, 100);
+                });
+
+            }
+            function animate() {
+
+                const sideCycle = _.animation[_.variation].side_cycle;
+
+                if (sideCycle <= 1) {
+                    _.video.currentTime = f(_.facing_side + 1);
+                    setTimeout(() => {
+                        requestAnimationFrame(compositing.process);
+                    }, 1);
+                    return;
+                }
+
+                const moveCycleStart = _.animation[_.variation].move.cycle.start;
+                const moveCycleDuration = _.animation[_.variation].move.cycle.duration;
+
+                let startFrame = sideCycle * _.facing_side + moveCycleStart;
+                let finalFrame = sideCycle * _.facing_side + moveCycleDuration;
+                let currentFrame = startFrame;
+                let lastTimestamp = 0;
+
+                _.video.currentTime = currentFrame;
+
+                update();
+
+                function update(timestamp) {
+
+                    if (!_.moving) return;
+
+                    requestAnimationFrame(update);
+                    if (timestamp - lastTimestamp < 1000 / FPS) return;
+
+                    if (currentFrame === finalFrame) {
+                        currentFrame = startFrame;
+                        _.video.currentTime = f(startFrame);
+                    } else {
+                        currentFrame++;
+                        _.video.currentTime = f(currentFrame);
+                    }
+                    compositing.process();
+                    lastTimestamp = timestamp;
+                }
+
+            }
+            function stop() {
+
+                const sideCycle = _.animation[_.variation].side_cycle;
+
+                _.moving = false;
+                _.facing_side = DEFAULT_FACING_SIDE;
+                _.video.currentTime = f(_.facing_side * sideCycle + _.animation[_.variation].idle.start);
+
+                setTimeout(() => {
+                    requestAnimationFrame(compositing.process);
+                }, 1);
+
+            }
+            function start() {
+
+                if (_.moving) {
+                    stop();
+                    setTimeout(start, 1);
+                    return;
+                }
+
+                const side = getFacingSide();
+                if (side === null) return console.info('Cannot start unit, because no route.');
+
+                _.facing_side = side;
+
+                const sideCycle = _.animation[_.variation].side_cycle;
+
+                _.moving = true;
+                _.video.currentTime = f(side * sideCycle + _.animation[_.variation].idle.start);
+
+                animate();
+
+            }
+            function getFacingSide() {
+
                 if (_.route ?.list.length) {
-                    moving = true;
+                    _.moving = true;
                     const unitCoords = getHexCoords(_.x, _.y);
                     const destination = getHexCoords(_.route.list[0].x, _.route.list[0].y);
                     const x1 = unitCoords.x;
@@ -270,49 +367,9 @@ export function Map() {
                     const x2 = destination.x;
                     const y2 = destination.y;
                     const angle = getAngle(x1, y1, x2, y2);
-                    side = sideFromAngle(angle);
-                }
-
-                turn(side);
-
-                this.video.src = `/video/${variation}.mp4`;
-                this.video.addEventListener('loadeddata', () => {
-                    setTimeout(() => {
-                        compositing = new Compositing(this.video, this.elem);
-
-                        if (moving) animate();
-                    }, 100);
-                });
-
-                function animate() {
-
-                    // const startFrame = 72 * side + 14;
-                    // const finalFrame = 72 * side + 13 + 47;
-                    const startFrame = 378;
-                    const finalFrame = 378 + 34;
-                    let currentFrame = startFrame;
-                    let lastTimestamp = 0;
-
-                    _.video.currentTime = currentFrame;
-
-                    update();
-
-                    function update(timestamp) {
-
-                        requestAnimationFrame(update);
-                        if (timestamp - lastTimestamp < 1000 / FPS) return;
-
-                        if (currentFrame === finalFrame) {
-                            currentFrame = startFrame;
-                            _.video.currentTime = f(startFrame);
-                        } else {
-                            currentFrame++;
-                            _.video.currentTime = f(currentFrame);
-                        }
-                        compositing.process();
-                        lastTimestamp = timestamp;
-                    }
-
+                    return sideFromAngle(angle);
+                } else {
+                    return null;
                 }
 
             }
@@ -330,7 +387,6 @@ export function Map() {
 
     let canvasWidth,
         canvasHeight,
-        stats,
         update,
         onPause,
         dev = false,
@@ -1135,6 +1191,8 @@ export function Map() {
                             sendRoute();
                         }
 
+                        selection.unit.start();
+
                         redraw();
                     }
                     break;
@@ -1803,11 +1861,10 @@ export function Map() {
             worldMapLayer();
         }
         if (!editor) layer(colors);
-        if (!editor) layer(cityNames);
         if (!editor) layer(countryNames);
         if (!editor) route();
         layer(highlight);
-        if (!editor) layer(units);
+        if (!editor) layer(cellBlazons);
 
         map.layer.units.forEach(unit => unit.position());
 
@@ -3377,39 +3434,54 @@ export function Map() {
             }
 
         }
-        function cityNames(col, row, tileX, tileY, index) {
+        function cellBlazons(col, row, tileX, tileY, index) {
 
             if (map.cell_width < CITY_NAME_ZOOM) return;
-            if (map.layer.terrain[index] === 0) return;
+            // if (map.layer.terrain[index] === 0) return;
 
             const city = located(map.layer.cities, col, row);
+            const unit = located(map.layer.units, col, row);
 
-            if (city && city.name) {
+            if ((city && city.name) || unit) {
+
+                let item = city;
+                if (unit) item = unit;
 
                 const framesSize = map.cell_width / 2;
                 const blazonSize = map.cell_width / 2 * BLAZON_TO_FRAME_SIZE_RATIO;
                 const blazonCoordShift = framesSize * (1 - BLAZON_TO_FRAME_SIZE_RATIO) / 2;
 
-                city.blazon_coords = {
+                item.blazon_coords = {
                     x1: tileX + map.cell_width / 2 - framesSize / 2,
                     x2: tileX + map.cell_width / 2 + framesSize / 2,
                     y1: tileY + map.cell_height + map.cell_height * BLAZON_GAP,
                     y2: tileY + map.cell_height + map.cell_height * BLAZON_GAP + framesSize,
                 }
 
+                if (unit) {
+                    const natureID = map.layer.nature[index];
+                    if (String(natureID).slice(0, 2) === '10') { // if mountains
+                        item.blazon_coords.y1 = tileY + (map.cell_height - framesSize) / 2;
+                        item.blazon_coords.y2 = tileY + (map.cell_height - framesSize) / 2 + framesSize;
+                    } else {
+                        item.blazon_coords.y1 -= map.cell_height * 0.2;
+                        item.blazon_coords.y2 -= map.cell_height * 0.2;
+                    }
+                }
+
                 // drawText(tileX, tileY, city.name, 'bottom');
                 // const cityNameWidth = ctx.measureText(city.name).width;
 
-                if (city.blazon_img) {
+                if (item.blazon_img) {
                     try {
                         ctx.drawImage(
-                            city.blazon_img,
+                            item.blazon_img,
                             0,
                             0,
-                            city.blazon_img.width,
-                            city.blazon_img.height,
-                            city.blazon_coords.x1 + blazonCoordShift,
-                            city.blazon_coords.y1 + blazonCoordShift,
+                            item.blazon_img.width,
+                            item.blazon_img.height,
+                            item.blazon_coords.x1 + blazonCoordShift,
+                            item.blazon_coords.y1 + blazonCoordShift,
                             blazonSize,
                             blazonSize
                         );
@@ -3419,8 +3491,8 @@ export function Map() {
                             0,
                             img_assets.round_frame.width,
                             img_assets.round_frame.height,
-                            city.blazon_coords.x1,
-                            city.blazon_coords.y1,
+                            item.blazon_coords.x1,
+                            item.blazon_coords.y1,
                             framesSize,
                             framesSize
                         );
@@ -3428,9 +3500,9 @@ export function Map() {
 
                     }
                 } else {
-                    city.blazon_img = new Image();
-                    city.blazon_img.src = city.blazon;
-                    city.blazon_img.onload = redraw;
+                    item.blazon_img = new Image();
+                    item.blazon_img.src = item.blazon;
+                    item.blazon_img.onload = redraw;
                 }
 
             };
@@ -3467,70 +3539,6 @@ export function Map() {
                         x,
                         y + (i * lineHeight)
                     );
-
-                }
-
-            }
-
-        }
-        function units(col, row, tileX, tileY, index) {
-
-            const unit = located(map.layer.units, col, row);
-
-            if (unit) {
-                if (map.layer.terrain[index] === 0) {
-
-                    // const width = map.cell_width * 1.2;
-                    // let height = map.cell_height * 1.4118;
-                    //
-                    // try {
-                    //
-                    //     ctx.drawImage(
-                    //         img_assets.unit_on_sea,
-                    //         0,
-                    //         0,
-                    //         img_assets.unit_on_sea.naturalWidth,
-                    //         img_assets.unit_on_sea.naturalHeight,
-                    //         tileX - ((map.cell_width * 1.2) - map.cell_width) / 2,
-                    //         tileY - map.cell_height * 1.411 * OBJECT_TOP_EXTENSION,
-                    //         width,
-                    //         height
-                    //     );
-                    //
-                    // } catch (e) {
-                    //
-                    // }
-
-                } else {
-
-                    const tileID = map.layer.nature[index];
-                    if (String(tileID).slice(0, 2) === '10') { // if mountains
-
-                        const width = map.cell_width / 2;
-                        let height = map.cell_height / 2 * CELL_RATIO;
-                        if (map.cell_width < DISTANT_ZOOM_MAX) height = width;
-
-                        ctx.drawImage(
-                            img_assets.country_coa,
-                            0,
-                            0,
-                            img_assets.country_coa.naturalWidth,
-                            img_assets.country_coa.naturalHeight,
-                            tileX + map.cell_width / 4,
-                            tileY + map.cell_height / 6,
-                            width,
-                            height
-                        );
-
-                    } else {
-
-                        // let color = 'yellow';
-                        // if (selection.unit &&
-                        //     selection.unit.x === col &&
-                        //     selection.unit.y === row) color = 'cyan';
-                        // drawText(tileX, tileY, `Юнит, id: ${unit.id}`, 'center', color);
-
-                    }
 
                 }
 
@@ -3707,7 +3715,7 @@ export function Map() {
     }
 
     // utilities
-    function Compositing(video, can) {
+    function Compositing(video, can, colorOverlay) {
 
         const COLOR_OPACITY = 0.9;
 
@@ -3758,9 +3766,9 @@ export function Map() {
                 colorPass[i + 3] = alpha;
                 if (mask) {
                     const deltaRatio = (mask / (255 / COLOR_OPACITY));
-                    colorPass[i + 0] = shiftChannel(red, countryColor.r, deltaRatio);
-                    colorPass[i + 1] = shiftChannel(green, countryColor.g, deltaRatio);
-                    colorPass[i + 2] = shiftChannel(blue, countryColor.b, deltaRatio);
+                    colorPass[i + 0] = shiftChannel(red, colorOverlay.r, deltaRatio);
+                    colorPass[i + 1] = shiftChannel(green, colorOverlay.g, deltaRatio);
+                    colorPass[i + 2] = shiftChannel(blue, colorOverlay.b, deltaRatio);
                 }
             }
 

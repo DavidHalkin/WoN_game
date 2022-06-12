@@ -21,6 +21,13 @@
         }
     },
     "U7": {
+        "side_cycle": 1,
+        "idle": {
+            "start": 1,
+            "duration": 1
+        }
+    },
+    "U7_backup": {
         "side_cycle": 100,
         "idle": {
             "start": 1,
