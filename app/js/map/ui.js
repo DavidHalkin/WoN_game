@@ -65,9 +65,11 @@ async function loadCityInfo() {
     const data = await res.json();
 
     if (typeof data === 'object') {
-        ui.aside.init(data);
-        ui.bottom.update(data.buildings);
-        ui.actions.update(data.commands);
+        if (data.info) ui.aside.init(data);
+        if (data.buildings) ui.bottom.update(data.buildings);
+        if (data.commands) ui.actions.update(data.commands);
+        if (data.commands_hide_back) $('.actions_panel_holder').style="background: none;";
+        else $('.actions_panel_holder').style="";
     }
 
 }
@@ -240,7 +242,7 @@ function Aside(selector) {
         if (headerElem) headerElem.remove();
         if (!structure) return;
 
-        const { flag, character, city_name } = structure;
+        const { flag, character, city_name, city_id } = structure;
 
         headerElem = `
             <div class="panel_header py-10">
@@ -249,7 +251,7 @@ function Aside(selector) {
                         <a href="${character.url}" class="circle emblem size_2 size_xl_4 d-block my-4"><img src="${character.image}" alt=""></a>
                         <a href="${flag.url}" class="circle emblem size_2 size_xl_4 d-block my-4"><img src="${flag.image}" alt=""></a>
                     </div>
-                    <h3 class="mb-0 fz_25 font-weight-normal">${city_name}</h3>
+                    <h3 class="mb-0 fz_25 font-weight-normal">${city_id ? `<a href="/city?id=${city_id}">${city_name}</a>` : city_name}</h3>
                 </div>
                 <div class="decor">
                     <span class="corner"></span>
@@ -428,7 +430,7 @@ function generateHTML(target, structure, panel) {
         let parentForChildsEl = el;
         let classNames = [];
         if (component ?.classNames ?.length) classNames = component.classNames;
-
+        if (!component.type)    component.type='text';
         // Component DOM
         switch (component.type) {
             case 'tabs':
@@ -715,7 +717,7 @@ function generateHTML(target, structure, panel) {
 
             case 'text':
                 addClasses(el, classNames);
-                el.innerHTML = component.content;
+                el.innerHTML = (component.text ? component.text : component.content);
 
                 break;
 
