@@ -3,6 +3,7 @@
     "rows": 1048,
     "army": [
         {
+            "name": "Army 1",
             "can_selected": true,
             "x": "1622",
             "y": "597",
@@ -14,6 +15,7 @@
             "route": null
         },
         {
+            "name": "Army 2",
             "can_selected": true,
             "x": "1620",
             "y": "611",
@@ -25,9 +27,10 @@
             "route": null
         },
         {
+            "name": "Army 3",
             "can_selected": true,
-            "x": "1616",
-            "y": "615",
+            "x": "1618",
+            "y": "599",
             "visual_id": "2",
             "color": "#C21B84",
             "blazon": "/images/map/circles/emblem.png",

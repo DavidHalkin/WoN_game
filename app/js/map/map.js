@@ -144,6 +144,7 @@ export function Map() {
             this.start = start;
             this.animation = getAnimation(VARIATIONS);
             this.id = object.id;
+            this.name = object.name;
             this.x = +object.x;
             this.y = +object.y;
             this.color = hex2rgb(object.color);
@@ -275,6 +276,7 @@ export function Map() {
                     setTimeout(() => {
                         compositing = new Compositing(_.video, _.elem, _.color);
                         if (_.moving) animate();
+                        else stop();
                     }, 100);
                 });
 
@@ -284,7 +286,8 @@ export function Map() {
                 const sideCycle = _.animation[_.variation].side_cycle;
 
                 if (sideCycle <= 1) {
-                    _.video.currentTime = f(_.facing_side + 1);
+
+                    _.video.currentTime = f(_.facing_side * sideCycle + 1);
                     setTimeout(() => {
                         requestAnimationFrame(compositing.process);
                     }, 1);
@@ -1461,15 +1464,20 @@ export function Map() {
 
             const yShift = c.coords.y - map.cell_height * 0.73;
             const { col, row } = getHexOnClick(c.coords.x, yShift);
-            const city = located(map.layer.cities, col, row);
 
-            if (city && city.name) {
-                if (c.coords.x >= city.blazon_coords.x1 &&
-                    c.coords.x <= city.blazon_coords.x2 &&
-                    c.coords.y >= city.blazon_coords.y1 &&
-                    c.coords.y <= city.blazon_coords.y2
+            const city = located(map.layer.cities, col, row);
+            const unit = located(map.layer.units, col, row);
+
+            let item = unit;
+            if (city) item = city;
+
+            if ((city && city.name) || (unit && unit.name)) {
+                if (c.coords.x >= item.blazon_coords.x1 &&
+                    c.coords.x <= item.blazon_coords.x2 &&
+                    c.coords.y >= item.blazon_coords.y1 &&
+                    c.coords.y <= item.blazon_coords.y2
                 ) {
-                    hey('map:hover:city:blazon', city);
+                    hey('map:hover:city:blazon', item);
                 }
             };
 
@@ -3444,8 +3452,8 @@ export function Map() {
 
             if ((city && city.name) || unit) {
 
-                let item = city;
-                if (unit) item = unit;
+                let item = unit;
+                if (city) item = city;
 
                 const framesSize = map.cell_width / 2;
                 const blazonSize = map.cell_width / 2 * BLAZON_TO_FRAME_SIZE_RATIO;
@@ -3458,7 +3466,7 @@ export function Map() {
                     y2: tileY + map.cell_height + map.cell_height * BLAZON_GAP + framesSize,
                 }
 
-                if (unit) {
+                if (unit && !city) {
                     const natureID = map.layer.nature[index];
                     if (String(natureID).slice(0, 2) === '10') { // if mountains
                         item.blazon_coords.y1 = tileY + (map.cell_height - framesSize) / 2;
