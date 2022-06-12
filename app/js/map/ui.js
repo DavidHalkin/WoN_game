@@ -47,6 +47,7 @@ function initAll() {
 
     initSelectElements();
     enableRenaming();
+    enableArmyname();
 
 }
 /* Pages ------------------------------------------- */
@@ -278,10 +279,11 @@ function Bottom(selector) {
     function populateItems(data, multiSelect) {
 
         itemsContainer.innerHTML = '';
+        $('.panel_army').classList.remove('d-none');
 
         for (const [i, itemData] of data.entries()) {
 
-            let { back, enabled, icon, id, name, tooltip, number, width, height } = itemData;
+            let { back, enabled, icon, id, name, tooltip, number, width, height, blazon, army_id } = itemData;
 
             enabled = enabled ? '' : 'type_disabled';
             if (back == 'opacity') class_type = 'type_disabled';
@@ -293,7 +295,7 @@ function Bottom(selector) {
             item.classList.add('slider_item', 'mx-7');
 
             item.innerHTML = `
-                <div data-id="${id}" data-i="${i}" class="slot ${enabled}  ${class_type}  ">
+                <div data-id="${id}" data-i="${i}" data-armyname="${name}"  data-army_id="${army_id}" class="slot ${enabled}  ${class_type} ${blazon ? 'has_bottom_right_alert' : ''} ">
                     <div class="figure_holder">
                         <button class="figure" type="button">
                             <div class="mask">
@@ -308,7 +310,7 @@ function Bottom(selector) {
                             <img src="/images/map/icons/alert.svg" alt="">
                         </div>
                         <a href="#" class="circle emblem bottom_right_alert size_0">
-                            <img src="images/map/circles/emblem.png" alt="">
+                            <img src="${blazon}" alt="">
                         </a>
                     </div>
                     ${number ? `<div class="text_holder">${number}</div>` : ''}
@@ -365,6 +367,8 @@ function Bottom(selector) {
 function Actions(selector) {
     const elem = $(selector);
     if (!elem) return;
+
+    $('.actions_panel').classList.remove('d-none');
 
     const htmlContainer = elem.querySelector('.actions_panel_holder');
 
@@ -436,6 +440,8 @@ function generateHTML(target, structure, panel) {
             case 'tabs':
                 classNames.push('tabs', 'grid_column');
                 addClasses(el, classNames);
+
+
 
                 el.innerHTML = `
                     <div class="header_tab">
@@ -1074,6 +1080,20 @@ function CustomAccordion(element) {
             this.parentNode.classList.toggle('closed');
         });
     }
+}
+function enableArmyname() {
+
+
+    $$('[data-armyname]').forEach(elem => init(elem));
+
+    function init(elem) {
+        if (!elem.dataset.army_id) return false;
+        var paneltitle = $('#paneltitle');
+        paneltitle.innerHTML=elem.dataset.armyname;
+        paneltitle.dataset.id=elem.dataset.army_id;
+        return true;
+    }
+
 }
 function enableRenaming() {
 
