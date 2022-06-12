@@ -353,8 +353,8 @@ function Bottom(selector) {
                         map.buildings.build({
                             id,
                             name,
-                            height: height,
-                            width: width,
+                            height,
+                            width,
                             img: icon
                         });
                     }
