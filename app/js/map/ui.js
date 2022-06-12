@@ -284,8 +284,10 @@ function Bottom(selector) {
 
     function populateItems(data, multiSelect) {
 
-        const armyName = map.selection?.unit?.name;
-        if (armyName) $('#paneltitle').innerText = armyName;
+        if (mapType === 'world') {
+            const armyName = map.selection?.unit?.name;
+            if (armyName) $('#paneltitle').innerText = armyName;
+        }
 
         itemsContainer.innerHTML = '';
         if (data ?.length )
@@ -352,7 +354,7 @@ function Bottom(selector) {
                             id,
                             name,
                             height: height,
-                            widht: width,
+                            width: width,
                             img: icon
                         });
                     }
