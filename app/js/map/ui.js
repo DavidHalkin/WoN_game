@@ -19,8 +19,11 @@ switch (mapType) {
         $('div#field_map').addEventListener('map:click:left:response', ev => {
             if (typeof ev.detail === 'object') {
                 ui.aside.init(ev.detail);
-                if (ev.detail ?.army ?.length) ui.bottom.update(ev.detail.army, true);
-                if (ev.detail ?.buildings ?.length) ui.bottom.update(ev.detail.buildings);
+                if (ev.detail ?.army ) ui.bottom.update(ev.detail.army, true);
+                if (ev.detail ?.buildings ) ui.bottom.update(ev.detail.buildings);
+                if (ev.detail ?.commands) ui.actions.update(ev.detail.commands);
+                if (ev.detail ?.commands_hide_back) $('.actions_panel_holder').style="background: none;";
+                else $('.actions_panel_holder').style="";
             }
         });
         break;
@@ -232,6 +235,9 @@ function Aside(selector) {
 
         // Build Aside Body
         generateHTML(htmlContainer, structure.info, _);
+        if (structure.tabs) htmlContainer.classList.add('px-0');
+        else htmlContainer.classList.remove('px-0');
+
         new Tabs();
 
     }
@@ -282,7 +288,14 @@ function Bottom(selector) {
         if (armyName) $('#paneltitle').innerText = armyName;
 
         itemsContainer.innerHTML = '';
-        $('.panel_army').classList.remove('d-none');
+        if (data ?.length )
+            $('.panel_army').classList.remove('d-none');
+        else
+        {
+            $('.panel_army').classList.add('d-none');
+            return;
+        }
+
 
         for (const [i, itemData] of data.entries()) {
 
@@ -371,7 +384,6 @@ function Actions(selector) {
     const elem = $(selector);
     if (!elem) return;
 
-    $('.actions_panel').classList.remove('d-none');
 
     const htmlContainer = elem.querySelector('.actions_panel_holder');
 
@@ -379,6 +391,14 @@ function Actions(selector) {
     this.update = updateHTML;
 
     function updateHTML(data) {
+
+        if (data ?.length )
+            $('.actions_panel').classList.remove('d-none');
+        else
+        {
+            $('.actions_panel').classList.add('d-none');
+            return;
+        }
 
         generateHTML(htmlContainer, data, _);
         reAssignClicks();
