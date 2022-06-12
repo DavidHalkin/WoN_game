@@ -845,7 +845,8 @@ function generateHTML(target, structure, panel) {
 
                 break;
             default:
-                el.classList.add(component.type);
+                classNames.push(component.type);
+                addClasses(el, classNames);
                 break;
         }
 
