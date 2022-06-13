@@ -2317,7 +2317,9 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .panel_army .params .circle { margin-bottom: 8px; }
 
-.panel_army .holder_slider { overflow-x: auto; }
+.panel_army .holder_slider { overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
+
+.panel_army .holder_slider::-webkit-scrollbar { width: 0; height: 0; }
 
 .panel_army.closed .holder_slider_list > .slider_item:not(:first-of-type) { display: none; }
 
