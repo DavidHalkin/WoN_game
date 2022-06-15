@@ -781,7 +781,7 @@ export function Map() {
                             console.log(e);
                         } finally {
                             hey('fetched:map:modes', { mode_name: key });
-                            if (key === 'polytics') positionCountryNames(data);
+                            if (key === 'polytics') findCountrySpots(data);
                         }
 
                         // enable mode
@@ -1885,7 +1885,7 @@ export function Map() {
 
                 for (let col = colMin; col < colMax; col++) {
 
-                    const index = row * map.columns + col;
+                    const index = coordsToIndex(col, row);
                     const tile = getHexCoords(col, row);
 
                     callback(col, row, tile.x, tile.y, index);
@@ -3519,21 +3519,53 @@ export function Map() {
         function countryNames(col, row, tileX, tileY, index) {
 
             if (activeLayer !== 'polytics') return;
-            if (!map.mode.polytics.gravityCenters) return;
 
-            const name = map.mode.polytics.gravityCenters[index];
-            if (name) {
+            const spot = map.mode.polytics.spots.find(spot => {
 
-                const lines = name.split(' ');
-                const lineHeight = 20;
+                if (spot.center.index === index) return spot;
 
-                ctx.font = "18px Vollkorn";
+            });
+
+            if (spot) {
+
+                if (spot.edge.col_max - spot.edge.col_min < 3) return;
+                if (spot.edge.row_max - spot.edge.row_min < 3) return;
+
+                const lines = spot.name.trim().split(' ');
+                const spotWidth = (spot.edge.col_max - spot.edge.col_min) * map.cell_width;
+                const spotHeight = (spot.edge.row_max - spot.edge.row_min) * map.row_height;
+
+                const FONT_OPACITY_MAX = 800;
+                const FONT_OPACITY_MIN = 200;
+                const IN_SPOT_SIZE = 0.8;
+                const FONT_CHAR_RATIO = 0.57;
+                const MIN_STROKE_WIDTH = devicePixelRatio * 2;
+                const longestLine = Math.max(...lines.map(line => line.length));
+                let fontSize = spotWidth / longestLine / FONT_CHAR_RATIO * IN_SPOT_SIZE;
+                let lineHeight = fontSize * 1.11;
+
+                if (lineHeight * lines.length > spotHeight * IN_SPOT_SIZE) {
+                    fontSize = spotHeight * IN_SPOT_SIZE / lines.length;
+                    lineHeight = fontSize * 1.11;
+                }
+
+                if (fontSize < 12 || fontSize > FONT_OPACITY_MAX) return;
+
+                const opacity = 1 - (fontSize - FONT_OPACITY_MIN) / (FONT_OPACITY_MAX - FONT_OPACITY_MIN);
+
+                ctx.globalAlpha = opacity;
+                ctx.font = `normal ${fontSize}px Vollkorn`;
                 ctx.fillStyle = 'white';
-                ctx.strokeStyle = '#180f0a99';
-                ctx.lineWidth = 3;
+                ctx.strokeStyle = '#180f0a';
+                ctx.textBaseline = 'middle';
+
+                let strokeWidth = fontSize / 20;
+                if (strokeWidth < MIN_STROKE_WIDTH) strokeWidth = MIN_STROKE_WIDTH;
+                ctx.lineWidth = strokeWidth;
 
                 const x = tileX + map.cell_width / 2
-                const y = tileY + map.cell_height / 2 + map.cell_height * .1;
+                const yCenter = tileY + map.row_height / 2 + map.row_height;
+                const y = yCenter - lineHeight * lines.length / 2 + fontSize * 0.2;
 
                 for (let i = 0; i < lines.length; i++) {
                     ctx.strokeText(
@@ -3549,6 +3581,8 @@ export function Map() {
                     );
 
                 }
+
+                ctx.globalAlpha = 1;
 
             }
 
@@ -3722,6 +3756,8 @@ export function Map() {
 
     }
 
+    let counter = 0;
+
     // utilities
     function Compositing(video, can, colorOverlay) {
 
@@ -3803,6 +3839,19 @@ export function Map() {
             g: parseInt(result[2], 16),
             b: parseInt(result[3], 16)
         } : null;
+
+    }
+    function indexToCoords(index) {
+
+        const row = Math.floor(index / map.columns);
+        const col = index - map.columns * row;
+
+        return { col, row };
+
+    }
+    function coordsToIndex(col, row) {
+
+        return map.columns * row + col;
 
     }
     function getHexCoords(col, row) {
@@ -3902,7 +3951,9 @@ export function Map() {
         return getHexLocation(click.x, click.y);
 
     }
-    function findAdjacentTiles(col, row) {
+    function findAdjacentTiles(col, row, c) {
+
+        if (c) counter++;
 
         let tiles = [];
 
@@ -3966,6 +4017,14 @@ export function Map() {
 
         }
 
+        tiles = tiles.filter(function(value, index) {
+            if (value.col >= 0 &&
+                value.col <= map.columns &&
+                value.row >= 0 &&
+                value.row < map.rows
+            ) return true;
+        });
+
         tiles.forEach(tile => {
 
             const coords = getHexCoords(tile.col, tile.row);
@@ -4003,59 +4062,104 @@ export function Map() {
         container.dispatchEvent(event);
 
     }
-    function positionCountryNames(data) {
+    function findCountrySpots(data) {
 
-        // console.log(data);
-        // console.table(data.types);
-        data.gravityCenters = {};
+        data.spots = [];
+        data.colors.forEach((type, i) => {
 
-        data.types.forEach((country, i) => {
+            if (type - 1 < 0) return;
 
-            const id = i + 1;
-            country.cells = [];
+            const cell = data.spots.find(spot => {
 
-            // let cols = 0;
-            // let rows = 0;
-            let indexes = 0;
-
-            for (let i = 0; i < data.colors.length; i++) {
-                if (data.colors[i] === id) {
-                    const row = Math.floor(i / map.columns);
-                    const col = i - (row) * map.columns;
-                    country.cells.push({ col, row });
-                    // cols += col;
-                    // rows += row;
-                    indexes += i;
+                for (const cell of spot.indexes) {
+                    if (cell === i) return true;
                 }
-            }
 
-            // const avgCol = cols / country.cells.length;
-            // const avgRow = rows / country.cells.length;
-            const index = Math.round(indexes / country.cells.length);
+            });
 
-            // country.gravityCenter = {
-            //     col: avgCol,
-            //     row: avgRow,
-            //     index: index
-            // }
+            if (cell) return;
 
-            map.mode.polytics.gravityCenters[index + ''] = country.name;
+            const c = indexToCoords(i);
 
-            // const colMin = Math.min(...country.cells.map(item => item.col));
-            // const colMax = Math.max(...country.cells.map(item => item.col));
-            // const rowMin = Math.min(...country.cells.map(item => item.row));
-            // const rowMax = Math.max(...country.cells.map(item => item.row));
-            //
-            // country.edge = {
-            //     col_min: colMin,
-            //     col_max: colMax,
-            //     row_min: rowMin,
-            //     row_max: rowMax
-            // }
+            data.spots.push({
+                type,
+                indexes: [i],
+                coords: [{
+                    col: c.col,
+                    row: c.row
+                }]
+            });
 
-
+            searchAround(i);
 
         });
+
+        data.spots.forEach(spot => {
+
+            spot.name = data.types[spot.type - 1].name;
+            spot.color = data.types[spot.type - 1].color;
+
+            const colMin = Math.min(...spot.coords.map(cell => cell.col));
+            const colMax = Math.max(...spot.coords.map(cell => cell.col));
+            const rowMin = Math.min(...spot.coords.map(cell => cell.row));
+            const rowMax = Math.max(...spot.coords.map(cell => cell.row));
+
+            spot.edge = {
+                col_min: colMin,
+                col_max: colMax,
+                row_min: rowMin,
+                row_max: rowMax
+            }
+
+            const centerX = Math.round((spot.edge.col_max + spot.edge.col_min) / 2);
+            const centerY = Math.round((spot.edge.row_max + spot.edge.row_min) / 2);
+
+            spot.center = {
+                index: coordsToIndex(centerX, centerY),
+                col: centerX,
+                row: centerY
+            };
+
+        });
+
+        function searchAround(index) {
+
+            const c = indexToCoords(index);
+            let neighbourTiles;
+
+            try {
+                neighbourTiles = findAdjacentTiles(c.col, c.row, true);
+            } catch (e) {
+                console.log(counter);
+                console.log('skipping country titles');
+                return;
+            }
+
+            neighbourTiles.forEach(tile => {
+
+                const lastSpot = data.spots[data.spots.length - 1];
+
+                if (!data.colors[tile.index]) return;
+                if (data.colors[tile.index] !== lastSpot.type) return;
+                const cell = data.spots.find(spot => {
+
+                    for (const cell of spot.indexes) {
+                        if (cell === tile.index) return true;
+                    }
+
+                });
+                if (cell) return;
+
+                const c = indexToCoords(tile.index);
+
+                lastSpot.indexes.push(tile.index);
+                lastSpot.coords.push({ col: c.col, row: c.row });
+
+                searchAround(tile.index);
+
+            });
+
+        }
 
     }
     function f(frameNumber) {
