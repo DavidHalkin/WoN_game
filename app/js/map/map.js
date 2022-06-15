@@ -1873,7 +1873,7 @@ export function Map() {
         if (!editor) layer(countryNames);
         if (!editor) route();
         layer(highlight);
-        if (!editor) layer(cellBlazons);
+        if (!editor && map.cell_width > ZOOM_MIN_FOR_HEX) layer(cellBlazons);
 
         map.layer.units.forEach(unit => unit.position());
 
@@ -1887,7 +1887,6 @@ export function Map() {
 
                     const index = row * map.columns + col;
                     const tile = getHexCoords(col, row);
-                    // console.log(col, row);
 
                     callback(col, row, tile.x, tile.y, index);
 
