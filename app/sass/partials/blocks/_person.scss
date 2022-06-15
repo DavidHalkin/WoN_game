@@ -1,28 +1,32 @@
-.item_person{
-	--person_frame_w_local:calc(var(--person_frame_w) / 2);
-	--person_frame_h_local:calc(var(--person_frame_h) / 2);
+.item_person {
+	--person_frame_w_local: calc(var(--person_frame_w) / 2);
+	--person_frame_h_local: calc(var(--person_frame_h) / 2);
 	width: var(--person_frame_w_local);
 	display: flex;
 	flex-direction: column;
 	height: 100%;
 	margin-left: auto;
 	margin-right: auto;
-	.person_header{
+
+	.person_header {
 		flex: 1 0 auto;
 	}
-	.person_card{
+
+	.person_card {
 		flex: 0 0 auto;
 	}
 }
-.person_header{
+
+.person_header {
 	display: flex;
-	align-items:center;
+	align-items: center;
 	text-align: center;
-	justify-content:center;
+	justify-content: center;
 	overflow: hidden;
 	padding: 10px;
 }
-.person_frame{
+
+.person_frame {
 	width: var(--person_frame_w_local);
 	height: var(--person_frame_h_local);
 	background: var(--person_frame_bg) no-repeat;
@@ -32,42 +36,55 @@
 	z-index: 1;
 	padding: 31px 25px 10px;
 	display: flex;
-	align-items:center;
+	align-items: center;
 	text-align: center;
-	justify-content:center;
+	justify-content: center;
 	overflow: hidden;
 	word-break: break-all;
+
+	&.disabled {
+		filter: saturate(0.1);
+		pointer-events: none;
+		opacity: .4;
+	}
 }
-.person{
-	--person_w_local:calc(var(--person_w) / 2);
-	--person_h_local:calc(var(--person_h) / 2);
-	--bg_local:var(--person_neutral);
+
+.person {
+	--person_w_local: calc(var(--person_w) / 2);
+	--person_h_local: calc(var(--person_h) / 2);
+	--bg_local: var(--person_neutral);
 	position: relative;
 	width: var(--person_w_local);
 	max-width: var(--person_w_local);
-	flex:0 0 var(--person_w_local);
+	flex: 0 0 var(--person_w_local);
 	height: var(--person_h_local);
-	&.silver{
-		--bg_local:var(--person_silver);
+
+	&.silver {
+		--bg_local: var(--person_silver);
 	}
-	&.gold{
-		--bg_local:var(--person_gold);
-		--gold_h:calc(238px / 2);
+
+	&.gold {
+		--bg_local: var(--person_gold);
+		--gold_h: calc(238px / 2);
 	}
-	&.bronze{
-		--bg_local:var(--person_bronze);
+
+	&.bronze {
+		--bg_local: var(--person_bronze);
 	}
-	&.wood{
-		--bg_local:var(--person_wood);
+
+	&.wood {
+		--bg_local: var(--person_wood);
 	}
-	&.disabled{
+
+	&.disabled {
 		opacity: .4;
 		filter: saturate(0.1);
 		pointer-events: none;
 	}
-	&.prison{
-		.img_person{
-			&:after{
+
+	&.prison {
+		.img_person {
+			&:after {
 				content: "";
 				width: 100%;
 				height: 100%;
@@ -81,22 +98,26 @@
 			}
 		}
 	}
-	&.big{
-		--person_w_local:calc(var(--person_big_w) / 2);
-		--person_h_local:calc(var(--person_big_h) / 2);
+
+	&.big {
+		--person_w_local: calc(var(--person_big_w) / 2);
+		--person_h_local: calc(var(--person_big_h) / 2);
 	}
-	&.woman{
-		.img_person{
-			.holder{
+
+	&.woman {
+		.img_person {
+			.holder {
 				background: #163225;
 			}
 		}
 	}
-	.img_person{
+
+	.img_person {
 		width: 100%;
 		height: 100%;
 		padding: 10px;
-		.holder{
+
+		.holder {
 			position: relative;
 			// padding: 10px;
 			display: block;
@@ -106,30 +127,33 @@
 			border: 0;
 			color: $light;
 			transition: var(--animation_static);
-			&:hover{
+
+			&:hover {
 				@include hover;
 			}
-			.empty_holder{
+
+			.empty_holder {
 				position: absolute;
 				top: 50%;
 				left: 50%;
-				transform:translate(-50%,-50%);
+				transform: translate(-50%, -50%);
 				text-align: center;
 				padding: 10px;
 				display: block;
 			}
-			> img{
+
+			>img {
 				position: absolute;
 				bottom: 0;
 				left: 50%;
-				transform:translateX(-50%);
-				width:  100%;
+				transform: translateX(-50%);
+				width: 100%;
 				height: 100%;
-				object-fit:cover;
+				object-fit: cover;
 			}
 		}
-		
-		&:before{
+
+		&:before {
 			content: "";
 			width: 100%;
 			height: 100%;
@@ -143,21 +167,24 @@
 			pointer-events: none;
 		}
 	}
-	.info_ico{
+
+	.info_ico {
 		position: absolute;
 		top: -10px;
 		bottom: -10px;
-		justify-content:space-between;
+		justify-content: space-between;
 		right: 0;
-		transform:translateX(50%);
+		transform: translateX(50%);
 		z-index: 3;
+
 		// margin-top: -5px;
-		.circle{
+		.circle {
 			margin-top: 3px;
 			margin-bottom: 3px;
 		}
 	}
-	.info_ico_left{
+
+	.info_ico_left {
 		position: absolute;
 		top: 0;
 		left: 0;

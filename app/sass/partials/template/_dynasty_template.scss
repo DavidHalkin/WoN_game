@@ -1,218 +1,267 @@
-.dynasty_page{
+.dynasty_page {
 	overflow-y: hidden;
-	.wrapper{
+
+	.wrapper {
 		height: 100vh;
 		position: relative;
 	}
 }
-.dynasty_area{
-	&.grid_column{
+
+.dynasty_area {
+	&.grid_column {
 		height: 100vh !important;
 	}
+
 	width: 100%;
 	position: absolute;
 	top: 0;
 	left: 0;
 }
-.left_tab{
+
+.left_tab {
 	width: 600px;
 	height: calc(100vh - 300px) !important;
 	left: 10px;
 	bottom: 10px;
 	position: absolute;
 	z-index: 2;
+
 	@include media(max, lg) {
 		width: 400px;
 	}
+
 	@media only screen and (max-height: 600px) {
 		height: calc(100vh - 100px) !important;
 	}
-	&.closed{
+
+	&.closed {
 		width: 200px;
+
 		.person {
 			margin-left: auto;
 			margin-right: auto;
 		}
+
 		.holder_info {
 			display: none !important;
 		}
+
 		.tab_nav {
 			.title {
 				display: none !important;
 			}
 		}
 	}
-	>.panel_holder{
-		> .panel_content{
+
+	>.panel_holder {
+		>.panel_content {
 			>.content_scroll {
 				height: 100%;
 				// overflow: hidden;
 			}
 		}
 	}
+
 	.tabs {
 		display: grid;
 		grid-template-rows: min-content 1fr;
 		height: 100% !important;
 		overflow: hidden;
-		.inner_height{
+
+		.inner_height {
 			grid-row: span 2;
 		}
 	}
-	.switcher_slider{
+
+	.switcher_slider {
 		position: absolute;
 		right: -17px !important;
 		top: 50%;
 		display: block;
 	}
 }
-.modal_person{
+
+.modal_person {
 	width: 620px;
 	position: absolute;
 	bottom: 10px;
 	right: 10px;
 	height: calc(100vh - 83px) !important;
+
 	@include media(max, xl) {
 		width: 360px;
-		.item_person{
+
+		.item_person {
 			margin-left: 0;
 			margin-right: 0;
 		}
-		.columns_holder{
+
+		.columns_holder {
 			height: auto !important;
 			padding-left: 20px;
 		}
-		.holder_btns{
+
+		.holder_btns {
 			max-height: 200px;
 		}
 	}
-	.column_text{
+
+	.column_text {
 		@include media(max, xl) {
 			max-width: 100%;
-			flex:0 0 100%;
+			flex: 0 0 100%;
 			padding-left: 0 !important;
 			padding-right: 0 !important;
 		}
 	}
 }
-.column_person{
-	flex:0 0 258px ;
-	max-width: 258px ;
-	.panel_content{
+
+.column_person {
+	flex: 0 0 258px;
+	max-width: 258px;
+
+	.panel_content {
 		min-height: 150px;
 	}
-	
+
 }
-.fly_drop{
+
+.fly_drop {
 	width: 435px;
 	position: absolute;
 	// top: 110px;
 	// left: 460px;
 	z-index: 8;
-	.arr_down{
+
+	.arr_down {
 		transition: var(--animation_hovered);
-		transform:translate(-50%,-50%) rotate(90deg);
+		transform: translate(-50%, -50%) rotate(90deg);
 		width: 11px;
 		height: 18px;
 		margin-top: 2px;
 	}
-	.panel_drop{
+
+	.panel_drop {
 		display: none;
 	}
-	&.opened{
-		.arr_down{
-			transform:translate(-50%,-50%) rotate(90deg) scaleX(-1);
+
+	&.opened {
+		.arr_down {
+			transform: translate(-50%, -50%) rotate(90deg) scaleX(-1);
 			margin-top: 0;
 		}
-		.panel_drop{
+
+		.panel_drop {
 			display: block;
 		}
 	}
 }
-.person_block{
-	--arm:25px;
+
+.person_block {
+	--arm: 25px;
 	padding: var(--arm);
 	position: relative;
 	overflow: hidden;
-	.person  {
+
+	.person {
 		margin-left: auto;
 		margin-right: auto;
 		// z-index: -2;
 	}
-	.frame_title{
+
+	.frame_title {
 		width: var(--frame_w_local);
 		font-weight: normal;
 	}
-	.line_decor{
+
+	.line_decor {
 		background: $danger;
 		display: block;
 		box-shadow: 0px 0px 4px #D83030;
 		display: none;
-		&.half_line_left,&.half_line_right{
+
+		&.half_line_left,
+		&.half_line_right {
 			width: 50%;
 			height: 2px;
 			bottom: 0;
 			position: absolute;
 		}
-		&.half_line_left{
+
+		&.half_line_left {
 			left: 0;
 		}
-		&.half_line_right{
+
+		&.half_line_right {
 			right: 0;
 		}
-		&.left_line,&.right_line{
+
+		&.left_line,
+		&.right_line {
 			height: 2px;
 			width: var(--arm);
 			position: absolute;
 			bottom: calc(var(--arm) + 20px);
 		}
-		&.left_line{
+
+		&.left_line {
 			left: 0;
 		}
-		&.right_line{
+
+		&.right_line {
 			right: 0;
 		}
-		&.bottom_line,&.top_line{
+
+		&.bottom_line,
+		&.top_line {
 			width: 2px;
 			height: var(--arm);
 			position: absolute;
 			left: 50%;
 			margin-left: -1px;
 		}
-		&.top_line{
+
+		&.top_line {
 			top: 0;
 		}
-		&.bottom_line{
+
+		&.bottom_line {
 			bottom: 0;
 		}
 	}
-	&.bottom{
-		.bottom_line{
+
+	&.bottom {
+		.bottom_line {
 			display: block;
 		}
 	}
-	&.top{
-		.top_line{
+
+	&.top {
+		.top_line {
 			display: block;
 		}
 	}
-	&.left{
-		.left_line{
+
+	&.left {
+		.left_line {
 			display: block;
 		}
 	}
-	&.right{
-		.right_line{
+
+	&.right {
+		.right_line {
 			display: block;
 		}
 	}
-	&.half_right{
-		.half_line_right{
+
+	&.half_right {
+		.half_line_right {
 			display: block;
 		}
 	}
-	&.half_left{
-		.half_line_left{
+
+	&.half_left {
+		.half_line_left {
 			display: block;
 		}
 	}
