@@ -280,7 +280,79 @@
             "tooltip": {
                 "text": "Army 0"
             },
-            "icon": "https://dev.wealthofnations.uk/game_files/img/unit_class/webp/.webp",
+            "icon": "https://dev.wealthofnations.uk/game_files/img/unit_class/webp/2.webp",
+            "enabled": true,
+            "blazon": "https://dev.wealthofnations.uk/game_files/img/tribe/x2/webp/152.webp"
+        },
+        {
+            "number": "24",
+            "id": "239",
+            "army_id": "1079",
+            "name": "Army 0",
+            "tooltip": {
+                "text": "Army 0"
+            },
+            "icon": "https://dev.wealthofnations.uk/game_files/img/unit_class/webp/2.webp",
+            "enabled": true,
+            "blazon": "https://dev.wealthofnations.uk/game_files/img/tribe/x2/webp/152.webp"
+        },
+        {
+            "number": "25",
+            "id": "238",
+            "army_id": "1079",
+            "name": "Army 0",
+            "tooltip": {
+                "text": "Army 0"
+            },
+            "icon": "https://dev.wealthofnations.uk/game_files/img/unit_class/webp/2.webp",
+            "enabled": true,
+            "blazon": "https://dev.wealthofnations.uk/game_files/img/tribe/x2/webp/152.webp"
+        },
+        {
+            "number": "24",
+            "id": "239",
+            "army_id": "1079",
+            "name": "Army 0",
+            "tooltip": {
+                "text": "Army 0"
+            },
+            "icon": "https://dev.wealthofnations.uk/game_files/img/unit_class/webp/2.webp",
+            "enabled": true,
+            "blazon": "https://dev.wealthofnations.uk/game_files/img/tribe/x2/webp/152.webp"
+        },
+        {
+            "number": "25",
+            "id": "238",
+            "army_id": "1079",
+            "name": "Army 0",
+            "tooltip": {
+                "text": "Army 0"
+            },
+            "icon": "https://dev.wealthofnations.uk/game_files/img/unit_class/webp/2.webp",
+            "enabled": true,
+            "blazon": "https://dev.wealthofnations.uk/game_files/img/tribe/x2/webp/152.webp"
+        },
+        {
+            "number": "24",
+            "id": "239",
+            "army_id": "1079",
+            "name": "Army 0",
+            "tooltip": {
+                "text": "Army 0"
+            },
+            "icon": "https://dev.wealthofnations.uk/game_files/img/unit_class/webp/2.webp",
+            "enabled": true,
+            "blazon": "https://dev.wealthofnations.uk/game_files/img/tribe/x2/webp/152.webp"
+        },
+        {
+            "number": "25",
+            "id": "238",
+            "army_id": "1079",
+            "name": "Army 0",
+            "tooltip": {
+                "text": "Army 0"
+            },
+            "icon": "https://dev.wealthofnations.uk/game_files/img/unit_class/webp/2.webp",
             "enabled": true,
             "blazon": "https://dev.wealthofnations.uk/game_files/img/tribe/x2/webp/152.webp"
         },
