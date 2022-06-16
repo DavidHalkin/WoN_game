@@ -399,7 +399,7 @@ export function Map() {
         showMountainsArea = false,
         wmapTiles = new Array(map.wmap_columns * map.wmap_rows);
 
-    if (location.hostname === 'localhost') dev = true;
+    if (location.hostname === 'localhost' || location.hostname === '192.168.1.16') dev = true;
     if ($('meta[content="editor"]')) editor = true;
 
     const urlParams = new URLSearchParams(new URL(location).search);
