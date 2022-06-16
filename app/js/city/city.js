@@ -5,9 +5,8 @@ const dev = isLocalhost();
 let city_build_id=0;
 
 const buildingTip = new BuildingContextMenu();
+
 window.onload = () => {
-
-
 
     const urlSearchParams = new URLSearchParams(new URL(location).search);
 
@@ -15,15 +14,7 @@ window.onload = () => {
         if (p[0] === 'id') city_build_id=p[1];
     }
 
-    renew_city_map();
-}
-
-function renew_city_map()
-{
-    let cityID = '';
-    if (city_build_id)    cityID = `?city_id=${city_build_id}`;
-
-    let url = `/ajax?c=city&do=city_builds${cityID}`;
+    let url = `/ajax?c=city&do=city_builds${city_build_id}`;
     if (dev) url = '/cache/map/city.json';
 
     fetch(url, {
@@ -39,6 +30,7 @@ function renew_city_map()
                 res.json().then(res => console.log(res));
             }
         });
+
 }
 
 function Map(data) {
@@ -227,7 +219,15 @@ function Map(data) {
         this.build = build;
         this.show_ghost = addGhost;
         this.add_new = addNew;
+        this.update = update;
 
+        function update(array) {
+
+            _.list = array;
+            propagateBuildingAreas();
+            redraw();
+
+        }
         function destroyBuilding(id) {
 
             buildingTip.hide();

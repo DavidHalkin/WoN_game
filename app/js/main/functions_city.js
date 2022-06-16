@@ -1,15 +1,11 @@
+let city_build_id = 0;
 
-let city_build_id=0;
-
-console.log(1);
-
-function renew_city_map()
-{
+function renew_city_map() {
     let cityID = '';
-    if (city_build_id)    cityID = `?city_id=${city_build_id}`;
+    if (city_build_id) cityID = `?city_id=${city_build_id}`;
 
     let url = `/ajax?c=city&do=city_builds${cityID}`;
-    if (dev) url = '/cache/map/city.json';
+    if (dev) url = '/cache/map/city2.json';
 
     fetch(url, {
         method: 'GET',
@@ -19,7 +15,7 @@ function renew_city_map()
     })
         .then(res => {
             if (res.ok) {
-                res.json().then(res => window.map = new Map(res));
+                res.json().then(res => map.buildings.update(res.build_list));
             } else {
                 res.json().then(res => console.log(res));
             }
