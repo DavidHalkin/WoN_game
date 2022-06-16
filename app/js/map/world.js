@@ -77,3 +77,6 @@ function CityLabel() {
 
 
 }
+function $(selector) {
+    return document.querySelector(selector);
+}
