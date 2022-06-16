@@ -75,7 +75,7 @@ async function loadCityInfo() {
         if (data.info) ui.aside.init(data);
         if (data.buildings) ui.bottom.update(data.buildings);
         if (data.commands) ui.actions.update(data.commands);
-        if (data.commands_hide_back || mapType=='city') $('.actions_panel_holder').style = "background: none; --h: auto;";
+        if (data.commands_hide_back || mapType == 'city') $('.actions_panel_holder').style = "background: none; --h: auto;";
         else $('.actions_panel_holder').style = "";
     }
 
@@ -326,7 +326,7 @@ function Bottom(selector) {
 
             if (mapType === 'world' && army_id && enabled) {
                 if (name) $('#paneltitle').innerText = name;
-                $('#paneltitle').dataset.id=army_id;
+                $('#paneltitle').dataset.id = army_id;
             }
 
             enabled = enabled ? (mapType === 'world' && army_id ? 'type_active' : '') : 'type_disabled';
@@ -368,11 +368,10 @@ function Bottom(selector) {
                     if (multiSelect) {
                         slot.classList.toggle('type_active');
 
-                        if (slot.classList.contains('type_active'))
-                        {
+                        if (slot.classList.contains('type_active')) {
                             var panel_army_title = $('#paneltitle');
                             panel_army_title.innerText = slot.dataset.armyname;
-                            panel_army_title.dataset.id=slot.dataset.army_id;
+                            panel_army_title.dataset.id = slot.dataset.army_id;
                         }
                     }
                     else {
@@ -1106,10 +1105,10 @@ function generateHTML(target, structure, panel) {
                 if (data.hasOwnProperty('info')) panel.update(data);
                 if (data.hasOwnProperty('buildings')) ui.bottom.update(data.buildings);
                 if (data.hasOwnProperty('commands')) ui.actions.update(data.commands);
-                if (data.hasOwnProperty('commands_hide_back') || mapType=='city') $('.actions_panel_holder').style = "background: none; --h: auto;";
+                if (data.hasOwnProperty('commands_hide_back') || mapType == 'city') $('.actions_panel_holder').style = "background: none; --h: auto;";
                 else $('.actions_panel_holder').style = "";
             }
-            if (data.hasOwnProperty('renew_city_map') && (typeof renew_city_map)=='function') renew_city_map();
+            if (data.hasOwnProperty('renew_city_map') && (typeof renew_city_map) == 'function') renew_city_map();
 
         } else {
 
@@ -1388,11 +1387,11 @@ function Slider(el) {
         inputField.onchange = () => {
             input.value = inputField.value;
             update();
-            if (slider.dataset.url) fetch(slider.dataset.url+'&value='+input.value);
+            if (slider.dataset.url) fetch(slider.dataset.url + '&value=' + input.value);
         };
 
         input.addEventListener('mouseup', ev => {
-            if (slider.dataset.url) fetch(slider.dataset.url+'&value='+input.value);
+            if (slider.dataset.url) fetch(slider.dataset.url + '&value=' + input.value);
         });
 
         update();
@@ -1774,11 +1773,26 @@ function Draggables() {
     const SCALE_STEP = 0.03;
     const MAX_SCALE = 1.5;
     const MIN_SCALE = 0.7;
+    const EDGE = 100; // px
 
     const draggableEls = $$('.draggable');
-    let mouseDownCoord, x, y;
+    let mouseDownCoord, x, y, minX, maxX, minY, maxY;
 
     [...draggableEls].forEach(elem => {
+
+        const parent = elem.parentElement;
+        parent.style.overflow = 'hidden';
+        parent.style.position = 'relative';
+
+        let onlyX, onlyY, deltaWidth, deltaHeight;
+
+        elem.style.cssText = `
+            position: absolute;
+            top: 0;
+            left: ${(parent.clientWidth - elem.clientWidth) / 2}px;
+            transform: translateZ(0);
+            will-change: transform;
+        `;
 
         elem.transforms = {
             x: 0,
@@ -1797,7 +1811,37 @@ function Draggables() {
                 y: ev.clientY
             };
 
+            const elemCurrentWidth = elem.clientWidth * elem.transforms.s;
+            const elemCurrentHeight = elem.scrollHeight * elem.transforms.s;
+
+            deltaWidth = elemCurrentWidth - elem.clientWidth;
+            deltaHeight = elemCurrentHeight - elem.scrollHeight;
+
+            onlyX = check('x');
+            onlyY = check('y');
+
+            minX = parent.clientWidth - elemCurrentWidth + deltaWidth / 2 - EDGE;
+            maxX = deltaWidth / 2 + EDGE;
+            minY = parent.clientHeight - elemCurrentHeight + deltaHeight / 2 - EDGE;
+            maxY = deltaHeight / 2;
+
             window.addEventListener('mousemove', handleDragging);
+
+            function check(axis) {
+
+                switch (axis) {
+                    case 'x':
+                        if (elemCurrentHeight < parent.clientHeight) return true;
+                        break;
+                    case 'y':
+                        if (elemCurrentWidth < parent.clientWidth) return true;
+                        break;
+                    default:
+                }
+
+                return false;
+
+            }
         }
         function stopDrag(ev) {
 
@@ -1838,7 +1882,6 @@ function Draggables() {
                 if (actualZoomRatio === 1) return;
 
                 const shiftRatio = 1 - actualZoomRatio;
-                const parent = elem.closest('.content_scroll').getBoundingClientRect();
 
                 const cursorDeviationX = ev.clientX - parent.width / 2;
                 const cursorDeviationY = ev.clientY - parent.height / 2;
@@ -1853,14 +1896,19 @@ function Draggables() {
         }
         function updateTransform() {
 
-            if (x && y) {
-                elem.style.transform = `scale3d(${elem.transforms.s}, ${elem.transforms.s}, 1) translate3d(${x}px, ${y}px, 0)`;
-            } else {
-                elem.style.transform = `scale3d(${elem.transforms.s}, ${elem.transforms.s}, 1)`;
-            }
+            x = x < minX ? minX : x;
+            x = x > maxX ? maxX : x;
+            y = y < minY ? minY : y;
+            y = y > maxY ? maxY : y;
+
+            if (onlyX) y = deltaHeight / 2;
+            if (onlyY) x = (parent.clientWidth - elem.clientWidth) / 2;
+
+            elem.style.left = x + 'px';
+            elem.style.top = y + 'px';
+            elem.style.transform = `scale(${elem.transforms.s})`;
 
         }
-
     });
 
 }
