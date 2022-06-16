@@ -278,11 +278,18 @@ function Bottom(selector) {
     const elem = $(selector);
     if (!elem) return;
     const itemsContainer = elem.querySelector('.holder_slider_list');
+    const switcher = elem.querySelector('button.switcher');
+
+    const scroll = new Scroll();
+    scroll.init();
 
     const _ = this;
     this.update = populateItems;
+    this.collapsed = true;
     this.deselect = deselectAll;
     this.selected = [];
+
+    switcher.addEventListener('click', toggle);
 
     function populateItems(data, multiSelect) {
 
@@ -302,7 +309,19 @@ function Bottom(selector) {
 
         for (const [i, itemData] of data.entries()) {
 
-            let { back, enabled, icon, id, name, tooltip, number, width, height, blazon, army_id } = itemData;
+            let {
+                back,
+                enabled,
+                icon,
+                id,
+                name,
+                tooltip,
+                number,
+                width,
+                height,
+                blazon,
+                army_id
+            } = itemData;
 
             enabled = enabled ? '' : 'type_disabled';
             if (back == 'opacity') class_type = 'type_disabled';
@@ -367,6 +386,8 @@ function Bottom(selector) {
             itemsContainer.insertAdjacentElement('beforeend', item);
 
         }
+
+        initScroll();
     }
     function updateSelected(array) {
 
@@ -381,6 +402,73 @@ function Bottom(selector) {
     function deselectAll() {
         itemsContainer.querySelector('.type_active') ?.classList.remove('type_active');
         _.selected = null;
+    }
+    function toggle(ev) {
+
+        if (_.collapsed) _.collapsed = false;
+        else _.collapsed = true;
+
+    }
+    function Scroll() {
+
+        const SCROLL_AMOUNT = 0.5; // relative to container width
+
+        const holderSlider = elem.querySelector('.holder_slider');
+        const btnLeft = elem.querySelector('[data-direction="left"]');
+        const btnRight = elem.querySelector('[data-direction="right"]');
+
+        let itemShowing = 0;
+
+        this.init = init;
+        this.enable = enable;
+        this.disable = disable;
+
+        function init() {
+
+            if (itemsContainer.scrollWidth > holderSlider.clientWidth) enable();
+            else disable();
+
+        }
+        function enable() {
+
+            btnLeft.addEventListener('click', handleClick);
+            btnRight.addEventListener('click', handleClick);
+
+            btnLeft.style.opacity = 1;
+            btnRight.style.opacity = 1;
+
+        }
+        function disable() {
+
+            btnLeft.removeEventListener('click', handleClick);
+            btnRight.removeEventListener('click', handleClick);
+
+            btnLeft.style.opacity = 0.3;
+            btnRight.style.opacity = 0.3;
+
+        }
+        function handleClick(ev) {
+
+            const containerWidth = holderSlider.offsetWidth;
+
+            let d = 1;
+            if (ev.target.dataset.direction === 'left') d = -1;
+
+            let hScroll = holderSlider.scrollLeft + containerWidth * SCROLL_AMOUNT * d;
+            if (_.collapsed) {
+                itemShowing += itemShowing * d;
+                console.log(itemShowing);
+                hScroll = holderSlider.scrollLeft + containerWidth * d;
+            }
+
+            animate(holderSlider, {
+                prop: 'scroll-x',
+                start: holderSlider.scrollLeft,
+                end: hScroll,
+                duration: 500
+            })
+
+        }
     }
 }
 function Actions(selector) {
@@ -1905,4 +1993,37 @@ function $(selector) {
 }
 function $$(selector) {
     return document.querySelectorAll(selector);
+}
+function animate(elem, options) {
+
+    const { prop, start, end, duration } = options;
+
+    let animationStartTime;
+
+    animationStartTime = performance.now();
+    requestAnimationFrame(updateValue);
+
+
+    function updateValue(time) {
+
+        const msPassed = time - animationStartTime;
+        let progress = easeInOutQuart(msPassed / duration);
+        if (msPassed > duration) progress = 1;
+
+
+        switch (prop) {
+            case 'scroll-x':
+                const value = (end - start) * progress + start;
+                elem.scroll(value, 0);
+                break;
+            default:
+
+        }
+
+        if (progress < 1) requestAnimationFrame(updateValue);
+
+    }
+    function easeInOutQuart(x) {
+        return x < 0.5 ? 8 * x * x * x * x : 1 - Math.pow(-2 * x + 2, 4) / 2;
+    }
 }
