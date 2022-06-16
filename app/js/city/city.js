@@ -8,13 +8,17 @@ const buildingTip = new BuildingContextMenu();
 
 window.onload = () => {
 
+    let cityID = '';
+
     const urlSearchParams = new URLSearchParams(new URL(location).search);
 
     for (const p of urlSearchParams) {
-        if (p[0] === 'id') city_build_id=p[1];
+        if (p[0] === 'id') city_build_id = p[1];
     }
 
-    let url = `/ajax?c=city&do=city_builds${city_build_id}`;
+    if (city_build_id) cityID = `?city_id=${city_build_id}`;
+
+    let url = `/ajax?c=city&do=city_builds${cityID}`;
     if (dev) url = '/cache/map/city.json';
 
     fetch(url, {
