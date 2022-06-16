@@ -2325,7 +2325,7 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .panel_army .holder_slider::-webkit-scrollbar { width: 0; height: 0; }
 
-.panel_army.closed .holder_slider_list > .slider_item:not(:first-of-type) { display: none; }
+.panel_army.closed .holder_slider { width: 84px; }
 
 .panel_game_modes { max-width: 250px; -webkit-box-flex: 0; -ms-flex: 0 0 250px; flex: 0 0 250px; }
 
@@ -2552,7 +2552,7 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .panel_progress.closed .txt_inf { display: none !important; }
 
-.footer_area { position: absolute; left: 0; bottom: 5px; min-width: 1024px; padding-left: 5px; padding-right: 5px; width: 100%; z-index: 1; pointer-events: none; }
+.footer_area { position: absolute; left: 0; bottom: 5px; min-width: 1024px; padding-left: 5px; padding-right: 5px; width: 100%; z-index: 5; pointer-events: none; }
 
 .footer_area .panel { pointer-events: auto; }
 

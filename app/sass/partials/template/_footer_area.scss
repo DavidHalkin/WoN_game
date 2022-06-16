@@ -1,16 +1,17 @@
-.footer_area{
+.footer_area {
 	position: absolute;
 	left: 0;
 	bottom: 5px;
-	min-width:$body_min_width;
+	min-width: $body_min_width;
 	padding-left: 5px;
 	padding-right: 5px;
 	width: 100%;
-	z-index: 1;
+	z-index: 5;
 	// background: #000;
 	pointer-events: none;
-	.panel{
-		pointer-events:auto;
+
+	.panel {
+		pointer-events: auto;
 	}
-	
+
 }
