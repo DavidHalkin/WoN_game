@@ -281,6 +281,8 @@ function Bottom(selector) {
     const itemsContainer = elem.querySelector('.holder_slider_list');
     const switcher = elem.querySelector('button.switcher');
 
+    let itemShowing = 0;
+
     const scroll = new Scroll();
     scroll.init();
 
