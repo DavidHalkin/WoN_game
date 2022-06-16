@@ -1428,7 +1428,7 @@ function $(selector) {
 }
 function isLocalhost() {
 
-    if (location.hostname === 'localhost') return true;
+    if (location.hostname === 'localhost' || location.hostname === '192.168.1.16') return true;
     return false;
 
 }

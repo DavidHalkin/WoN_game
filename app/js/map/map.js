@@ -830,7 +830,9 @@ export function Map() {
                 const loadedAssets = getAssetsNumber('loaded');
                 if (loadedAssets === totalAssets) {
                     redraw();
-                    if (!editor) setTimeout(loadModes, 1000);
+                    if (location.hostname !== '192.168.1.16') {
+                        if (!editor) setTimeout(loadModes, 1000);
+                    }
                 }
 
             }
