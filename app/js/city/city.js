@@ -40,8 +40,8 @@ window.onload = () => {
 function Map(data) {
 
     const EDGE_SIZE = 30;
-    const START_SIZE = data.min_diametr - 1;
-    const CONSTRUCTION_SIZE = data.max_diametr - 1;
+    const START_SIZE = data.max_diametr - 1;
+    const CONSTRUCTION_SIZE = data.min_diametr - 1;
     const CLIMATE = +data.background;
     const ENVIRONMENT = +data.front;
     const IMG_PATH = '/images/city/';
