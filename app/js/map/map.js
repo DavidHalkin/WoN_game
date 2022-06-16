@@ -124,6 +124,7 @@ export function Map() {
         wmap_height: null
     };
     let activeLayer = null;
+    let drawCountryNames = true;
 
     class Unit {
         constructor(object) {
@@ -1870,7 +1871,7 @@ export function Map() {
             worldMapLayer();
         }
         if (!editor) layer(colors);
-        if (!editor) layer(countryNames);
+        if (!editor && drawCountryNames) layer(countryNames);
         if (!editor) route();
         layer(highlight);
         if (!editor && map.cell_width > ZOOM_MIN_FOR_HEX) layer(cellBlazons);
@@ -3949,7 +3950,7 @@ export function Map() {
         return getHexLocation(click.x, click.y);
 
     }
-    function findAdjacentTiles(col, row, c) {
+    function findAdjacentTiles(col, row) {
 
         let tiles = [];
 
@@ -4058,7 +4059,7 @@ export function Map() {
         container.dispatchEvent(event);
 
     }
-    function findCountrySpots(data) {
+    async function findCountrySpots(data) {
 
         data.spots = [];
         data.colors.forEach((type, i) => {
@@ -4089,7 +4090,6 @@ export function Map() {
             searchAround(i);
 
         });
-
         data.spots.forEach(spot => {
 
             spot.name = data.types[spot.type - 1].name;
@@ -4126,7 +4126,7 @@ export function Map() {
             try {
                 neighbourTiles = findAdjacentTiles(c.col, c.row);
             } catch (e) {
-                console.log('skipping country titles');
+                drawCountryNames = false;
                 return;
             }
 
