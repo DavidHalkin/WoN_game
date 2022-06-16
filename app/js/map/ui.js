@@ -1,6 +1,7 @@
 const urlParams = new URLSearchParams(new URL(location).search);
 const mapType = $('#field_map') ?.dataset ?.map;
 const dev = location.hostname == 'localhost' ? true : false;
+let page_data = JSON.parse($("#page_data").innerText);
 
 window.ui = {};
 window.ui.modes = new Modes('.panel_game_modes');
@@ -74,7 +75,7 @@ async function loadCityInfo() {
         if (data.info) ui.aside.init(data);
         if (data.buildings) ui.bottom.update(data.buildings);
         if (data.commands) ui.actions.update(data.commands);
-        if (data.commands_hide_back) $('.actions_panel_holder').style = "background: none;";
+        if (data.commands_hide_back) $('.actions_panel_holder').style = "background: none; --h: auto;";
         else $('.actions_panel_holder').style = "";
     }
 
@@ -306,6 +307,12 @@ function Bottom(selector) {
             return;
         }
 
+        if (mapType === 'world') {
+            const armyName = map.selection ?.unit ?.name;
+            if (armyName) $('#paneltitle').innerText = armyName;
+        }
+
+        itemsContainer.innerHTML = '';
 
         for (const [i, itemData] of data.entries()) {
 
@@ -323,9 +330,9 @@ function Bottom(selector) {
                 army_id
             } = itemData;
 
-            enabled = enabled ? '' : 'type_disabled';
+            enabled = enabled ? (typeof armyName !== 'undefined' ? 'type_active' : '') : 'type_disabled';
             if (back == 'opacity') class_type = 'type_disabled';
-            else if (back == 'gold') class_type = 'type_active';
+            else if (back == 'gold') class_type = 'type_warning';
             else if (back == 'blue') class_type = 'type_primary';
             else class_type = '';
 
@@ -386,8 +393,6 @@ function Bottom(selector) {
             itemsContainer.insertAdjacentElement('beforeend', item);
 
         }
-
-        initScroll();
     }
     function updateSelected(array) {
 
@@ -395,7 +400,7 @@ function Bottom(selector) {
 
         const allSelected = itemsContainer.querySelectorAll('.type_active');
         for (const elem of allSelected) {
-            _.selected.push(array[elem.dataset.i]);
+            _.selected.push(elem.dataset.id);
         }
 
     }
@@ -430,7 +435,7 @@ function Bottom(selector) {
 
         }
         function enable() {
-
+            if (btnLeft==null)  return false;
             btnLeft.addEventListener('click', handleClick);
             btnRight.addEventListener('click', handleClick);
 
@@ -439,6 +444,7 @@ function Bottom(selector) {
 
         }
         function disable() {
+            if (btnLeft==null)  return false;
 
             btnLeft.removeEventListener('click', handleClick);
             btnRight.removeEventListener('click', handleClick);
@@ -491,35 +497,10 @@ function Actions(selector) {
         }
 
         generateHTML(htmlContainer, data, _);
-        reAssignClicks();
+
 
     }
-    function reAssignClicks() {
 
-        const elems = htmlContainer.querySelectorAll('[data-clickable]');
-
-        for (const el of elems) {
-            el.onclick = () => {
-                fetch(el.dataset.url, {
-                    method: 'POST',
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(getSelectedIds())
-                })
-                    .then(async (res) => {
-                        const data = await res.json();
-                        console.log(data);
-                    });
-            }
-        }
-
-        function getSelectedIds() {
-
-            return ui.bottom.selected.map(item => +item.id);
-
-        }
-    }
 }
 function Confirm(selector) {
     const elem = $(selector);
@@ -536,13 +517,9 @@ function Confirm(selector) {
 
     function show(naming, callback) {
 
-        if (!naming) return console.info('no text for popup');
-
-        const { question, confirm, cancel } = naming;
-
-        questionEl.innerText = question;
-        btnConfirm.firstElementChild.innerText = confirm;
-        btnCancel.firstElementChild.innerText = cancel;
+        questionEl.innerText = page_data.confirm.quest;
+        btnConfirm.firstElementChild.innerText = page_data.confirm.y;
+        btnCancel.firstElementChild.innerText = page_data.confirm.n;
 
         elem.style.left = '50%';
         elem.style.top = '50%';
@@ -589,6 +566,7 @@ function generateHTML(target, structure, panel) {
     for (const rootEl of structure) {
         target.insertAdjacentElement('beforeend', _getComponentDom(rootEl));
     }
+
 
     function _getComponentDom(component) {
         let el = document.createElement('div');
@@ -732,8 +710,8 @@ function generateHTML(target, structure, panel) {
                 const input = el.querySelector('input');
                 if (component.name) input.setAttribute('name', component.name);
 
-                classNames.push('mini_info', 'mb-20');
-                if (component.label) classNames.push('label');
+                classNames.push('mini_info');
+                if (component.label) classNames.push('label', 'mb-20');
                 addClasses(el.firstElementChild, classNames);
 
                 if (!component.icon && el.querySelector('.item_icon')) {
@@ -883,6 +861,21 @@ function generateHTML(target, structure, panel) {
                 clickableElement = el;
 
                 break;
+            case 'command':
+                    el = document.createElement('div');
+                    classNames.push('actions_col');
+                    addClasses(el, classNames);
+                    if (component.url) el.dataset.url = component.url;
+
+                    el.innerHTML = `
+                    <button class="actions_item" type="button">
+                    <img src="${component.icon}"  >
+                    </button>
+                    `;
+
+                    clickableElement = el;
+
+                    break;
 
             case 'text':
                 addClasses(el, classNames);
@@ -991,6 +984,7 @@ function generateHTML(target, structure, panel) {
             default:
                 classNames.push(component.type);
                 addClasses(el, classNames);
+                childs = component.components;
                 break;
         }
 
@@ -1011,6 +1005,7 @@ function generateHTML(target, structure, panel) {
             clickableElement.setAttribute('data-clickable', '');
 
             if (component.ajax) {
+                clickableElement.setAttribute('data-ajax', 'true');
                 clickableElement.onclick = ev => {
                     ev.preventDefault();
                     const url = replaceVars(component.url);
@@ -1027,6 +1022,7 @@ function generateHTML(target, structure, panel) {
 
         return el;
     }
+
     function _recursiveBuildDom(parent, childs) {
         for (let childComponent of childs) {
             const elem = _getComponentDom(childComponent)
@@ -1062,29 +1058,48 @@ function generateHTML(target, structure, panel) {
 
         console.log(url);
 
+        function getSelectedIds() {
+            return ui.bottom.selected;
+        }
+
         let data;
 
         if (!dev) {
-            const res = await fetch(url);
+            const res = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(getSelectedIds())
+            });
             data = await res.json();
             console.log('ajax response:', data);
 
-            if (data.hasOwnProperty('info')) {
-                panel.update(data);
-            } else if (data.redirect) {
-                window.location.href = data.redirect;
+            if (data.redirect) window.location.href = data.redirect;
+            else if (typeof data === 'object') {
+                if (data.hasOwnProperty('info')) panel.update(data);
+                if (data.hasOwnProperty('buildings')) ui.bottom.update(data.buildings);
+                if (data.hasOwnProperty('commands')) ui.actions.update(data.commands);
+                if (data.hasOwnProperty('commands_hide_back')) $('.actions_panel_holder').style = "background: none; --h: auto;";
+                else $('.actions_panel_holder').style = "";
             }
+            if (data.hasOwnProperty('renew_city_map') && (typeof renew_city_map)=='function') renew_city_map();
 
         } else {
+
             fetch('/cache/map/clicksim/city_builds.json', {
+                method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
-                }
+                },
+                body: JSON.stringify(getSelectedIds())
             })
                 .then(async (res) => {
                     const data = await res.json();
                     panel.update(data);
                 });
+
+
         }
 
     }
@@ -1993,37 +2008,4 @@ function $(selector) {
 }
 function $$(selector) {
     return document.querySelectorAll(selector);
-}
-function animate(elem, options) {
-
-    const { prop, start, end, duration } = options;
-
-    let animationStartTime;
-
-    animationStartTime = performance.now();
-    requestAnimationFrame(updateValue);
-
-
-    function updateValue(time) {
-
-        const msPassed = time - animationStartTime;
-        let progress = easeInOutQuart(msPassed / duration);
-        if (msPassed > duration) progress = 1;
-
-
-        switch (prop) {
-            case 'scroll-x':
-                const value = (end - start) * progress + start;
-                elem.scroll(value, 0);
-                break;
-            default:
-
-        }
-
-        if (progress < 1) requestAnimationFrame(updateValue);
-
-    }
-    function easeInOutQuart(x) {
-        return x < 0.5 ? 8 * x * x * x * x : 1 - Math.pow(-2 * x + 2, 4) / 2;
-    }
 }

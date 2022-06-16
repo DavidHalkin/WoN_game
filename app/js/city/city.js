@@ -2,16 +2,26 @@ const ASSETS_VERSION = 1;
 import * as spriteMap from './sprite-maps-city.js?v=1';
 const dev = isLocalhost();
 
+let city_build_id=0;
+
 const buildingTip = new BuildingContextMenu();
 window.onload = () => {
 
-    let cityID = '';
+
 
     const urlSearchParams = new URLSearchParams(new URL(location).search);
 
     for (const p of urlSearchParams) {
-        if (p[0] === 'city') cityID = `?city_id=${p[1]}`;
+        if (p[0] === 'id') city_build_id=p[1];
     }
+
+    renew_city_map();
+}
+
+function renew_city_map()
+{
+    let cityID = '';
+    if (city_build_id)    cityID = `?city_id=${city_build_id}`;
 
     let url = `/ajax?c=city&do=city_builds${cityID}`;
     if (dev) url = '/cache/map/city.json';
@@ -29,7 +39,6 @@ window.onload = () => {
                 res.json().then(res => console.log(res));
             }
         });
-
 }
 
 function Map(data) {
@@ -47,6 +56,7 @@ function Map(data) {
     const TILE_WIDTH = 128 * START_SCALE;
     const TILE_HEIGHT = 94 * START_SCALE;
     const PAN_EDGE_GAP = 1; // number of cells between edge of the city and max panning
+    if (data.city_id) city_build_id=data.city_id;
 
     const tiles = {
         total: Math.pow(START_SIZE + EDGE_SIZE * 2, 2),
@@ -104,6 +114,7 @@ function Map(data) {
     propagateBuildingAreas();
     generateRandomFeatures();
 
+    /*
     $('button[name="coords"]').onclick = () => {
         if (ghostBuildings) {
             ghostBuildings = false;
@@ -122,6 +133,7 @@ function Map(data) {
         }
         redraw();
     }
+    */
 
     load.spritesheets(spriteMap);
 
@@ -363,7 +375,7 @@ function Map(data) {
             const x = tiles.selected.x;
             const y = tiles.selected.y;
             const building = Object.assign({}, buildings.moving.building);
-
+            /*
             if (dev) {
 
                 building.id = Date.now();
@@ -376,20 +388,25 @@ function Map(data) {
                 }
 
             } else {
-
-                fetch(`/ajax?c=city&do=add&x=${x}&y=${y}`)
+                    */
+                fetch(`/ajax?c=city&do=add&x=${x}&y=${y}&city=${city_build_id}&id=${building.id}`)
                     .then(res => {
                         if (res.ok) {
                             res.json().then(res => {+
 
                                 console.log(res);
-                                buildings.list.push(building);
+                                if (res.status)
+                                {
+                                    buildings.list.push(building);
 
-                                if (next) {
-                                    placeBuildingAndContinue(building);
-                                } else {
-                                    placeBuilding(building);
+                                    if (next) {
+                                        placeBuildingAndContinue(building);
+                                    } else {
+                                        placeBuilding(building);
+                                    }
                                 }
+
+
 
                             });
                         } else {
@@ -399,7 +416,7 @@ function Map(data) {
                         }
                     });
 
-            }
+
 
         }
         function placeBuilding(building) {
