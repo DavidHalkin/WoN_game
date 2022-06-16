@@ -326,6 +326,7 @@ function Bottom(selector) {
 
             if (mapType === 'world' && army_id && enabled) {
                 if (name) $('#paneltitle').innerText = name;
+                $('#paneltitle').dataset.id=army_id;
             }
 
             enabled = enabled ? (mapType === 'world' && army_id ? 'type_active' : '') : 'type_disabled';
@@ -366,6 +367,13 @@ function Bottom(selector) {
 
                     if (multiSelect) {
                         slot.classList.toggle('type_active');
+
+                        if (slot.classList.contains('type_active'))
+                        {
+                            var panel_army_title = $('#paneltitle');
+                            panel_army_title.innerText = slot.dataset.armyname;
+                            panel_army_title.dataset.id=slot.dataset.army_id;
+                        }
                     }
                     else {
                         deselectAll();
@@ -1301,7 +1309,6 @@ function enableRenaming() {
     function init(elem) {
 
         let object = elem.dataset.rename;
-        let id = elem.dataset.id;
         let text = elem.innerText;
 
         elem.contentEditable = true;
@@ -1338,6 +1345,7 @@ function enableRenaming() {
             return false;
         }
         function sendNewText(string) {
+            var id = elem.dataset.id;
             fetch(`/ajax?do=rename&c=map&id=${id}&o=${object}&name=${string}`, {
                 method: 'POST',
                 headers: {
