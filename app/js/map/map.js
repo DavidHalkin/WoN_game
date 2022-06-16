@@ -3756,8 +3756,6 @@ export function Map() {
 
     }
 
-    let counter = 0;
-
     // utilities
     function Compositing(video, can, colorOverlay) {
 
@@ -3953,8 +3951,6 @@ export function Map() {
     }
     function findAdjacentTiles(col, row, c) {
 
-        if (c) counter++;
-
         let tiles = [];
 
         if (row % 2 == 0) {
@@ -4130,7 +4126,6 @@ export function Map() {
             try {
                 neighbourTiles = findAdjacentTiles(c.col, c.row, true);
             } catch (e) {
-                console.log(counter);
                 console.log('skipping country titles');
                 return;
             }
