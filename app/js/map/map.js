@@ -4124,7 +4124,7 @@ export function Map() {
             let neighbourTiles;
 
             try {
-                neighbourTiles = findAdjacentTiles(c.col, c.row, true);
+                neighbourTiles = findAdjacentTiles(c.col, c.row);
             } catch (e) {
                 console.log('skipping country titles');
                 return;
