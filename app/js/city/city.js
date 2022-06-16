@@ -41,7 +41,8 @@ function Map(data) {
 
     const EDGE_SIZE = 30;
     const START_SIZE = data.max_diametr - 1;
-    const CONSTRUCTION_SIZE = data.min_diametr - 1;
+    const CONSTRUCTION_SIZE = data.max_diametr - 1;
+    const FOREST_SIZE = data.min_diametr - 1;
     const CLIMATE = +data.background;
     const ENVIRONMENT = +data.front;
     const IMG_PATH = '/images/city/';
@@ -877,7 +878,8 @@ function Map(data) {
 
         const TEMPLATE_TOP_MARGIN = 34 * tiles.scale;
 
-        if (onTerritory(x, y)) return;
+        if (x > -FOREST_SIZE / 2 && x <= FOREST_SIZE / 2 &&
+            y > -FOREST_SIZE / 2 && y <= FOREST_SIZE / 2) return;
         if (tiles.building_areas[i]) return;
 
         const sprite = spriteMap.forest.find(sprite => {
