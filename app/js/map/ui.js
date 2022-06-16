@@ -75,7 +75,7 @@ async function loadCityInfo() {
         if (data.info) ui.aside.init(data);
         if (data.buildings) ui.bottom.update(data.buildings);
         if (data.commands) ui.actions.update(data.commands);
-        if (data.commands_hide_back) $('.actions_panel_holder').style = "background: none; --h: auto;";
+        if (data.commands_hide_back || mapType=='city') $('.actions_panel_holder').style = "background: none; --h: auto;";
         else $('.actions_panel_holder').style = "";
     }
 
@@ -393,6 +393,9 @@ function Bottom(selector) {
             itemsContainer.insertAdjacentElement('beforeend', item);
 
         }
+
+        scroll.init();
+
     }
     function updateSelected(array) {
 
@@ -410,8 +413,14 @@ function Bottom(selector) {
     }
     function toggle(ev) {
 
-        if (_.collapsed) _.collapsed = false;
-        else _.collapsed = true;
+        if (_.collapsed) {
+            _.collapsed = false;
+        } else {
+            _.collapsed = true;
+            scroll.to_start();
+        }
+
+        scroll.init();
 
     }
     function Scroll() {
@@ -422,11 +431,10 @@ function Bottom(selector) {
         const btnLeft = elem.querySelector('[data-direction="left"]');
         const btnRight = elem.querySelector('[data-direction="right"]');
 
-        let itemShowing = 0;
-
         this.init = init;
         this.enable = enable;
         this.disable = disable;
+        this.to_start = scrollToStart;
 
         function init() {
 
@@ -435,7 +443,7 @@ function Bottom(selector) {
 
         }
         function enable() {
-            if (btnLeft==null)  return false;
+            if (btnLeft == null) return false;
             btnLeft.addEventListener('click', handleClick);
             btnRight.addEventListener('click', handleClick);
 
@@ -444,8 +452,7 @@ function Bottom(selector) {
 
         }
         function disable() {
-            if (btnLeft==null)  return false;
-
+            if (btnLeft == null) return false;
             btnLeft.removeEventListener('click', handleClick);
             btnRight.removeEventListener('click', handleClick);
 
@@ -456,23 +463,38 @@ function Bottom(selector) {
         function handleClick(ev) {
 
             const containerWidth = holderSlider.offsetWidth;
+            const totalItems = elem.querySelector('.holder_slider_list').children.length;
+
+            let duration = 500;
 
             let d = 1;
-            if (ev.target.dataset.direction === 'left') d = -1;
+            if (ev.target.dataset.direction === 'left' && !_.collapsed) d = -1;
 
             let hScroll = holderSlider.scrollLeft + containerWidth * SCROLL_AMOUNT * d;
             if (_.collapsed) {
-                itemShowing += itemShowing * d;
-                console.log(itemShowing);
-                hScroll = holderSlider.scrollLeft + containerWidth * d;
+                if (ev.target.dataset.direction === 'left') d = -1;
+                itemShowing += d;
+                if (itemShowing < 0) {
+                    itemShowing = 0;
+                } else if (itemShowing >= totalItems) {
+                    itemShowing = totalItems - 1;
+                }
+                hScroll = containerWidth * itemShowing * Math.abs(d);
+                duration = 250;
             }
 
             animate(holderSlider, {
                 prop: 'scroll-x',
                 start: holderSlider.scrollLeft,
                 end: hScroll,
-                duration: 500
+                duration
             })
+
+        }
+        function scrollToStart() {
+
+            itemShowing = 0;
+            holderSlider.scroll(0, 0);
 
         }
     }
@@ -862,20 +884,20 @@ function generateHTML(target, structure, panel) {
 
                 break;
             case 'command':
-                    el = document.createElement('div');
-                    classNames.push('actions_col');
-                    addClasses(el, classNames);
-                    if (component.url) el.dataset.url = component.url;
+                el = document.createElement('div');
+                classNames.push('actions_col');
+                addClasses(el, classNames);
+                if (component.url) el.dataset.url = component.url;
 
-                    el.innerHTML = `
+                el.innerHTML = `
                     <button class="actions_item" type="button">
                     <img src="${component.icon}"  >
                     </button>
                     `;
 
-                    clickableElement = el;
+                clickableElement = el;
 
-                    break;
+                break;
 
             case 'text':
                 addClasses(el, classNames);
@@ -1056,8 +1078,6 @@ function generateHTML(target, structure, panel) {
     }
     async function handleClick(url) {
 
-        console.log(url);
-
         function getSelectedIds() {
             return ui.bottom.selected;
         }
@@ -1080,7 +1100,7 @@ function generateHTML(target, structure, panel) {
                 if (data.hasOwnProperty('info')) panel.update(data);
                 if (data.hasOwnProperty('buildings')) ui.bottom.update(data.buildings);
                 if (data.hasOwnProperty('commands')) ui.actions.update(data.commands);
-                if (data.hasOwnProperty('commands_hide_back')) $('.actions_panel_holder').style = "background: none; --h: auto;";
+                if (data.hasOwnProperty('commands_hide_back') || mapType=='city') $('.actions_panel_holder').style = "background: none; --h: auto;";
                 else $('.actions_panel_holder').style = "";
             }
             if (data.hasOwnProperty('renew_city_map') && (typeof renew_city_map)=='function') renew_city_map();
@@ -2008,4 +2028,56 @@ function $(selector) {
 }
 function $$(selector) {
     return document.querySelectorAll(selector);
+}
+function animate(elem, options) {
+
+    const { prop, start, end, duration } = options;
+
+    let animationStartTime;
+
+    animationStartTime = performance.now();
+    requestAnimationFrame(updateValue);
+
+
+    function updateValue(time) {
+
+        const msPassed = time - animationStartTime;
+        let progress = ease.easeOutQuart(msPassed / duration);
+        if (msPassed > duration) progress = 1;
+
+
+        switch (prop) {
+            case 'scroll-x':
+                const value = (end - start) * progress + start;
+                elem.scroll(value, 0);
+                break;
+            default:
+
+        }
+
+        if (progress < 1) requestAnimationFrame(updateValue);
+
+    }
+
+    const ease = {
+        easeInOutQuart: x => {
+            return x < 0.5 ? 8 * x * x * x * x : 1 - Math.pow(-2 * x + 2, 4) / 2;
+        },
+        easeOutQuart: x => {
+            return 1 - Math.pow(1 - x, 4);
+        },
+        easeOutBack: x => {
+            const c1 = 1.70158;
+            const c3 = c1 + 1;
+            return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
+        },
+        easeOutElastic: x => {
+            const c4 = (2 * Math.PI) / 3;
+            return x === 0
+                ? 0
+                : x === 1
+                    ? 1
+                    : Math.pow(2, -10 * x) * Math.sin((x * 10 - 0.75) * c4) + 1;
+        },
+    };
 }
