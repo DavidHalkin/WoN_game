@@ -1,6 +1,6 @@
 const urlParams = new URLSearchParams(new URL(location).search);
 const mapType = $('#field_map') ?.dataset ?.map;
-const dev = location.hostname == 'localhost' ? true : false;
+const dev = location.hostname == 'localhost' || location.hostname == '192.168.1.16' ? true : false;
 let page_data = JSON.parse($("#page_data").innerText);
 
 window.ui = {};
@@ -294,11 +294,6 @@ function Bottom(selector) {
 
     function populateItems(data, multiSelect) {
 
-        if (mapType === 'world') {
-            const armyName = map.selection ?.unit ?.name;
-            if (armyName) $('#paneltitle').innerText = armyName;
-        }
-
         itemsContainer.innerHTML = '';
         if (data ?.length )
             $('.panel_army').classList.remove('d-none');
@@ -307,10 +302,7 @@ function Bottom(selector) {
             return;
         }
 
-        if (mapType === 'world') {
-            const armyName = map.selection ?.unit ?.name;
-            if (armyName) $('#paneltitle').innerText = armyName;
-        }
+
 
         itemsContainer.innerHTML = '';
 
@@ -330,7 +322,11 @@ function Bottom(selector) {
                 army_id
             } = itemData;
 
-            enabled = enabled ? (typeof armyName !== 'undefined' ? 'type_active' : '') : 'type_disabled';
+            if (mapType === 'world' && army_id && enabled) {
+                if (name) $('#paneltitle').innerText = name;
+            }
+
+            enabled = enabled ? (mapType === 'world' && army_id ? 'type_active' : '') : 'type_disabled';
             if (back == 'opacity') class_type = 'type_disabled';
             else if (back == 'gold') class_type = 'type_warning';
             else if (back == 'blue') class_type = 'type_primary';
@@ -733,7 +729,7 @@ function generateHTML(target, structure, panel) {
                 if (component.name) input.setAttribute('name', component.name);
 
                 classNames.push('mini_info');
-                if (component.label) classNames.push('label', 'mb-20');
+                if (component.label) classNames.push('label');
                 addClasses(el.firstElementChild, classNames);
 
                 if (!component.icon && el.querySelector('.item_icon')) {
@@ -1382,11 +1378,11 @@ function Slider(el) {
         inputField.onchange = () => {
             input.value = inputField.value;
             update();
-            if (slider.dataset.url) fetch(slider.dataset.url);
+            if (slider.dataset.url) fetch(slider.dataset.url+'&value='+input.value);
         };
 
         input.addEventListener('mouseup', ev => {
-            if (slider.dataset.url) fetch(slider.dataset.url);
+            if (slider.dataset.url) fetch(slider.dataset.url+'&value='+input.value);
         });
 
         update();
