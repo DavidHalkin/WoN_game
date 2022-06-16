@@ -4,7 +4,8 @@
   "description": "markup",
   "main": "index.js",
   "scripts": {
-    "start": "browser-sync . --index app/index.html --ss app --files ./app/**/* --no-ui"
+    "start": "browser-sync . --index app/index.html --ss app --files ./app/**/* --no-ui",
+    "sass": "node-sass ./app/sass -o ./app/test"
   },
   "repository": {
     "type": "git",
