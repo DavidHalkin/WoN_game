@@ -56,8 +56,8 @@ export function Map() {
     const CITY_NAME_ZOOM = 30;
     const RESOURCES_ZOOM = 20;
 
-    const SEA_ZOOM_MIN = 300;
-    const SEA_ZOOM_MAX = 1000;
+    const SEA_ZOOM_MIN = 1000 / (HEX_WIDTH / ZOOM_MIN); // 1000 - actual image size in px
+    const SEA_ZOOM_MAX = 1000 / (HEX_WIDTH / ZOOM_MAX); // 1000 - actual image size in px
     const SEA_ZOOM_START = 200;
     const SEA_DISTANT_ZOOM_MAX = 66.666;
 
@@ -2108,7 +2108,11 @@ export function Map() {
 
             }
 
-            drawIntersections();
+            try {
+                drawIntersections();
+            } catch (e) {
+
+            }
 
             function drawIntersections() {
 
