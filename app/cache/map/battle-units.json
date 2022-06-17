@@ -1,0 +1,34 @@
+{
+    "units": [
+        {
+            "id": "1234",
+            "x": "14",
+            "y": "16",
+            "can_use": true,
+            "class": "U10",
+            "goal_x": "20",
+            "goal_y": "20",
+            "atack": true,
+            "speed": "2",
+            "tootip": [],
+            "amount": "1",
+            "size": "2",
+            "color": "#00FF00"
+        },
+        {
+            "id": "4567",
+            "x": "18",
+            "y": "10",
+            "can_use": true,
+            "class": "U6",
+            "goal_x": "20",
+            "goal_y": "20",
+            "atack": true,
+            "speed": "2",
+            "tootip": [],
+            "amount": "1",
+            "size": "3",
+            "color": "#FF0000"
+        }
+    ]
+}
