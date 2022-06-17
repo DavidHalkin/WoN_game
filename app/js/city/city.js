@@ -13,7 +13,7 @@ window.onload = () => {
     const urlSearchParams = new URLSearchParams(new URL(location).search);
 
     for (const p of urlSearchParams) {
-        if (p[0] === 'id') city_build_id = p[1];
+        if (p[0] === 'city_id') city_build_id = p[1];
     }
 
     if (city_build_id) cityID = `?city_id=${city_build_id}`;
@@ -627,9 +627,6 @@ function Map(data) {
     function loop() {
 
         onPause = false;
-
-        // ctx.imageSmoothingEnabled = false;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         redraw();
 
