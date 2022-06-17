@@ -414,7 +414,14 @@ export function Map() {
         showMountainsArea = false,
         wmapTiles = new Array(map.wmap_columns * map.wmap_rows),
         modeTiles = {
-            polytics: new Array(map.mode_columns * map.mode_rows)
+            polytics: new Array(map.mode_columns * map.mode_rows),
+            vassals: new Array(map.mode_columns * map.mode_rows),
+            trade: new Array(map.mode_columns * map.mode_rows),
+            geo: new Array(map.mode_columns * map.mode_rows),
+            nature: new Array(map.mode_columns * map.mode_rows),
+            climate: new Array(map.mode_columns * map.mode_rows),
+            ethnic: new Array(map.mode_columns * map.mode_rows),
+            religion: new Array(map.mode_columns * map.mode_rows)
         };
 
     if (location.hostname === 'localhost' || location.hostname === '192.168.1.16') dev = true;
@@ -3791,7 +3798,7 @@ export function Map() {
             if (!modeTiles[activeLayer][index]) {
 
                 const tile = new Image();
-                tile.src = `/cache/map/${activeLayer}/x4/${index}.png`;
+                tile.src = `/cache/map/${activeLayer}/x4/${index}.png?u=${map.updates.get_map_colors}`;
                 if (!modeTiles[activeLayer]) modeTiles[activeLayer] = [];
                 modeTiles[activeLayer][index] = tile;
 
