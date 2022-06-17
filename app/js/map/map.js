@@ -56,25 +56,32 @@ export function Map() {
     const CITY_NAME_ZOOM = 30;
     const RESOURCES_ZOOM = 20;
 
-    const SEA_HEX_WIDTH = 1000;
-    const SEA_HEX_HEIGHT = 1000;
-    const SEA_CELL_RATIO = 1;
     const SEA_ZOOM_MIN = 300;
     const SEA_ZOOM_MAX = 1000;
     const SEA_ZOOM_START = 200;
     const SEA_DISTANT_ZOOM_MAX = 66.666;
 
-    const WMAP_CELL_RATIO = 1;
     const WMAP_ZOOM_MIN = 132;
     const WMAP_ZOOM_MAX = 19800; // change together with ZOOM_MAX
     const WMAP_ZOOM_START = 7920;
     const WMAP_ZOOM_REAL = 1320;
     const WMAP_DISTANT_ZOOM_MAX = 2640;
-    const WMAP_STRETCH_AT_MIN_ZOOM = 0.638;
+
+    const MODE_ZOOM_MIN = 132 * 0.9696;
+    const MODE_ZOOM_MAX = 19800 * 0.9696; // change together with ZOOM_MAX
+    const MODE_ZOOM_START = 7920 * 0.9696;
+    const MODE_ZOOM_REAL = 1320 * 0.9696;
+    const MODE_DISTANT_ZOOM_MAX = 2640 * 0.9696;
+
+    const SQUARE_RATIO = 1;
+    const SQUARE_STRETCH = 0.638;
 
     const BLAZON_GAP = 0; // 0–1 : 1 = map.cell_height
     const BLAZON_TO_FRAME_SIZE_RATIO = 0.8;
     const FPS = 30; // animation FPS, not canvas map.
+
+    const MODE_TRANSITION_ZOOM_START = 40;
+    const MODE_TRANSITION_ZOOM_END = 20;
 
     const map = {
         updates: {},
@@ -109,19 +116,27 @@ export function Map() {
         sea_columns: 654,
         sea_rows: 314,
         sea_cell_width: SEA_ZOOM_START,
-        sea_cell_height: SEA_ZOOM_START / SEA_CELL_RATIO,
-        sea_row_height: SEA_ZOOM_START / SEA_CELL_RATIO,
+        sea_cell_height: SEA_ZOOM_START / SQUARE_RATIO,
+        sea_row_height: SEA_ZOOM_START / SQUARE_RATIO,
         sea_column_shift: null,
         sea_width: null,
         sea_height: null,
         wmap_columns: 17,
         wmap_rows: 9,
         wmap_cell_width: WMAP_ZOOM_START,
-        wmap_cell_height: WMAP_ZOOM_START / WMAP_CELL_RATIO * WMAP_STRETCH_AT_MIN_ZOOM,
-        wmap_row_height: WMAP_ZOOM_START / WMAP_CELL_RATIO,
+        wmap_cell_height: WMAP_ZOOM_START / SQUARE_RATIO * SQUARE_STRETCH,
+        wmap_row_height: WMAP_ZOOM_START / SQUARE_RATIO,
         wmap_column_shift: null,
         wmap_width: null,
-        wmap_height: null
+        wmap_height: null,
+        mode_columns: 18,
+        mode_rows: 10,
+        mode_cell_width: MODE_ZOOM_START,
+        mode_cell_height: MODE_ZOOM_START / SQUARE_RATIO * SQUARE_STRETCH,
+        mode_row_height: MODE_ZOOM_START / SQUARE_RATIO,
+        mode_column_shift: null,
+        mode_width: null,
+        mode_height: null,
     };
     let activeLayer = null;
     let drawCountryNames = true;
@@ -397,7 +412,10 @@ export function Map() {
         editor = false,
         units_requested = false,
         showMountainsArea = false,
-        wmapTiles = new Array(map.wmap_columns * map.wmap_rows);
+        wmapTiles = new Array(map.wmap_columns * map.wmap_rows),
+        modeTiles = {
+            polytics: new Array(map.mode_columns * map.mode_rows)
+        };
 
     if (location.hostname === 'localhost' || location.hostname === '192.168.1.16') dev = true;
     if ($('meta[content="editor"]')) editor = true;
@@ -928,6 +946,26 @@ export function Map() {
         }
 
     }
+    function setModeMapDimensions(options) {
+
+        const FIX_RASTER_HEIGHT = 0.9995;
+
+        map.mode_row_height = map.mode_cell_height * 0.75 * FIX_RASTER_HEIGHT;
+
+        if (options) {
+
+            map.mode_cell_height = options.modeCellHeight * FIX_RASTER_HEIGHT;
+            map.mode_height = map.mode_row_height * map.mode_rows;
+
+        } else {
+
+            map.mode_column_shift = map.mode_cell_width / 2;
+            map.mode_width = map.mode_cell_width * map.mode_columns;
+            map.mode_height = map.mode_row_height * map.mode_rows;
+
+        }
+
+    }
     function handleWindowResize() {
 
         setCanvasSize();
@@ -1112,6 +1150,16 @@ export function Map() {
             if (wmap_colMax > map.wmap_columns) wmap_colMax = map.wmap_columns;
             if (wmap_rowMax > map.wmap_rows) wmap_rowMax = map.wmap_rows;
 
+            let mode_colMin = Math.floor(viewport.x / map.mode_cell_width) - 1;
+            let mode_rowMin = Math.floor(viewport.y / map.mode_row_height) - 1;
+            let mode_colMax = Math.ceil((viewport.x + viewport.width) / map.mode_cell_width);
+            let mode_rowMax = Math.ceil((viewport.y + viewport.height) / map.mode_row_height);
+
+            if (mode_colMin < 0) mode_colMin = 0;
+            if (mode_rowMin < 0) mode_rowMin = 0;
+            if (mode_colMax > map.mode_columns) mode_colMax = map.mode_columns;
+            if (mode_rowMax > map.mode_rows) mode_rowMax = map.mode_rows;
+
             viewport.area = {
                 colMin,
                 rowMin,
@@ -1124,7 +1172,11 @@ export function Map() {
                 wmap_colMin,
                 wmap_rowMin,
                 wmap_colMax,
-                wmap_rowMax
+                wmap_rowMax,
+                mode_colMin,
+                mode_rowMin,
+                mode_colMax,
+                mode_rowMax
             };
 
         }
@@ -1261,7 +1313,7 @@ export function Map() {
             }
 
             map.cell_height = map.cell_width / CELL_RATIO;
-            map.sea_cell_height = map.sea_cell_width / SEA_CELL_RATIO;
+            map.sea_cell_height = map.sea_cell_width / SQUARE_RATIO;
 
             map.distant_zoom_ratio = 1 - (map.cell_width - ZOOM_MIN_FOR_HEX) / (DISTANT_ZOOM_MAX - ZOOM_MIN_FOR_HEX);
 
@@ -1294,7 +1346,7 @@ export function Map() {
 
 
 
-            // ============ polytical map
+            // ============ world map
 
             map.wmap_cell_width *= zoomRatio;
             map.wmap_cell_height *= zoomRatio;
@@ -1305,7 +1357,7 @@ export function Map() {
                 map.wmap_cell_width = WMAP_ZOOM_MIN;
             }
 
-            map.wmap_cell_height = map.wmap_cell_width / WMAP_CELL_RATIO;
+            map.wmap_cell_height = map.wmap_cell_width / SQUARE_RATIO;
 
             let wmap_distantZoomRatio = (map.wmap_cell_width - WMAP_ZOOM_REAL) / (WMAP_DISTANT_ZOOM_MAX - WMAP_ZOOM_REAL);
             if (wmap_distantZoomRatio < 0) {
@@ -1314,7 +1366,7 @@ export function Map() {
                 wmap_distantZoomRatio = 1;
             }
 
-            const wmap_cellHeightRatio = (WMAP_STRETCH_AT_MIN_ZOOM - 1) * wmap_distantZoomRatio + 1;
+            const wmap_cellHeightRatio = (SQUARE_STRETCH - 1) * wmap_distantZoomRatio + 1;
             setWmapMapDimensions({
                 wmapCellHeight: map.wmap_cell_height * wmap_cellHeightRatio
             });
@@ -1323,6 +1375,40 @@ export function Map() {
             map.wmap_column_shift = map.wmap_cell_width / 2;
             map.wmap_width = map.wmap_cell_width * map.wmap_columns;
             map.wmap_height = map.wmap_row_height * map.wmap_rows;
+
+
+
+            // ============ modes map
+
+            map.mode_cell_width *= zoomRatio;
+            map.mode_cell_height *= zoomRatio;
+
+            if (map.mode_cell_width >= MODE_ZOOM_MAX) {
+                map.mode_cell_width = MODE_ZOOM_MAX;
+            } else if (map.mode_cell_width <= MODE_ZOOM_MIN) {
+                map.mode_cell_width = MODE_ZOOM_MIN;
+            }
+
+            map.mode_cell_height = map.mode_cell_width / SQUARE_RATIO;
+
+            let mode_distantZoomRatio = (map.mode_cell_width - MODE_ZOOM_REAL) / (MODE_DISTANT_ZOOM_MAX - MODE_ZOOM_REAL);
+            if (mode_distantZoomRatio < 0) {
+                mode_distantZoomRatio = 0;
+            } else if (mode_distantZoomRatio > 1) {
+                mode_distantZoomRatio = 1;
+            }
+
+            const mode_cellHeightRatio = (SQUARE_STRETCH - 1) * mode_distantZoomRatio + 1;
+            setModeMapDimensions({
+                modeCellHeight: map.mode_cell_height * mode_cellHeightRatio
+            });
+
+            map.mode_row_height = map.mode_cell_height;
+            map.mode_column_shift = map.mode_cell_width / 2;
+            map.mode_width = map.mode_cell_width * map.mode_columns;
+            map.mode_height = map.mode_row_height * map.mode_rows;
+
+
 
             const actualZoomRatio = map.cell_width / previousCellWidth;
             const shiftXRatio = 1 - actualZoomRatio;
@@ -1860,7 +1946,11 @@ export function Map() {
             wmap_colMin,
             wmap_rowMin,
             wmap_colMax,
-            wmap_rowMax
+            wmap_rowMax,
+            mode_colMin,
+            mode_rowMin,
+            mode_colMax,
+            mode_rowMax
         } = viewport.area;
 
         if (map.cell_width > ZOOM_MIN_FOR_HEX) {
@@ -1872,7 +1962,15 @@ export function Map() {
         if (map.cell_width < DISTANT_ZOOM_MAX) {
             worldMapLayer();
         }
-        if (!editor) layer(colors);
+        if (map.cell_width < MODE_TRANSITION_ZOOM_START) {
+            if (activeLayer && activeLayer !== 'physical') {
+                modesMapLayer();
+            }
+        }
+        if (map.cell_width > MODE_TRANSITION_ZOOM_END) {
+            if (!editor) layer(colors);
+        }
+
         if (!editor && drawCountryNames) layer(countryNames);
         if (!editor) route();
         layer(highlight);
@@ -1924,6 +2022,22 @@ export function Map() {
                     const tile = getWmapHexCoords(col, row);
 
                     worldMap(col, row, tile.x, tile.y, index);
+
+                }
+
+            }
+
+        }
+        function modesMapLayer() {
+
+            for (let row = mode_rowMin; row < mode_rowMax; row++) {
+
+                for (let col = mode_colMin; col < mode_colMax; col++) {
+
+                    const index = row * map.mode_columns + col;
+                    const tile = getModeHexCoords(col, row);
+
+                    colorMap(col, row, tile.x, tile.y, index);
 
                 }
 
@@ -3525,7 +3639,7 @@ export function Map() {
 
             const spot = map.mode.polytics.spots.find(spot => {
 
-                if (spot.center.index === index) return spot;
+                if (spot?.center?.index === index) return spot;
 
             });
 
@@ -3634,7 +3748,11 @@ export function Map() {
                     if (!data.colors[index]) return;
                     const type = data.colors[index];
                     color = data.types[type - 1].color;
-                    plainHex(tileX, tileY, color, 0.4);
+
+                    let alpha = 1 + (map.cell_width - MODE_TRANSITION_ZOOM_START) / (MODE_TRANSITION_ZOOM_START - MODE_TRANSITION_ZOOM_END);
+                    if (alpha < 0) return;
+                    if (alpha > 1) alpha = 1;
+                    plainHex(tileX, tileY, color, alpha * 0.5);
 
             }
 
@@ -3660,6 +3778,39 @@ export function Map() {
                         tileY,
                         map.wmap_cell_width,
                         map.wmap_cell_height
+                    );
+                    ctx.globalAlpha = 1;
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+
+        }
+        function colorMap(col, row, tileX, tileY, index) {
+
+            if (!modeTiles[activeLayer][index]) {
+
+                const tile = new Image();
+                tile.src = `/cache/map/${activeLayer}/x4/${index}.png`;
+                if (!modeTiles[activeLayer]) modeTiles[activeLayer] = [];
+                modeTiles[activeLayer][index] = tile;
+
+            } else {
+                try {
+                    let alpha = 1 - (map.cell_width - MODE_TRANSITION_ZOOM_END) / (MODE_TRANSITION_ZOOM_START - MODE_TRANSITION_ZOOM_END);
+                    if (alpha < 0) return;
+                    if (alpha > 1) alpha = 1;
+                    ctx.globalAlpha = alpha;
+                    ctx.drawImage(
+                        modeTiles[activeLayer][index],
+                        0,
+                        0,
+                        512,
+                        512,
+                        tileX,
+                        tileY,
+                        map.mode_cell_width,
+                        map.mode_cell_height
                     );
                     ctx.globalAlpha = 1;
                 } catch (e) {
@@ -3876,6 +4027,14 @@ export function Map() {
 
         const x = col * map.wmap_cell_width - viewport.x + canvasWidth / 2 - viewport.width / 2;
         const y = row * map.wmap_row_height - viewport.y + canvasHeight / 2 - viewport.height / 2;
+
+        return { x, y };
+
+    }
+    function getModeHexCoords(col, row) {
+
+        const x = col * map.mode_cell_width - viewport.x + canvasWidth / 2 - viewport.width / 2;
+        const y = row * map.mode_row_height - viewport.y + canvasHeight / 2 - viewport.height / 2;
 
         return { x, y };
 
