@@ -260,12 +260,16 @@ function Map(data) {
 
             function removeFromMap(id) {
 
-                const index = buildings.list.findIndex(building => {
-                    if (building.id == id) return true;
+                const building = buildings.list.find((building, i) => {
+                    if (building.id == id) {
+                        building.i = i;
+                        return building;
+                    }
                 });
 
-                if (index > -1) {
-                    buildings.list.splice(index, 1);
+                if (building) {
+                    if (building.countdown) building.countdown.destroy();
+                    buildings.list.splice(building.i, 1);
                     propagateBuildingAreas();
                     redraw();
                 }
@@ -306,6 +310,8 @@ function Map(data) {
                 propagateBuildingAreas();
                 redraw();
 
+                if (building.countdown) building.countdown.hide();
+
                 _.moving = {
                     elem: addGhost(building),
                     building
@@ -323,6 +329,10 @@ function Map(data) {
             if (dev) {
 
                 placeBuilding(building);
+                if (building.countdown) {
+                    building.countdown.move(tile2index(x, y));
+                    building.countdown.show();
+                }
 
             } else {
 
@@ -330,7 +340,13 @@ function Map(data) {
                     .then(res => {
                         if (res.ok) {
                             res.json().then(res => {
-                                if (res.status === true) placeBuilding(building);
+                                if (res.status === true) {
+                                    placeBuilding(building);
+                                    if (building.countdown) {
+                                        building.countdown.move(tile2index(x, y));
+                                        building.countdown.show();
+                                    }
+                                }
                             });
                         } else {
                             res.json().then(res => console.log(res));
@@ -342,9 +358,12 @@ function Map(data) {
         }
         function resetMove() {
 
+            const buildingObj = buildings.moving.building;
+
             buildings.moving.elem.remove();
-            buildings.moving.building.moving = false;
+            buildingObj.moving = false;
             propagateBuildingAreas();
+            if (buildingObj.countdown) buildingObj.countdown.show();
             buildings.moving = null;
 
             redraw();
@@ -381,41 +400,31 @@ function Map(data) {
             const x = tiles.selected.x;
             const y = tiles.selected.y;
             const building = Object.assign({}, buildings.moving.building);
-            /*
-            if (dev) {
 
-                building.id = Date.now();
-                buildings.list.push(building);
-
-                if (next) {
-                    placeBuildingAndContinue(building);
-                } else {
-                    placeBuilding(building);
-                }
-
-            } else {
-                    */
             fetch(`/ajax?c=city&do=add&x=${x}&y=${y}&city=${city_build_id}&id=${building.id}`)
-                .then(res => {
+                .then(async (res) => {
                     if (res.ok) {
-                        res.json().then(res => {
-                            if (res.status) {
-                                buildings.list.push(building);
-                                if (next) {
-                                    placeBuildingAndContinue(building);
-                                } else {
-                                    placeBuilding(building);
-                                }
+                        const data = res.json();
+                        if (data.status == true) {
+                            if (data.id) building.id = data.id;
+                            if (data?.timer > Date.now() / 1000) {
+                                building.timer = data.timer;
+                                const tileIndex = tile2index(x, y);
+                                building.countdown = new BuildingTimer(data.timer, tileIndex);
                             }
-                        });
+                            buildings.list.push(building);
+                            if (next) {
+                                placeBuildingAndContinue(building);
+                            } else {
+                                placeBuilding(building);
+                            }
+                        }
                     } else {
                         res.json().then(res => {
                             console.log(res);
                         });
                     }
                 });
-
-
 
         }
         function placeBuilding(building) {
@@ -909,7 +918,6 @@ function Map(data) {
     function drawBuildings(offX, offY, x, y, i) {
 
         let urlbase = '';
-        if (dev) urlbase = 'https://dev.wealthofnations.uk';
 
         const building = buildings.list.find(building => {
             if (+building.x === x && +building.y === y) return true;
@@ -934,6 +942,10 @@ function Map(data) {
                     height
                 );
                 ctx.globalAlpha = 1;
+                if (!building.countdown &&
+                    building ?.timer > Date.now() / 1000) {
+                    building.countdown = new BuildingTimer(building, i);
+                }
             } catch (e) {
 
             }
@@ -1037,6 +1049,7 @@ function Map(data) {
             }
 
             redraw();
+            hey('map:moving');
 
         }
         function handleDown(event) {
@@ -1133,6 +1146,8 @@ function Map(data) {
                     if (onPause) loop();
 
                 }
+
+                hey('map:moving');
 
             } else { // hover
 
@@ -1420,6 +1435,108 @@ function BuildingContextMenu() {
 
     }
 
+}
+function BuildingTimer(building, tileIndex) {
+
+    const container = $('#field_map');
+    const onMap = map.tiles.coordinates[tileIndex];
+    const timerEl = document.createElement('div');
+
+    timerEl.classList.add('panel', 'sm', 'centered_corners_none');
+    timerEl.style.cssText = `
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translate3D(calc((${onMap.offX}px + ${map.tiles.cell_width / 2}px) - 50%), ${onMap.offY}px, 0);
+        height: auto;
+        pointer-events: none;
+        text-align: center;
+        will-change: transform;
+    `;
+
+    const timerHTML = `
+        <div class="panel_holder">
+            <div class="panel_content pb-10">
+                <div class="content_scroll" style="padding:0.25em 0.75em 0">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <div class="decor ">
+            <span class="corner"></span>
+            <span class="corner right_top"></span>
+            <span class="corner right_bottom"></span>
+            <span class="corner left_bottom"></span>
+        </div>`;
+
+    timerEl.innerHTML = timerHTML;
+    const timerText = timerEl.querySelector('.content_scroll span');
+    initTimer(building.timer, timerText);
+
+    this.element = timerEl;
+    this.hide = hide;
+    this.move = move;
+    this.show = show;
+    this.destroy = destroy;
+
+    container.insertAdjacentElement('beforeend', timerEl);
+    container.addEventListener('map:moving', handleDrag);
+
+
+    function handleDrag() {
+        const onMap = map.tiles.coordinates[tileIndex];
+        timerEl.style.transform = `translate3D(calc((${onMap.offX}px + ${map.tiles.cell_width / 2}px) - 50%), ${onMap.offY}px, 0)`;
+    }
+    function hide() {
+
+        timerEl.style.visibility = 'hidden';
+
+    }
+    function move(newIndex) {
+
+        tileIndex = newIndex;
+        handleDrag();
+
+    }
+    function show() {
+
+        timerEl.style.visibility = 'visible';
+
+    }
+    function destroy() {
+
+        container.removeEventListener('map:moving', handleDrag);
+        timerEl.remove();
+        building.countdown = null;
+
+    }
+    function initTimer(time, elem) {
+
+        const countDownDate = time * 1000;
+        if (isNaN(countDownDate) || countDownDate == 0) return;
+        const metronome = setInterval(updateCountdown, 1000);
+
+        function updateCountdown() {
+
+            const now = new Date().getTime();
+            const interval = countDownDate - now;
+
+            if (interval < 0) {
+                clearInterval(metronome);
+                destroy();
+                return;
+            }
+
+            const hours = Math.floor((interval % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString();
+            const minutes = Math.floor((interval % (1000 * 60 * 60)) / (1000 * 60)).toString();
+            const seconds = Math.floor((interval % (1000 * 60)) / 1000).toString();
+
+            elem.innerText = `${hours.padStart(2, '0')}:${minutes.padStart(2, '0')}:${seconds.padStart(2, '0')}`;
+
+        }
+
+    }
 }
 function $(selector) {
 
