@@ -2325,15 +2325,15 @@ button.actions_item:hover img { -webkit-transition: var(--animation_hovered); -o
 
 .panel_army .holder_slider::-webkit-scrollbar { width: 0; height: 0; }
 
-.panel_army.panel_army_long:not(.closed) { background: red; width: 100%; display: block !important; }
+.panel_army.panel_army_large:not(.closed) .holder_slider { max-height: 415px; overflow: hidden; width: 100%; }
 
-.panel_army.panel_army_long:not(.closed) .holder_slider .holder_slider_list { display: grid !important; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); }
+@media only screen and (max-width: 1299.98px) { .panel_army.panel_army_large:not(.closed) .holder_slider { max-height: 373px; } }
 
-.panel_army:not(.closed) .holder_slider { max-height: 415px; overflow: hidden; width: 100%; }
+.panel_army.panel_army_large:not(.closed) .holder_slider .holder_slider_list { -ms-flex-wrap: wrap; flex-wrap: wrap; row-gap: 10px; }
 
-@media only screen and (max-width: 1299.98px) { .panel_army:not(.closed) .holder_slider { max-height: 373px; } }
+.panel_army.panel_army_large.panel_army_grid:not(.closed) { width: 100%; display: block !important; }
 
-.panel_army:not(.closed) .holder_slider .holder_slider_list { -ms-flex-wrap: wrap; flex-wrap: wrap; row-gap: 10px; }
+.panel_army.panel_army_large.panel_army_grid:not(.closed) .holder_slider .holder_slider_list { display: grid !important; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); }
 
 .panel_army.closed .holder_slider { width: 84px; }
 
