@@ -188,6 +188,7 @@ function Map(data) {
 
             switch (CLIMATE) {
                 case 1:
+                case 5:
                     texture = 'grass';
                     break;
                 case 2:
@@ -398,21 +399,14 @@ function Map(data) {
                 .then(res => {
                     if (res.ok) {
                         res.json().then(res => {
-                            +
-
-                            console.log(res);
                             if (res.status) {
                                 buildings.list.push(building);
-
                                 if (next) {
                                     placeBuildingAndContinue(building);
                                 } else {
                                     placeBuilding(building);
                                 }
                             }
-
-
-
                         });
                     } else {
                         res.json().then(res => {
