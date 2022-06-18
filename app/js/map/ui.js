@@ -25,7 +25,7 @@ switch (mapType) {
                 if (ev.detail ?.buildings ) ui.bottom.update(ev.detail.buildings);
                 if (ev.detail ?.commands) ui.actions.update(ev.detail.commands);
                 if (ev.detail ?.commands_hide_back) $('.actions_panel_holder').style = "background: none;";
-                else $('.actions_panel_holder').style = "";
+                else if ($('.actions_panel_holder')) $('.actions_panel_holder').style = "";
             }
         });
         break;
@@ -1918,8 +1918,8 @@ function Timer() {
 
     function init(elem) {
 
-        const countDownDate = new Date(elem.dataset.end).getTime();
-        if (isNaN(countDownDate)) return;
+        const countDownDate = elem.dataset.end*1000;
+        if (isNaN(countDownDate) || countDownDate==0) return;
         const metronome = setInterval(updateCountdown, 1000);
 
         function updateCountdown() {
@@ -1938,7 +1938,7 @@ function Timer() {
             const minutes = Math.floor((interval % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((interval % (1000 * 60)) / 1000);
 
-            elem.innerHTML = `${days}д ${hours}ч ${minutes}м ${seconds}с`;
+            elem.innerHTML = `${days ? days+page_data.date.days : ''} ${hours}:${minutes}:${seconds}`;
 
         }
 
