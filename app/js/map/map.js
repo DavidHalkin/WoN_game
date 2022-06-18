@@ -49,7 +49,7 @@ export function Map() {
 
     const ZOOM_MIN = 1;
     const ZOOM_MIN_FOR_HEX = 10;
-    const ZOOM_MAX = 150; // change together with WMAP_ZOOM_MAX
+    const ZOOM_MAX = 150; // change together with WMAP_ZOOM_MAX & MODE_ZOOM_MAX
     const ZOOM_START = 60;
     const DISTANT_ZOOM_MAX = 20;
     const STRETCH_AT_MIN_ZOOM = 0.568;
