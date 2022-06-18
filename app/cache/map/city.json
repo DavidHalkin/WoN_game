@@ -1,6 +1,6 @@
 {
-    "background": "3",
-    "front": "3",
+    "background": "1",
+    "front": "1",
     "city_id": "745",
     "build_list": [
         {
@@ -11,17 +11,19 @@
             "can_destroy": true,
             "height": "2",
             "width": "2",
-            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp",
+            "timer": "1655571106"
         },
         {
             "id": "75630",
-            "x": "-7",
-            "y": "-4",
+            "x": "0",
+            "y": "2",
             "name": "Рубка леса (Шадиград)",
             "can_destroy": true,
             "height": "2",
             "width": "2",
-            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp",
+            "timer": "1655578800"
         },
         {
             "id": "68005",
@@ -31,7 +33,8 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp",
+            "timer": "1655586000"
         },
         {
             "id": "68018",
@@ -41,7 +44,8 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp",
+            "timer": "1655730000"
         },
         {
             "id": "67997",
@@ -144,16 +148,6 @@
             "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
-            "id": "67996",
-            "x": "0",
-            "y": "-2",
-            "name": "Городской дом  (Шадиград)",
-            "can_destroy": true,
-            "height": "1",
-            "width": "1",
-            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
-        },
-        {
             "id": "68002",
             "x": "2",
             "y": "-2",
@@ -211,176 +205,6 @@
             "can_destroy": true,
             "height": "2",
             "width": "2",
-            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
-        },
-        {
-            "id": "68014",
-            "x": "-1",
-            "y": "0",
-            "name": "Городской дом  (Шадиград)",
-            "can_destroy": true,
-            "height": "1",
-            "width": "1",
-            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
-        },
-        {
-            "id": "68013",
-            "x": "0",
-            "y": "0",
-            "name": "Городской дом  (Шадиград)",
-            "can_destroy": true,
-            "height": "1",
-            "width": "1",
-            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
-        },
-        {
-            "id": "68003",
-            "x": "2",
-            "y": "0",
-            "name": "Городской дом  (Шадиград)",
-            "can_destroy": true,
-            "height": "1",
-            "width": "1",
-            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
-        },
-        {
-            "id": "68004",
-            "x": "3",
-            "y": "0",
-            "name": "Городской дом  (Шадиград)",
-            "can_destroy": true,
-            "height": "1",
-            "width": "1",
-            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
-        },
-        {
-            "id": "68025",
-            "x": "5",
-            "y": "0",
-            "name": "Городской дом  (Шадиград)",
-            "can_destroy": true,
-            "height": "1",
-            "width": "1",
-            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
-        },
-        {
-            "id": "68022",
-            "x": "6",
-            "y": "0",
-            "name": "Городской дом  (Шадиград)",
-            "can_destroy": true,
-            "height": "1",
-            "width": "1",
-            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
-        },
-        {
-            "id": "68012",
-            "x": "-1",
-            "y": "1",
-            "name": "Городской дом  (Шадиград)",
-            "can_destroy": true,
-            "height": "1",
-            "width": "1",
-            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
-        },
-        {
-            "id": "68007",
-            "x": "0",
-            "y": "1",
-            "name": "Городской дом  (Шадиград)",
-            "can_destroy": true,
-            "height": "1",
-            "width": "1",
-            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
-        },
-        {
-            "id": "68010",
-            "x": "2",
-            "y": "1",
-            "name": "Городской дом  (Шадиград)",
-            "can_destroy": true,
-            "height": "1",
-            "width": "1",
-            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
-        },
-        {
-            "id": "68009",
-            "x": "3",
-            "y": "1",
-            "name": "Городской дом  (Шадиград)",
-            "can_destroy": true,
-            "height": "1",
-            "width": "1",
-            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
-        },
-        {
-            "id": "68024",
-            "x": "5",
-            "y": "1",
-            "name": "Городской дом  (Шадиград)",
-            "can_destroy": true,
-            "height": "1",
-            "width": "1",
-            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
-        },
-        {
-            "id": "75628",
-            "x": "-7",
-            "y": "2",
-            "name": "Рубка леса (Шадиград)",
-            "can_destroy": true,
-            "height": "2",
-            "width": "2",
-            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
-        },
-        {
-            "id": "77352",
-            "x": "-4",
-            "y": "2",
-            "name": "Рубка леса (Шадиград)",
-            "can_destroy": true,
-            "height": "2",
-            "width": "2",
-            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
-        },
-        {
-            "id": "68015",
-            "x": "-1",
-            "y": "3",
-            "name": "Городской дом  (Шадиград)",
-            "can_destroy": true,
-            "height": "1",
-            "width": "1",
-            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
-        },
-        {
-            "id": "68019",
-            "x": "0",
-            "y": "3",
-            "name": "Городской дом  (Шадиград)",
-            "can_destroy": true,
-            "height": "1",
-            "width": "1",
-            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
-        },
-        {
-            "id": "68017",
-            "x": "2",
-            "y": "3",
-            "name": "Городской дом  (Шадиград)",
-            "can_destroy": true,
-            "height": "1",
-            "width": "1",
-            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
-        },
-        {
-            "id": "68016",
-            "x": "3",
-            "y": "3",
-            "name": "Городской дом  (Шадиград)",
-            "can_destroy": true,
-            "height": "1",
-            "width": "1",
             "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         }
     ],
