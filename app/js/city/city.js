@@ -1,8 +1,8 @@
-const ASSETS_VERSION = 1;
-import * as spriteMap from './sprite-maps-city.js?v=1';
+const ASSETS_VERSION = 2;
+import * as spriteMap from './sprite-maps-city.js?v=2';
 const dev = isLocalhost();
 
-let city_build_id=0;
+let city_build_id = 0;
 
 const buildingTip = new BuildingContextMenu();
 
@@ -53,7 +53,7 @@ function Map(data) {
     const TILE_WIDTH = 128 * START_SCALE;
     const TILE_HEIGHT = 94 * START_SCALE;
     const PAN_EDGE_GAP = 1; // number of cells between edge of the city and max panning
-    if (data.city_id) city_build_id=data.city_id;
+    if (data.city_id) city_build_id = data.city_id;
 
     const tiles = {
         total: Math.pow(START_SIZE + EDGE_SIZE * 2, 2),
@@ -394,32 +394,32 @@ function Map(data) {
 
             } else {
                     */
-                fetch(`/ajax?c=city&do=add&x=${x}&y=${y}&city=${city_build_id}&id=${building.id}`)
-                    .then(res => {
-                        if (res.ok) {
-                            res.json().then(res => {+
+            fetch(`/ajax?c=city&do=add&x=${x}&y=${y}&city=${city_build_id}&id=${building.id}`)
+                .then(res => {
+                    if (res.ok) {
+                        res.json().then(res => {
+                            +
 
-                                console.log(res);
-                                if (res.status)
-                                {
-                                    buildings.list.push(building);
+                            console.log(res);
+                            if (res.status) {
+                                buildings.list.push(building);
 
-                                    if (next) {
-                                        placeBuildingAndContinue(building);
-                                    } else {
-                                        placeBuilding(building);
-                                    }
+                                if (next) {
+                                    placeBuildingAndContinue(building);
+                                } else {
+                                    placeBuilding(building);
                                 }
+                            }
 
 
 
-                            });
-                        } else {
-                            res.json().then(res => {
-                                console.log(res);
-                            });
-                        }
-                    });
+                        });
+                    } else {
+                        res.json().then(res => {
+                            console.log(res);
+                        });
+                    }
+                });
 
 
 
@@ -435,6 +435,7 @@ function Map(data) {
             buildings.moving = null;
             redraw();
             ui.bottom.deselect();
+            loadCityInfo();
 
         }
         function placeBuildingAndContinue(building) {
@@ -443,7 +444,7 @@ function Map(data) {
             building.y = tiles.selected.y;
             propagateBuildingAreas();
             redraw();
-
+            loadCityInfo();
         }
 
     }
@@ -890,6 +891,9 @@ function Map(data) {
             if (!onConstructionTerritory(x, y)) ctx.filter = 'grayscale(100%)';
         }
 
+        const height = spriteVar.h / spriteVar.w * tiles.cell_width;
+        const yShift = height - tiles.cell_height;
+
         try {
             ctx.drawImage(
                 spritesheets.forest,
@@ -898,9 +902,9 @@ function Map(data) {
                 spriteVar.w,
                 spriteVar.h,
                 offX,
-                offY - TEMPLATE_TOP_MARGIN,
-                spriteVar.w * tiles.scale,
-                spriteVar.h * tiles.scale
+                offY - yShift,
+                tiles.cell_width,
+                height
             );
         } catch (e) {
         }
@@ -961,6 +965,9 @@ function Map(data) {
 
         const spriteVar = sprite.variations[randomOnSeed(0, sprite.variations.length - 1, i)];
 
+        const height = spriteVar.h / spriteVar.w * tiles.cell_width;
+        const yShift = height - tiles.cell_height;
+
         try {
             ctx.drawImage(
                 spritesheets.ob,
@@ -969,9 +976,9 @@ function Map(data) {
                 spriteVar.w,
                 spriteVar.h,
                 offX,
-                offY - TEMPLATE_TOP_MARGIN,
-                spriteVar.w * tiles.scale,
-                spriteVar.h * tiles.scale
+                offY - yShift,
+                tiles.cell_width,
+                height
             );
         } catch (e) {
         }

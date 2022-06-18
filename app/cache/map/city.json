@@ -1,6 +1,6 @@
 {
-    "background": "2",
-    "front": 5,
+    "background": "3",
+    "front": "3",
     "city_id": "745",
     "build_list": [
         {
@@ -11,7 +11,7 @@
             "can_destroy": true,
             "height": "2",
             "width": "2",
-            "img": "/game_files/img/zdan/1497077753_Lsrbkbtr_128.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "75630",
@@ -21,7 +21,7 @@
             "can_destroy": true,
             "height": "2",
             "width": "2",
-            "img": "/game_files/img/zdan/1497077753_Lsrbkbtr_128.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68005",
@@ -31,7 +31,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68018",
@@ -41,7 +41,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "67997",
@@ -51,7 +51,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68008",
@@ -61,7 +61,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "76774",
@@ -71,7 +71,7 @@
             "can_destroy": true,
             "height": "2",
             "width": "2",
-            "img": "/game_files/img/zdan/1497077753_Lsrbkbtr_128.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68000",
@@ -81,7 +81,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "67998",
@@ -91,7 +91,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68001",
@@ -101,7 +101,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68011",
@@ -111,7 +111,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68023",
@@ -121,7 +121,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "75632",
@@ -131,7 +131,7 @@
             "can_destroy": true,
             "height": "2",
             "width": "2",
-            "img": "/game_files/img/zdan/1497077753_Lsrbkbtr_128.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "67999",
@@ -141,7 +141,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "67996",
@@ -151,7 +151,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68002",
@@ -161,7 +161,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68006",
@@ -171,7 +171,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68021",
@@ -181,7 +181,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68020",
@@ -191,7 +191,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "75633",
@@ -201,7 +201,7 @@
             "can_destroy": true,
             "height": "2",
             "width": "2",
-            "img": "/game_files/img/zdan/1497077753_Lsrbkbtr_128.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "75631",
@@ -211,7 +211,7 @@
             "can_destroy": true,
             "height": "2",
             "width": "2",
-            "img": "/game_files/img/zdan/1497077753_Lsrbkbtr_128.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68014",
@@ -221,7 +221,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68013",
@@ -231,7 +231,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68003",
@@ -241,7 +241,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68004",
@@ -251,7 +251,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68025",
@@ -261,7 +261,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68022",
@@ -271,7 +271,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68012",
@@ -281,7 +281,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68007",
@@ -291,7 +291,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68010",
@@ -301,7 +301,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68009",
@@ -311,7 +311,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68024",
@@ -321,7 +321,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "75628",
@@ -331,7 +331,7 @@
             "can_destroy": true,
             "height": "2",
             "width": "2",
-            "img": "/game_files/img/zdan/1497077753_Lsrbkbtr_128.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "77352",
@@ -341,7 +341,7 @@
             "can_destroy": true,
             "height": "2",
             "width": "2",
-            "img": "/game_files/img/zdan/1497077753_Lsrbkbtr_128.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68015",
@@ -351,7 +351,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68019",
@@ -361,7 +361,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68017",
@@ -371,7 +371,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         },
         {
             "id": "68016",
@@ -381,7 +381,7 @@
             "can_destroy": true,
             "height": "1",
             "width": "1",
-            "img": "/game_files/img/zdan/1497810132_DomVost_2_64.png"
+            "img": "/images/city/buildings/41_2_1_1_1_1.webp"
         }
     ],
     "min_diametr": 19,
