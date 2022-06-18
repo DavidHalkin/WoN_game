@@ -72,7 +72,7 @@ async function loadCityInfo() {
     const data = await res.json();
 
     if (typeof data === 'object') {
-        if (data.info) ui.aside.init(data);
+        if (ui.aside.init && data.info) ui.aside.init(data);
         if (data.buildings) ui.bottom.update(data.buildings);
         if (data.commands) ui.actions.update(data.commands);
         if (data.commands_hide_back || mapType == 'city') $('.actions_panel_holder').style = "background: none; --h: auto;";
