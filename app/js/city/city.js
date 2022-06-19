@@ -50,8 +50,8 @@ function Map(data) {
     const MIN_SCALE = 0.25;
     const MAX_SCALE = 0.7;
     const START_SCALE = 0.7;
-    const TILE_WIDTH = 128 * START_SCALE;
-    const TILE_HEIGHT = 94 * START_SCALE;
+    const TILE_WIDTH = 128;
+    const TILE_HEIGHT = 94;
     const PAN_EDGE_GAP = 1; // number of cells between edge of the city and max panning
     if (data.city_id) city_build_id = data.city_id;
 
@@ -70,8 +70,8 @@ function Map(data) {
             y: null
         },
         scale: START_SCALE,
-        cell_width: TILE_WIDTH,
-        cell_height: TILE_HEIGHT,
+        cell_width: TILE_WIDTH * START_SCALE,
+        cell_height: TILE_HEIGHT * START_SCALE,
         show: {
             checkerboard: true,
             grid: false,
