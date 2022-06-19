@@ -407,10 +407,10 @@ function Map(data) {
                         const data = res.json();
                         if (data.status == true) {
                             if (data.id) building.id = data.id;
-                            if (data?.timer > Date.now() / 1000) {
+                            if (+data ?.timer > Date.now() / 1000) {
                                 building.timer = data.timer;
                                 const tileIndex = tile2index(x, y);
-                                building.countdown = new BuildingTimer(data.timer, tileIndex);
+                                building.countdown = new BuildingTimer(building, tileIndex);
                             }
                             buildings.list.push(building);
                             if (next) {
