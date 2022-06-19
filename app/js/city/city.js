@@ -404,21 +404,27 @@ function Map(data) {
             fetch(`/ajax?c=city&do=add&x=${x}&y=${y}&city=${city_build_id}&id=${building.id}`)
                 .then(async (res) => {
                     if (res.ok) {
-                        const data = res.json();
-                        if (data.status == true) {
-                            if (data.id) building.id = data.id;
-                            if (+data ?.timer > Date.now() / 1000) {
-                                building.timer = data.timer;
-                                const tileIndex = tile2index(x, y);
-                                building.countdown = new BuildingTimer(building, tileIndex);
+                        res.json().then(data =>
+                            {
+                                if (data.status == true && data.time) {
+                                    if (data.id) building.id = data.id;
+                                    if (+data ?.time > Date.now() / 1000) {
+                                        building.timer = data.time;
+                                        const tileIndex = tile2index(x, y);
+                                        building.countdown = new BuildingTimer(building, tileIndex);
+                                    }
+                                    buildings.list.push(building);
+                                    if (next) {
+                                        placeBuildingAndContinue(building);
+                                    } else {
+                                        placeBuilding(building);
+                                    }
+                                }
+                                else console.log(data);
                             }
-                            buildings.list.push(building);
-                            if (next) {
-                                placeBuildingAndContinue(building);
-                            } else {
-                                placeBuilding(building);
-                            }
-                        }
+
+                            );
+
                     } else {
                         res.json().then(res => {
                             console.log(res);
@@ -1366,7 +1372,7 @@ function Map(data) {
 }
 function BuildingContextMenu() {
 
-    const elem = $('.popup');
+    const elem = $('#build_popup');
     const controls = elem.querySelector('.popup_footer').children[1];
     const name = elem.querySelector('.content_scroll').children[1];
     const question = elem.querySelector('.content_scroll').children[0];
