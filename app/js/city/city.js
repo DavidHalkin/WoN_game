@@ -48,8 +48,8 @@ function Map(data) {
     const IMG_PATH = '/images/city/';
     const IMG_FORMAT = 'webp';
     const MIN_SCALE = 0.25;
-    const MAX_SCALE = 1;
-    const START_SCALE = 1;
+    const MAX_SCALE = 0.7;
+    const START_SCALE = 0.7;
     const TILE_WIDTH = 128 * START_SCALE;
     const TILE_HEIGHT = 94 * START_SCALE;
     const PAN_EDGE_GAP = 1; // number of cells between edge of the city and max panning
