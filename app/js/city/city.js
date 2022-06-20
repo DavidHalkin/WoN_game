@@ -53,6 +53,7 @@ function Map(data) {
     const TILE_WIDTH = 128;
     const TILE_HEIGHT = 94;
     const PAN_EDGE_GAP = 1; // number of cells between edge of the city and max panning
+    const BIGGEST_BUILDING = 10;
     if (data.city_id) city_build_id = data.city_id;
 
     const tiles = {
@@ -601,10 +602,10 @@ function Map(data) {
 
                 let cell = { x, y, offX, offY };
 
-                if (offX < 0 - tiles.cell_width ||
-                    offX > window.innerWidth ||
+                if (offX < 0 - tiles.cell_width * BIGGEST_BUILDING ||
+                    offX > window.innerWidth * BIGGEST_BUILDING ||
                     offY < 0 - tiles.cell_height ||
-                    offY > window.innerHeight + tiles.cell_height
+                    offY > window.innerHeight + tiles.cell_height * BIGGEST_BUILDING
                 ) cell = null;
 
                 tiles.coordinates.push(cell);
@@ -673,8 +674,17 @@ function Map(data) {
 
             const { offX, offY, x, y } = cell;
 
-            drawForest(offX, offY, x, y, i);
+            if (offY < 0 - tiles.cell_height) return;
+
             drawBuildings(offX, offY, x, y, i);
+
+            if (offX < 0 - tiles.cell_width ||
+                offX > window.innerWidth ||
+                offY < 0 - tiles.cell_height ||
+                offY > window.innerHeight + tiles.cell_height
+            ) return;
+
+            drawForest(offX, offY, x, y, i);
             drawObjects(offX, offY, x, y, i);
 
         });

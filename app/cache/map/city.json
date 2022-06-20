@@ -5,12 +5,12 @@
     "build_list": [
         {
             "id": "75629",
-            "x": "-5",
-            "y": "-5",
+            "x": "6",
+            "y": "6",
             "name": "Рубка леса (Шадиград)",
             "can_destroy": true,
-            "height": "2",
-            "width": "2",
+            "height": "4",
+            "width": "4",
             "img": "/images/city/buildings/41_2_1_1_1_1.webp",
             "timer": "1655571106"
         },
