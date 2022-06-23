@@ -10,7 +10,7 @@ window.ui.aside = new Aside('.panel_sidebar');
 window.ui.bottom = new Bottom('.panel_army');
 window.ui.actions = new Actions('.actions_panel');
 window.ui.tooltip = new ComponentsTip('.tooltip');
-window.ui.confirm = new Confirm('.popup');
+window.ui.confirm = new Confirm('#confirmation_popup');
 
 initAll();
 
@@ -20,6 +20,7 @@ switch (mapType) {
     case 'world':
         $('div#field_map').addEventListener('map:click:left:response', ev => {
             if (typeof ev.detail === 'object') {
+                ui.aside.asideHistory.addRecord(ev.detail.url);
                 ui.aside.init(ev.detail);
                 if (ev.detail ?.army ) ui.bottom.update(ev.detail.army, true);
                 if (ev.detail ?.buildings ) ui.bottom.update(ev.detail.buildings);
@@ -59,25 +60,8 @@ function initAll() {
 /* Pages ------------------------------------------- */
 async function loadCityInfo() {
 
-    let idParam = '';
 
-    for (const p of urlParams) {
-        if (p[0] === 'id') id = `&city_id=${p[1]}`;
-    }
-
-    let url = `/ajax?do=city_info&c=city${idParam}`;
-    if (dev) url = '/cache/map/clicksim/city_info.json';
-
-    const res = await fetch(url);
-    const data = await res.json();
-
-    if (typeof data === 'object') {
-        if (ui.aside.init && data.info) ui.aside.init(data);
-        if (data.buildings) ui.bottom.update(data.buildings);
-        if (data.commands) ui.actions.update(data.commands);
-        if (data.commands_hide_back || mapType == 'city') $('.actions_panel_holder').style = "background: none; --h: auto;";
-        else $('.actions_panel_holder').style = "";
-    }
+    handleClick(`/ajax?do=city_info&c=city&city_id=${page_data.city_id}`,true);
 
 }
 
@@ -195,16 +179,17 @@ function Aside(selector) {
     this.close = close;
     this.init = panelSolver;
     this.update = buildPanelDOM;
+    this.asideHistory=asideHistory;
 
     function DomHistory() {
         this.history = [];
     }
-    function close() {
-        asideHistory.removeRecord();
+    function close(renew=false) {
+        if (renew!=1) asideHistory.removeRecord();
         const { history } = asideHistory;
 
         if (history.length) {
-            buildPanelDOM(history[history.length - 1], false);
+            handleClick(history[history.length - 1],false);
         } else if (mapType != 'city') {
             elem.style.display = 'none';
         }
@@ -229,9 +214,8 @@ function Aside(selector) {
     function buildPanelDOM(structure, pushHistory = true) {
 
         if (!structure) console.info('no data in responce');
-
+        open();
         // Add Structure to History
-        if (pushHistory) asideHistory.addRecord(structure);
 
         // Build Aside Header
         _buildAsideHeader(structure.city_header);
@@ -544,19 +528,19 @@ function Confirm(selector) {
 
     function show(naming, callback) {
 
-        questionEl.innerText = page_data.confirm.quest;
-        btnConfirm.firstElementChild.innerText = page_data.confirm.y;
-        btnCancel.firstElementChild.innerText = page_data.confirm.n;
+        questionEl.innerText = naming.question;
+        btnConfirm.firstElementChild.innerText = naming.confirm;
+        btnCancel.firstElementChild.innerText = naming.cancel;
 
         elem.style.left = '50%';
         elem.style.top = '50%';
         elem.style.transform = 'translate(-50%, -50%)';
 
-        name.classList.add('d-none');
-        controls.classList.add('d-none');
-        questionEl.classList.remove('d-none');
-        confirmEl.classList.remove('d-none');
-        elem.style.display = 'block';
+        if (name) name.classList.add('d-none');
+        if (controls) controls.classList.add('d-none');
+        if (questionEl) questionEl.classList.remove('d-none');
+        if (confirmEl) confirmEl.classList.remove('d-none');
+        elem.classList.remove('d-none');
 
         btnConfirm.onclick = () => {
             callback(true);
@@ -570,11 +554,11 @@ function Confirm(selector) {
     }
     function hide() {
 
-        name.classList.add('d-none');
-        controls.classList.add('d-none');
-        questionEl.classList.add('d-none');
-        confirmEl.classList.add('d-none');
-        elem.style.display = 'none';
+        if (name) name.classList.add('d-none');
+        if (controls) controls.classList.add('d-none');
+        if (questionEl) questionEl.classList.add('d-none');
+        if (confirmEl) confirmEl.classList.add('d-none');
+        elem.classList.add('d-none');
 
     }
 
@@ -704,7 +688,11 @@ function generateHTML(target, structure, panel) {
                 if (component.name) {
                     parentForChildsEl.insertAdjacentHTML(
                         'beforeend',
-                        `<h3 class="fz_20 mb-12">${component.name}</h3>`
+                        `<div class="title d-flex mb-12  align-items-center">
+                        <p  class="m-0 fz_20 pr-10">${component.name}</p>
+                        ${component.info ? `
+                        <div data-tooltip="${component.info}" class="circle size_0"><em class="txt">i</em></div>
+                        </div>` : ''} `
                     );
                 }
 
@@ -728,7 +716,7 @@ function generateHTML(target, structure, panel) {
                             <img src="${component.icon}" alt="">
                         </a>` : ''}
                         <div class="mini_holder">
-                            <input
+                            <input class="${component.input_class}"
                                 type="${mini_info_inputType}"
                                 value="${component.value}" ${!component.editable ? 'disabled' : ''}>
                         </div>
@@ -762,18 +750,16 @@ function generateHTML(target, structure, panel) {
                     <div class="property_details col">
                       <h3>${component.name}</h3>
                       <div class="property_details_row">
-                        <div class="column">
+                        <div data-tooltip="${page_data.tooltip.builds}"  style=" max-width: 33%; " class="column">
                           <div class="mini_info mini_info_square">
-                            <label>.label in parent</label>
                             <a href="#" class="item_ico size_1"><img src="/images/panel/x2/webp/build_count.webp" alt=""></a>
                             <div class="mini_holder">
                               <input type="text" value="${component.amount}" disabled>
                             </div>
                           </div>
                         </div>
-                        <div class="column">
+                        <div data-tooltip="${page_data.tooltip.workers}"  class="column">
                           <div class="mini_info mini_info_square">
-                            <label>.label in parent</label>
                             <a href="#" class="item_ico size_1"><img src="/images/panel/x2/webp/workers.webp" alt=""></a>
                             <div class="mini_holder">
                               <input type="text" value="${component.people}" disabled>
@@ -797,6 +783,9 @@ function generateHTML(target, structure, panel) {
                 el.innerHTML = `
                     <div class="mini_info label">
                         <label>${component.label}</label>
+                        ${component.icon ? `<a href="#" class="item_ico ${!component.round ? 'square' : ''} size_3">
+                        <img src="${component.icon}" alt="">
+                        </a>` : ''}
                         <div class="mini_holder">
                             <input
                                 type="number"
@@ -804,7 +793,7 @@ function generateHTML(target, structure, panel) {
                                 max="${component.max}"
                                 value="${component.value}"
                                 step="1"
-                                class="info">
+                                class="info ${component.input_class}">
                         </div>
                     </div>
                     <div class="range_slider">
@@ -816,8 +805,8 @@ function generateHTML(target, structure, panel) {
                             step="1"
                             list="styled-range-list"
                             class="range--progress"
-                            style="--min: ${component.min}; --max: ${component.max}; --val: 75">
-                        <div class="filled" style="width: calc(24.3013% + 1px);"></div>
+                            style="--min: ${component.min}; --max: ${component.max}; --val: ${component.value}">
+                        <div class="filled" style="width: calc(${100*(component.optimal ?? component.value)/component.max}% + 1px);"></div>
                     </div>
                 `;
 
@@ -991,7 +980,7 @@ function generateHTML(target, structure, panel) {
 
                     let icon = '';
                     if (item.icon) icon = `<i class="ico"><img src="${item.icon}" alt="${item.name}"></i>`;
-
+                    if (item.selected)  el.dataset.value = item.value;
                     listItems += `
                         <li data-value="${item.value}">
                             <strong class="select_item">
@@ -1027,6 +1016,8 @@ function generateHTML(target, structure, panel) {
             }
         }
         if (component.tooltip) enableTooltip(el, component.tooltip);
+        ToolTips();
+
         if (clickableElement && component.url) {
 
             clickableElement.setAttribute('data-clickable', '');
@@ -1035,7 +1026,7 @@ function generateHTML(target, structure, panel) {
                 clickableElement.setAttribute('data-ajax', 'true');
                 clickableElement.onclick = ev => {
                     ev.preventDefault();
-                    const url = replaceVars(component.url);
+                    const url =  (component.url);
                     handleClick(url);
                 };
             } else {
@@ -1061,71 +1052,76 @@ function generateHTML(target, structure, panel) {
         if (array) elem.classList.add(...array);
 
     }
-    function replaceVars(string) {
 
-        const names = string.match(/[^{]+(?=})/g);
-        if (!names) return string;
 
-        let stringUpdated = string;
+}
+function replaceVars(string,target='') {
 
-        names.forEach(name => {
-            const elem = target.querySelector(`[name="${name}"]`);
-            if (elem) {
-                let value = elem.value;
-                if (elem.classList.contains('select')) value = elem.dataset.value;
-                if (name === 'color') value = value.substring(1);
-                stringUpdated = stringUpdated.replace(`{${name}}`, value);
-            }
-        });
+    const names = string.match(/[^{]+(?=})/g);
+    if (!names) return string;
 
-        return stringUpdated;
+    let stringUpdated = string;
+    if (target=='') target=document;
 
+    names.forEach(name => {
+        const elem = target.querySelector(`[name="${name}"]`);
+        if (elem) {
+            let value = elem.value;
+            if (elem.classList.contains('select')) value = elem.dataset.value;
+            if (name === 'color') value = value.substring(1);
+            stringUpdated = stringUpdated.replace(`{${name}}`, value);
+        }
+    });
+
+    return stringUpdated;
+
+}
+async function handleClick(url,history=true) {
+
+    function getSelectedIds() {
+        return ui.bottom.selected;
     }
-    async function handleClick(url) {
 
-        function getSelectedIds() {
-            return ui.bottom.selected;
+    url=replaceVars(url);
+    if (history) ui.aside.asideHistory.addRecord(url);
+
+    let data;
+
+    if (!dev) {
+        const res = await fetch(url, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(getSelectedIds())
+        });
+        data = await res.json();
+        console.log('ajax response:', data);
+
+        if (data.redirect) window.location.href = data.redirect;
+        else if (typeof data === 'object') {
+            if (data.hasOwnProperty('info')) { ui.aside.update(data);  }
+            if (data.hasOwnProperty('buildings')) ui.bottom.update(data.buildings);
+            if (data.hasOwnProperty('commands')) ui.actions.update(data.commands);
+            if (data.hasOwnProperty('commands_hide_back') || mapType == 'city') $('.actions_panel_holder').style = "background: none; --h: auto;";
+            else $('.actions_panel_holder').style = "";
         }
+        if (data.hasOwnProperty('renew_city_map') && (typeof renew_city_map) == 'function' && renew_city_map) renew_city_map();
 
-        let data;
+    } else {
 
-        if (!dev) {
-            const res = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(getSelectedIds())
+        fetch('/cache/map/clicksim/city_builds.json', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(getSelectedIds())
+        })
+            .then(async (res) => {
+                const data = await res.json();
+                panel.update(data);
             });
-            data = await res.json();
-            console.log('ajax response:', data);
 
-            if (data.redirect) window.location.href = data.redirect;
-            else if (typeof data === 'object') {
-                if (data.hasOwnProperty('info')) panel.update(data);
-                if (data.hasOwnProperty('buildings')) ui.bottom.update(data.buildings);
-                if (data.hasOwnProperty('commands')) ui.actions.update(data.commands);
-                if (data.hasOwnProperty('commands_hide_back') || mapType == 'city') $('.actions_panel_holder').style = "background: none; --h: auto;";
-                else $('.actions_panel_holder').style = "";
-            }
-            if (data.hasOwnProperty('renew_city_map') && (typeof renew_city_map) == 'function') renew_city_map();
-
-        } else {
-
-            fetch('/cache/map/clicksim/city_builds.json', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(getSelectedIds())
-            })
-                .then(async (res) => {
-                    const data = await res.json();
-                    panel.update(data);
-                });
-
-
-        }
 
     }
 
@@ -1387,11 +1383,20 @@ function Slider(el) {
         inputField.onchange = () => {
             input.value = inputField.value;
             update();
-            if (slider.dataset.url) fetch(slider.dataset.url + '&value=' + input.value);
+
+            if (slider.dataset.url)
+            {
+                const url =  (slider.dataset.url + '&value=' + input.value);
+                handleClick(url,false);
+            }
         };
 
         input.addEventListener('mouseup', ev => {
-            if (slider.dataset.url) fetch(slider.dataset.url + '&value=' + input.value);
+            if (slider.dataset.url)
+            {
+                const url =    (slider.dataset.url + '&value=' + input.value);
+                handleClick(url,false);
+            }
         });
 
         update();
@@ -1658,24 +1663,21 @@ function Select(elem) {
     initClicks();
     observeMutation();
 
-    function setValue(val) {
+    function setValue(val=-1) {
+        if (val==-1) val=elem.dataset.value;
 
-        if (val === -1) {
-            const firstItem = dropdown.querySelector('ul').children[0];
-            if (firstItem) elem.dataset.value = firstItem.dataset.value;
-            _.value = elem.dataset.value;
-            showActive(_.value);
-        } else if (val) {
-            _.value = val;
-            elem.dataset.value = val;
-        } else {
-            _.value = elem.dataset.value;
-        }
 
         const title = header.querySelector('.panel_holder');
-        let selectedLi = dropdown.querySelector(`li[data-value="${_.value}"]`);
-        if (!selectedLi) selectedLi = dropdown.querySelector('li:first-child');
+        let selectedLi = dropdown.querySelector(`li[data-value="${val}"]`);
+
+        if (!selectedLi)
+        {
+            selectedLi = dropdown.querySelector('li:first-child');
+        }
         if (!selectedLi) return;
+
+        if (selectedLi.dataset.value!=_.value) _.value = selectedLi.dataset.value;
+        if (selectedLi.dataset.value!=elem.dataset.value ) elem.dataset.value =  selectedLi.dataset.value;
 
         title.innerHTML = selectedLi.innerHTML;
         showActive(_.value);
@@ -1723,7 +1725,9 @@ function Select(elem) {
 
     }
     function ajax(value) {
+        handleClick(elem.dataset.url+'&value='+value,false);
 
+        /*
         fetch(elem.dataset.url, {
             method: 'POST',
             headers: {
@@ -1742,6 +1746,7 @@ function Select(elem) {
                     });
                 }
             });
+        */
 
     }
     function observeMutation() {
@@ -1934,11 +1939,13 @@ function Timer() {
             }
 
             const days = Math.floor(interval / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((interval % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((interval % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((interval % (1000 * 60)) / 1000);
+            var hours = Math.floor((interval % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((interval % (1000 * 60 * 60)) / (1000 * 60));
+            if (minutes<10) minutes='0'+minutes;
+            var seconds = Math.floor((interval % (1000 * 60)) / 1000);
+            if (seconds<10) seconds='0'+seconds;
 
-            elem.innerHTML = `${days ? days+page_data.date.days : ''} ${hours}:${minutes}:${seconds}`;
+            elem.innerHTML = `${days>0 ? days+' '+page_data.date.days : ''} ${hours}:${minutes}:${seconds}`;
 
         }
 
@@ -1997,6 +2004,8 @@ function Table(target) {
             const row = body.querySelector('.tr');
             let cols = [];
 
+            if (!row) return;
+            if (!row.children) return;
             [...row.children].forEach(col => cols.push(col));
 
             headerCols.forEach((title, i) => {
