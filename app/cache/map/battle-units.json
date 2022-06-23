@@ -1,34 +1,68 @@
 {
     "units": [
         {
+            "class": "U1",
             "id": "1234",
-            "x": "14",
+            "x": "16",
             "y": "16",
             "can_use": true,
-            "class": "U10",
-            "goal_x": "20",
-            "goal_y": "20",
-            "atack": true,
+            "atack": false,
             "speed": "2",
-            "tootip": [],
+            "tootip": [
+                {
+                    "type": "text",
+                    "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                }
+            ],
             "amount": "1",
             "size": "2",
-            "color": "#00FF00"
+            "color": "#00FF00",
+            "blazon": "/images/map/circles/emblem.png",
+            "route": {
+                "list": [
+                    {
+                        "x": "20",
+                        "y": "20"
+                    },
+                    {
+                        "x": "24",
+                        "y": "14"
+                    }
+                ],
+                "arrive_location": "Малакка"
+            }
         },
         {
+            "class": "U2",
             "id": "4567",
             "x": "18",
-            "y": "10",
+            "y": "17",
             "can_use": true,
-            "class": "U6",
-            "goal_x": "20",
-            "goal_y": "20",
             "atack": true,
             "speed": "2",
-            "tootip": [],
+            "tootip": [
+                {
+                    "type": "text",
+                    "content": "2 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                }
+            ],
             "amount": "1",
             "size": "3",
-            "color": "#FF0000"
+            "color": "#FF0000",
+            "blazon": "/images/map/circles/emblem.png",
+            "route": {
+                "list": [
+                    {
+                        "x": "17",
+                        "y": "18"
+                    },
+                    {
+                        "x": "14",
+                        "y": "15"
+                    }
+                ],
+                "arrive_location": "Малакка"
+            }
         }
     ]
 }

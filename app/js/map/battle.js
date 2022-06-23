@@ -1,5 +1,6 @@
 const ASSETS_VERSION = 1;
 import * as spriteMap from './sprite-maps.js?v=1';
+import * as unit_animations from './units-battle.js?v=1';
 const urlSearchParams = new URLSearchParams(new URL(location).search);
 const dev = isLocalhost();
 
@@ -33,13 +34,61 @@ function loadMapData() {
 
             fetch(unitsUrl)
                 .then(async (res) => {
-                    const unitsData = await res.json();
-                    window.map = new Map(mapData, unitsData);
+                    const allBattleUnits = await res.json();
+                    window.map = new Map(mapData, allBattleUnits);
                 });
         });
 
 }
-function Map(data, units) {
+function Map(data, battleUnits) {
+
+    // $('button[name="update"]').onclick = () => {
+    //     hey('socket:update', JSON.stringify({
+    //         "units": [
+    //             {
+    //                 class: "U1",
+    //                 id: "1234",
+    //                 x: "15",
+    //                 y: "16",
+    //                 can_use: true,
+    //                 atack: false,
+    //                 speed: "2",
+    //                 tootip: [],
+    //                 amount: "1",
+    //                 size: "2",
+    //                 color: "#00FF00",
+    //                 blazon: "/images/map/circles/emblem.png",
+    //                 route: {
+    //                     list: [
+    //                         {
+    //                             x: "15",
+    //                             y: "16"
+    //                         },
+    //                         {
+    //                             x: "24",
+    //                             y: "14"
+    //                         }
+    //                     ],
+    //                 }
+    //             },
+    //             {
+    //                 class: "U2",
+    //                 id: "4567",
+    //                 x: "17",
+    //                 y: "18",
+    //                 can_use: false,
+    //                 atack: false,
+    //                 speed: "2",
+    //                 tootip: [],
+    //                 amount: "1",
+    //                 size: "2",
+    //                 color: "#00FF00",
+    //                 blazon: "/images/map/circles/emblem.png",
+    //                 route: {}
+    //             },
+    //         ]
+    //     }));
+    // };
 
     const container = $('#field_map');
     const canvas = $('#mapcanvas');
@@ -47,13 +96,6 @@ function Map(data, units) {
 
     const IMG_PATH = '/images/map/world/';
     const IMG_FORMAT = 'webp';
-    const BASE = '/ajax?c=map&do=';
-    const API = {
-        units: `${BASE}get_map_units`,
-        unit_animations: `/cache/units.json`,
-        select: `${BASE}click_select`,
-        unit_route: `${BASE}click`
-    };
     const OTHER_ASSETS = {
         round_frame: '/images/map/circles/circle_empty_shadow.png',
         country_coa: '/images/map/circles/emblem.png'
@@ -61,20 +103,19 @@ function Map(data, units) {
 
     let spritesheets = {};
     let img_assets = {};
-    let unit_animations = {};
 
     const HEX_WIDTH = 300;
     const HEX_HEIGHT = 255;
     const CELL_RATIO = HEX_WIDTH / HEX_HEIGHT;
     const OBJECT_TOP_EXTENSION = 0.25;
 
-    const ZOOM_MAX = 150; // change together with WMAP_ZOOM_MAX
-    const ZOOM_START = 60;
+    const ZOOM_MAX = 150;
+    const ZOOM_START = 150;
     const DISTANT_ZOOM_MAX = 20;
     const CITY_NAME_ZOOM = 30;
 
     const SEA_ZOOM_MAX = 1000 / (HEX_WIDTH / ZOOM_MAX); // 1000 - actual image size in px
-    const SEA_ZOOM_START = 200;
+    const SEA_ZOOM_START = 400;
 
     const SQUARE_RATIO = 1;
 
@@ -149,271 +190,6 @@ function Map(data, units) {
     };
     let activeLayer = null;
 
-    class Unit {
-        constructor(object) {
-            const VARIATIONS = ['U10', 'U7'];
-            const _ = this;
-            const TEMPL_RATIO_W = 1.167;
-            const TEMPL_RATIO_H = 1.196;
-            const TEMPL_RATIO = 0.87;
-            const DEFAULT_FACING_SIDE = 1;
-
-            let compositing;
-
-            this.moving = false;
-            this.variation = null;
-            this.facing_side = DEFAULT_FACING_SIDE;
-            this.turn = turn;
-            this.stop = stop;
-            this.start = start;
-            this.animation = getAnimation(VARIATIONS);
-            this.id = object.id;
-            this.name = object.name;
-            this.x = +object.x;
-            this.y = +object.y;
-            this.goal_x = +object.goal_x;
-            this.goal_y = +object.goal_y;
-            this.color = hex2rgb(object.color);
-            this.route = object.route;
-            this.can_selected = object.can_selected;
-            this.blazon = object.blazon;
-            this.video = addVideoElement();
-            this.elem = addCanvasElement();
-            this.show = show;
-            this.change_look = changeLook;
-            this.position = position;
-            this.asure_route_list = () => {
-                if (!this ?.route ?.list) this.route = { list: [] };
-            }
-
-            position(_.x, _.y);
-
-            function addVideoElement() {
-
-                const video = document.createElement('video');
-                video.style.cssText = `
-                        pointer-events: none;
-                        visibility: hidden;
-                        top: 0;
-                        left: 0;
-                        position: fixed;
-                    `;
-                container.insertAdjacentElement('beforeend', video);
-                return video;
-
-            }
-            function addCanvasElement() {
-
-                const can = document.createElement('canvas');
-                can.style.cssText = `
-                        display: block;
-                        pointer-events: none;
-                        top: 0;
-                        left: 0;
-                        position: absolute;
-                    `;
-                container.insertAdjacentElement('beforeend', can);
-                return can;
-
-            }
-            function position(col, row) {
-
-                if (!col) col = _.x;
-                if (!row) row = _.y;
-
-                const coord = getHexCoords(col, row);
-
-                const shiftLeft = (map.cell_width * TEMPL_RATIO_W - map.cell_width) / 2;
-                const shiftTop = (map.cell_height * TEMPL_RATIO_H - map.cell_height) / 2;
-                const x = coord.x - shiftLeft;
-                const y = coord.y - shiftTop;
-
-                const width = map.cell_width * TEMPL_RATIO_W;
-                const height = map.cell_height * TEMPL_RATIO_H;
-
-                // hide if outside screen
-                if (x < -width ||
-                    x > viewport.width ||
-                    y < -height ||
-                    y > viewport.height
-                ) {
-                    _.elem.style.display = 'none';
-                    return;
-                } else {
-                    _.elem.style.display = 'block';
-                }
-
-                _.elem.style.width = width + 'px';
-                _.elem.style.height = height + 'px';
-                _.elem.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-
-            }
-            function turn(side) {
-
-                _.facing_side = side;
-
-            }
-            function getAnimation(array) {
-
-                let obj = {};
-
-                array.forEach(type => {
-                    obj[type] = unit_animations[type];
-                });
-
-                return obj;
-
-            }
-            function show() {
-
-                const index = +object.y * map.columns + +object.x;
-                const natureID = map.layer.nature[index];
-                if (String(natureID).slice(0, 2) === '10') return; // if mountains
-
-                _.variation = VARIATIONS[0];
-
-                if (map.layer.terrain[index]) {
-                    _.change_look(_.variation);
-                } else if (map.layer.terrain[index] === 0) {
-                    _.variation = VARIATIONS[1];
-                    _.change_look(_.variation);
-                } else {
-                    container.addEventListener('fetched:map:layers', resolve);
-                }
-
-                function resolve(ev) {
-
-                    if (ev.detail.layer_name === 'terrain') {
-                        if (map.layer.terrain[index] === 0) _.variation = VARIATIONS[1];
-                        _.change_look(_.variation);
-                    }
-                }
-
-            }
-            function changeLook(variation) {
-
-                const side = getFacingSide();
-                if (side) _.facing_side = side;
-
-                _.video.currentTime = f(_.facing_side + 1 * _.animation[_.variation].idle.start);
-
-                _.video.src = `/video/${variation}.mp4`;
-                _.video.addEventListener('loadeddata', () => {
-                    setTimeout(() => {
-                        compositing = new Compositing(_.video, _.elem, _.color);
-                        if (_.moving) animate();
-                        else stop();
-                    }, 100);
-                });
-
-            }
-            function animate() {
-
-                const sideCycle = _.animation[_.variation].side_cycle;
-
-                if (sideCycle <= 1) {
-
-                    _.video.currentTime = f(_.facing_side * sideCycle + 1);
-                    setTimeout(() => {
-                        requestAnimationFrame(compositing.process);
-                    }, 1);
-                    return;
-                }
-
-                const moveCycleStart = _.animation[_.variation].move.cycle.start;
-                const moveCycleDuration = _.animation[_.variation].move.cycle.duration;
-
-                let startFrame = sideCycle * _.facing_side + moveCycleStart;
-                let finalFrame = sideCycle * _.facing_side + moveCycleDuration;
-                let currentFrame = startFrame;
-                let lastTimestamp = 0;
-
-                _.video.currentTime = currentFrame;
-
-                update();
-
-                function update(timestamp) {
-
-                    if (!_.moving) return;
-
-                    requestAnimationFrame(update);
-                    if (timestamp - lastTimestamp < 1000 / FPS) return;
-
-                    if (currentFrame === finalFrame) {
-                        currentFrame = startFrame;
-                        _.video.currentTime = f(startFrame);
-                    } else {
-                        currentFrame++;
-                        _.video.currentTime = f(currentFrame);
-                    }
-                    compositing.process();
-                    lastTimestamp = timestamp;
-                }
-
-            }
-            function stop() {
-
-                const sideCycle = _.animation[_.variation].side_cycle;
-
-                _.moving = false;
-                _.facing_side = DEFAULT_FACING_SIDE;
-                _.video.currentTime = f(_.facing_side * sideCycle + _.animation[_.variation].idle.start);
-
-                setTimeout(() => {
-                    requestAnimationFrame(compositing.process);
-                }, 1);
-
-            }
-            function start() {
-
-                if (_.moving) {
-                    stop();
-                    setTimeout(start, 1);
-                    return;
-                }
-
-                const side = getFacingSide();
-                if (side === null) return console.info('Cannot start unit, because no route.');
-
-                _.facing_side = side;
-
-                const sideCycle = _.animation[_.variation].side_cycle;
-
-                _.moving = true;
-                _.video.currentTime = f(side * sideCycle + _.animation[_.variation].idle.start);
-
-                animate();
-
-            }
-            function getFacingSide() {
-
-                if (_.route ?.list.length) {
-                    _.moving = true;
-                    const unitCoords = getHexCoords(_.x, _.y);
-                    const destination = getHexCoords(_.route.list[0].x, _.route.list[0].y);
-                    const x1 = unitCoords.x;
-                    const y1 = unitCoords.y;
-                    const x2 = destination.x;
-                    const y2 = destination.y;
-                    const angle = getAngle(x1, y1, x2, y2);
-                    return sideFromAngle(angle);
-                } else {
-                    return null;
-                }
-
-            }
-
-        }
-        set_route(x, y) {
-            this.asure_route_list();
-            this.route.list = [{ x, y }];
-        }
-        add_route(x, y) {
-            this.asure_route_list();
-            this.route.list.push({ x, y });
-        }
-    }
-
     let canvasWidth,
         canvasHeight,
         update,
@@ -428,40 +204,50 @@ function Map(data, units) {
 
     const viewport = new Viewport(0);
     const load = new Loader();
-    const cursor = new Cursor();
+    new Cursor();
     const selection = new Selection();
     new Controls();
 
     const _ = this;
-    this.mode = switchMode;
-    this.active_mode = getActiveLayer;
     this.viewport = viewport;
     this.redraw = redraw;
     this.props = map;
     this.container = container;
     this.selection = selection;
     this.toggle_mountains_area = toggleMountainsArea;
+    this.play = play;
+    this.pause = pause;
+    this.redraw = redraw;
+    this.map = map;
 
     setMapDimensions();
     viewport.initial_zoom();
     generateRandomFeatures();
     load.spritesheets(spriteMap);
-    load.units();
     load.other_assets();
 
+    battleUnits.units.forEach(unitData => {
+        const unit = new Unit(unitData);
+        map.layer.units.push(unit);
+    });
+
+    map.layer.units.forEach(unit => unit.update_visibility());
+
     window.addEventListener('resize', handleWindowResize);
+    // container.addEventListener('socket:update', ev => {
+    //     const unitsData = JSON.parse(ev.detail);
+    //
+    //     unitsData.units.forEach(updatedUnit => {
+    //         const unit = map.layer.units.find(unit => {
+    //             if (unit.id === updatedUnit.id) return unit;
+    //         });
+    //         if (unit) unit.update(updatedUnit);
+    //     });
+    // });
 
     function Loader() {
 
         const assets = {
-            units: {
-                loaded: 0,
-                total: 1
-            },
-            unit_animations: {
-                loaded: 0,
-                total: 1
-            },
             spritesheets: {
                 loaded: 0,
                 total: Object.keys(spriteMap).length
@@ -474,7 +260,6 @@ function Map(data, units) {
 
         watchAssetsLoading();
 
-        this.units = loadUnitAnimations;
         this.spritesheets = loadSpritesheets;
         this.other_assets = loadOtherAssets;
 
@@ -493,45 +278,6 @@ function Map(data, units) {
                 img.src = url;
 
             }
-
-        }
-        function loadUnitAnimations() {
-
-            units_requested = true;
-
-            fetch(API.unit_animations, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(res => res.json())
-                .then(data => {
-
-                    unit_animations = data;
-                    loadUnits();
-                    hey('fetched:map:unit_animations');
-
-                });
-
-        }
-        function loadUnits() {
-
-            let url = `${API.units}&min_x=1&min_y=1&max_x=2182&max_y=1048`;
-            if (dev) url = `/cache/map/battle-units.json`;
-
-            fetch(url)
-                .then(async (res) => {
-                    const data = await res.json();
-
-                    data.units.forEach(unitData => {
-                        const unit = new Unit(unitData);
-                        map.layer.units.push(unit);
-                        unit.show();
-                    });
-
-                    hey('fetched:map:units');
-
-                });
 
         }
         function loadOtherAssets() {
@@ -562,7 +308,8 @@ function Map(data, units) {
                 assets[assetName].loaded++;
                 const loadedAssets = getAssetsNumber('loaded');
                 if (loadedAssets === totalAssets) {
-                    setTimeout(redraw, 16);
+                    loop();
+                    // setTimeout(redraw, 16);
                 }
 
             }
@@ -576,6 +323,414 @@ function Map(data, units) {
 
                 return count;
 
+            }
+
+        }
+
+    }
+    function Unit(object) {
+
+        const { id, x, y, can_use, atack, speed, tootip, amount, size, color, route, blazon } = object;
+
+        const DEFAULT_FACING_SIDE = 1;
+        const WALK_SPEED = 7250;
+        const _ = this;
+
+        let compositing, exitState = false;
+
+        // basic properties
+        this.class = object.class;
+        this.id = id;
+        this.x = +x;
+        this.y = +y;
+        this.can_use = can_use;
+        this.atack = atack;
+        this.speed = speed;
+        this.tootip = tootip;
+        this.amount = amount;
+        this.size = size;
+        this.color = hex2rgb(color);
+        this.route = route;
+        this.blazon = blazon;
+
+        // properties
+        this.shown = true;
+        this.facing_side = DEFAULT_FACING_SIDE;
+        this.anim = unit_animations[_.class];
+        this.video = addVideoElement();
+        this.elem = addCanvasElement();
+        this.state = getState(object);
+        this.walking = false;
+        this.goal_x = null;
+        this.goal_y = null;
+        this.walking_progress = null;
+        this.action = null;
+        this.phase = null;
+        this.transform = {
+            x: 0,
+            y: 0
+        };
+        this.update_visibility = checkVisibility;
+
+        // actions
+        this.place = place;
+        this.turn = turn;
+        this.update = update;
+        this.set_route = setRoute;
+        this.add_route = addRoute;
+        this.asure_route_list = () => {
+            if (!this ?.route ?.list) this.route = { list: [] };
+        }
+
+        loadMedia();
+
+        function addVideoElement() {
+
+            const video = document.createElement('video');
+            video.style.cssText = `
+                pointer-events: none;
+                visibility: hidden;
+                top: 0;
+                left: 0;
+                position: fixed;
+            `;
+            container.insertAdjacentElement('beforeend', video);
+            return video;
+
+        }
+        function addCanvasElement() {
+
+            const can = document.createElement('canvas');
+            can.style.cssText = `
+                display: block;
+                pointer-events: none;
+                top: 0;
+                left: 0;
+                position: absolute;
+                will-change: transform;
+            `;
+            container.insertAdjacentElement('beforeend', can);
+            return can;
+
+        }
+        function loadMedia() {
+
+            const side = getFacingSideFromRoute();
+            if (side) _.facing_side = side;
+
+            _.video.currentTime = f(_.facing_side + 1 * _.anim.idle.start);
+
+            _.video.src = `/video/${_.class}_${_.size}.mp4`;
+            _.video.addEventListener('loadeddata', () => {
+                compositing = new Compositing(_.video, _.elem, _.color);
+                animate(_.state, 'cycle', -1);
+            });
+
+        }
+
+        async function animate(newState, phase, repeat) {
+
+            return new Promise((resolve, reject) => {
+
+                if (newState === 'atack') newState = 'attack'; // typo in API
+                if (!_.anim[newState] ?.start) {
+                    return console.log(`unknown state "${newState}" for ${_.class} unit`);
+                }
+                if (newState === 'idle') {
+                    _.phase = 'start';
+                    _.video.currentTime = f(getIdleFrame() + _.anim[newState].start);
+                    _.video.onseeked = () => {
+                        compositing.process();
+                        return resolve();
+                    };
+                    return;
+                }
+
+                _.phase = phase;
+                _.state = newState;
+
+                const phaseStart = _.anim[newState][phase].start;
+                const phaseDuration = _.anim[newState][phase].duration;
+
+                let startFrame = getIdleFrame() + phaseStart;
+                let finalFrame = getIdleFrame() + phaseStart + phaseDuration;
+
+                let currentFrame = startFrame;
+                let lastTimestamp = 0;
+                let repetitions = 0;
+
+                if (repeat == 0) {
+                    _.phase = 'start';
+                    _.video.currentTime = f(startFrame);
+                    _.video.onseeked = () => {
+                        compositing.process();
+                        return resolve();
+                    };
+                    return;
+                }
+
+                let updater = requestAnimationFrame(update);
+
+                function update(timestamp) {
+
+                    updater = requestAnimationFrame(update);
+                    if (timestamp - lastTimestamp < 1000 / FPS) return;
+
+                    if (currentFrame === finalFrame) { // if loop ended
+
+                        if (exitState) { // request to end loop
+
+                            cancelAnimationFrame(updater);
+                            resolve();
+                            hey(`${_.class}:animation:cycle:ended`);
+                            return;
+
+                        } else if (repeat < 0 || ++repetitions < repeat) { // repeat
+
+                            currentFrame = startFrame;
+                            _.video.currentTime = f(startFrame);
+
+                        } else { // end loop
+
+                            cancelAnimationFrame(updater);
+                            resolve();
+
+                        }
+
+                    } else {
+                        currentFrame++;
+                        _.video.currentTime = f(currentFrame);
+                    }
+                    compositing.process();
+                    lastTimestamp = timestamp;
+                }
+
+            });
+
+        }
+
+        function place() {
+
+            let x, y;
+
+            const position = calcCanvasPosition(_.x, _.y);
+
+            if (_.walking) {
+                const finalPosition = calcCanvasPosition(_.goal_x, _.goal_y);
+                const stransformX = (finalPosition.x - position.x) * _.walking_progress;
+                const stransformY = (finalPosition.y - position.y) * _.walking_progress;
+                x = stransformX + position.x;
+                y = stransformY + position.y;
+                _.transform.x = stransformX;
+                _.transform.y = stransformY;
+            } else {
+                x = position.x;
+                y = position.y;
+                _.transform.x = 0;
+                _.transform.y = 0;
+            }
+
+            if (position) {
+
+                _.elem.style.width = position.width + 'px';
+                _.elem.style.height = position.height + 'px';
+                _.elem.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+
+            }
+
+        }
+        function turn(side) {
+
+            _.facing_side = side;
+            animate('idle');
+
+        }
+        async function update(updated) {
+
+            _.amount = updated.amount;
+            _.size = updated.size;
+            _.speed = updated.speed;
+            _.route = updated.route;
+            if (!updated.route) _.route = null;
+
+            const newSide = getFacingSideFromHex(+updated.x, +updated.y);
+            if (newSide !== _.facing_side) {
+                await exitCurrentState();
+                turn(newSide);
+            }
+
+            if (+updated.x !== _.x || +updated.y !== _.y) {
+
+                _.goal_x = +updated.x;
+                _.goal_y = +updated.y;
+
+                await animate('move', 'start', 1);
+                animate('move', 'cycle', -1);
+                move(_.x, _.y, _.goal_x, _.goal_y, WALK_SPEED);
+
+            } else if (updated.atack) {
+
+                await animate('attack', 'start', 1);
+                animate('attack', 'cycle', -1);
+
+            } else {
+
+                animate('idle');
+
+            }
+
+            checkVisibility();
+
+        }
+        async function exitCurrentState() {
+            return new Promise((resolve, reject) => {
+
+                container.addEventListener(`${_.class}:animation:cycle:ended`, nextPhase);
+                exitState = true;
+
+                async function nextPhase(ev) {
+
+                    container.removeEventListener(`${_.class}:animation:cycle:ended`, nextPhase);
+                    exitState = false;
+
+                    await animate(_.state, 'end', 1);
+                    _.video.pause();
+                    resolve();
+
+                }
+
+            });
+        }
+        function setRoute(x, y) {
+            this.asure_route_list();
+            this.route.list = [{ x, y }];
+        }
+        function addRoute(x, y) {
+            this.asure_route_list();
+            this.route.list.push({ x, y });
+        }
+
+        function getState(object) {
+
+            if (object.route ?.list ?.length) {
+                if (object.atack) return 'attack';
+                return 'move';
+            } else {
+                return 'idle';
+            }
+
+        }
+        function getFacingSideFromRoute(route = _.route) {
+
+            if (route ?.list.length) {
+                const unitCoords = getHexCoords(_.x, _.y);
+                const destination = getHexCoords(route.list[0].x, route.list[0].y);
+                const x1 = unitCoords.x;
+                const y1 = unitCoords.y;
+                const x2 = destination.x;
+                const y2 = destination.y;
+                const angle = getAngle(x1, y1, x2, y2);
+                return sideFromAngle(angle);
+            } else {
+                return null;
+            }
+
+        }
+        function getFacingSideFromHex(col, row) {
+
+            const tiles = findAdjacentTiles(_.x, _.y);
+
+            for (const [i, tile] of tiles.entries()) {
+                if (+tile.col === +col && +tile.row === +row) return i;
+            }
+
+        }
+        function getIdleFrame() {
+
+            return _.facing_side * _.anim.side_cycle;
+
+        }
+        function calcCanvasPosition(col, row) {
+
+            const coord = getHexCoords(col, row);
+
+            const scaleRatio = map.cell_width / HEX_WIDTH;
+            const hexCenterX = coord.x + map.cell_width / 2;
+            const hexCenterY = coord.y + map.cell_height / 2;
+
+            const width = _.video.clientWidth * scaleRatio;
+            const height = _.video.clientHeight / 2 * scaleRatio;
+            const x = hexCenterX - width / 2;
+            const y = hexCenterY - height / 2;
+
+            // hide if outside screen
+            if (x < -width ||
+                x > viewport.width ||
+                y < -height ||
+                y > viewport.height
+            ) {
+                _.elem.style.display = 'none';
+                return;
+            } else {
+                _.elem.style.display = 'block';
+            }
+
+            return { x, y, width, height };
+
+        }
+        function distance(x1, y1, x2, y2) {
+
+            const a = x1 - x2;
+            const b = y1 - y2;
+
+            return Math.sqrt(a * a + b * b);
+
+        }
+        function move(startX, startY, finX, finY, duration) {
+
+            _.walking = true;
+
+            let animationStartTime;
+
+            animationStartTime = performance.now();
+            requestAnimationFrame(updateValue);
+
+            async function updateValue(time) {
+
+                const msPassed = time - animationStartTime;
+                _.walking_progress = msPassed / duration;
+                if (msPassed > duration) {
+                    _.walking_progress = 1;
+                    _.x = _.goal_x;
+                    _.y = _.goal_y;
+                    _.goal_x = null;
+                    _.goal_y = null;
+                    _.walking = false;
+                    await exitCurrentState();
+                    if (_.route ?.list ?.length) {
+                        const newSide = getFacingSideFromRoute();
+                        if (newSide !== _.facing_side) turn(newSide);
+                        animate('move', 'cycle', -1);
+                    }
+                }
+
+                place();
+
+                if (_.walking_progress < 1) requestAnimationFrame(updateValue);
+
+            }
+        }
+        function checkVisibility() {
+
+            const unit = located(map.layer.units, _.x, _.y);
+            if (unit.class !== _.class) {
+                if (unit.amount > _.amount) {
+                    _.elem.style.visibility = 'hidden';
+                    unit.elem.style.visibility = 'visibile';
+                } else {
+                    unit.elem.style.visibility = 'hidden';
+                    _.elem.style.visibility = 'visibile';
+                }
             }
 
         }
@@ -621,7 +776,7 @@ function Map(data, units) {
         viewport.initial_zoom();
         viewport.update();
 
-        redraw();
+        // redraw();
 
     }
     function setCanvasSize() {
@@ -706,7 +861,7 @@ function Map(data, units) {
 
             viewport.go_to(map.width / 2 + map.cell_width / 4, map.height / 2 + map.row_height / 4);
 
-            redraw();
+            // redraw();
 
         }
         function update() {
@@ -773,7 +928,7 @@ function Map(data, units) {
 
             areaUpdate();
             hey('viewport:update');
-            redraw();
+            // redraw();
 
         }
         function target(col, row, object) {
@@ -857,32 +1012,47 @@ function Map(data, units) {
                 case 1:
                     if (dragProcess) return dragEnd();
                     return click(event);
+                    break;
                 case 3:
-                    const target = getHexOnClick(event.offsetX, event.offsetY);
-                    const index = target.row * map.columns + target.col;
-                    hey('map:click:right', {
-                        col: target.col,
-                        row: target.row,
-                        index
-                    });
-                    if (selection.unit) {
-                        if (target.col === +selection.unit.x &&
-                            target.row === +selection.unit.y) return;
-
-                        cursor.target.play(target.col, target.row);
-
-                        if (shift) {
-                            shiftClick = true;
-                            selection.unit.add_route(target.col + '', target.row + '');
-                        } else {
-                            selection.unit.set_route(target.col + '', target.row + '');
-                            sendRoute();
-                        }
-
-                        selection.unit.start();
-
-                        redraw();
-                    }
+                    // const target = getHexOnClick(event.offsetX, event.offsetY);
+                    // const index = target.row * map.columns + target.col;
+                    // hey('map:click:right', {
+                    //     col: target.col,
+                    //     row: target.row,
+                    //     index
+                    // });
+                    // if (selection.unit) {
+                    //     if (target.col === +selection.unit.x &&
+                    //         target.row === +selection.unit.y) return;
+                    //
+                    //     cursor.target.play(target.col, target.row);
+                    //
+                    //     if (shift) {
+                    //         shiftClick = true;
+                    //         selection.unit.add_route(target.col + '', target.row + '');
+                    //     } else {
+                    //         selection.unit.set_route(target.col + '', target.row + '');
+                    //         sendRoute();
+                    //     }
+                    //
+                    //     selection.unit.update({
+                    //         class: "U1",
+                    //         id: "1234",
+                    //         x: "17",
+                    //         y: "17",
+                    //         can_use: true,
+                    //         atack: false,
+                    //         speed: "2",
+                    //         tootip: [],
+                    //         amount: "1",
+                    //         size: "2",
+                    //         color: "#00FF00",
+                    //         blazon: "/images/map/content/blazons/0.png",
+                    //         route: selection.unit.route
+                    //     });
+                    //
+                    //     redraw();
+                    // }
                     break;
                 default:
 
@@ -898,7 +1068,7 @@ function Map(data, units) {
                 (Math.abs(xDistance) > MIN_DRAG || Math.abs(yDistance) > MIN_DRAG)) {
 
                 dragProcess = true;
-                if (onPause) loop();
+                // if (onPause) loop();
 
                 const minX = viewport.center.x + map.cell_width / 2;
                 const maxX = map.width - viewport.center.x;
@@ -922,7 +1092,7 @@ function Map(data, units) {
 
             event.preventDefault();
 
-            play();
+            // play();
 
             const xRatio = viewport.position.x / map.width;
             const yRatio = viewport.position.y / map.height;
@@ -1008,12 +1178,12 @@ function Map(data, units) {
 
             viewport.go_to(x, y);
 
-            setTimeout(pause, 1000);
+            // setTimeout(pause, 1000);
 
         }
         function dragEnd() {
 
-            pause();
+            // pause();
 
             dragProcess = false;
             canvas.removeEventListener('mousemove', handleMove);
@@ -1039,36 +1209,36 @@ function Map(data, units) {
             //     return redraw();
             // }
 
-            if (!dev && !editor) {
-                fetch(`${API.select}&x=${target.col}&y=${target.row}`, {
-                    method: 'GET'
-                })
-                    .then(res => {
-                        if (res.ok) {
-                            res.json().then(res => {
-                                map.layer.info[index] = res;
-                                hey('map:click:left:response', res);
-                            });
-                        } else {
-                            res.json().then(res => {
-                                console.log(res);
-                            });
-                        }
-                    });
-            } else {
+            // if (!dev && !editor) {
+            //     fetch(`${API.select}&x=${target.col}&y=${target.row}`, {
+            //         method: 'GET'
+            //     })
+            //         .then(res => {
+            //             if (res.ok) {
+            //                 res.json().then(res => {
+            //                     map.layer.info[index] = res;
+            //                     hey('map:click:left:response', res);
+            //                 });
+            //             } else {
+            //                 res.json().then(res => {
+            //                     console.log(res);
+            //                 });
+            //             }
+            //         });
+            // } else {
+            //
+            //     fetch('/cache/map/clicksim/map_click.json', {
+            //         headers: {
+            //             "Content-Type": "application/json"
+            //         }
+            //     })
+            //         .then(async (res) => {
+            //             const data = await res.json();
+            //             hey('map:click:left:response', data);
+            //         });
+            // }
 
-                fetch('/cache/map/clicksim/map_click.json', {
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                })
-                    .then(async (res) => {
-                        const data = await res.json();
-                        hey('map:click:left:response', data);
-                    });
-            }
-
-            redraw();
+            // redraw();
 
         }
         function handleKeyboard(event) {
@@ -1078,7 +1248,7 @@ function Map(data, units) {
                     if (selection.unit && shiftClick) sendRoute();
                     shift = shiftClick = false;
                     selection.route = [];
-                    redraw();
+                    // redraw();
                     return;
                 } else {
                     shift = true;
@@ -1086,27 +1256,27 @@ function Map(data, units) {
             }
 
         }
-        function sendRoute() {
-
-            fetch(`${API.unit_route}&unit_id=${selection.unit.id}`, {
-                method: 'POST',
-                body: JSON.stringify(selection.unit.route.list)
-            })
-                .then(res => {
-                    if (res.ok) {
-                        res.json().then(res => {
-                            console.log(res);
-                        });
-                    } else {
-                        res.json().then(res => {
-                            console.log(res);
-                        });
-                    }
-                });
-
-            selection.route = [];
-
-        }
+        // function sendRoute() {
+        //
+        //     fetch(`${API.unit_route}&unit_id=${selection.unit.id}`, {
+        //         method: 'POST',
+        //         body: JSON.stringify(selection.unit.route.list)
+        //     })
+        //         .then(res => {
+        //             if (res.ok) {
+        //                 res.json().then(res => {
+        //                     console.log(res);
+        //                 });
+        //             } else {
+        //                 res.json().then(res => {
+        //                     console.log(res);
+        //                 });
+        //             }
+        //         });
+        //
+        //     selection.route = [];
+        //
+        // }
 
     }
     function Cursor() {
@@ -1240,7 +1410,10 @@ function Map(data, units) {
             selection.row = row;
 
             const unit = located(map.layer.units, col, row);
-            if (unit && unit.can_selected) _this.unit = unit;
+            if (unit && unit.can_use) {
+                _this.unit = unit;
+                ui.bottom.update([unit]);
+            }
 
         }
         function unset(x, y) {
@@ -1308,12 +1481,12 @@ function Map(data, units) {
         layer(rivers);
         layer(front);
 
-        if (!editor) route();
+        // if (!editor) route();
         layer(highlight);
-        // if (!editor) layer(cellBlazons);
+        if (!editor) layer(cellBlazons);
         layer(zone);
 
-        map.layer.units.forEach(unit => unit.position());
+        map.layer.units.forEach(unit => unit.place());
 
         if (window.minimap) minimap.viewport(colMin, rowMin, colMax - colMin, rowMax - rowMin);
 
@@ -2841,40 +3014,12 @@ function Map(data, units) {
                     map.cell_width * 1.2,
                     map.cell_height * 1.2
                 );
-
-                drawText(tileX, tileY, `${col}, ${row}`, 'center');
-
-                ctx.globalAlpha = 0.4;
-
-                const adjacent = findAdjacentTiles(col, row);
-
-                adjacent.forEach((tile, i) => {
-
-                    ctx.drawImage(
-                        selection.img,
-                        0,
-                        0,
-                        selection.sprite_width,
-                        selection.sprite_height,
-                        tile.x - map.cell_width * 0.1,
-                        tile.y - map.cell_height * 0.1,
-                        map.cell_width * 1.2,
-                        map.cell_height * 1.2
-                    );
-
-                    drawText(tile.x, tile.y, i, 'center');
-
-                });
-
-                ctx.globalAlpha = 1;
-
             }
 
         }
         function cellBlazons(col, row, tileX, tileY, index) {
 
             if (map.cell_width < CITY_NAME_ZOOM) return;
-            // if (map.layer.terrain[index] === 0) return;
 
             const unit = located(map.layer.units, col, row);
 
@@ -2893,19 +3038,14 @@ function Map(data, units) {
                     y2: tileY + map.cell_height + map.cell_height * BLAZON_GAP + framesSize,
                 }
 
-                if (unit) {
-                    const natureID = map.layer.nature[index];
-                    if (String(natureID).slice(0, 2) === '10') { // if mountains
-                        item.blazon_coords.y1 = tileY + (map.cell_height - framesSize) / 2;
-                        item.blazon_coords.y2 = tileY + (map.cell_height - framesSize) / 2 + framesSize;
-                    } else {
-                        item.blazon_coords.y1 -= map.cell_height * 0.2;
-                        item.blazon_coords.y2 -= map.cell_height * 0.2;
-                    }
+                const natureID = map.layer.nature[index];
+                if (String(natureID).slice(0, 2) === '10') { // if mountains
+                    item.blazon_coords.y1 = tileY + (map.cell_height - framesSize) / 2;
+                    item.blazon_coords.y2 = tileY + (map.cell_height - framesSize) / 2 + framesSize;
+                } else {
+                    item.blazon_coords.y1 -= map.cell_height * 0.2;
+                    item.blazon_coords.y2 -= map.cell_height * 0.2;
                 }
-
-                // drawText(tileX, tileY, city.name, 'bottom');
-                // const cityNameWidth = ctx.measureText(city.name).width;
 
                 if (item.blazon_img) {
                     try {
@@ -2915,8 +3055,8 @@ function Map(data, units) {
                             0,
                             item.blazon_img.width,
                             item.blazon_img.height,
-                            item.blazon_coords.x1 + blazonCoordShift,
-                            item.blazon_coords.y1 + blazonCoordShift,
+                            item.blazon_coords.x1 + blazonCoordShift + unit.transform.x,
+                            item.blazon_coords.y1 + blazonCoordShift + unit.transform.y,
                             blazonSize,
                             blazonSize
                         );
@@ -2926,8 +3066,8 @@ function Map(data, units) {
                             0,
                             img_assets.round_frame.width,
                             img_assets.round_frame.height,
-                            item.blazon_coords.x1,
-                            item.blazon_coords.y1,
+                            item.blazon_coords.x1 + unit.transform.x,
+                            item.blazon_coords.y1 + unit.transform.y,
                             framesSize,
                             framesSize
                         );
@@ -2937,7 +3077,7 @@ function Map(data, units) {
                 } else {
                     item.blazon_img = new Image();
                     item.blazon_img.src = item.blazon;
-                    item.blazon_img.onload = redraw;
+                    // item.blazon_img.onload = redraw;
                 }
 
             };
@@ -3025,19 +3165,10 @@ function Map(data, units) {
         ctx.globalAlpha = 1;
 
     }
-    function switchMode(name) {
-
-        activeLayer = name;
-        redraw();
-
-    }
-    function getActiveLayer() {
-        return activeLayer;
-    }
     function toggleMountainsArea(boolean) {
 
         showMountainsArea = boolean;
-        redraw();
+        // redraw();
 
     }
 
@@ -3359,6 +3490,18 @@ function Map(data, units) {
         if (angle >= 0 && angle < 60) return 5;
 
     }
+
+}
+function renew_battle(data) {
+
+    const unitsData = JSON.parse(data);
+
+    unitsData.units.forEach(updatedUnit => {
+        const unit = map.map.layer.units.find(unit => {
+            if (unit.id === updatedUnit.id) return unit;
+        });
+        if (unit) unit.update(updatedUnit);
+    });
 
 }
 function $(selector) {
