@@ -1775,29 +1775,32 @@ function Select(elem) {
 }
 function Draggables() {
 
-    const SCALE_STEP = 0.03;
+    const SCALE_STEP = 0.06;
     const MAX_SCALE = 1.5;
     const MIN_SCALE = 0.7;
     const EDGE = 100; // px
 
     const draggableEls = $$('.draggable');
-    let mouseDownCoord, x, y, minX, maxX, minY, maxY;
 
-    [...draggableEls].forEach(elem => {
+    [...draggableEls].forEach(elem => initDrag(elem));
+
+    function initDrag(elem) {
 
         const parent = elem.parentElement;
         parent.style.overflow = 'hidden';
         parent.style.position = 'relative';
 
-        let onlyX, onlyY, deltaWidth, deltaHeight;
+        let mouseDownCoord, minX, maxX, minY, maxY, onlyX, onlyY, deltaWidth, deltaHeight;
+        let x = 0;
+        let y = 0;
 
         elem.style.cssText = `
-            position: absolute;
-            top: 0;
-            left: ${(parent.clientWidth - elem.clientWidth) / 2}px;
-            transform: translateZ(0);
-            will-change: transform;
-        `;
+                position: absolute;
+                top: 0;
+                left: ${(parent.clientWidth - elem.clientWidth) / 2}px;
+                transform: translateZ(0);
+                will-change: transform;
+            `;
 
         elem.transforms = {
             x: 0,
@@ -1805,32 +1808,38 @@ function Draggables() {
             s: 1
         };
 
-        elem.addEventListener('mousedown', startDrag);
+        window.addEventListener('mousedown', startDrag);
         window.addEventListener('mouseup', stopDrag);
         window.addEventListener('mousewheel', handleScroll);
 
         function startDrag(ev) {
 
-            mouseDownCoord = {
-                x: ev.clientX,
-                y: ev.clientY
-            };
+            let elemCurrentWidth, elemCurrentHeight;
 
-            const elemCurrentWidth = elem.clientWidth * elem.transforms.s;
-            const elemCurrentHeight = elem.scrollHeight * elem.transforms.s;
+            if (ev.target === parent || ev.target.closest('.draggable') === elem) {
 
-            deltaWidth = elemCurrentWidth - elem.clientWidth;
-            deltaHeight = elemCurrentHeight - elem.scrollHeight;
+                mouseDownCoord = {
+                    x: ev.clientX,
+                    y: ev.clientY
+                };
 
-            onlyX = check('x');
-            onlyY = check('y');
+                elemCurrentWidth = elem.clientWidth * elem.transforms.s;
+                elemCurrentHeight = elem.scrollHeight * elem.transforms.s;
 
-            minX = parent.clientWidth - elemCurrentWidth + deltaWidth / 2 - EDGE;
-            maxX = deltaWidth / 2 + EDGE;
-            minY = parent.clientHeight - elemCurrentHeight + deltaHeight / 2 - EDGE;
-            maxY = deltaHeight / 2;
+                deltaWidth = elemCurrentWidth - elem.clientWidth;
+                deltaHeight = elemCurrentHeight - elem.scrollHeight;
 
-            window.addEventListener('mousemove', handleDragging);
+                onlyX = check('x');
+                onlyY = check('y');
+
+                minX = parent.clientWidth - elemCurrentWidth + deltaWidth / 2 - EDGE;
+                maxX = deltaWidth / 2 + EDGE;
+                minY = parent.clientHeight - elemCurrentHeight + deltaHeight / 2 - EDGE;
+                maxY = deltaHeight / 2;
+
+                window.addEventListener('mousemove', handleDragging);
+
+            }
 
             function check(axis) {
 
@@ -1847,6 +1856,7 @@ function Draggables() {
                 return false;
 
             }
+
         }
         function stopDrag(ev) {
 
@@ -1868,7 +1878,7 @@ function Draggables() {
         }
         function handleScroll(ev) {
 
-            if (ev.target.closest('.draggable') === elem) {
+            if (ev.target === parent || ev.target.closest('.draggable') === elem) {
 
                 const previousScale = elem.transforms.s;
 
@@ -1886,13 +1896,16 @@ function Draggables() {
                 const actualZoomRatio = elem.transforms.s / previousScale;
                 if (actualZoomRatio === 1) return;
 
-                const shiftRatio = 1 - actualZoomRatio;
+                const elemBox = elem.getBoundingClientRect();
 
-                const cursorDeviationX = ev.clientX - parent.width / 2;
-                const cursorDeviationY = ev.clientY - parent.height / 2;
+                const elemCenterX = elemBox.left + elemBox.width / 2;
+                const elemCenterY = elemBox.top + elemBox.height / 2;
 
-                x = x + cursorDeviationX * shiftRatio;
-                y = y + cursorDeviationY * shiftRatio;
+                const cursorDeviationX = ev.clientX - elemCenterX;
+                const cursorDeviationY = ev.clientY - elemCenterY;
+
+                x += cursorDeviationX * (1 - actualZoomRatio);
+                y += cursorDeviationY * (1 - actualZoomRatio);
 
                 updateTransform();
 
@@ -1914,7 +1927,7 @@ function Draggables() {
             elem.style.transform = `scale(${elem.transforms.s})`;
 
         }
-    });
+    }
 
 }
 function Timer() {
