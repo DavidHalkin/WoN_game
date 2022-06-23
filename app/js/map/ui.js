@@ -1078,6 +1078,8 @@ function replaceVars(string,target='') {
 }
 async function handleClick(url,history=true) {
 
+    if (!ui.aside.elem) return;
+
     function getSelectedIds() {
         return ui.bottom.selected;
     }
