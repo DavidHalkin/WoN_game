@@ -670,7 +670,6 @@ function Map(data, battleUnits) {
                 y > viewport.height
             ) {
                 _.elem.style.display = 'none';
-                return;
             } else {
                 _.elem.style.display = 'block';
             }
@@ -827,21 +826,33 @@ function Map(data, battleUnits) {
             const mapRatio = map.width / map.height;
             const viewRatio = viewport.width / viewport.height;
 
+            const zoomRatio = 0.1;
+
+            map.cell_width *= zoomRatio;
+            map.cell_height *= zoomRatio;
+
             if (mapRatio > viewRatio) {
 
                 const minHeight = viewport.height / (map.rows - 0.25) * 1.333;
 
                 if (map.cell_height * 0.75 * map.rows <= viewport.height) {
                     map.cell_width = minHeight * CELL_RATIO;
+                } else {
+                    map.sea_cell_width *= zoomRatio;
+                    map.sea_cell_height *= zoomRatio;
                 }
 
             } else if (mapRatio <= viewRatio) {
 
                 if (map.cell_width * map.columns <= viewport.width) {
-                    map.cell_width = viewport.width / (map.columns - 0.75);
+                    map.cell_width = viewport.width / (map.columns - 0.5);
+                } else {
+                    map.sea_cell_width *= zoomRatio;
+                    map.sea_cell_height *= zoomRatio;
                 }
 
             }
+
 
             const zoomScale = map.cell_width / ZOOM_START;
             map.sea_cell_width = SEA_ZOOM_START * zoomScale;
@@ -3023,7 +3034,7 @@ function Map(data, battleUnits) {
 
             const unit = located(map.layer.units, col, row);
 
-            if (unit) {
+            if (unit && unit.blazon_img !== 'http error') {
 
                 let item = unit;
 
@@ -3077,7 +3088,9 @@ function Map(data, battleUnits) {
                 } else {
                     item.blazon_img = new Image();
                     item.blazon_img.src = item.blazon;
-                    // item.blazon_img.onload = redraw;
+                    item.blazon_img.onerror = () => {
+                        item.blazon_img = 'http error';
+                    };
                 }
 
             };
