@@ -61,7 +61,7 @@ function initAll() {
 async function loadCityInfo() {
 
 
-    handleClick(`/ajax?do=city_info&c=city&city_id=${page_data.city_id}`, true);
+    handleClick(`/ajax?do=city_info&c=city&city_id=${page_data.city_id}`,true);
 
 }
 
@@ -179,17 +179,17 @@ function Aside(selector) {
     this.close = close;
     this.init = panelSolver;
     this.update = buildPanelDOM;
-    this.asideHistory = asideHistory;
+    this.asideHistory=asideHistory;
 
     function DomHistory() {
         this.history = [];
     }
-    function close(renew = false) {
-        if (renew != 1) asideHistory.removeRecord();
+    function close(renew=false) {
+        if (renew!=1) asideHistory.removeRecord();
         const { history } = asideHistory;
 
         if (history.length) {
-            handleClick(history[history.length - 1], false);
+            handleClick(history[history.length - 1],false);
         } else if (mapType != 'city') {
             elem.style.display = 'none';
         }
@@ -806,7 +806,7 @@ function generateHTML(target, structure, panel) {
                             list="styled-range-list"
                             class="range--progress"
                             style="--min: ${component.min}; --max: ${component.max}; --val: ${component.value}">
-                        <div class="filled" style="width: calc(${100 * (component.optimal ?? component.value) / component.max}% + 1px);"></div>
+                        <div class="filled" style="width: calc(${100*(component.optimal ?? component.value)/component.max}% + 1px);"></div>
                     </div>
                 `;
 
@@ -980,7 +980,7 @@ function generateHTML(target, structure, panel) {
 
                     let icon = '';
                     if (item.icon) icon = `<i class="ico"><img src="${item.icon}" alt="${item.name}"></i>`;
-                    if (item.selected) el.dataset.value = item.value;
+                    if (item.selected)  el.dataset.value = item.value;
                     listItems += `
                         <li data-value="${item.value}">
                             <strong class="select_item">
@@ -1026,7 +1026,7 @@ function generateHTML(target, structure, panel) {
                 clickableElement.setAttribute('data-ajax', 'true');
                 clickableElement.onclick = ev => {
                     ev.preventDefault();
-                    const url = (component.url);
+                    const url =  (component.url);
                     handleClick(url);
                 };
             } else {
@@ -1055,13 +1055,13 @@ function generateHTML(target, structure, panel) {
 
 
 }
-function replaceVars(string, target = '') {
+function replaceVars(string,target='') {
 
     const names = string.match(/[^{]+(?=})/g);
     if (!names) return string;
 
     let stringUpdated = string;
-    if (target == '') target = document;
+    if (target=='') target=document;
 
     names.forEach(name => {
         const elem = target.querySelector(`[name="${name}"]`);
@@ -1076,13 +1076,13 @@ function replaceVars(string, target = '') {
     return stringUpdated;
 
 }
-async function handleClick(url, history = true) {
+async function handleClick(url,history=true) {
 
     function getSelectedIds() {
         return ui.bottom.selected;
     }
 
-    url = replaceVars(url);
+    url=replaceVars(url);
     if (history) ui.aside.asideHistory.addRecord(url);
 
     let data;
@@ -1100,7 +1100,7 @@ async function handleClick(url, history = true) {
 
         if (data.redirect) window.location.href = data.redirect;
         else if (typeof data === 'object') {
-            if (data.hasOwnProperty('info')) { ui.aside.update(data); }
+            if (data.hasOwnProperty('info')) { ui.aside.update(data);  }
             if (data.hasOwnProperty('buildings')) ui.bottom.update(data.buildings);
             if (data.hasOwnProperty('commands')) ui.actions.update(data.commands);
             if (data.hasOwnProperty('commands_hide_back') || mapType == 'city') $('.actions_panel_holder').style = "background: none; --h: auto;";
@@ -1384,16 +1384,18 @@ function Slider(el) {
             input.value = inputField.value;
             update();
 
-            if (slider.dataset.url) {
-                const url = (slider.dataset.url + '&value=' + input.value);
-                handleClick(url, false);
+            if (slider.dataset.url)
+            {
+                const url =  (slider.dataset.url + '&value=' + input.value);
+                handleClick(url,false);
             }
         };
 
         input.addEventListener('mouseup', ev => {
-            if (slider.dataset.url) {
-                const url = (slider.dataset.url + '&value=' + input.value);
-                handleClick(url, false);
+            if (slider.dataset.url)
+            {
+                const url =    (slider.dataset.url + '&value=' + input.value);
+                handleClick(url,false);
             }
         });
 
@@ -1661,20 +1663,21 @@ function Select(elem) {
     initClicks();
     observeMutation();
 
-    function setValue(val = -1) {
-        if (val == -1) val = elem.dataset.value;
+    function setValue(val=-1) {
+        if (val==-1) val=elem.dataset.value;
 
 
         const title = header.querySelector('.panel_holder');
         let selectedLi = dropdown.querySelector(`li[data-value="${val}"]`);
 
-        if (!selectedLi) {
+        if (!selectedLi)
+        {
             selectedLi = dropdown.querySelector('li:first-child');
         }
         if (!selectedLi) return;
 
-        if (selectedLi.dataset.value != _.value) _.value = selectedLi.dataset.value;
-        if (selectedLi.dataset.value != elem.dataset.value) elem.dataset.value = selectedLi.dataset.value;
+        if (selectedLi.dataset.value!=_.value) _.value = selectedLi.dataset.value;
+        if (selectedLi.dataset.value!=elem.dataset.value ) elem.dataset.value =  selectedLi.dataset.value;
 
         title.innerHTML = selectedLi.innerHTML;
         showActive(_.value);
@@ -1722,7 +1725,7 @@ function Select(elem) {
 
     }
     function ajax(value) {
-        handleClick(elem.dataset.url + '&value=' + value, false);
+        handleClick(elem.dataset.url+'&value='+value,false);
 
         /*
         fetch(elem.dataset.url, {
@@ -1772,32 +1775,29 @@ function Select(elem) {
 }
 function Draggables() {
 
-    const SCALE_STEP = 0.06;
+    const SCALE_STEP = 0.03;
     const MAX_SCALE = 1.5;
     const MIN_SCALE = 0.7;
     const EDGE = 100; // px
 
     const draggableEls = $$('.draggable');
+    let mouseDownCoord, x, y, minX, maxX, minY, maxY;
 
-    [...draggableEls].forEach(elem => initDrag(elem));
-
-    function initDrag(elem) {
+    [...draggableEls].forEach(elem => {
 
         const parent = elem.parentElement;
         parent.style.overflow = 'hidden';
         parent.style.position = 'relative';
 
-        let mouseDownCoord, minX, maxX, minY, maxY, onlyX, onlyY, deltaWidth, deltaHeight;
-        let x = 0;
-        let y = 0;
+        let onlyX, onlyY, deltaWidth, deltaHeight;
 
         elem.style.cssText = `
-                position: absolute;
-                top: 0;
-                left: ${(parent.clientWidth - elem.clientWidth) / 2}px;
-                transform: translateZ(0);
-                will-change: transform;
-            `;
+            position: absolute;
+            top: 0;
+            left: ${(parent.clientWidth - elem.clientWidth) / 2}px;
+            transform: translateZ(0);
+            will-change: transform;
+        `;
 
         elem.transforms = {
             x: 0,
@@ -1805,38 +1805,32 @@ function Draggables() {
             s: 1
         };
 
-        window.addEventListener('mousedown', startDrag);
+        elem.addEventListener('mousedown', startDrag);
         window.addEventListener('mouseup', stopDrag);
         window.addEventListener('mousewheel', handleScroll);
 
         function startDrag(ev) {
 
-            let elemCurrentWidth, elemCurrentHeight;
+            mouseDownCoord = {
+                x: ev.clientX,
+                y: ev.clientY
+            };
 
-            if (ev.target === parent || ev.target.closest('.draggable') === elem) {
+            const elemCurrentWidth = elem.clientWidth * elem.transforms.s;
+            const elemCurrentHeight = elem.scrollHeight * elem.transforms.s;
 
-                mouseDownCoord = {
-                    x: ev.clientX,
-                    y: ev.clientY
-                };
+            deltaWidth = elemCurrentWidth - elem.clientWidth;
+            deltaHeight = elemCurrentHeight - elem.scrollHeight;
 
-                elemCurrentWidth = elem.clientWidth * elem.transforms.s;
-                elemCurrentHeight = elem.scrollHeight * elem.transforms.s;
+            onlyX = check('x');
+            onlyY = check('y');
 
-                deltaWidth = elemCurrentWidth - elem.clientWidth;
-                deltaHeight = elemCurrentHeight - elem.scrollHeight;
+            minX = parent.clientWidth - elemCurrentWidth + deltaWidth / 2 - EDGE;
+            maxX = deltaWidth / 2 + EDGE;
+            minY = parent.clientHeight - elemCurrentHeight + deltaHeight / 2 - EDGE;
+            maxY = deltaHeight / 2;
 
-                onlyX = check('x');
-                onlyY = check('y');
-
-                minX = parent.clientWidth - elemCurrentWidth + deltaWidth / 2 - EDGE;
-                maxX = deltaWidth / 2 + EDGE;
-                minY = parent.clientHeight - elemCurrentHeight + deltaHeight / 2 - EDGE;
-                maxY = deltaHeight / 2;
-
-                window.addEventListener('mousemove', handleDragging);
-
-            }
+            window.addEventListener('mousemove', handleDragging);
 
             function check(axis) {
 
@@ -1853,7 +1847,6 @@ function Draggables() {
                 return false;
 
             }
-
         }
         function stopDrag(ev) {
 
@@ -1875,7 +1868,7 @@ function Draggables() {
         }
         function handleScroll(ev) {
 
-            if (ev.target === parent || ev.target.closest('.draggable') === elem) {
+            if (ev.target.closest('.draggable') === elem) {
 
                 const previousScale = elem.transforms.s;
 
@@ -1893,16 +1886,13 @@ function Draggables() {
                 const actualZoomRatio = elem.transforms.s / previousScale;
                 if (actualZoomRatio === 1) return;
 
-                const elemBox = elem.getBoundingClientRect();
+                const shiftRatio = 1 - actualZoomRatio;
 
-                const elemCenterX = elemBox.left + elemBox.width / 2;
-                const elemCenterY = elemBox.top + elemBox.height / 2;
+                const cursorDeviationX = ev.clientX - parent.width / 2;
+                const cursorDeviationY = ev.clientY - parent.height / 2;
 
-                const cursorDeviationX = ev.clientX - elemCenterX;
-                const cursorDeviationY = ev.clientY - elemCenterY;
-
-                x += cursorDeviationX * (1 - actualZoomRatio);
-                y += cursorDeviationY * (1 - actualZoomRatio);
+                x = x + cursorDeviationX * shiftRatio;
+                y = y + cursorDeviationY * shiftRatio;
 
                 updateTransform();
 
@@ -1924,7 +1914,7 @@ function Draggables() {
             elem.style.transform = `scale(${elem.transforms.s})`;
 
         }
-    }
+    });
 
 }
 function Timer() {
@@ -1933,8 +1923,8 @@ function Timer() {
 
     function init(elem) {
 
-        const countDownDate = elem.dataset.end * 1000;
-        if (isNaN(countDownDate) || countDownDate == 0) return;
+        const countDownDate = elem.dataset.end*1000;
+        if (isNaN(countDownDate) || countDownDate==0) return;
         const metronome = setInterval(updateCountdown, 1000);
 
         function updateCountdown() {
@@ -1951,11 +1941,11 @@ function Timer() {
             const days = Math.floor(interval / (1000 * 60 * 60 * 24));
             var hours = Math.floor((interval % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             var minutes = Math.floor((interval % (1000 * 60 * 60)) / (1000 * 60));
-            if (minutes < 10) minutes = '0' + minutes;
+            if (minutes<10) minutes='0'+minutes;
             var seconds = Math.floor((interval % (1000 * 60)) / 1000);
-            if (seconds < 10) seconds = '0' + seconds;
+            if (seconds<10) seconds='0'+seconds;
 
-            elem.innerHTML = `${days > 0 ? days + ' ' + page_data.date.days : ''} ${hours}:${minutes}:${seconds}`;
+            elem.innerHTML = `${days>0 ? days+' '+page_data.date.days : ''} ${hours}:${minutes}:${seconds}`;
 
         }
 
