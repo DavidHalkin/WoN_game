@@ -5,12 +5,12 @@
         {
             "name": "Army 1",
             "can_selected": true,
-            "x": "1622",
-            "y": "597",
+            "x": "1620",
+            "y": "592",
             "visual_id": "2",
             "color": "#C21B84",
             "blazon": "/images/map/circles/emblem.png",
-            "class": "301",
+            "class": "U10",
             "id": "5411",
             "route": null
         },
