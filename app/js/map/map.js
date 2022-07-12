@@ -1231,6 +1231,8 @@ export function Map() {
         }
         function handleUp(event) {
 
+            if (window.debug) console.log(event);
+
             switch (event.which) {
                 case 1:
                     if (dragProcess) return dragEnd();
