@@ -2,7 +2,7 @@
 let war_type; 
 let template_hp_type; 
 let current_type;
-
+let block_check=false;
 
 function $(selector)
 {
@@ -11,8 +11,10 @@ function $(selector)
 
 }
 
-function resurs(id)
+async  function resurs(id)
 {
+    await  sleep(100);
+    if (block_check) return;
     var_resurs = $('#resurs'+id);
     if (var_resurs.classList.contains('selected')) {
         var_resurs.classList.remove('selected');
@@ -21,18 +23,22 @@ function resurs(id)
     }
     else 
     {
-        $('.resurs_panel .selected').classList.remove('selected');
+        if (current_type=='hp_type' && $('.resurs_panel .selected')) $('.resurs_panel .selected').classList.remove('selected');
         var_resurs.classList.add('selected');
         var d ='add';
-    }
+    } 
+
     new Generator({
         container: $('.army_block .grid_list'),
         init_url: `/ajax?c=recruiting&do=set_resurs&id=${war_type}&type=${current_type}&d=${d}&resurs=${id}`
     });
+ 
 }
 
-function resurs_trade(id)
+async  function resurs_trade(id)
 {
+    if (block_check) return;
+    block_check=true;
     var_resurs = $('#resurs'+id); 
 
     if ($('#resurs_trade'+id).hasAttribute('checked')) {
@@ -48,6 +54,8 @@ function resurs_trade(id)
         container: $('.army_block .grid_list'),
         init_url: `/ajax?c=recruiting&do=set_resurs&id=${war_type}&type=${current_type}&d=${d}&resurs=${id}`
     });
+    await sleep(600);
+    block_check=false;
 }
 
 function get_war_type_list()
@@ -83,7 +91,7 @@ function war_select(id)
 
 }
 
-function template_create(copy_id)
+function template_create(copy_id=0)
 {
     fetch(`/ajax?c=recruiting&do=new_unit&copy_id=${copy_id}`, {
         method: 'GET', // POST, PUT, ...
@@ -126,9 +134,9 @@ function template_recruit_prepare()
 
 function set_max( )
 {
-    var value = $('#complect_amount'+$('#select_complect').dataset.value).innerHTML;
+    var value = +$('#complect_amount'+$('#select_complect').dataset.value).innerHTML;
     $('#amount_range').max=value;
-    if (value<$('#amount').value) $('#amount').value=value;
+    if (value< +$('#amount').value) $('#amount').value=value;
 }
 
 
@@ -147,6 +155,9 @@ function template_recruit()
 
 function edit_template(war_type,type,filter='')
 {
+    var elem = $('#div_'+type+'>.sub_info>span');
+    if (!elem || elem?.innerHTML=='-') return false;
+
     current_type=type;
     new Generator({
         container: $('.resurs_panel'),

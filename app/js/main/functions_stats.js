@@ -12,15 +12,28 @@ function select_tab(name,title='')
     if (title) $('#stats_title').innerHTML=title;
     tab=name;
 
-    new Generator({
-        container: $('#item_list'),
-        init_url: `/ajax?c=stats&do=select_tab&tab=${name}`
-    }); 
+    if (name=='1') 
+    {
+        select_item(0);
+        $('#item_select').classList.add('d-none');
+    }
+    else  
+    {
+        $('#item_select').classList.remove('d-none');
+
+
+        new Generator({
+            container: $('#item_list'),
+            init_url: `/ajax?c=stats&do=select_tab&tab=${name}`
+        }); 
+    }
+        
 }
 
-function select_item()
+function select_item(resurs_id=-1)
 {
-    resurs_id=$('#item_select').dataset.value;
+    console.log(typeof(resurs_id));
+    if (resurs_id==-1 || typeof(resurs_id)!='bigint') resurs_id=parseInt($('#item_select').dataset.value);
 
     fetch(`/ajax?c=stats&do=stat&id=${resurs_id}&tab=${tab}`, {
         method: 'GET', // POST, PUT, ...
@@ -36,20 +49,7 @@ function select_item()
                     const labels = data.stat.labels;
                     const datachart = {
                     labels: labels,
-                    datasets: [
-                        {
-                        label: data.stat.label1,
-                        data: data.stat.data1, 
-                        borderColor: '#ff0e06',
-                        yAxisID: 'y',
-                        },
-                        {
-                        label: data.stat.label2,
-                        data: data.stat.data2, 
-                        borderColor: '#2dff46',
-                        yAxisID: 'y',
-                        }
-                    ]
+                    datasets: data.datasets
                     };
                    
                     if (myPieChart==null)

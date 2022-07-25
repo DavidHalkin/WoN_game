@@ -5,11 +5,22 @@ function $(selector)
 { 
     return document.querySelector(selector); 
 }
+
+function marry(char_id=0)
+{
+    //откріть окно
+    new Generator({
+        container: $('#modal_content'),
+        init_url: `/ajax?c=dinasty&do=marry_list`
+    }); 
+
+    open_modal(); 
+}
  
 
 function send_pact(id,cid)
 {
-    if ($('#pact'+id).classList.contains('disabled')) return false;
+    //if ($('#pact'+id) && $('#pact'+id).classList.contains('disabled')) return false;
     pact_id=id;
     char_id=cid;
 
@@ -36,12 +47,12 @@ function confirm_pact(result)
             if (res.ok) {
                 res.json().then(data => {
                     // data — это распарсеный JSON в виде JS объекта
-                     if (data.hasOwnProperty('status') && data.status )
+                     if (data.hasOwnProperty('status')   )
                      {
-                        $('#pact'+pact_id).classList.add('disabled');
+                        if ( data.status) $('#pact'+pact_id).classList.add('disabled');
                         open_modal();
                         $('#modal_title').innerHTML=data.title;
-                        $('#modal_text').innerHTML=data.text;
+                        $('#modal_content').innerHTML=data.text;
                         
 
                      }

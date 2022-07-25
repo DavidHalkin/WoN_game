@@ -1,18 +1,76 @@
 class Components {
     html(obj) { 
         switch (obj.type) { 
+            case 'state_list':
+                return `<ul class="list-unstyled mb-0">
+                ${(() => {
+                    let list = '';
+                    for (const item of obj.list) {
+                        list += `
+                        <li data-tooltip="${item.text}" class="d-flex align-items-center py-5">
+                            <div class="circle emblem"><img src="${item.icon}" alt=""></div>
+                            <div class="col px-10">
+                              <p class="mb-0 text-truncate"><a href="/state?id=${item.state_id}">${item.name}</a></p>
+                            </div> 
+                            ${item.close ? 
+                            `<a href="#" id="pact_close${item.id}_${item.state_id}" OnClick="close_pact('${item.id}','${item.state_id}');" class="  close_btn "></a>`
+                            : ''}                                                
+                        </li>`;
+                    }
+                    return list;
+                })()}                 
+                </ul>`;
+            case 'char_list':
+                return `<ul class="list-unstyled mb-0 pb-10">
+                ${(() => {
+                    let list = '';
+                    for (const item of obj.list) {
+                        list += `<li class="d-flex align-items-center py-10">
+                            <div class="person  silver">
+                                <div class="img_person">
+                                    <a href="/character?id=${item.id}" class="holder"><img src="${item.icon}" alt=""></a>
+                                </div>
+                                <div class="d-flex flex-column info_ico">
+                                    <button class="circle size_2 emblem"><img src="${item.state_blazon}" alt=""></button>
+                                </div>
+                                <div class="d-flex flex-column info_ico_left">
+                                    <button class="square size_0 mb-10"><em class="txt text-light fz_14">${item.age}</em></button>
+                                </div>
+                            </div>
+                            <div class="holder_info d-flex align-items-center col pl-30">
+                                <div class="col pr-10">
+                                    <h3 class="fz_20 mb-5">${item.name} ${item.dinasty}</h3>
+                                    <p class="text-muted mb-0">${item.state_name}</p>
+                                </div>
+                                ${item.stat_amount ? `
+                                <div class="col-auto d-flex align-items-center">
+                                    <span class="pr-8">${item.stat_amount}</span>
+                                    <a href="#" ${item.stat_tooltip ? `data-tooltip="${item.stat_tooltip}"` : ''} class="circle size_2"><img src="${item.stat_img}" alt=""></a>
+                                </div>` : ''}
+                                <div class="col pr-10">                                
+                                    <a href="#" ${item.button_tooltip ? `data-tooltip="${item.button_tooltip}"` : ''} id="char_btn_${item.id}" OnClick="${item.onclick}" class="btn"><span>${item.button_label}</span></a>                            
+                                </div> 
+                                ${item.button_label2 ? `<div class="col pr-10">                                
+                                <a href="#" ${item.button_tooltip2 ? `data-tooltip="${item.button_tooltip2}"` : ''} id="char_btn2_${item.id}" OnClick="${item.onclick2}" class="btn"><span>${item.button_label2}</span></a>                            
+                            </div> ` : ''}
+                            </div>
+                        </li>`;
+                    }
+                    return list;
+                })()} 
+                </ul>`;
             case 'law_cat': return `
             <div class="item">
                 ${obj.name ? `<h3 class="fz_20 text-center">${obj.name}:</h3>` : ''}
                 ${(() => {
                     let list = '';
                     for (const item of obj.components) {
-                        list += `<div data-tooltip='${item.title}' class="item_law d-flex align-items-start">
+                        list += `<div data-tooltip='${htmlQuotes(item.title)}' class="item_law d-flex align-items-start">
                         <div class="square size_2 mt-5">
                             <em class="txt">${item.id}</em>
                         </div>
                         <div class="col pl-10">
-                            <div  ${item.allow ? `OnClick="make_law( ${item.id}, '${obj.cat}')"` : ''} class="btn  btn-block panel  horizontal mb-10">
+                            <div  ${item.allow ? `OnClick="make_law( ${item.id}, '${obj.cat}')"` : ''} class="btn ${!item.allow ? `disabled` : ''} btn-block panel  horizontal mb-10">
                                 <div class="bg_image_panel" style="background-image: url(/images/map/panel/bg/aside.png);"></div>
                                 <div class="panel_holder flex-row align-items-center py-14 px-20">
                                     <p class="m-0 font-weight-bold px-5">
@@ -69,7 +127,7 @@ class Components {
                 return `<div class="teh has_checkbox has_btn has_select color_2 mx-auto has_timer">
                 <div class="panel md decor_2 centered_corners_none"> 
                     <div class="panel_holder">
-                        <div data-tooltip='${obj.text}' class="top_part mt-8">
+                        <div data-tooltip='${htmlQuotes(obj.text)}' class="top_part mt-8">
                             <div class="holder_img">
                                 <div class="icon_list d-flex flex-column"> 
                                      ${obj.bonus_tooltip  ?
@@ -154,17 +212,25 @@ class Components {
             </div> `;
             case 'resurs':
                 return `<div id="resurs${obj.id}" data-tooltip="${obj.tooltip}" class="panel sm  ${obj.selected  ? `selected` : ''} decor_2">
-                <div class="bg_image_panel" style="background-image: url(/images/map/panel/bg/aside.png);"></div>
-                <div  OnClick="resurs('${obj.id}');" class="panel_holder align-items-center flex-row p-10">
+                <div class="bg_image_panel"  style="background-image: url(/images/map/panel/bg/aside.png);"></div>
+                <div  OnClick="resurs('${obj.id}');"   class="panel_holder align-items-center flex-row  ">
                     <a href="#" class="emblem circle size_5">
                         <img src="${obj.icon}" alt="">
                     </a>
-                    <div class="etc_info pl-8 col">
-                        ${obj.price  ? `<div class="etc_info pl-8 col text-center">
-                            <span class="d-block  ">${obj.price}</span>
-                            <span class="d-block ${obj.export  ? 'text-success' : ''} ">${obj.amount}</span>
-                        </div>` : obj.amount} 
+                     
+                    <div class="etc_info col">
+                        ${obj.price || obj.time  ? `<div class="etc_info  col text-center">
+                            <span ${obj.time ? `data-end="${obj.time}" ` : ''} class="d-block ${obj.price} ${obj.time ? 'timer' : ''}">${obj.price}</span>
+                            <span class="d-block ${obj.export  ? 'text-success' : (obj.amount<0 || obj.import ? 'text-danger' : '')}  ">${obj.amount}</span>
+                        </div>` : `<div class="etc_info  col text-center"><span>${obj.amount}</span</div>` } 
                     </div>
+
+                    ${obj.owner ?
+                        `<a href="/state?id=${obj.owner}"  class="emblem circle size_5">
+                            <img src="${obj.gerb}" alt="">
+                        </a>`
+                        : ''
+                    } 
                 </div>
                 <div class="decor ">
                     <span class="corner"></span>
@@ -172,7 +238,7 @@ class Components {
                     <span class="corner right_bottom"></span>
                     <span class="corner left_bottom"></span>
                 </div> 
-                ${obj.checkbox  ? `<div class="label_right_bottom">
+                ${obj.checkbox  ? `<div data-tooltip="${page_data.autobuy}"  class="label_right_bottom">
                         <div class="checkbox checkbox_no_label">
                             <label>
                                 <input OnClick="resurs_trade(${obj.id});" id="resurs_trade${obj.id}" ${obj.checked  ? `checked` : ''}  type="checkbox">
@@ -217,7 +283,7 @@ class Components {
                         </div>
                     </div>`;
             case 'state_law':
-                return `<li data-tooltip='${obj.tooltip}' class="d-flex align-items-start pb-15">
+                return `<li data-tooltip='${htmlQuotes(obj.tooltip)}' class="d-flex align-items-start pb-15">
                 <div class="mod_close position-relative">
                     <div class="square size_2"><em class="txt text-light">${obj.id}</em></div>
                     <a href="#" OnClick="delete_law('state','${obj.id}','0','${obj.val2}');" class="close_btn position-absolute pos_centered"></a>

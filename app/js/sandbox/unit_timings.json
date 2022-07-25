@@ -1,0 +1,95 @@
+{
+    "archer": {
+        "total": 253,
+        "idle": {
+            "cycle": {
+                "start": 0,
+                "duration": 0
+            }
+        },
+        "move": {
+            "start": {
+                "start": 124,
+                "duration": 7
+            },
+            "cycle": {
+                "start": 132,
+                "duration": 33
+            },
+            "end": {
+                "start": 166,
+                "duration": 25
+            }
+        },
+        "fight": {
+            "start": {
+                "start": 2,
+                "duration": 38
+            },
+            "cycle": {
+                "start": 41,
+                "duration": 51
+            },
+            "end": {
+                "start": 93,
+                "duration": 29
+            }
+        },
+        "turn": {
+            "10": {
+                "start": 192,
+                "duration": 10
+            },
+            "05": {
+                "start": 202,
+                "duration": 10
+            },
+            "54": {
+                "start": 212,
+                "duration": 10
+            },
+            "45": {
+                "start": 222,
+                "duration": -10,
+                "opposite": true
+            },
+            "50": {
+                "start": 212,
+                "duration": -10,
+                "opposite": true
+            },
+            "01": {
+                "start": 202,
+                "duration": -10,
+                "opposite": true
+            },
+            "12": {
+                "start": 223,
+                "duration": 10
+            },
+            "23": {
+                "start": 233,
+                "duration": 10
+            },
+            "34": {
+                "start": 243,
+                "duration": 9
+            },
+            "43": {
+                "start": 252,
+                "duration": -9,
+                "opposite": true
+            },
+            "32": {
+                "start": 243,
+                "duration": -10,
+                "opposite": true
+            },
+            "21": {
+                "start": 233,
+                "duration": -10,
+                "opposite": true
+            }
+        }
+    }
+}

@@ -8,10 +8,11 @@ function $(selector)
     return document.querySelector(selector); 
 }
 
-function resurs(id)
+function resurs(id,clean_history=true)
 {
     resurs_id = id;
 
+    if (clean_history) $('#trade_result').innerHTML=''; 
     
     const thumbs = $('#resurs_list').children; 
     [...thumbs].forEach(thumb => {
@@ -32,14 +33,14 @@ function resurs(id)
 
 function load_resurs(id)
 {
-    $('#trade_result').innerHTML=''; 
 
     $('#cancel_button').classList.add('d-none');
+    var trade_market = $('#trade_market').dataset.value;
      
     var city = $('#selected_city_id').dataset.id;
     new Generator({
         container: $('#resurs_list'),
-        init_url: `/ajax?c=trade&city=${city}&do=resurs&resurs=${id}`
+        init_url: `/ajax?c=trade&city=${city}&do=resurs&resurs=${id}&trade_market=${trade_market}`
     });
 
     
@@ -55,7 +56,8 @@ function tab_trade()
 function tab_stat()
 {
    
-    fetch(`/ajax?c=trade&do=stat&id=${resurs_id}`, {
+    var trade_market = $('#trade_market').dataset.value;
+    fetch(`/ajax?c=trade&do=stat&id=${resurs_id}&trade_market=${trade_market}`, {
         method: 'GET', // POST, PUT, ...
          headers: {
              "Content-Type": "application/json", 
@@ -139,28 +141,38 @@ function tab_log()
         if (thumb.classList.contains('active')) thumb.classList.remove('active');
     });
     $('#trade_log').classList.add('active');
-
+    var trade_market = $('#trade_market').dataset.value;
     new Generator({
         container: $('#trade_log_list'),
-        init_url: `/ajax?c=trade&do=log&resurs=${id}`
+        init_url: `/ajax?c=trade&do=log&resurs=${resurs_id}&trade_market=${trade_market}`
     }); 
     
 }
 
+function caravan_list()
+{
+    new Generator({
+        container: $('#caravan_list'),
+        init_url: `/ajax?c=trade&do=caravan_list`
+    });
+}
 
 function get_resurs_list(cat_id=0)
 {
+    var trade_market = $('#trade_market').dataset.value;
+
     if (cat_id==0) cat_id=$('#resurs_category_select').dataset.value;
+    if (cat_id==-1) cat_id=current_cat;
    // else $('#resurs_category_select').dataset.value=cat_id;
 
     var city = $('#selected_city_id').dataset.id;
-
+    if (cat_id>0) current_cat=cat_id;
     new Generator({
         container: $('#resurs_list'),
-        init_url: `/ajax?c=trade&city=${city}&do=resurs_list&cat_id=${cat_id}`
+        init_url: `/ajax?c=trade&city=${city}&do=resurs_list&cat_id=${current_cat}&trade_market=${trade_market}`
     });
-    if (resurs_id>0) resurs(resurs_id);
-    current_cat=cat_id;
+    if (resurs_id>0) resurs(resurs_id,false);
+   
     
 }
 
@@ -179,7 +191,7 @@ function cancel(id)
     .then(res => {
         if (res.ok) {
             res.json().then(data => { 
-                get_resurs_list();
+                get_resurs_list(-1);
                 if (data.hasOwnProperty('resurs_id'))
                       resurs(data.resurs_id);
                      
@@ -193,16 +205,17 @@ function cancel(id)
 
 function sell()
 {
+    var trade_market = $('#trade_market').dataset.value;
+
     $('#trade_result').innerHTML='';
     var trade_min = $('#trade_min').value;
     var trade_max = $('#trade_max').value;
     var trade_amount = $('#trade_amount').value;
-    if ($('#check_autotrade').checked) autotrade=1; else autotrade=0;
-    if ($('#check_inside').checked) inside=1; else inside=0;
+    if ($('#check_autotrade').checked) autotrade=1; else autotrade=0; 
     var city = $('#selected_city_id').dataset.id;
     $('#cancel_button').classList.add('d-none');
 
-    fetch(`/ajax?c=trade&do=sell&city=${city}&id=${resurs_id}&inside=${inside}&autotrade=${autotrade}&price=${trade_min}&max=${trade_max}&amount=${trade_amount}`, {
+    fetch(`/ajax?c=trade&do=sell&city=${city}&id=${resurs_id}&autotrade=${autotrade}&price=${trade_min}&max=${trade_max}&amount=${trade_amount}&trade_market=${trade_market}`, {
        method: 'GET', // POST, PUT, ...
         headers: {
             "Content-Type": "application/json",
@@ -213,7 +226,7 @@ function sell()
     .then(res => {
         if (res.ok) {
             res.json().then(data => { 
-                get_resurs_list();
+                get_resurs_list(-1);
                 if (data.hasOwnProperty('resurs_id'))
                       resurs(data.resurs_id);
                      
@@ -228,16 +241,19 @@ function sell()
 
 function buy()
 {
+    var trade_market = $('#trade_market').dataset.value;
+    
+
     $('#trade_result').innerHTML='';
     var trade_min = $('#trade_min').value;
     var trade_max = $('#trade_max').value;
     var trade_amount = $('#trade_amount').value;
     if ($('#check_autotrade').checked) autotrade=1; else autotrade=0;
-    if ($('#check_inside').checked) inside=1; else inside=0;
+     
     var city = $('#selected_city_id').dataset.id;
     $('#cancel_button').classList.add('d-none');
 
-    fetch(`/ajax?c=trade&do=buy&city=${city}&id=${resurs_id}&inside=${inside}&autotrade=${autotrade}&price=${trade_min}&max=${trade_max}&amount=${trade_amount}`, {
+    fetch(`/ajax?c=trade&do=buy&city=${city}&id=${resurs_id}&autotrade=${autotrade}&price=${trade_min}&max=${trade_max}&amount=${trade_amount}&trade_market=${trade_market}`, {
         method: 'GET', // POST, PUT, ...
         headers: {
             "Content-Type": "application/json",
@@ -255,7 +271,7 @@ function buy()
                     $('#cancel_button').setAttribute('OnClick',`cancel(${data.trade_id})`);
                     $('#cancel_button').classList.remove('d-none');
                 }
-                get_resurs_list(); 
+                get_resurs_list(-1); 
             });
         } else {
             console.log('Ответ от сервера не OK (отличный от 200).');
@@ -280,3 +296,4 @@ get_resurs_list(1);
 nav_responsive();
 
 $('#resurs_category_select').addEventListener('select:update', get_resurs_list);
+$('#trade_market').addEventListener('select:update', get_resurs_list);

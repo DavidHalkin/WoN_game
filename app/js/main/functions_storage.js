@@ -80,19 +80,18 @@ function city_to(city=0)
     
 }
 
-function get_resurs_list(cat_id=0,city=-1)
+function get_resurs_list(cat_id=0,city=null)
 { 
     if (cat_id>0) current_cat=cat_id;
-    if (city>-1) 
-    {
-        city_id=city;
+     
+        if (city!==null) city_id=city;
         const thumbs = $('.city_from_list').children; 
         [...thumbs].forEach(thumb => {
             if (thumb.classList.contains('selected')) thumb.classList.remove('selected');
         });
         $('#city_from_0').classList.remove('selected');
-        $('#city_from_'+city_id).classList.add('selected');
-    }
+        if ($('#city_from_'+city_id)) $('#city_from_'+city_id).classList.add('selected');
+    
 
     new Generator({
         container: $('#resurs_list'),
@@ -123,4 +122,4 @@ function resurs(id)
 }
 
 get_resurs_list(1,0);
- 
+renew_owners();

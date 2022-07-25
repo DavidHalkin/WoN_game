@@ -1,4 +1,4 @@
-import { Map } from './map.js';
+import { Map } from './map.js?v=70';
 
 window.map = new Map();
 new CityLabel();
@@ -12,12 +12,11 @@ function CityLabel() {
 
     let hidden = true;
 
-    label.style.position = 'absolute';
-
     map.container.addEventListener('map:hover:city:blazon', handleHover);
 
 
     function handleHover(e) {
+
         if (hidden) {
             show(e.detail);
             map.container.addEventListener('mousemove', solveHover);
@@ -34,6 +33,7 @@ function CityLabel() {
         }
     }
     function hide() {
+
         label.classList.remove('show');
         hidden = true;
 
@@ -76,7 +76,4 @@ function CityLabel() {
     }
 
 
-}
-function $(selector) {
-    return document.querySelector(selector);
 }

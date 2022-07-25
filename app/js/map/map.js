@@ -17,6 +17,11 @@ export function Map() {
             nature: `${BASE}get_map_terra_objects`,
             cities: `${BASE}get_map_objects`,
         },
+        bins: {
+            terrain: `${CACHE}terrain`,
+            nature: `${CACHE}terra_objects`,
+            cities: `${CACHE}objects`,
+        },
         modes: {
             physical: '',
             climate: `${CACHE}colors_climate.bin`,
@@ -31,6 +36,7 @@ export function Map() {
         units: `${BASE}get_map_units`,
         unit_animations: `/cache/units.json`,
         select: `${BASE}click_select`,
+        dblclick: `${BASE}dblclick`,
         unit_route: `${BASE}click`
     };
     const OTHER_ASSETS = {
@@ -49,7 +55,7 @@ export function Map() {
 
     const ZOOM_MIN = 1;
     const ZOOM_MIN_FOR_HEX = 10;
-    const ZOOM_MAX = 150; // change together with WMAP_ZOOM_MAX & MODE_ZOOM_MAX
+    const ZOOM_MAX = 150; // change together with WMAP_ZOOM_MAX
     const ZOOM_START = 60;
     const DISTANT_ZOOM_MAX = 20;
     const STRETCH_AT_MIN_ZOOM = 0.568;
@@ -397,10 +403,14 @@ export function Map() {
         set_route(x, y) {
             this.asure_route_list();
             this.route.list = [{ x, y }];
+
+            console.log(this.route.list );
         }
         add_route(x, y) {
             this.asure_route_list();
             this.route.list.push({ x, y });
+
+            console.log(this.route.list );
         }
     }
 
@@ -597,16 +607,16 @@ export function Map() {
 
                 }
 
-                if (dev) {
+                if (!editor && !page_data?.map_use_live[key]) {
 
-                    url = `/cache/map/${key}.bin?u=${latestUpdate}`;
+                    url = `${API.bins[key]}.bin?u=${latestUpdate}`;
 
                     fetch(url)
                         .then(res => res.arrayBuffer())
                         .then(buffer => {
 
                             const data = msgpack.deserialize(buffer);
-                            extractDataFromObject(data, key);
+                            extractDataFromObject(data, key, {colMin:0, rowMin:0,colMax: 2181, rowMax: 1047});
 
                         });
 
@@ -633,7 +643,7 @@ export function Map() {
                         default:
                     }
 
-                    url = `${API.layers[key]}&min_x=${x1}&min_y=${y1}&max_x=${x2}&max_y=${y2}?u=${latestUpdate}`;
+                    url = `${API.layers[key]}&min_x=${x1}&min_y=${y1}&max_x=${x2}&max_y=${y2}`;
 
                     fetch(url)
                         .then(res => res.json())
@@ -1206,6 +1216,7 @@ export function Map() {
 
         canvas.addEventListener('mousedown', handleDown);
         canvas.addEventListener('mouseup', handleUp);
+        if (!editor) canvas.addEventListener('dblclick', dblclick);
         canvas.addEventListener('wheel', zoom);
         canvas.addEventListener('contextmenu', e => e.preventDefault());
 
@@ -1229,7 +1240,27 @@ export function Map() {
             }
 
         }
+        function dblclick(event)
+        {
+            const target = getHexOnClick(event.offsetX, event.offsetY);
+            fetch(`${API.dblclick}&x=${target.col}&y=${target.row}`, {
+                method: 'GET'
+            })
+                .then(res => {
+                    if (res.ok) {
+                        res.json().then(res => {
+                            if (res?.redirect) window.location.href=res.redirect;
+                        });
+                    } else {
+                        res.json().then(res => {
+                            console.log(res);
+                        });
+                    }
+                });
+        }
         function handleUp(event) {
+
+            if (window.debug) console.log(event);
 
             switch (event.which) {
                 case 1:
@@ -1463,6 +1494,7 @@ export function Map() {
                         if (res.ok) {
                             res.json().then(res => {
                                 map.layer.info[index] = res;
+                                res.url=`${API.select}&x=${target.col}&y=${target.row}`;
                                 hey('map:click:left:response', res);
                             });
                         } else {
@@ -1480,6 +1512,7 @@ export function Map() {
                 })
                     .then(async (res) => {
                         const data = await res.json();
+                        data.url='/cache/map/clicksim/map_click.json';
                         hey('map:click:left:response', data);
                     });
             }
@@ -1504,13 +1537,30 @@ export function Map() {
         }
         function sendRoute() {
 
+            var selected = []; 
+            const allSelected = $('.panel_army ').querySelectorAll('.type_active');
+            for (const elem of allSelected) {
+                selected.push(elem.dataset.id);
+            }
+           
+            var jsonBody = {route: selection.unit.route.list, units: selected};
+            
+             
             fetch(`${API.unit_route}&unit_id=${selection.unit.id}`, {
                 method: 'POST',
-                body: JSON.stringify(selection.unit.route.list)
+                body: JSON.stringify(jsonBody)
             })
                 .then(res => {
                     if (res.ok) {
                         res.json().then(res => {
+                            if (res.renew_map)
+                            {
+                                load.units(); 
+                                hey('fetched:map:layers', { layer_name: 'units' });
+                                redraw();
+
+                            }
+                                
                             console.log(res);
                         });
                     } else {
@@ -1519,8 +1569,7 @@ export function Map() {
                         });
                     }
                 });
-
-            selection.route = [];
+           
 
         }
 
@@ -1689,6 +1738,7 @@ export function Map() {
             selection.row = row;
 
             const unit = located(map.layer.units, col, row);
+            console.log(unit);
             if (unit && unit.can_selected) _this.unit = unit;
 
         }
@@ -3160,9 +3210,11 @@ export function Map() {
             if (map.layer.terrain[index] === 0) return;
             if (map.cell_width < DISTANT_ZOOM_MAX) return;
 
-            const city = located(map.layer.cities, col, row);
-            if (city && (city.type == 1 || city.type == 2 || city.type == 3) && !editor) return drawCity(city);
-            if (city && (city.type == 4 || city.type == 5) && !editor) return drawVillage(city);
+            if (map.layer.cities.length) {
+                const city = located(map.layer.cities, col, row);
+                if (city && (city.type == 1 || city.type == 2 || city.type == 3) && !editor) return drawCity(city);
+                if (city && (city.type == 4 || city.type == 5) && !editor) return drawVillage(city);
+            }
 
             drawNature();
 
@@ -4232,7 +4284,7 @@ export function Map() {
 
     }
     async function findCountrySpots(data) {
-
+        if (data==null) return;
         data.spots = [];
         data.colors.forEach((type, i) => {
 

@@ -28,13 +28,13 @@ function open_map(subdomain)
 {
     open_modal('.map_prev');
     close_modal('.server_prev');
-    $('#map').setAttribute('src',`https://${subdomain}.wealthofnations.uk/chache/map/polytics.png`);
+    $('#map').setAttribute('src',`https://${subdomain}.wealthofnations.uk/chache/map/polytics/map.png`);
 }
 
 function show_pass(el)
 {
     var pas_el = el.parentElement.querySelector('input');
-    if (pas_el.Attribute('type')=='password') pas_el.setAttribute('type','text');
+    if (pas_el.getAttribute('type')=='password') pas_el.setAttribute('type','text');
     else pas_el.setAttribute('type','password');
 
 }
@@ -74,7 +74,7 @@ function recovery()
     open_form('#recovery_end');
     var input_email = $('#rec_email').value; 
     
-    fetch(`/ajax?c=login&do=recovery&email=${input_login}`, {
+    fetch(`/ajax?c=login&do=recovery&email=${input_email}`, {
         method: 'GET', // POST, PUT, ...
         headers: {
             "Content-Type": "application/json",

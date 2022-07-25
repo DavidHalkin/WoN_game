@@ -149,6 +149,8 @@ function set_max()
                 {
                     $('#strat_change_amount').max=data.max;
                     $('#strat_change_slider').max=data.max;
+                    $('#strat_change_amount').value=1;
+                    $('#strat_change_slider').value=1;
                     $('#strat_change_slider').style="--min: 0; --max: ${data.max}; --val: 1";
                 }
                 

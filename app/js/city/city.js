@@ -16,6 +16,13 @@ window.onload = () => {
         if (p[0] === 'city_id') city_build_id = p[1];
     }
 
+    Map_Reload();
+
+}
+
+function Map_Reload()
+{
+    var cityID='';
     if (city_build_id) cityID = `?city_id=${city_build_id}`;
 
     let url = `/ajax?c=city&do=city_builds${cityID}`;
@@ -34,7 +41,6 @@ window.onload = () => {
                 res.json().then(res => console.log(res));
             }
         });
-
 }
 
 function Map(data) {
@@ -48,11 +54,12 @@ function Map(data) {
     const IMG_PATH = '/images/city/';
     const IMG_FORMAT = 'webp';
     const MIN_SCALE = 0.25;
-    const MAX_SCALE = 1;
+    const MAX_SCALE = 0.9;
     const START_SCALE = 1;
     const TILE_WIDTH = 128 * START_SCALE;
     const TILE_HEIGHT = 94 * START_SCALE;
     const PAN_EDGE_GAP = 1; // number of cells between edge of the city and max panning
+    const BIGGEST_BUILDING = 10;
     if (data.city_id) city_build_id = data.city_id;
 
     const tiles = {
@@ -70,8 +77,8 @@ function Map(data) {
             y: null
         },
         scale: START_SCALE,
-        cell_width: TILE_WIDTH,
-        cell_height: TILE_HEIGHT,
+        cell_width: TILE_WIDTH * START_SCALE,
+        cell_height: TILE_HEIGHT * START_SCALE,
         show: {
             checkerboard: true,
             grid: false,
@@ -111,8 +118,9 @@ function Map(data) {
     propagateBuildingAreas();
     generateRandomFeatures();
 
-    /*
-    $('button[name="coords"]').onclick = () => {
+    
+    function show_coor() 
+    {
         if (ghostBuildings) {
             ghostBuildings = false;
             tiles.show.grid = false;
@@ -130,7 +138,7 @@ function Map(data) {
         }
         redraw();
     }
-    */
+    
 
     load.spritesheets(spriteMap);
 
@@ -260,12 +268,16 @@ function Map(data) {
 
             function removeFromMap(id) {
 
-                const index = buildings.list.findIndex(building => {
-                    if (building.id == id) return true;
+                const building = buildings.list.find((building, i) => {
+                    if (building.id == id) {
+                        building.i = i;
+                        return building;
+                    }
                 });
 
-                if (index > -1) {
-                    buildings.list.splice(index, 1);
+                if (building) {
+                    if (building.countdown) building.countdown.destroy();
+                    buildings.list.splice(building.i, 1);
                     propagateBuildingAreas();
                     redraw();
                 }
@@ -306,6 +318,8 @@ function Map(data) {
                 propagateBuildingAreas();
                 redraw();
 
+                if (building.countdown) building.countdown.hide();
+
                 _.moving = {
                     elem: addGhost(building),
                     building
@@ -323,6 +337,10 @@ function Map(data) {
             if (dev) {
 
                 placeBuilding(building);
+                if (building.countdown) {
+                    building.countdown.move(tile2index(x, y));
+                    building.countdown.show();
+                }
 
             } else {
 
@@ -330,7 +348,13 @@ function Map(data) {
                     .then(res => {
                         if (res.ok) {
                             res.json().then(res => {
-                                if (res.status === true) placeBuilding(building);
+                                if (res.status === true) {
+                                    placeBuilding(building);
+                                    if (building.countdown) {
+                                        building.countdown.move(tile2index(x, y));
+                                        building.countdown.show();
+                                    }
+                                }
                             });
                         } else {
                             res.json().then(res => console.log(res));
@@ -342,9 +366,12 @@ function Map(data) {
         }
         function resetMove() {
 
+            const buildingObj = buildings.moving.building;
+
             buildings.moving.elem.remove();
-            buildings.moving.building.moving = false;
+            buildingObj.moving = false;
             propagateBuildingAreas();
+            if (buildingObj.countdown) buildingObj.countdown.show();
             buildings.moving = null;
 
             redraw();
@@ -381,41 +408,37 @@ function Map(data) {
             const x = tiles.selected.x;
             const y = tiles.selected.y;
             const building = Object.assign({}, buildings.moving.building);
-            /*
-            if (dev) {
 
-                building.id = Date.now();
-                buildings.list.push(building);
-
-                if (next) {
-                    placeBuildingAndContinue(building);
-                } else {
-                    placeBuilding(building);
-                }
-
-            } else {
-                    */
             fetch(`/ajax?c=city&do=add&x=${x}&y=${y}&city=${city_build_id}&id=${building.id}`)
-                .then(res => {
+                .then(async (res) => {
                     if (res.ok) {
-                        res.json().then(res => {
-                            if (res.status) {
-                                buildings.list.push(building);
-                                if (next) {
-                                    placeBuildingAndContinue(building);
-                                } else {
-                                    placeBuilding(building);
+                        res.json().then(data =>
+                            {
+                                if (data.status == true && data.time) {
+                                    if (data.id) building.id = data.id;
+                                    if (+data ?.time > Date.now() / 1000) {
+                                        building.timer = data.time;
+                                        const tileIndex = tile2index(x, y);
+                                        building.countdown = new BuildingTimer(building, tileIndex);
+                                    }
+                                    buildings.list.push(building);
+                                    if (next) {
+                                        placeBuildingAndContinue(building);
+                                    } else {
+                                        placeBuilding(building);
+                                    }
                                 }
+                                else console.log(data);
                             }
-                        });
+
+                            );
+
                     } else {
                         res.json().then(res => {
                             console.log(res);
                         });
                     }
                 });
-
-
 
         }
         function placeBuilding(building) {
@@ -586,10 +609,10 @@ function Map(data) {
 
                 let cell = { x, y, offX, offY };
 
-                if (offX < 0 - tiles.cell_width ||
-                    offX > window.innerWidth ||
+                if (offX < 0 - tiles.cell_width * BIGGEST_BUILDING ||
+                    offX > window.innerWidth * BIGGEST_BUILDING ||
                     offY < 0 - tiles.cell_height ||
-                    offY > window.innerHeight + tiles.cell_height
+                    offY > window.innerHeight + tiles.cell_height * BIGGEST_BUILDING
                 ) cell = null;
 
                 tiles.coordinates.push(cell);
@@ -658,8 +681,17 @@ function Map(data) {
 
             const { offX, offY, x, y } = cell;
 
-            drawForest(offX, offY, x, y, i);
+            if (offY < 0 - tiles.cell_height) return;
+
             drawBuildings(offX, offY, x, y, i);
+
+            if (offX < 0 - tiles.cell_width ||
+                offX > window.innerWidth ||
+                offY < 0 - tiles.cell_height ||
+                offY > window.innerHeight + tiles.cell_height
+            ) return;
+
+            drawForest(offX, offY, x, y, i);
             drawObjects(offX, offY, x, y, i);
 
         });
@@ -909,7 +941,6 @@ function Map(data) {
     function drawBuildings(offX, offY, x, y, i) {
 
         let urlbase = '';
-        if (dev) urlbase = 'https://dev.wealthofnations.uk';
 
         const building = buildings.list.find(building => {
             if (+building.x === x && +building.y === y) return true;
@@ -934,6 +965,10 @@ function Map(data) {
                     height
                 );
                 ctx.globalAlpha = 1;
+                if (!building.countdown &&
+                    building ?.timer > Date.now() / 1000) {
+                    building.countdown = new BuildingTimer(building, i);
+                }
             } catch (e) {
 
             }
@@ -1037,6 +1072,7 @@ function Map(data) {
             }
 
             redraw();
+            hey('map:moving');
 
         }
         function handleDown(event) {
@@ -1133,6 +1169,8 @@ function Map(data) {
                     if (onPause) loop();
 
                 }
+
+                hey('map:moving');
 
             } else { // hover
 
@@ -1351,7 +1389,7 @@ function Map(data) {
 }
 function BuildingContextMenu() {
 
-    const elem = $('.popup');
+    const elem = $('#build_popup');
     const controls = elem.querySelector('.popup_footer').children[1];
     const name = elem.querySelector('.content_scroll').children[1];
     const question = elem.querySelector('.content_scroll').children[0];
@@ -1411,15 +1449,132 @@ function BuildingContextMenu() {
 
         confirm.classList.remove('d-none');
         question.classList.remove('d-none');
+        hideControls();
 
     }
     function hideConfirm() {
 
         confirm.classList.add('d-none');
         question.classList.add('d-none');
+        showControls();
+    }
+    function showControls() {
+
+        btnMove.classList.remove('d-none');
+        btnDelete.classList.remove('d-none');
 
     }
+    function hideControls() {
 
+        btnMove.classList.add('d-none');
+        btnDelete.classList.add('d-none');
+
+    }
+}
+function BuildingTimer(building, tileIndex) {
+
+    const container = $('#field_map');
+    const onMap = map.tiles.coordinates[tileIndex];
+    const timerEl = document.createElement('div');
+
+    timerEl.classList.add('panel', 'sm', 'centered_corners_none');
+    timerEl.style.cssText = `
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translate3D(calc((${onMap.offX}px + ${map.tiles.cell_width / 2}px) - 50%), ${onMap.offY}px, 0);
+        height: auto;
+        pointer-events: none;
+        text-align: center;
+        will-change: transform;
+    `;
+
+    const timerHTML = `
+        <div class="panel_holder">
+            <div class="panel_content pb-10">
+                <div class="content_scroll" style="padding:0.25em 0.75em 0">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <div class="decor ">
+            <span class="corner"></span>
+            <span class="corner right_top"></span>
+            <span class="corner right_bottom"></span>
+            <span class="corner left_bottom"></span>
+        </div>`;
+
+    timerEl.innerHTML = timerHTML;
+    const timerText = timerEl.querySelector('.content_scroll span');
+    initTimer(building.timer, timerText);
+
+    this.element = timerEl;
+    this.hide = hide;
+    this.move = move;
+    this.show = show;
+    this.destroy = destroy;
+
+    container.insertAdjacentElement('beforeend', timerEl);
+    container.addEventListener('map:moving', handleDrag);
+
+
+    function handleDrag() {
+        const onMap = map.tiles.coordinates[tileIndex];
+        timerEl.style.transform = `translate3D(calc((${onMap.offX}px + ${map.tiles.cell_width / 2}px) - 50%), ${onMap.offY}px, 0)`;
+    }
+    function hide() {
+
+        timerEl.style.visibility = 'hidden';
+
+    }
+    function move(newIndex) {
+
+        tileIndex = newIndex;
+        handleDrag();
+
+    }
+    function show() {
+
+        timerEl.style.visibility = 'visible';
+
+    }
+    function destroy() {
+
+        container.removeEventListener('map:moving', handleDrag);
+        timerEl.remove();
+        building.countdown = null;
+
+    }
+    function initTimer(time, elem) {
+
+        const countDownDate = time * 1000;
+        if (isNaN(countDownDate) || countDownDate == 0) return;
+        const metronome = setInterval(updateCountdown, 1000);
+
+        function updateCountdown() {
+
+            const now = new Date().getTime();
+            const interval = countDownDate - now;
+
+            if (interval < 0) {
+                clearInterval(metronome);
+                destroy();
+                
+                ui.aside.close(1);
+               // Map_Reload();
+                return;
+            }
+
+            const hours = Math.floor((interval % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString();
+            const minutes = Math.floor((interval % (1000 * 60 * 60)) / (1000 * 60)).toString();
+            const seconds = Math.floor((interval % (1000 * 60)) / 1000).toString();
+
+            elem.innerText = `${hours.padStart(2, '0')}:${minutes.padStart(2, '0')}:${seconds.padStart(2, '0')}`;
+
+        }
+
+    }
 }
 function $(selector) {
 

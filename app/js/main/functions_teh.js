@@ -55,11 +55,7 @@ function teh_list()
     });
 
 
-    const thumbs = $$('.query_teh');
-
-    [...thumbs].forEach(thumb => {      
-        thumb.addEventListener('select:update', teh_list);
-    });
+   
 }
  
 teh_list();

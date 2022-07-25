@@ -91,6 +91,12 @@ window.Generator = function (settings) {
                     const maxScroll = container.scrollHeight - container.clientHeight;
                     container.scroll(0, maxScroll);
                 }
+
+                const thumbs = document.querySelectorAll('.query_teh');
+
+                [...thumbs].forEach(thumb => {      
+                    thumb.addEventListener('select:update', teh_list);
+                });
                 
             }
 
@@ -102,12 +108,26 @@ window.Generator = function (settings) {
 
 }
 
-function close_modal(id='.modal_container')
+function close_modal(id='#main_modal')
 {
     document.querySelector(id).classList.add('d-none');
 }
 
-function open_modal(id='.modal_container')
+function open_modal(id='#main_modal')
 {
     document.querySelector(id).classList.remove('d-none');
 }
+
+function htmlQuotes(str) {
+    var replace = {
+      "'": '&quot;',
+      '"': '&quot;' 
+    };
+    for (var n in replace)
+      str = str.split(n).join(replace[n]);
+    return str;
+  }
+
+  function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }

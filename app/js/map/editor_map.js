@@ -1,4 +1,4 @@
-import { Map } from './map.js';
+import { Map } from './map.js?v=59';
 
 window.map = new Map();
 new Editor();
